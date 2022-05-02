@@ -15,7 +15,7 @@ jobs:
         with:
           username: "Lipoic"
           reponame: "Lipoic.github.io"
-          token: ${{ github.token }}
+          token: ${{ secrets.LIPOIC_GITHUB_TOKEN }}
           gitmsg: Deploy to github pages
           gitname: Github action bot
           useyarn: true
