@@ -9,6 +9,7 @@
     "lint": "eslint 'src/**/*.{js,jsx,vue,ts,tsx}' --fix"
   },
   "dependencies": {
+    "@vue/eslint-config-typescript": "^10.0.0",
     "pinia": "^2.0.13",
     "vue": "^3.2.25",
     "vue-router": "4"
