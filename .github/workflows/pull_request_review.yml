@@ -1,0 +1,13 @@
+name: Pull request review
+on: [pull_request]
+
+jobs:
+  eslint:
+    name: runner / eslint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn install
+      - uses: reviewdog/action-eslint@v1
+        with:
+          eslint_flags: 'src/'
