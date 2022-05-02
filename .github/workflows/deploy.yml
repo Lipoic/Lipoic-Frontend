@@ -1,0 +1,21 @@
+name: Deploy to github pages
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xRealNeon/VuePagesAction@3415ebf6420a1d77fb8ff4e60c8624c30edd48ef
+        with:
+          username: "Lipoic"
+          reponame: "Lipoic-Frontend"
+          token: ${{ github.token }}
+          gitmsg: Deploy to github pages
+          gitname: Github action bot
+          useyarn: true
