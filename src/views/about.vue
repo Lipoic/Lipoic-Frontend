@@ -1,3 +1,1 @@
-<template>
-about
-</template>
+<template>about</template>
