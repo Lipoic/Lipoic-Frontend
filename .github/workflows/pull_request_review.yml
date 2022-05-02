@@ -3,7 +3,6 @@ on: [pull_request]
 
 jobs:
   eslint:
-    name: eslint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -11,3 +10,11 @@ jobs:
       - uses: reviewdog/action-eslint@v1
         with:
           eslint_flags: 'src/'
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
