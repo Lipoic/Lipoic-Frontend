@@ -28,7 +28,7 @@ const modules = [Pagination];
     </div>
     <div class="title">
       <h1>Lipoic</h1>
-      <p>專門為台灣學生設計的教學平台</p>
+      <p>專門為台灣師生設計的教學平台</p>
       <div class="loginBar">
         <router-link to="/login/student" class="first">學生</router-link>
         <router-link to="/login/teacher" class="middle">教師</router-link>

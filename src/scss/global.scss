@@ -17,6 +17,10 @@ $White: #FFFFFF;
     font-family: 'Roboto', 'Noto Sans TC', sans-serif;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 %link {
     text-decoration: none;
     color: #FFFFFF;
