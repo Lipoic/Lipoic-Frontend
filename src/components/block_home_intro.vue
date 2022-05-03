@@ -53,7 +53,7 @@ const modules = [Pagination];
     flex-direction: column;
   }
   @include phone {
-    padding: 10rem 1rem;
+    padding: 5rem 1rem;
   }
 
   .slideBlock {
