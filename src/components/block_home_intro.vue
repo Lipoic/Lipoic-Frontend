@@ -100,6 +100,10 @@ const modules = [Pagination];
     p {
       color: $White;
       font-size: 2rem;
+
+      @include phone {
+        text-align: center;
+      }
     }
 
     .loginBar {
