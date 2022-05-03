@@ -19,7 +19,7 @@ const PATH = router.currentRoute.value.path;
       <img :src="logoImg" alt="Lipoic" />
       <div class="name">
         <h1>Lipoic</h1>
-        <span>.ORG</span>
+        <span>EDU</span>
       </div>
     </div>
     <div class="links">
