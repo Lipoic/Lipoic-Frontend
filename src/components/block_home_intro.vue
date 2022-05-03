@@ -39,8 +39,8 @@ const modules = [Pagination];
 </template>
 
 <style lang="scss" scoped>
-@import '../scss/global.scss';
-@import '../scss/rwd.breakPoint.scss';
+@import '@/scss/global.scss';
+@import '@/scss/rwd.breakPoint.scss';
 .intro {
   width: 100vw;
   display: flex;

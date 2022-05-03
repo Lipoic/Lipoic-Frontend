@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
-import logoImg from '../assets/logo.png';
-import menuImg from '../assets/menu.svg';
+import logoImg from '@/assets/logo.png';
+import menuImg from '@/assets/menu.svg';
 
 const router = useRouter();
 const PATH = router.currentRoute.value.path;
@@ -73,8 +73,8 @@ const PATH = router.currentRoute.value.path;
 </template>
 
 <style lang="scss" scoped>
-@import '../scss/global.scss';
-@import '../scss/rwd.breakPoint.scss';
+@import '@/scss/global.scss';
+@import '@/scss/rwd.breakPoint.scss';
 
 #menuToggle:checked ~ .links-rwd {
   right: 0;
