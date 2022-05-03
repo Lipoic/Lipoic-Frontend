@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import block_headerVue from '@/components/block_header.vue';
-import block_home_introVue from '@/components/block_home_intro.vue';
+import blockHeaderVue from '@/components/block_header.vue';
+import blockHomeIntroVue from '@/components/block_home_intro.vue';
 </script>
 
 <template>
   <div id="home">
-    <block_header-vue></block_header-vue>
-    <block_home_intro-vue></block_home_intro-vue>
+    <blockHeaderVue></blockHeaderVue>
+    <blockHomeIntroVue></blockHomeIntroVue>
   </div>
 </template>
 
