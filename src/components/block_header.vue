@@ -44,8 +44,8 @@ const PATH = router.currentRoute.value.path;
       </ul>
       <router-link to="/account">LOGIN</router-link>
     </div>
-    <label for="menuToggle"
-      ><img :src="menuImg" alt="MENU" class="menuButton"
+    <label for="menuToggle" class="menuButton"
+      ><img :src="menuImg" alt="MENU"
     /></label>
     <div class="links-rwd">
       <ul>
