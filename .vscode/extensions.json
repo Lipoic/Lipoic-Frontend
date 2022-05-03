@@ -1,3 +1,7 @@
 {
-  "recommendations": ["johnsoncodehk.volar", "esbenp.prettier-vscode"]
+  "recommendations": [
+    "johnsoncodehk.volar",
+    "esbenp.prettier-vscode",
+    "johnsoncodehk.vscode-typescript-vue-plugin"
+  ]
 }

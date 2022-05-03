@@ -7,9 +7,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn install
-      - uses: reviewdog/action-eslint@v1
+      - name: Run eslint on changed files
+        uses: tj-actions/eslint-changed-files@v11
         with:
-          eslint_flags: 'src/'
+          token: ${{ github.token }}
+          config_path: '.eslintrc.js'
+          file_extensions: |
+            **/*.js            
+            **/*.ts
+            **/*.vue
   build:
     runs-on: ubuntu-latest
     steps:
