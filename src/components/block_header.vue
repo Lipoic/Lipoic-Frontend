@@ -40,7 +40,7 @@ const PATH = router.currentRoute.value.path;
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../scss/global.scss';
 .header {
   width: 100vw;
@@ -103,8 +103,7 @@ const PATH = router.currentRoute.value.path;
       }
 
       a {
-        color: $White;
-        text-decoration: none;
+        @extend %link;
         transition: color 0.3s ease-in;
         font-size: 1.1rem;
         font-weight: 500;

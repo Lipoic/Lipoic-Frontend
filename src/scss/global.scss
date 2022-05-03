@@ -9,9 +9,15 @@ $Black: #353535;
 $LightGreen: #6de8d7;
 $White: #FFFFFF;
 
+// global styles
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+}
+
+%link {
+    text-decoration: none;
+    color: #FFFFFF;
 }
