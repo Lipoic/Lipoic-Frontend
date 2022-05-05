@@ -62,7 +62,7 @@ const modules = [Pagination];
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   @include pad {
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
   }
 
@@ -70,6 +70,7 @@ const modules = [Pagination];
     margin-right: 80px;
     @include pad {
       margin-right: 0;
+      margin-top: 60px;
     }
     .swiper {
       max-width: 30vw;
@@ -90,8 +91,10 @@ const modules = [Pagination];
         }
       }
       @include phone {
-        width: 220px;
-        height: 220px;
+        min-width: 250px;
+        min-height: 250px;
+        max-height: 70vw;
+        max-width: 70vw;
         img {
           width: 250px;
           height: 250px;
@@ -193,7 +196,7 @@ const modules = [Pagination];
   .circles {
     position: absolute;
     top: 75px;
-    z-index: 1;
+    z-index: 1; // make the background layer to the bottom
     width: 100%;
     height: 100%;
     overflow: hidden;
