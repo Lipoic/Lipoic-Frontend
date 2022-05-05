@@ -8,6 +8,9 @@ const modules = [Pagination];
 
 <template>
   <div class="intro">
+    <ul class="circles">
+      <li v-for="key in 10" :key="key"></li>
+    </ul>
     <div class="slideBlock">
       <swiper
         :space-between="15"
@@ -39,45 +42,64 @@ const modules = [Pagination];
 </template>
 
 <style lang="scss" scoped>
+@import '@/scss/animation.func.scss';
 @import '@/scss/global.scss';
 @import '@/scss/rwd.breakPoint.scss';
+
 .intro {
   width: 100vw;
+  height: calc(100vh - 75px);
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-  background-color: #455056;
-  padding: 10rem 10rem;
+  justify-content: center;
+  background: linear-gradient(
+    -45deg,
+    rgba(110, 130, 255, 1) 0%,
+    rgba(105, 146, 237, 1) 29%,
+    rgba(107, 212, 218, 1) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
   @include pad {
-    padding: 5rem 1rem;
-    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    justify-content: center;
   }
   @include phone {
-    flex-direction: column;
-    padding: 5rem 1rem;
+    padding: 60px 0;
+    height: auto;
+    justify-content: flex-start;
   }
 
   .slideBlock {
-    margin-right: 10px;
-    @include phone {
+    margin-right: 80px;
+    @include pad {
       margin-right: 0;
+      margin-top: 60px;
     }
     .swiper {
-      width: 300px;
-      height: 300px;
+      max-width: 30vw;
+      width: 500px;
+      height: 500px;
+      max-height: 30vw;
       border-radius: 15px;
       @include pad {
-        width: 250px;
-        height: 250px;
+        min-width: 250px;
+        min-height: 250px;
+        max-height: 70vw;
+        max-width: 70vw;
+        width: 500px;
+        height: 500px;
         img {
           width: 250px;
           height: 250px;
         }
       }
       @include phone {
-        width: 220px;
-        height: 220px;
+        min-width: 250px;
+        min-height: 250px;
+        max-height: 70vw;
+        max-width: 70vw;
         img {
           width: 250px;
           height: 250px;
@@ -112,7 +134,7 @@ const modules = [Pagination];
     align-items: flex-start;
     justify-content: center;
 
-    @include phone {
+    @include pad {
       align-items: center;
     }
 
@@ -125,13 +147,15 @@ const modules = [Pagination];
       color: $White;
       font-size: 2rem;
 
-      @include phone {
+      @include pad {
         text-align: center;
+        padding: 0 10px;
       }
     }
 
     .loginBar {
       margin-top: 20px;
+      z-index: 2;
       a {
         @extend %link;
         color: $LightGreen;
@@ -175,6 +199,15 @@ const modules = [Pagination];
         }
       }
     }
+  }
+  .circles {
+    position: absolute;
+    top: 75px;
+    z-index: 1; // make the background layer to the bottom
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    @import '@/scss/sq.scss';
   }
 }
 </style>
