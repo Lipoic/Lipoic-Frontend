@@ -68,7 +68,7 @@ const modules = [Pagination];
 
   .slideBlock {
     margin-right: 80px;
-    @include phone {
+    @include pad {
       margin-right: 0;
     }
     .swiper {
@@ -82,8 +82,8 @@ const modules = [Pagination];
         min-height: 250px;
         max-height: 70vw;
         max-width: 70vw;
-        width: 250px;
-        height: 250px;
+        width: 500px;
+        height: 500px;
         img {
           width: 250px;
           height: 250px;
@@ -124,7 +124,7 @@ const modules = [Pagination];
     align-items: flex-start;
     justify-content: center;
 
-    @include phone {
+    @include pad {
       align-items: center;
     }
 
@@ -137,7 +137,7 @@ const modules = [Pagination];
       color: $White;
       font-size: 2rem;
 
-      @include phone {
+      @include pad {
         text-align: center;
         padding: 0 10px;
       }
@@ -145,6 +145,7 @@ const modules = [Pagination];
 
     .loginBar {
       margin-top: 20px;
+      z-index: 2;
       a {
         @extend %link;
         color: $LightGreen;
@@ -191,8 +192,8 @@ const modules = [Pagination];
   }
   .circles {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 75px;
+    z-index: 1;
     width: 100%;
     height: 100%;
     overflow: hidden;
