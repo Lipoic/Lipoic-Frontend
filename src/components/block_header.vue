@@ -192,7 +192,7 @@ const PATH = router.currentRoute.value.path;
     background-color: #1b1b1b;
     width: 100vw;
     top: 75px;
-    right: -100%;
+    right: -100vw;
     transition: 1s ease-in-out;
     z-index: 100;
     padding: 30px 0;

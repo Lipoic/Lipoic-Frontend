@@ -50,17 +50,39 @@ const modules = [Pagination];
   background-color: #455056;
   padding: 10rem 10rem;
   @include pad {
-    flex-direction: column;
+    padding: 5rem 1rem;
+    flex-wrap: wrap;
   }
   @include phone {
+    flex-direction: column;
     padding: 5rem 1rem;
   }
 
   .slideBlock {
+    margin-right: 10px;
+    @include phone {
+      margin-right: 0;
+    }
     .swiper {
       width: 300px;
       height: 300px;
       border-radius: 15px;
+      @include pad {
+        width: 250px;
+        height: 250px;
+        img {
+          width: 250px;
+          height: 250px;
+        }
+      }
+      @include phone {
+        width: 220px;
+        height: 220px;
+        img {
+          width: 250px;
+          height: 250px;
+        }
+      }
       .swiper-slide {
         background: {
           color: $White;
@@ -113,6 +135,9 @@ const modules = [Pagination];
         color: $LightGreen;
         padding: 10px 30px;
         transition: 0.2s ease-in-out;
+        @include phone {
+          padding: 10px 20px;
+        }
 
         &:hover {
           background-color: $LightGreen;
