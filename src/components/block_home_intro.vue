@@ -9,7 +9,7 @@ const modules = [Pagination];
 <template>
   <div class="intro">
     <ul class="circles">
-      <li v-for="_ in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" :key="_"></li>
+      <li v-for="key in 10" :key="key"></li>
     </ul>
     <div class="slideBlock">
       <swiper
