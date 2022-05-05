@@ -77,7 +77,7 @@ const PATH = router.currentRoute.value.path;
 @import '@/scss/rwd.breakPoint.scss';
 
 #menuToggle:checked ~ .links-rwd {
-  right: 0;
+  transform: translateX(0);
 }
 .header {
   width: 100vw;
@@ -87,6 +87,7 @@ const PATH = router.currentRoute.value.path;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 
   .logo {
     display: flex;
@@ -192,7 +193,8 @@ const PATH = router.currentRoute.value.path;
     background-color: #1b1b1b;
     width: 100vw;
     top: 75px;
-    right: -100vw;
+    transform: translateX(100vw);
+    right: 0;
     transition: 1s ease-in-out;
     z-index: 100;
     padding: 30px 0;

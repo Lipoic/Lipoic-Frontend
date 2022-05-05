@@ -48,7 +48,8 @@ const modules = [Pagination];
 
 .intro {
   width: 100vw;
-  height: calc(100vh - 75px);
+  height: auto;
+  padding: 120px 0;
   display: flex;
   flex-direction: row;
   align-items: center;
