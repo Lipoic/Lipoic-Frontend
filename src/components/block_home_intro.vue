@@ -65,6 +65,10 @@ const modules = [Pagination];
     flex-direction: column-reverse;
     justify-content: center;
   }
+  @include phone {
+    height: 800px;
+    justify-content: space-around;
+  }
 
   .slideBlock {
     margin-right: 80px;
