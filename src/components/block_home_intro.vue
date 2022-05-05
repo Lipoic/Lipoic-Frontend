@@ -66,8 +66,9 @@ const modules = [Pagination];
     justify-content: center;
   }
   @include phone {
-    height: 800px;
-    justify-content: space-around;
+    padding: 60px 0;
+    height: auto;
+    justify-content: flex-start;
   }
 
   .slideBlock {
