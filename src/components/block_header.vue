@@ -130,6 +130,7 @@ const PATH = router.currentRoute.value.path;
   }
 
   .links {
+    display: flex;
     flex-direction: row;
     align-items: center;
 
