@@ -13,7 +13,7 @@ const modules = [Pagination];
     </ul>
     <div class="slideBlock">
       <swiper
-        :pagination="true"
+        :space-between="15"
         :modules="modules"
         :autoplay="true"
         class="mySwiper"
@@ -113,6 +113,8 @@ const modules = [Pagination];
         flex-direction: row;
         align-items: center;
         justify-content: center;
+
+        border-radius: 15px;
 
         img {
           width: 300px;
