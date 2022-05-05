@@ -77,7 +77,13 @@ const PATH = router.currentRoute.value.path;
 @import '@/scss/rwd.breakPoint.scss';
 
 #menuToggle:checked ~ .links-rwd {
-  transform: translateX(0);
+  transform: scale(1);
+  ul {
+    opacity: 1;
+  }
+  a {
+    opacity: 1;
+  }
 }
 .header {
   width: 100vw;
@@ -124,7 +130,6 @@ const PATH = router.currentRoute.value.path;
   }
 
   .links {
-    display: flex;
     flex-direction: row;
     align-items: center;
 
@@ -193,13 +198,16 @@ const PATH = router.currentRoute.value.path;
     background-color: #1b1b1b;
     width: 100vw;
     top: 75px;
-    transform: translateX(100vw);
     right: 0;
-    transition: 1s ease-in-out;
+    transform-origin: center right;
+    transform: scale(0, 1);
+    transition: 1s;
     z-index: 100;
     padding: 30px 0;
 
     > a {
+      opacity: 0;
+      transition: 1.5s;
       font-size: 1rem;
       background-color: transparent;
       border: 1px solid $LightGreen;
@@ -207,11 +215,13 @@ const PATH = router.currentRoute.value.path;
       border-radius: 5px;
       padding: 5px 15px;
       text-decoration: none;
-      transition: 0.2s ease-in-out;
+      transition: 0.2s;
     }
 
     ul {
       list-style: none;
+      opacity: 0;
+      transition: 1.5s;
       li {
         width: 100vw;
         text-align: center;
