@@ -12,14 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      # Sets the branch name as environment variable
-      - uses: nelonoel/branch-name@v1.0.1
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5.2
       - uses: jsmrcaga/action-netlify-deploy@master
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           build_directory: dist
-          deploy_alias: ${{ env.BRANCH_NAME }}
+          deploy_alias: ${{ steps.branch-name.outputs.current_branch }}
 
       # Creates a status check with link to preview
       - name: Status check
@@ -28,4 +29,4 @@ jobs:
           authToken: ${{ secrets.GITHUB_TOKEN }}
           context: Netlify preview
           state: success
-          target_url: https://${{ env.BRANCH_NAME }}--lipoic-frontend.netlify.app
+          target_url: https://${{ steps.branch-name.outputs.current_branch }}--lipoic-frontend.netlify.app
