@@ -8,6 +8,9 @@ const modules = [Pagination];
 
 <template>
   <div class="intro">
+    <ul class="circles">
+      <li v-for="_ in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]"></li>
+    </ul>
     <div class="slideBlock">
       <swiper
         :pagination="true"
@@ -39,35 +42,46 @@ const modules = [Pagination];
 </template>
 
 <style lang="scss" scoped>
+@import '@/scss/animation.func.scss';
 @import '@/scss/global.scss';
 @import '@/scss/rwd.breakPoint.scss';
+
 .intro {
   width: 100vw;
+  height: calc(100vh - 75px);
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-  background-color: #455056;
-  padding: 10rem 10rem;
+  justify-content: center;
+  background: linear-gradient(
+    -45deg,
+    rgba(110, 130, 255, 1) 0%,
+    rgba(105, 146, 237, 1) 29%,
+    rgba(107, 212, 218, 1) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
   @include pad {
-    padding: 5rem 1rem;
-    flex-wrap: wrap;
-  }
-  @include phone {
     flex-direction: column;
-    padding: 5rem 1rem;
+    justify-content: center;
   }
 
   .slideBlock {
-    margin-right: 10px;
+    margin-right: 80px;
     @include phone {
       margin-right: 0;
     }
     .swiper {
-      width: 300px;
-      height: 300px;
+      max-width: 30vw;
+      width: 500px;
+      height: 500px;
+      max-height: 30vw;
       border-radius: 15px;
       @include pad {
+        min-width: 250px;
+        min-height: 250px;
+        max-height: 70vw;
+        max-width: 70vw;
         width: 250px;
         height: 250px;
         img {
@@ -125,6 +139,7 @@ const modules = [Pagination];
 
       @include phone {
         text-align: center;
+        padding: 0 10px;
       }
     }
 
@@ -173,6 +188,15 @@ const modules = [Pagination];
         }
       }
     }
+  }
+  .circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    @import '@/scss/sq.scss';
   }
 }
 </style>
