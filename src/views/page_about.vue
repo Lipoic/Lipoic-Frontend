@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+import blockHeaderVue from '@/components/block_header.vue';
+</script>
+
 <template>
-  <div>about</div>
+  <div id="about">
+    <blockHeaderVue></blockHeaderVue>
+  </div>
 </template>
