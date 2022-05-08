@@ -49,11 +49,12 @@ const modules = [Pagination];
 .intro {
   width: 100vw;
   height: auto;
-  padding: 120px 0;
+  padding: 157px 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  position: relative;
   background: linear-gradient(
     -45deg,
     rgba(110, 130, 255, 1) 0%,
@@ -67,6 +68,7 @@ const modules = [Pagination];
     justify-content: center;
   }
   @include phone {
+    position: relative;
     padding: 60px 0;
     height: auto;
     justify-content: flex-start;
@@ -203,11 +205,11 @@ const modules = [Pagination];
   }
   .circles {
     position: absolute;
-    top: 75px;
     z-index: 1; // make the background layer to the bottom
-    width: 100%;
+    width: 100vw;
     height: 100%;
     overflow: hidden;
+    top: 0;
     @import '@/scss/sq.scss';
   }
 }
