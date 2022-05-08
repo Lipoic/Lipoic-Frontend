@@ -26,7 +26,7 @@ function isActive(path: string): string {
         <span>EDU</span>
       </div>
     </div>
-    <div class="links">
+    <div class="links-desktop">
       <ul>
         <li>
           <router-link to="/" :class="isActive('')">首頁</router-link>
@@ -48,7 +48,7 @@ function isActive(path: string): string {
     <label for="menuToggle" class="menuButton"
       ><img :src="menuImg" alt="MENU"
     /></label>
-    <div class="links-rwd">
+    <div class="links-phone">
       <ul>
         <li>
           <router-link to="/" :class="isActive('/')">首頁</router-link>
@@ -74,7 +74,7 @@ function isActive(path: string): string {
 @import '@/scss/global.scss';
 @import '@/scss/rwd.breakPoint.scss';
 
-#menuToggle:checked ~ .links-rwd {
+#menuToggle:checked ~ .links-phone {
   transform: scale(1);
   ul {
     opacity: 1;
@@ -127,7 +127,7 @@ function isActive(path: string): string {
     }
   }
 
-  .links {
+  .links-desktop {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -186,7 +186,7 @@ function isActive(path: string): string {
     height: 35px;
     cursor: pointer;
   }
-  .links-rwd {
+  .links-phone {
     display: none;
     @include phone {
       display: flex;
