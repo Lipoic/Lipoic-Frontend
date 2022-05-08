@@ -5,6 +5,10 @@ import menuImg from '@/assets/menu.svg';
 
 const router = useRouter();
 const PATH = router.currentRoute.value.path;
+
+function isActive(path: string): string {
+  return PATH === `/${path}` ? 'active' : '';
+}
 </script>
 
 <template>
@@ -25,21 +29,18 @@ const PATH = router.currentRoute.value.path;
     <div class="links">
       <ul>
         <li>
-          <router-link to="/" :class="PATH === '/' ? 'active' : ''"
-            >首頁</router-link
-          >
+          <router-link to="/" :class="isActive('')">首頁</router-link>
         </li>
         <li>
-          <router-link to="/about" :class="PATH === '/about' ? 'active' : ''"
-            >關於</router-link
-          >
+          <router-link to="/about" :class="isActive('about')">關於</router-link>
         </li>
         <li>
-          <router-link
-            to="/feature"
-            :class="PATH === '/feature' ? 'active' : ''"
+          <router-link to="/feature" :class="isActive('feature')"
             >特色</router-link
           >
+        </li>
+        <li>
+          <router-link to="/demo" :class="isActive('demo')">展示</router-link>
         </li>
       </ul>
       <router-link to="/account">LOGIN</router-link>
@@ -50,21 +51,18 @@ const PATH = router.currentRoute.value.path;
     <div class="links-rwd">
       <ul>
         <li>
-          <router-link to="/" :class="PATH === '/' ? 'active' : ''"
-            >首頁</router-link
-          >
+          <router-link to="/" :class="isActive('/')">首頁</router-link>
         </li>
         <li>
-          <router-link to="/about" :class="PATH === '/about' ? 'active' : ''"
-            >關於</router-link
-          >
+          <router-link to="/about" :class="isActive('about')">關於</router-link>
         </li>
         <li>
-          <router-link
-            to="/feature"
-            :class="PATH === '/feature' ? 'active' : ''"
+          <router-link to="/feature" :class="isActive('feature')"
             >特色</router-link
           >
+        </li>
+        <li>
+          <router-link to="/demo" :class="isActive('demo')">展示</router-link>
         </li>
       </ul>
       <router-link to="/account">LOGIN</router-link>
