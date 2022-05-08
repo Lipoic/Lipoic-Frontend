@@ -19,4 +19,5 @@ jobs:
           token: ${{ secrets.LIPOIC_GITHUB_TOKEN }}
           gitmsg: Deploy to github pages
           gitname: Github action bot
+          cname: 'www.lipoic.org'
           useyarn: true
