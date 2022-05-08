@@ -14,8 +14,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: xRealNeon/VuePagesAction@3415ebf6420a1d77fb8ff4e60c8624c30edd48ef
         with:
-          username: "Lipoic"
-          reponame: "Lipoic.github.io"
+          username: 'Lipoic'
+          reponame: 'Lipoic-Frontend'
           token: ${{ secrets.LIPOIC_GITHUB_TOKEN }}
           gitmsg: Deploy to github pages
           gitname: Github action bot
