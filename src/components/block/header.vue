@@ -131,6 +131,7 @@ const links = [
     li {
       padding-right: 30px;
 
+      // 使用 router自行添加的 active class
       .router-link-exact-active {
         color: $LightGreen;
       }
