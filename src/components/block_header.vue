@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
 import menuImg from '@/assets/menu.svg';
 
-const router = useRouter();
-const PATH = router.currentRoute.value.path;
+const links = [
+  { path: '/', name: '首頁' },
+  { path: '/about', name: '關於' },
+  { path: '/feature', name: '特色' },
+];
 </script>
 
 <template>
@@ -26,49 +28,21 @@ const PATH = router.currentRoute.value.path;
     </div>
     <div class="links">
       <ul>
-        <li>
-          <router-link to="/" :class="PATH === '/' ? 'active' : ''"
-            >首頁</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/about" :class="PATH === '/about' ? 'active' : ''"
-            >關於</router-link
-          >
-        </li>
-        <li>
-          <router-link
-            to="/feature"
-            :class="PATH === '/feature' ? 'active' : ''"
-            >特色</router-link
-          >
+        <li v-for="(link, index) in links" :key="index">
+          <router-link :to="link.path" v-text="link.name" />
         </li>
         <li>
           <router-link to="/account" class="login">LOGIN</router-link>
         </li>
       </ul>
     </div>
-    <label for="menuToggle" class="menuButton"
-      ><img :src="menuImg" alt="MENU"
-    /></label>
+    <label for="menuToggle" class="menuButton">
+      <img :src="menuImg" alt="MENU" />
+    </label>
     <div class="links-rwd">
       <ul>
-        <li>
-          <router-link to="/" :class="PATH === '/' ? 'active' : ''"
-            >首頁</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/about" :class="PATH === '/about' ? 'active' : ''"
-            >關於</router-link
-          >
-        </li>
-        <li>
-          <router-link
-            to="/feature"
-            :class="PATH === '/feature' ? 'active' : ''"
-            >特色</router-link
-          >
+        <li v-for="(link, index) in links" :key="index">
+          <router-link :to="link.path" v-text="link.name" />
         </li>
         <li>
           <router-link to="/account" class="login">LOGIN</router-link>
@@ -156,7 +130,7 @@ const PATH = router.currentRoute.value.path;
     li {
       padding-right: 30px;
 
-      .active {
+      .router-link-exact-active {
         color: $LightGreen;
       }
 
