@@ -21,6 +21,11 @@ const routes = [
     name: 'Features',
     component: () => import('@/views/page_feature.vue'),
   },
+  {
+    path: '/demo',
+    name: 'Demo',
+    component: () => import('@/views/page_demo.vue'),
+  },
 ];
 
 export default createRouter({

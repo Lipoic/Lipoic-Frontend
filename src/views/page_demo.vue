@@ -4,8 +4,10 @@ import blockFooterVue from '@/components/block_footer.vue';
 </script>
 
 <template>
-  <div id="about">
+  <div id="demo">
     <blockHeaderVue></blockHeaderVue>
-    <blockFooterVue></blockFooterVue>
+    <blockFooterVue> </blockFooterVue>
   </div>
 </template>
+
+<style lang="scss" scoped></style>

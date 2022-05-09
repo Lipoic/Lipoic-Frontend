@@ -4,6 +4,10 @@ import menuImg from '@/assets/menu.svg';
 
 const router = useRouter();
 const PATH = router.currentRoute.value.path;
+
+function isActive(path: string): string {
+  return PATH === `/${path}` ? 'active' : '';
+}
 </script>
 
 <template>
@@ -24,24 +28,21 @@ const PATH = router.currentRoute.value.path;
         <span>EDU</span>
       </div>
     </div>
-    <div class="links">
+    <div class="links-desktop">
       <ul>
         <li>
-          <router-link to="/" :class="PATH === '/' ? 'active' : ''"
-            >首頁</router-link
-          >
+          <router-link to="/" :class="isActive('')">首頁</router-link>
         </li>
         <li>
-          <router-link to="/about" :class="PATH === '/about' ? 'active' : ''"
-            >關於</router-link
-          >
+          <router-link to="/about" :class="isActive('about')">關於</router-link>
         </li>
         <li>
-          <router-link
-            to="/feature"
-            :class="PATH === '/feature' ? 'active' : ''"
+          <router-link to="/feature" :class="isActive('feature')"
             >特色</router-link
           >
+        </li>
+        <li>
+          <router-link to="/demo" :class="isActive('demo')">展示</router-link>
         </li>
         <li>
           <router-link to="/account" class="login">LOGIN</router-link>
@@ -51,24 +52,21 @@ const PATH = router.currentRoute.value.path;
     <label for="menuToggle" class="menuButton"
       ><img :src="menuImg" alt="MENU"
     /></label>
-    <div class="links-rwd">
+    <div class="links-phone">
       <ul>
         <li>
-          <router-link to="/" :class="PATH === '/' ? 'active' : ''"
-            >首頁</router-link
-          >
+          <router-link to="/" :class="isActive('/')">首頁</router-link>
         </li>
         <li>
-          <router-link to="/about" :class="PATH === '/about' ? 'active' : ''"
-            >關於</router-link
-          >
+          <router-link to="/about" :class="isActive('about')">關於</router-link>
         </li>
         <li>
-          <router-link
-            to="/feature"
-            :class="PATH === '/feature' ? 'active' : ''"
+          <router-link to="/feature" :class="isActive('feature')"
             >特色</router-link
           >
+        </li>
+        <li>
+          <router-link to="/demo" :class="isActive('demo')">展示</router-link>
         </li>
         <li>
           <router-link to="/account" class="login">LOGIN</router-link>
@@ -82,7 +80,7 @@ const PATH = router.currentRoute.value.path;
 @import '@/scss/global.scss';
 @import '@/scss/rwd.breakPoint.scss';
 
-#menuToggle:checked ~ .links-rwd {
+#menuToggle:checked ~ .links-phone {
   transform: scale(1);
   ul {
     opacity: 1;
@@ -137,7 +135,7 @@ const PATH = router.currentRoute.value.path;
     }
   }
 
-  .links {
+  .links-desktop {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -199,7 +197,7 @@ const PATH = router.currentRoute.value.path;
     height: 35px;
     cursor: pointer;
   }
-  .links-rwd {
+  .links-phone {
     display: none;
     @include phone {
       display: flex;
