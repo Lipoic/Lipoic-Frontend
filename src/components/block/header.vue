@@ -5,6 +5,7 @@ const links = [
   { path: '/', name: '首頁' },
   { path: '/about', name: '關於' },
   { path: '/feature', name: '特色' },
+  { path: '/demo', name: '展示' },
 ];
 </script>
 

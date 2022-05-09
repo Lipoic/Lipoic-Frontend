@@ -9,17 +9,22 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/views/main/About.vue'),
+    component: () => import('@/views/page/About.vue'),
   },
   {
     path: '/account',
     name: 'Account',
-    component: () => import('@/views/main/Auth.vue'),
+    component: () => import('@/views/page/Auth.vue'),
   },
   {
     path: '/feature',
     name: 'Features',
-    component: () => import('@/views/main/Feature.vue'),
+    component: () => import('@/views/page/Feature.vue'),
+  },
+  {
+    path: '/demo',
+    name: 'Demo',
+    component: () => import('@/views/page/demo.vue'),
   },
 ];
 
