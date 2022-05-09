@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
-import logoImg from '@/assets/logo.png';
 import menuImg from '@/assets/menu.svg';
 
 const router = useRouter();
@@ -16,7 +15,10 @@ const PATH = router.currentRoute.value.path;
       name="menuToggle"
     />
     <div class="logo">
-      <img :src="logoImg" alt="Lipoic" />
+      <img
+        src="https://raw.githubusercontent.com/Lipoic/Lipoic-Assets/main/logo/logo.svg"
+        alt="Lipoic"
+      />
       <div class="name">
         <h1>Lipoic</h1>
         <span>EDU</span>
@@ -41,8 +43,10 @@ const PATH = router.currentRoute.value.path;
             >特色</router-link
           >
         </li>
+        <li>
+          <router-link to="/account" class="login">LOGIN</router-link>
+        </li>
       </ul>
-      <router-link to="/account">LOGIN</router-link>
     </div>
     <label for="menuToggle" class="menuButton"
       ><img :src="menuImg" alt="MENU"
@@ -66,8 +70,10 @@ const PATH = router.currentRoute.value.path;
             >特色</router-link
           >
         </li>
+        <li>
+          <router-link to="/account" class="login">LOGIN</router-link>
+        </li>
       </ul>
-      <router-link to="/account">LOGIN</router-link>
     </div>
   </div>
 </template>
@@ -85,6 +91,7 @@ const PATH = router.currentRoute.value.path;
     opacity: 1;
   }
 }
+
 .header {
   width: 100vw;
   padding: 10px 25px;
@@ -102,12 +109,13 @@ const PATH = router.currentRoute.value.path;
     justify-content: center;
 
     img {
-      width: 55px;
+      width: 60px;
       height: auto;
     }
 
     .name {
       margin-top: -10px;
+      margin-left: 10px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -142,9 +150,11 @@ const PATH = router.currentRoute.value.path;
       display: flex;
       flex-direction: row;
       list-style: none;
+      align-items: center;
     }
+
     li {
-      margin-right: 44px;
+      padding-right: 30px;
 
       .active {
         color: $LightGreen;
@@ -160,21 +170,22 @@ const PATH = router.currentRoute.value.path;
           color: $LightGreen;
         }
       }
-    }
+      .login {
+        font-size: 1rem;
+        background-color: transparent;
+        border: 1px solid $LightGreen;
+        color: $LightGreen;
 
-    > a {
-      font-size: 1rem;
-      background-color: transparent;
-      border: 1px solid $LightGreen;
-      color: $LightGreen;
-      border-radius: 5px;
-      padding: 5px 15px;
-      text-decoration: none;
-      transition: 0.2s ease-in-out;
+        border-radius: 5px;
+        padding: 5px 15px;
 
-      &:hover {
-        background-color: $LightGreen;
-        color: $White;
+        text-decoration: none;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+          background-color: $LightGreen;
+          color: $White;
+        }
       }
     }
   }

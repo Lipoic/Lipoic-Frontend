@@ -1,10 +1,11 @@
-<script lang="ts" setup>
-import logo from '../assets/logo.png';
-</script>
-
 <template>
   <div class="footer">
-    <div class="logo"><img :src="logo" alt="Lipoic" /></div>
+    <div class="logo">
+      <img
+        src="https://raw.githubusercontent.com/Lipoic/Lipoic-Assets/main/logo/logo.svg"
+        alt="Lipoic"
+      />
+    </div>
     <div class="copyright">Copyright © 2022 Lipoic. All rights reserved.</div>
   </div>
 </template>
@@ -26,8 +27,9 @@ import logo from '../assets/logo.png';
     border-radius: 50%;
     padding: 3px;
     border: 3px solid $LightGreen;
+
     img {
-      width: 30px;
+      width: 35px;
       height: auto;
     }
   }
