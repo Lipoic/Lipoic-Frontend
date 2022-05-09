@@ -11,7 +11,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import '../scss/global.scss';
+@import '@/scss/global.scss';
 .footer {
   background-color: $Black;
   padding: 30px;

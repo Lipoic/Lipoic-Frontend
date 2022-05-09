@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import blockHeaderVue from '@/components/block_header.vue';
-import blockHomeIntroVue from '@/components/block_home_intro.vue';
-import blockFooterVue from '@/components/block_footer.vue';
+import blockHeaderVue from '@/components/block/header.vue';
+import blockHomeIntroVue from '@/components/block/home/intro.vue';
+import blockFooterVue from '@/components/block/footer.vue';
 </script>
 
 <template>
