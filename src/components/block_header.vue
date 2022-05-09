@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
-import logoImg from '@/assets/logo.png';
 import menuImg from '@/assets/menu.svg';
 
 const router = useRouter();
@@ -20,7 +19,10 @@ function isActive(path: string): string {
       name="menuToggle"
     />
     <div class="logo">
-      <img :src="logoImg" alt="Lipoic" />
+      <img
+        src="https://raw.githubusercontent.com/Lipoic/Lipoic-Assets/main/logo/logo.svg"
+        alt="Lipoic"
+      />
       <div class="name">
         <h1>Lipoic</h1>
         <span>EDU</span>
@@ -42,8 +44,10 @@ function isActive(path: string): string {
         <li>
           <router-link to="/demo" :class="isActive('demo')">展示</router-link>
         </li>
+        <li>
+          <router-link to="/account" class="login">LOGIN</router-link>
+        </li>
       </ul>
-      <router-link to="/account">LOGIN</router-link>
     </div>
     <label for="menuToggle" class="menuButton"
       ><img :src="menuImg" alt="MENU"
@@ -64,8 +68,10 @@ function isActive(path: string): string {
         <li>
           <router-link to="/demo" :class="isActive('demo')">展示</router-link>
         </li>
+        <li>
+          <router-link to="/account" class="login">LOGIN</router-link>
+        </li>
       </ul>
-      <router-link to="/account">LOGIN</router-link>
     </div>
   </div>
 </template>
@@ -83,6 +89,7 @@ function isActive(path: string): string {
     opacity: 1;
   }
 }
+
 .header {
   width: 100vw;
   padding: 10px 25px;
@@ -100,12 +107,13 @@ function isActive(path: string): string {
     justify-content: center;
 
     img {
-      width: 55px;
+      width: 60px;
       height: auto;
     }
 
     .name {
       margin-top: -10px;
+      margin-left: 10px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -140,9 +148,11 @@ function isActive(path: string): string {
       display: flex;
       flex-direction: row;
       list-style: none;
+      align-items: center;
     }
+
     li {
-      margin-right: 44px;
+      padding-right: 30px;
 
       .active {
         color: $LightGreen;
@@ -158,21 +168,22 @@ function isActive(path: string): string {
           color: $LightGreen;
         }
       }
-    }
+      .login {
+        font-size: 1rem;
+        background-color: transparent;
+        border: 1px solid $LightGreen;
+        color: $LightGreen;
 
-    > a {
-      font-size: 1rem;
-      background-color: transparent;
-      border: 1px solid $LightGreen;
-      color: $LightGreen;
-      border-radius: 5px;
-      padding: 5px 15px;
-      text-decoration: none;
-      transition: 0.2s ease-in-out;
+        border-radius: 5px;
+        padding: 5px 15px;
 
-      &:hover {
-        background-color: $LightGreen;
-        color: $White;
+        text-decoration: none;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+          background-color: $LightGreen;
+          color: $White;
+        }
       }
     }
   }
