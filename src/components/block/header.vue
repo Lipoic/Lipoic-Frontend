@@ -75,7 +75,6 @@ const links = [
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
 
   .logo {
     display: flex;

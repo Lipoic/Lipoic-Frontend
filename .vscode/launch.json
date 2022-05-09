@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "vite: chrome",
+      "url": "http://localhost:3000",
+      "preLaunchTask": "npm: dev",
+      "postDebugTask": "postdebugKill"
+    },
+    {
+      "type": "firefox",
+      "request": "launch",
+      "name": "vite: firefox",
+      "url": "http://localhost:3000",
+      "preLaunchTask": "npm: dev",
+      "postDebugTask": "postdebugKill"
+    }
+  ]
+}
