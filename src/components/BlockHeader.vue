@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref, onMounted, onUnmounted } from 'vue';
 import menuImg from '@/assets/menu.svg';
 
 const lunks = [
@@ -7,6 +8,17 @@ const lunks = [
   { path: '/feature', name: '特色' },
   { path: '/demo', name: '展示' },
 ];
+
+/**menu */
+const isMenuOpen = ref<boolean>();
+const checkMenuOpen = () => {
+  if (window.innerWidth >= 700) isMenuOpen.value = false;
+};
+const updataMenuState: (ev: Event) => void = ({ target }) => {
+  isMenuOpen.value = (target as HTMLInputElement | null)?.checked;
+};
+onMounted(() => window.addEventListener('resize', checkMenuOpen));
+onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
 </script>
 
 <template>
@@ -16,6 +28,8 @@ const lunks = [
       type="checkbox"
       id="menuToggle"
       name="menuToggle"
+      @input="updataMenuState"
+      :checked="isMenuOpen"
     />
     <div class="logo">
       <img
