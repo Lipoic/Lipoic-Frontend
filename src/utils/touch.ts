@@ -1,18 +1,9 @@
 import { EventEmitter } from 'events';
 
-type swipeEventsType = 'left' | 'right' | 'up' | 'down';
-
-type listenerExtends = (
-  this: HTMLElement,
-  ev: HTMLElementEventMap[keyof HTMLElementEventMap]
-) => unknown;
-
-export interface SwipeEventOptions {
-  mode: swipeEventsType;
-}
-
-export class SwipeEvent extends EventEmitter {
+export class SwipeEvent extends EventEmitter implements SwipeEvent {
+  protected elements: Array<Document | Element | Window> = [];
   protected moveIng = false;
+  protected isSend = false;
   protected xDown = 0;
   protected yDown = 0;
   protected xStart = 0;
@@ -21,12 +12,14 @@ export class SwipeEvent extends EventEmitter {
   protected yCurrent = 0;
   protected currentDirection?: string;
   constructor(
-    public selector: Element | Document | string,
-    public options: SwipeEventOptions = {
-      mode: 'right',
-    }
+    public selector: Window | Element | Document | string,
+    public options: SwipeEventOptions = {}
   ) {
     super();
+
+    this.options = options = {
+      ...options,
+    };
 
     if (typeof selector === 'string')
       document
@@ -35,7 +28,7 @@ export class SwipeEvent extends EventEmitter {
     else this.eventListener(selector);
   }
   /**掛載事件 */
-  public eventListener(element: Element | Document): void {
+  public eventListener(element: Window | Element | Document): void {
     element.addEventListener(
       'mousedown',
       <listenerExtends>this.handleTouchStart.bind(this)
@@ -62,6 +55,7 @@ export class SwipeEvent extends EventEmitter {
       <listenerExtends>this.handleTouchEnd.bind(this)
     );
   }
+  /**獲取 X, Y */
   protected getTouches(event: TouchEvent) {
     const touch = event.touches ? event.touches[0] : void 0;
 
@@ -70,7 +64,8 @@ export class SwipeEvent extends EventEmitter {
       offsetY: ~~(touch?.clientY || 0),
     };
   }
-  public handleTouchStart(event: TouchEvent) {
+  /**按下觸發 */
+  protected handleTouchStart(event: TouchEvent) {
     const touche = this.getTouches(event);
 
     this.moveIng = true;
@@ -81,7 +76,8 @@ export class SwipeEvent extends EventEmitter {
 
     this.emit('start', event);
   }
-  public handleTouchMove(event: TouchEvent) {
+  /**開始移動觸發 */
+  protected handleTouchMove(event: TouchEvent) {
     if (!this.moveIng) return false;
 
     const touche = this.getTouches(event);
@@ -102,8 +98,11 @@ export class SwipeEvent extends EventEmitter {
 
     this.xDown = this.yDown = 0;
   }
-  public setDirection(event: TouchEvent, xDiff: number, yDiff: number) {
+  /**發送現在移動模式 */
+  protected setDirection(event: TouchEvent, xDiff: number, yDiff: number) {
     let type: swipeEventsType;
+    if (this.isSend) return;
+
     if (Math.abs(xDiff) >= Math.abs(yDiff)) {
       if (xDiff > 0) type = 'left';
       else type = 'right';
@@ -111,22 +110,53 @@ export class SwipeEvent extends EventEmitter {
       if (yDiff > 0) type = 'up';
       else type = 'down';
     }
+    this.isSend = true;
     this.emit(type, event);
   }
   public handleTouchEnd(event: TouchEvent) {
-    this.moveIng = false;
+    this.isSend = false;
     this.emit('stop', event);
+  }
+  /**移除所有監聽事件 */
+  public destroy() {
+    this.removeAllListeners();
+    this.elements.forEach((element) => {
+      element.removeEventListener(
+        'mousedown',
+        <listenerExtends>this.handleTouchStart.bind(this)
+      );
+      element.removeEventListener(
+        'touchstart',
+        <listenerExtends>this.handleTouchStart.bind(this)
+      );
+      element.removeEventListener(
+        'mousemove',
+        <listenerExtends>this.handleTouchMove.bind(this)
+      );
+      element.removeEventListener(
+        'touchmove',
+        <listenerExtends>this.handleTouchMove.bind(this)
+      );
+      element.removeEventListener(
+        'mouseup',
+        <listenerExtends>this.handleTouchEnd.bind(this)
+      );
+      element.removeEventListener(
+        'touchend',
+        <listenerExtends>this.handleTouchEnd.bind(this)
+      );
+    });
   }
 }
 
+/**所有事件+參數 */
 export interface SwipeEvents extends Record<swipeEventsType, [TouchEvent]> {
   start: [TouchEvent];
   stop: [TouchEvent];
-  opened: [TouchEvent];
-  closed: [TouchEvent];
   drag: [TouchEvent];
 }
 
+/**事件擴展 */
 export interface SwipeEvent {
   on<K extends keyof SwipeEvents>(
     eventName: K,
@@ -149,3 +179,16 @@ export interface SwipeEvent {
     ...args: SwipeEvents[K]
   ): boolean;
 }
+
+/**事件類型 */
+type swipeEventsType = 'left' | 'right' | 'up' | 'down';
+
+/**自訂事件擴展 */
+type listenerExtends = (
+  this: HTMLElement,
+  ev: HTMLElementEventMap[keyof HTMLElementEventMap]
+) => unknown;
+
+// 尚無選項
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SwipeEventOptions {}
