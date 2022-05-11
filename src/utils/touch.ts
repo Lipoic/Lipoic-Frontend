@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 
 export class SwipeEvent extends EventEmitter implements SwipeEvent {
   protected elements: Array<Document | Element | Window> = [];
-  protected moveIng = false;
+  protected isDrawing = false;
   protected isSend = false;
   protected xDown = 0;
   protected yDown = 0;
@@ -67,8 +67,8 @@ export class SwipeEvent extends EventEmitter implements SwipeEvent {
   /**按下觸發 */
   protected handleTouchStart(event: TouchEvent) {
     const touche = this.getTouches(event);
+    this.isDrawing = true;
 
-    this.moveIng = true;
     this.xDown = touche.offsetX;
     this.yDown = touche.offsetY;
     this.xStart = touche.offsetX;
@@ -78,7 +78,9 @@ export class SwipeEvent extends EventEmitter implements SwipeEvent {
   }
   /**開始移動觸發 */
   protected handleTouchMove(event: TouchEvent) {
-    if (!this.moveIng) return false;
+    console.log('down');
+
+    if (!this.isDrawing) return;
 
     const touche = this.getTouches(event);
 
@@ -101,7 +103,8 @@ export class SwipeEvent extends EventEmitter implements SwipeEvent {
   /**發送現在移動模式 */
   protected setDirection(event: TouchEvent, xDiff: number, yDiff: number) {
     let type: swipeEventsType;
-    if (this.isSend) return;
+
+    if (this.isSend || !this.isDrawing) return;
 
     if (Math.abs(xDiff) >= Math.abs(yDiff)) {
       if (xDiff > 0) type = 'left';

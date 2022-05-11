@@ -23,7 +23,9 @@ onMounted(() => {
 
   swipe
     .on('right', () => (isMenuOpen.value = false))
-    .on('left', () => (isMenuOpen.value = true));
+    .on('left', () => (isMenuOpen.value = true))
+    .on('right', () => console.log('right'))
+    .on('left', () => console.log('left'));
 
   window.addEventListener('resize', checkMenuOpen);
   onUnmounted(() => {
