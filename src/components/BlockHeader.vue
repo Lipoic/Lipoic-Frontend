@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import menuImg from '@/assets/menu.svg';
-import { SwipeEvent } from '@/utils/touch';
 
 const lunks = [
   { path: '/', name: '首頁' },
@@ -18,21 +17,8 @@ const checkMenuOpen = () => {
 const updataMenuState: (ev: Event) => void = ({ target }) => {
   isMenuOpen.value = (target as HTMLInputElement | null)?.checked;
 };
-onMounted(() => {
-  const swipe = new SwipeEvent(document);
-
-  swipe
-    .on('right', () => (isMenuOpen.value = false))
-    .on('left', () => (isMenuOpen.value = true))
-    .on('right', () => console.log('right'))
-    .on('left', () => console.log('left'));
-
-  window.addEventListener('resize', checkMenuOpen);
-  onUnmounted(() => {
-    swipe.destroy();
-    window.removeEventListener('resize', checkMenuOpen);
-  });
-});
+onMounted(() => window.addEventListener('resize', checkMenuOpen));
+onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
 </script>
 
 <template>
