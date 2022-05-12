@@ -91,7 +91,7 @@ function isActive(path: string): string {
 }
 
 .header {
-  width: 100vw;
+  width: 100%;
   padding: 10px 25px;
   background-color: $Black;
   display: flex;
@@ -206,7 +206,7 @@ function isActive(path: string): string {
     }
     position: absolute;
     background-color: #1b1b1b;
-    width: 100vw;
+    width: 100%;
     top: 75px;
     right: 0;
     transform-origin: center right;
@@ -233,7 +233,7 @@ function isActive(path: string): string {
       opacity: 0;
       transition: 1.5s;
       li {
-        width: 100vw;
+        width: 100%;
         text-align: center;
         margin-bottom: 10px;
         padding: 10px;
