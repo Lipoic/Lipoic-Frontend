@@ -9,6 +9,13 @@ $Black: #353535;
 $LightGreen: #6de8d7;
 $White: #ffffff;
 
+body,
+html,
+#app {
+  width: 100%;
+  height: 100%;
+}
+
 // global styles
 * {
   margin: 0;

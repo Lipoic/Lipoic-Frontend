@@ -47,11 +47,8 @@ const modules = [Pagination];
 @import '@/scss/rwd.breakPoint.scss';
 
 .intro {
-  width: 100vw;
-  height: auto;
-  padding: 157px 0;
+  width: 100%;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -70,8 +67,6 @@ const modules = [Pagination];
   @include phone {
     position: relative;
     padding: 60px 0;
-    height: auto;
-    justify-content: flex-start;
   }
 
   .slideBlock {
@@ -206,7 +201,7 @@ const modules = [Pagination];
   .circles {
     position: absolute;
     z-index: 1; // make the background layer to the bottom
-    width: 100vw;
+    width: 100%;
     height: 100%;
     overflow: hidden;
     top: 0;
