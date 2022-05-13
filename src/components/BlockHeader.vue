@@ -14,7 +14,7 @@ const isMenuOpen = ref<boolean>();
 const checkMenuOpen = () => {
   if (window.innerWidth >= 700) isMenuOpen.value = false;
 };
-const updataMenuState: (ev: Event) => void = ({ target }) => {
+const updateMenuState: (ev: Event) => void = ({ target }) => {
   isMenuOpen.value = (target as HTMLInputElement | null)?.checked;
 };
 onMounted(() => window.addEventListener('resize', checkMenuOpen));
