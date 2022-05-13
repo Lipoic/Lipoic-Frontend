@@ -16,6 +16,7 @@ jobs:
             **/*.js            
             **/*.ts
             **/*.vue
+            **/*.scss
   build:
     runs-on: ubuntu-latest
     steps:
