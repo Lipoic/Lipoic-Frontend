@@ -50,3 +50,5 @@ jobs:
           log_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           mediaType: '{"previews": ["ant-man"]}'
           state: success
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
