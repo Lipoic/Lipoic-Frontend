@@ -28,13 +28,13 @@ jobs:
   deployment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: Create deployment
         id: create_deployment
         uses: octokit/request-action@v2.x
         with:
           route: POST /repos/:repository/deployments
           repository: ${{ github.repository }}
+          required_contexts: '[]'
           environment: pull_request_review
           ref: ${{ github.head_ref }}
         env:
