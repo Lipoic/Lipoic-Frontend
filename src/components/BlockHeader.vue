@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import menuImg from '@/assets/menu.svg';
 
-const lunks = [
+const links = [
   { path: '/', name: '首頁' },
   { path: '/about', name: '關於' },
   { path: '/feature', name: '特色' },
