@@ -1,13 +1,24 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
+import { ref, onMounted, onUnmounted } from 'vue';
 import menuImg from '@/assets/menu.svg';
 
-const router = useRouter();
-const PATH = router.currentRoute.value.path;
+const links = [
+  { path: '/', name: '首頁' },
+  { path: '/about', name: '關於' },
+  { path: '/feature', name: '特色' },
+  { path: '/demo', name: '展示' },
+];
 
-function isActive(path: string): string {
-  return PATH === `/${path}` ? 'active' : '';
-}
+/**menu */
+const isMenuOpen = ref<boolean>();
+const checkMenuOpen = () => {
+  if (window.innerWidth >= 700) isMenuOpen.value = false;
+};
+const updateMenuState: (ev: Event) => void = ({ target }) => {
+  isMenuOpen.value = (target as HTMLInputElement | null)?.checked;
+};
+onMounted(() => window.addEventListener('resize', checkMenuOpen));
+onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
 </script>
 
 <template>
@@ -17,6 +28,8 @@ function isActive(path: string): string {
       type="checkbox"
       id="menuToggle"
       name="menuToggle"
+      @input="updateMenuState"
+      :checked="isMenuOpen"
     />
     <div class="logo">
       <img
@@ -28,45 +41,13 @@ function isActive(path: string): string {
         <span>EDU</span>
       </div>
     </div>
-    <div class="links-desktop">
+    <label for="menuToggle" class="menuButton">
+      <img :src="menuImg" alt="MENU" />
+    </label>
+    <div class="links">
       <ul>
-        <li>
-          <router-link to="/" :class="isActive('')">首頁</router-link>
-        </li>
-        <li>
-          <router-link to="/about" :class="isActive('about')">關於</router-link>
-        </li>
-        <li>
-          <router-link to="/feature" :class="isActive('feature')"
-            >特色</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/demo" :class="isActive('demo')">展示</router-link>
-        </li>
-        <li>
-          <router-link to="/account" class="login">LOGIN</router-link>
-        </li>
-      </ul>
-    </div>
-    <label for="menuToggle" class="menuButton"
-      ><img :src="menuImg" alt="MENU"
-    /></label>
-    <div class="links-phone">
-      <ul>
-        <li>
-          <router-link to="/" :class="isActive('/')">首頁</router-link>
-        </li>
-        <li>
-          <router-link to="/about" :class="isActive('about')">關於</router-link>
-        </li>
-        <li>
-          <router-link to="/feature" :class="isActive('feature')"
-            >特色</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/demo" :class="isActive('demo')">展示</router-link>
+        <li v-for="(link, index) in links" :key="index">
+          <router-link :to="link.path" v-text="link.name" />
         </li>
         <li>
           <router-link to="/account" class="login">LOGIN</router-link>
@@ -79,16 +60,6 @@ function isActive(path: string): string {
 <style lang="scss" scoped>
 @import '@/scss/global.scss';
 @import '@/scss/rwd.breakPoint.scss';
-
-#menuToggle:checked ~ .links-phone {
-  transform: scale(1);
-  ul {
-    opacity: 1;
-  }
-  a {
-    opacity: 1;
-  }
-}
 
 .header {
   width: 100%;
@@ -135,14 +106,10 @@ function isActive(path: string): string {
     }
   }
 
-  .links-desktop {
+  .links {
     display: flex;
     flex-direction: row;
     align-items: center;
-
-    @include phone {
-      display: none;
-    }
 
     ul {
       display: flex;
@@ -154,7 +121,7 @@ function isActive(path: string): string {
     li {
       padding-right: 30px;
 
-      .active {
+      .router-link-exact-active {
         color: $LightGreen;
       }
 
@@ -190,62 +157,66 @@ function isActive(path: string): string {
 
   .menuButton {
     display: none;
-    @include phone {
-      display: block;
-    }
     width: 35px;
     height: 35px;
     cursor: pointer;
-  }
-  .links-phone {
-    display: none;
+
     @include phone {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    position: absolute;
-    background-color: #1b1b1b;
-    width: 100%;
-    top: 75px;
-    right: 0;
-    transform-origin: center right;
-    transform: scale(0, 1);
-    transition: 1s;
-    z-index: 100;
-    padding: 30px 0;
+      display: block;
 
-    > a {
-      opacity: 0;
-      transition: 1.5s;
-      font-size: 1rem;
-      background-color: transparent;
-      border: 1px solid $LightGreen;
-      color: $LightGreen;
-      border-radius: 5px;
-      padding: 5px 15px;
-      text-decoration: none;
-      transition: 0.2s;
-    }
-
-    ul {
-      list-style: none;
-      opacity: 0;
-      transition: 1.5s;
-      li {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 10px;
-        padding: 10px;
-
-        a {
-          @extend %link;
-          font-size: 1rem;
+      & ~ .links {
+        animation: slide 1s;
+        z-index: 100;
+        @keyframes slide {
+          from,
+          to {
+            z-index: -1;
+          }
         }
-        &:hover {
-          background-color: $Black;
+        width: 100%;
+        position: absolute;
+        background-color: #1b1b1b;
+        top: 75px;
+        right: 0;
+        transform: scale(0, 1);
+        transform-origin: center right;
+        transition: transform 1s;
+        padding: 30px 0;
+
+        ul {
+          flex-direction: column;
+          width: 100%;
+          li {
+            width: 100%;
+            padding: 0;
+            text-align: center;
+            a[href] {
+              width: 100%;
+              display: block;
+              opacity: 0;
+              padding: 0;
+              width: 100%;
+              color: $White;
+              border: none;
+              text-align: center;
+              font-weight: initial;
+              padding: 10px;
+              margin-bottom: 10px;
+
+              &:hover {
+                background-color: #353535;
+              }
+            }
+          }
         }
       }
+    }
+  }
+  #menuToggle:checked ~ .links {
+    transform: scale(1);
+    li,
+    a {
+      opacity: 1;
     }
   }
 }
