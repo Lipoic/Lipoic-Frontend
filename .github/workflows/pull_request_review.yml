@@ -17,16 +17,6 @@ jobs:
             **/*.ts
             **/*.vue
             **/*.scss
-      - name: Create deployment
-        uses: octokit/request-action@v2.x
-        with:
-          route: POST /repos/:repository/deployments
-          repository: ${{ github.repository }}
-          required_contexts: '[]'
-          environment: pull_request_review
-          ref: ${{ github.head_ref }}
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
   build:
     runs-on: ubuntu-latest
     steps:
@@ -35,3 +25,28 @@ jobs:
         run: yarn install
       - name: Build
         run: yarn build
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create deployment
+        id: create_deployment
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/:repository/deployments
+          repository: ${{ github.repository }}
+          environment: pull_request_review
+          ref: ${{ github.head_ref }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Set deployment status
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/:repository/deployments/:deployment/statuses
+          repository: ${{ github.repository }}
+          deployment: ${{ fromJson(steps.create_deployment.outputs.data).id }}
+          environment: pull_request_review
+          environment_url: https://deploy-preview-${{ github.event.pull_request.number }}}--lipoic-frontend.netlify.app/
+          log_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          mediaType: '{"previews": ["ant-man"]}'
+          state: success
