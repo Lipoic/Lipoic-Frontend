@@ -46,7 +46,7 @@ onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
     </label>
     <div class="links">
       <ul>
-        <li v-for="(link, index) in lunks" :key="index">
+        <li v-for="(link, index) in links" :key="index">
           <router-link :to="link.path" v-text="link.name" />
         </li>
         <li>
