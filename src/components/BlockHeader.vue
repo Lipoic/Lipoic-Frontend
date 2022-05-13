@@ -28,7 +28,7 @@ onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
       type="checkbox"
       id="menuToggle"
       name="menuToggle"
-      @input="updataMenuState"
+      @input="updateMenuState"
       :checked="isMenuOpen"
     />
     <div class="logo">
