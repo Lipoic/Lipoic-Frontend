@@ -31,11 +31,17 @@ const modules = [Pagination];
     </div>
     <div class="title">
       <h1>Lipoic</h1>
-      <p>專為台灣師生們設計的教學平台</p>
+      <p style="white-space: pre-line">{{ $t('home.subtitle') }}</p>
       <div class="loginBar">
-        <router-link to="/login/student" class="first">學生</router-link>
-        <router-link to="/login/teacher" class="middle">教師</router-link>
-        <router-link to="/login/parents" class="last">家長</router-link>
+        <router-link to="/login/student" class="first">
+          {{ $t('home.login.student') }}
+        </router-link>
+        <router-link to="/login/teacher" class="middle">
+          {{ $t('home.login.teacher') }}
+        </router-link>
+        <router-link to="/login/parents" class="last">
+          {{ $t('home.login.parents') }}
+        </router-link>
       </div>
     </div>
   </div>
@@ -157,6 +163,7 @@ const modules = [Pagination];
       a {
         @extend %link;
         color: $LightGreen;
+        font-weight: bold;
         padding: 10px 30px;
         transition: 0.2s ease-in-out;
         @include phone {

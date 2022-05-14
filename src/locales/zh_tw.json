@@ -7,5 +7,10 @@
   "header.links.feature": "特色",
   "header.links.demo": "展示",
   "header.login": "登入",
-  "footer.copyright": "版權所有 © 2022 Lipoic. 保留所有權利。"
+  "footer.language": "語言:",
+  "footer.copyright": "版權所有 © 2022 Lipoic. 保留所有權利。",
+  "home.subtitle": "專門為師生們設計的多功能教育平台",
+  "home.login.student": "學生",
+  "home.login.teacher": "老師",
+  "home.login.parents": "家長"
 }

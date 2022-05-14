@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import BlockHeaderVue from '@/components/BlockHeader.vue';
 import BlockFooterVue from '@/components/BlockFooter.vue';
 
-// child event
+// Child event
 const headerRef = ref(null);
 const headerMenuHandler = (): void => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

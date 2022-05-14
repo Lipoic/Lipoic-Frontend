@@ -1,9 +1,16 @@
 {
   "name": "简体中文 (中国)",
   "flag": "🇨🇳",
+  "app.title": "Lipoic - 与我们一起翻转教育",
   "header.links.home": "首页",
   "header.links.about": "关于",
   "header.links.feature": "特色",
   "header.links.demo": "演示",
-  "header.login": "登入"
+  "header.login": "登入",
+  "footer.language": "语言:",
+  "footer.copyright": "版权所有 © 2022 Lipoic. 保留所有权利。",
+  "home.subtitle": "专门为师生们设计的多功能教育平台",
+  "home.login.student": "学生",
+  "home.login.teacher": "老师",
+  "home.login.parents": "家长"
 }
