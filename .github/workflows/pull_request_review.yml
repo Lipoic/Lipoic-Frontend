@@ -28,6 +28,7 @@ jobs:
   deployment:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Create deployment
         id: create_deployment
         uses: octokit/request-action@v2.x
@@ -40,7 +41,35 @@ jobs:
           auto_merge: false
         env:
           GITHUB_TOKEN: ${{ github.token }}
-      - name: Set deployment status
+
+      - name: Set deployment status to pending
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/:repository/deployments/:deployment/statuses
+          repository: ${{ github.repository }}
+          deployment: ${{ fromJson(steps.create_deployment.outputs.data).id }}
+          environment: pull_request_review
+          log_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          mediaType: '{"previews": ["ant-man"]}'
+          state: in_progress
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Deploy Preview to Netlify
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: './dist'
+          github-token: ${{ github.token }}
+          deploy-message: "Deploy Preview from GitHub Actions"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
+
+      - name: Set deployment status to success
         uses: octokit/request-action@v2.x
         with:
           route: POST /repos/:repository/deployments/:deployment/statuses
