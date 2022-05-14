@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { VITE_DROP_CONSOLE } from './config/constant';
 
 import { fileURLToPath, URL } from 'url';
 
@@ -17,7 +16,7 @@ export default defineConfig({
       compress: {
         // Prevent Infinity from being compressed to 1/0, may cause performance issues on Chrome
         keep_infinity: true,
-        drop_console: VITE_DROP_CONSOLE,
+        drop_console: false,
       },
     },
     minify: 'terser',
