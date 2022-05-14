@@ -6,6 +6,7 @@ import BlockFooterVue from '@/components/BlockFooter.vue';
 // child event
 const headerRef = ref(null);
 const headerMenuHandler = (): void => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (headerRef as any).value.changeMenuCheckboxState();
 };
 </script>
