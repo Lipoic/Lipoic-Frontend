@@ -1,4 +1,9 @@
 {
   "name": "简体中文 (中国)",
-  "flag": "🇨🇳"
+  "flag": "🇨🇳",
+  "header.links.home": "首页",
+  "header.links.about": "关于",
+  "header.links.feature": "特色",
+  "header.links.demo": "演示",
+  "header.login": "登入"
 }

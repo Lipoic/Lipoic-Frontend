@@ -5,5 +5,6 @@
   "header.links.about": "About",
   "header.links.feature": "Features",
   "header.links.demo": "Demo",
-  "header.login": "Login"
+  "header.login": "Login",
+  "footer.copyright": "Copyright © 2022 Lipoic. All rights reserved."
 }

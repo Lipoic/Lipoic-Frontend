@@ -18,7 +18,7 @@ const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
         alt="Lipoic"
       />
     </div>
-    <div class="copyright">Copyright © 2022 Lipoic. All rights reserved.</div>
+    <div class="copyright">{{ $t('footer.copyright') }}</div>
     <div class="languageSelector">
       <select v-model="selectedLanguage" @change="changeLanguage">
         <option
@@ -56,6 +56,7 @@ const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
       width: 35px;
       height: auto;
     }
+    background-color: $Black;
   }
   .copyright {
     color: $White;
