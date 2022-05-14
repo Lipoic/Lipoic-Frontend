@@ -4,10 +4,10 @@ import BlockHeaderVue from '@/components/BlockHeader.vue';
 import BlockFooterVue from '@/components/BlockFooter.vue';
 
 // child event
-const headerRef = ref(null);
+const headerRef = ref<InstanceType<typeof BlockHeaderVue> | null>(null);
 const headerMenuHandler = (): void => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (headerRef as any).value.changeMenuCheckboxState();
+  headerRef.value?.changeMenuCheckboxState();
 };
 </script>
 
