@@ -25,8 +25,8 @@ const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
           v-for="language in i18n.availableLocales"
           :key="language"
           :value="language"
-          :style="`--flag: ${i18n.getLocaleMessage(language).flag}`"
         >
+          {{ i18n.getLocaleMessage(language).flag }}
           {{ i18n.getLocaleMessage(language).name }}
         </option>
       </select>
