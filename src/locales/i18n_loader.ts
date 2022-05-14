@@ -4,16 +4,14 @@ class i18nLoader {
   static defaultLocale = 'en_us';
   static locales: Array<string> = [this.defaultLocale, 'zh_cn', 'zh_tw'];
 
-  static load(): I18n<
-    Record<string, Record<string, string>>,
-    unknown,
-    unknown,
-    true
+  static async load(): Promise<
+    I18n<Record<string, Record<string, string>>, unknown, unknown, true>
   > {
     const i18nMessages: Record<string, Record<string, string>> = {};
     for (const locale of this.locales) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      i18nMessages[locale] = (import(`./${locale}.json`) as any).default;
+      i18nMessages[locale] = (
+        await import(`/src/locales/${locale}.json`)
+      ).default;
     }
 
     return createI18n({
