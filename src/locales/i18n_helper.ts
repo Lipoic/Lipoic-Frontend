@@ -33,7 +33,14 @@ class I18nHelper {
 
     this.i18n = i18n;
 
+    this.setTitle();
+
     return i18n;
+  }
+
+  private static setTitle() {
+    if (this.i18n == null) return;
+    document.title = this.i18n.global.t('app.title');
   }
 
   static setLocale(locale: string) {
@@ -41,6 +48,7 @@ class I18nHelper {
       this.i18n.global.locale = locale;
     }
     window.localStorage.setItem('locale', locale);
+    this.setTitle();
   }
 }
 

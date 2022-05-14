@@ -51,12 +51,12 @@ const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
     border-radius: 50%;
     padding: 3px;
     border: 3px solid $LightGreen;
+    background-color: $Black;
 
     img {
       width: 35px;
       height: auto;
     }
-    background-color: $Black;
   }
   .copyright {
     color: $White;
