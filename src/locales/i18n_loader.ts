@@ -2,7 +2,7 @@ import { I18n, createI18n } from 'vue-i18n';
 
 class i18nLoader {
   static defaultLocale = 'en_us';
-  static locales: Array<string> = [this.defaultLocale, 'zh_cn', 'zh_tw'];
+  static locales: Array<string> = [this.defaultLocale, 'zh_tw', 'zh_cn'];
 
   static async load(): Promise<
     I18n<Record<string, Record<string, string>>, unknown, unknown, true>
