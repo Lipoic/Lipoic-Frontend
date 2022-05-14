@@ -12,13 +12,15 @@ class I18nHelper {
   static get locale(): string {
     const storageLocal = window.localStorage.getItem('locale');
 
+    // If user has set the locale in localStorage, use it
     if (storageLocal != null && this.locales.includes(storageLocal)) {
       return storageLocal;
     } else {
-      const userLocale = navigator.language;
+      const browserLocale = navigator.language;
 
-      if (this.locales.includes(userLocale)) {
-        return userLocale;
+      // Set the locale by the browser's language
+      if (this.locales.includes(browserLocale)) {
+        return browserLocale;
       } else {
         return this.defaultLocale;
       }
@@ -38,7 +40,7 @@ class I18nHelper {
     }
 
     const i18n = createI18n({
-      fallbackLocale: 'en_us',
+      fallbackLocale: 'en-US',
       locale: this.locale,
       messages,
     });
