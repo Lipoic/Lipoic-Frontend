@@ -6,10 +6,15 @@ import {
   logEvent,
 } from 'firebase/analytics';
 
-// https://firebase.google.com/docs/web/setup#available-libraries
+/**
+ * https://firebase.google.com/docs/web/setup#available-libraries
+ */
 class FirebaseHelper {
   static app: FirebaseApp | null = null;
 
+  /**
+   * Initialize the firebase app instance.
+   */
   static init() {
     // If the app is production mode, initialize Firebase.
     if (process.env.NODE_ENV !== 'production') return;
@@ -34,6 +39,7 @@ class FirebaseHelper {
   private static initAnalytics(app: FirebaseApp) {
     initializeAnalytics(app);
     const analytics = getAnalytics(app);
+
     logEvent(analytics, 'user_engagement');
   }
 
