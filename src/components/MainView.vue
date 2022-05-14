@@ -1,14 +1,22 @@
 <script lang="ts" setup>
+import { ref } from 'vue';
 import BlockHeaderVue from '@/components/BlockHeader.vue';
 import BlockFooterVue from '@/components/BlockFooter.vue';
+
+// child event
+const headerRef = ref(null);
+const headerMenuHandler = (): void => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (headerRef as any).value.changeMenuCheckboxState();
+};
 </script>
 
 <template>
   <div class="main">
     <header>
-      <BlockHeaderVue />
+      <BlockHeaderVue ref="headerRef" />
     </header>
-    <main class="wrapper">
+    <main class="wrapper" @touchstart="headerMenuHandler">
       <slot></slot>
     </main>
     <footer>
