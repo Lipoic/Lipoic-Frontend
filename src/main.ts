@@ -1,6 +1,4 @@
 import { createApp } from 'vue';
-import { createI18n } from 'vue-i18n';
-
 import App from '@/MainApp.vue';
 import router from '@/router';
 import '@/scss/global.scss';
