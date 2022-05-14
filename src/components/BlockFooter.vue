@@ -5,10 +5,9 @@ import { useI18n } from 'vue-i18n';
 
 let selectedLanguage = ref(I18nHelper.locale);
 
-function changeLanguage() {
-  I18nHelper.setLocale(selectedLanguage.value);
-  window.location.reload();
-}
+const i18n = useI18n();
+
+const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
 </script>
 
 <template>
@@ -21,14 +20,14 @@ function changeLanguage() {
     </div>
     <div class="copyright">Copyright © 2022 Lipoic. All rights reserved.</div>
     <div class="languageSelector">
-      <select v-model="selectedLanguage" v-on:change="changeLanguage">
+      <select v-model="selectedLanguage" @change="changeLanguage">
         <option
-          v-for="language in I18nHelper.locales"
+          v-for="language in i18n.availableLocales"
           :key="language"
           :value="language"
+          :style="`--flag: ${i18n.getLocaleMessage(language).flag}`"
         >
-          {{(useI18n().messages.value as any)[language]['flag'] }}
-          {{(useI18n().messages.value as any)[language]['name'] }}
+          {{ i18n.getLocaleMessage(language).name }}
         </option>
       </select>
     </div>

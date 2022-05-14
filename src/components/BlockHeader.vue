@@ -3,13 +3,13 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 import { useI18n } from 'vue-i18n';
 import menuImg from '@/assets/menu.svg';
-const i18n = useI18n({});
+const { t } = useI18n();
 
 const links = [
-  { path: '/', name: i18n.t('header.links.home') },
-  { path: '/about', name: i18n.t('header.links.about') },
-  { path: '/feature', name: i18n.t('header.links.feature') },
-  { path: '/demo', name: i18n.t('header.links.demo') },
+  { path: '/', i18nName: 'header.links.home' },
+  { path: '/about', i18nName: 'header.links.about' },
+  { path: '/feature', i18nName: 'header.links.feature' },
+  { path: '/demo', i18nName: 'header.links.demo' },
 ];
 
 /** Menu handler */
@@ -49,13 +49,20 @@ onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
     </label>
     <div class="links">
       <ul>
-        <li v-for="(link, index) in links" :key="index">
-          <router-link :to="link.path" v-text="link.name" />
+        <li
+          v-for="(link, index) in links"
+          :key="index"
+          :title="t(link.i18nName)"
+        >
+          <router-link :to="link.path" v-text="t(link.i18nName)" />
         </li>
         <li>
-          <router-link to="/account" class="login">{{
-            $t('header.login')
-          }}</router-link>
+          <router-link
+            to="/account"
+            class="login"
+            v-text="t('header.login')"
+            :title="t('header.login')"
+          />
         </li>
       </ul>
     </div>

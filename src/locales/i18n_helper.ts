@@ -1,4 +1,4 @@
-import { I18n, createI18n, useI18n } from 'vue-i18n';
+import { I18n, createI18n } from 'vue-i18n';
 
 type i18nType = I18n<
   Record<string, Record<string, string>>,
@@ -28,7 +28,7 @@ class I18nHelper {
     const i18n = createI18n({
       fallbackLocale: 'en_us',
       locale: this.locale,
-      messages: messages,
+      messages,
     });
 
     this.i18n = i18n;
