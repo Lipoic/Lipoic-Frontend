@@ -1,15 +1,18 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted, defineExpose } from 'vue';
+
+import { useI18n } from 'vue-i18n';
 import menuImg from '@/assets/menu.svg';
+const { t } = useI18n();
 
 const links = [
-  { path: '/', name: '首頁' },
-  { path: '/about', name: '關於' },
-  { path: '/feature', name: '特色' },
-  { path: '/demo', name: '展示' },
+  { path: '/', i18nName: 'header.links.home' },
+  { path: '/about', i18nName: 'header.links.about' },
+  { path: '/feature', i18nName: 'header.links.feature' },
+  { path: '/demo', i18nName: 'header.links.demo' },
 ];
 
-/**menu */
+/** Menu handler */
 const isMenuOpen = ref<boolean>();
 const checkMenuOpen = () => {
   if (window.innerWidth >= 700) isMenuOpen.value = false;
@@ -58,10 +61,19 @@ defineExpose({
     <div class="links">
       <ul>
         <li v-for="(link, index) in links" :key="index">
-          <router-link :to="link.path" v-text="link.name" />
+          <router-link
+            :to="link.path"
+            v-text="t(link.i18nName)"
+            :title="t(link.i18nName)"
+          />
         </li>
         <li>
-          <router-link to="/account" class="login">LOGIN</router-link>
+          <router-link
+            to="/account"
+            class="login"
+            v-text="t('header.login')"
+            :title="t('header.login')"
+          />
         </li>
       </ul>
     </div>
