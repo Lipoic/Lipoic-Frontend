@@ -16,12 +16,12 @@ export default defineConfig({
     target: '2015',
     terserOptions: {
       compress: {
-        // 防止 Infinity 被壓縮成1/0，可能會導致 Chrome 上的性能問題
+        // Prevent Infinity from being compressed to 1/0, may cause performance issues on Chrome
         keep_infinity: true,
         drop_console: VITE_DROP_CONSOLE,
       },
     },
-    // 加快打包速度
+    // Speed up packing
     brotliSize: false,
     chunkSizeWarningLimit: 2000,
   },
