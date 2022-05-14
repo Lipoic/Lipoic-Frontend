@@ -64,8 +64,9 @@ class I18nHelper {
     if (this.i18n != null) {
       this.i18n.global.locale = locale;
     }
-    window.localStorage.setItem('locale', locale);
+    localStorage.setItem('locale', locale);
     this.setTitle();
+    location.reload();
   }
 }
 

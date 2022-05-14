@@ -5,8 +5,6 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper';
 import TypingEffect from '@/components/TypingEffect.vue';
 
-let texts = ['abc'];
-
 const modules = [Pagination];
 </script>
 

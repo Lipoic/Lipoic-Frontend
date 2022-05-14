@@ -4,37 +4,25 @@ import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 const i18n = useI18n();
 
-function getTexts(): string[] {
-  return [i18n.t('home.subtitle.1'), 'abc'];
-}
+let texts = [i18n.t('home.subtitle.1'), 'open source'];
 
 let typeValue = ref('');
 let typeStatus = ref(false);
 
-let typingSpeed: number;
+let typingSpeed = 200;
 
-switch (I18nHelper.locale) {
-  case 'zh-TW':
-    typingSpeed = 200;
-    break;
-  case 'zh-CN':
-    typingSpeed = 200;
-    break;
-  default:
-    typingSpeed = 75;
-    break;
-}
-
-let erasingSpeed = 50;
+let erasingSpeed = 45;
 let newTextDelay = 500;
 let textIndex = 0;
 let charIndex = 0;
 
-setTimeout(typeText, newTextDelay + 200);
+if (I18nHelper.locale.startsWith('zh')) {
+  setTimeout(typeText, newTextDelay + 200);
+} else {
+  typeValue.value = texts[0];
+}
 
 function typeText() {
-  let texts = getTexts();
-
   if (charIndex < texts[textIndex].length) {
     if (!typeStatus.value) typeStatus.value = true;
     typeValue.value = typeValue.value + texts[textIndex].charAt(charIndex);
@@ -47,8 +35,6 @@ function typeText() {
 }
 
 function eraseText() {
-  let texts = getTexts();
-
   if (charIndex > 0) {
     if (!typeStatus.value) typeStatus.value = true;
     typeValue.value = texts[textIndex].substring(0, charIndex - 1);
