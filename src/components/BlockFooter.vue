@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import I18nHelper from '@/locales/i18n_helper';
+import I18nHelper from '@/helper/I18nHelper';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 

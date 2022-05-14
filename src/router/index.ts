@@ -1,4 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { logEvent } from 'firebase/analytics';
+import FirebaseHelper from '@/helper/FirebaseHelper';
+import { createRouter, createWebHistory, Router } from 'vue-router';
 
 const routes = [
   {
@@ -28,7 +30,24 @@ const routes = [
   },
 ];
 
-export default createRouter({
-  history: createWebHistory(),
-  routes,
-});
+function _createRouter(): Router {
+  const router: Router = createRouter({
+    history: createWebHistory(),
+    routes,
+  });
+
+  // Listen to route changes
+  router.afterEach((to) => {
+    const analytics = FirebaseHelper.getAnalytics();
+    if (analytics === null) return;
+    logEvent(analytics, 'page_view', {
+      page_path: to.path,
+      page_title: to.name?.toString(),
+      page_location: to.fullPath,
+    });
+  });
+
+  return router;
+}
+
+export default _createRouter();
