@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, defineExpose } from 'vue';
 
 import { useI18n } from 'vue-i18n';
 import menuImg from '@/assets/menu.svg';
@@ -20,8 +20,19 @@ const checkMenuOpen = () => {
 const updateMenuState: (ev: Event) => void = ({ target }) => {
   isMenuOpen.value = (target as HTMLInputElement | null)?.checked;
 };
+const changeMenuCheckboxState = () => {
+  if (isMenuOpen.value === true) {
+    isMenuOpen.value = !isMenuOpen.value;
+  } else {
+    return;
+  }
+};
 onMounted(() => window.addEventListener('resize', checkMenuOpen));
 onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
+
+defineExpose({
+  changeMenuCheckboxState,
+});
 </script>
 
 <template>
