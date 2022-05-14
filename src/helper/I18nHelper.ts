@@ -34,9 +34,12 @@ class I18nHelper {
   static async load(): Promise<i18nType> {
     const messages: Record<string, Record<string, string>> = {};
 
-    const files = import.meta.glob('@/locales/*.json');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const files: Record<string, () => Promise<any>> = import.meta.glob(
+      '@/locales/*.json'
+    );
     for (const locale of this.locales) {
-      messages[locale] = (await files[`./${locale}.json`]()).default;
+      messages[locale] = (await files[`../locales/${locale}.json`]()).default;
     }
 
     const i18n = createI18n({
