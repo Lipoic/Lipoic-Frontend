@@ -44,12 +44,10 @@ function _createRouter(): Router {
       'page_view',
       {
         page_path: to.path,
-        page_title: to.name,
+        page_title: to.name?.toString(),
         page_location: to.path,
       },
-      {
-        global: true,
-      }
+      { global: true }
     );
   });
 
