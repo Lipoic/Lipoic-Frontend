@@ -36,6 +36,7 @@ function _createRouter(): Router {
     routes,
   });
 
+  // Listen to route changes
   router.afterEach((to) => {
     const analytics = FirebaseHelper.getAnalytics();
     if (analytics === null) return;
