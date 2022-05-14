@@ -20,6 +20,12 @@ if (I18nHelper.locale.startsWith('zh')) {
   setTimeout(typeText, newTextDelay + 200);
 } else {
   typeValue.value = texts[0];
+
+  setInterval(() => {
+    if (textIndex >= texts.length) textIndex = 0;
+    typeValue.value = texts[textIndex];
+    textIndex++;
+  }, newTextDelay * 8);
 }
 
 function typeText() {
