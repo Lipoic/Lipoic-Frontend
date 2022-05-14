@@ -1,4 +1,4 @@
-import { getAnalytics, logEvent } from 'firebase/analytics';
+import { logEvent } from 'firebase/analytics';
 import FirebaseHelper from '@/helper/FirebaseHelper';
 import { createRouter, createWebHistory, Router } from 'vue-router';
 
@@ -36,7 +36,7 @@ function _createRouter(): Router {
     routes,
   });
 
-  router.afterEach((to, from) => {
+  router.afterEach((to) => {
     const analytics = FirebaseHelper.getAnalytics();
     if (analytics === null) return;
     logEvent(
