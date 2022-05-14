@@ -1,5 +1,9 @@
 import { FirebaseApp, FirebaseOptions, initializeApp } from 'firebase/app';
-import { getAnalytics, logEvent } from 'firebase/analytics';
+import {
+  getAnalytics,
+  initializeAnalytics,
+  logEvent,
+} from 'firebase/analytics';
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 class FirebaseHelper {
@@ -23,6 +27,7 @@ class FirebaseHelper {
   }
 
   private static initAnalytics(app: FirebaseApp) {
+    initializeAnalytics(app);
     const analytics = getAnalytics(app);
     logEvent(analytics, 'user_engagement');
   }
