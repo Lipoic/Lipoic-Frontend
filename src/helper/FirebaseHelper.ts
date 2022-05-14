@@ -1,5 +1,6 @@
 import { FirebaseApp, FirebaseOptions, initializeApp } from 'firebase/app';
 import {
+  Analytics,
   getAnalytics,
   initializeAnalytics,
   logEvent,
@@ -7,6 +8,8 @@ import {
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 class FirebaseHelper {
+  static app: FirebaseApp | null = null;
+
   static init() {
     if (process.env.NODE_ENV !== 'production') return;
     console.log('Initializing Firebase...');
@@ -23,6 +26,7 @@ class FirebaseHelper {
 
     // Initialize Firebase
     const app = initializeApp(config);
+    this.app = app;
     FirebaseHelper.initAnalytics(app);
   }
 
@@ -30,6 +34,11 @@ class FirebaseHelper {
     initializeAnalytics(app);
     const analytics = getAnalytics(app);
     logEvent(analytics, 'user_engagement');
+  }
+
+  static getAnalytics(): Analytics | null {
+    if (this.app === null) return null;
+    return getAnalytics(this.app);
   }
 }
 
