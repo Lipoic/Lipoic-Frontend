@@ -4,7 +4,7 @@ import { getAnalytics, logEvent } from 'firebase/analytics';
 // https://firebase.google.com/docs/web/setup#available-libraries
 class FirebaseHelper {
   static init() {
-    // if (process.env.NODE_ENV !== 'production') return;
+    if (process.env.NODE_ENV !== 'production') return;
     console.log('Initializing Firebase...');
 
     const config: FirebaseOptions = {
