@@ -65,11 +65,10 @@ const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
     margin-top: 10px;
     select {
       background-color: $LightBlack;
-      //border: 1px solid $LightGreen;
       border-radius: 5px;
       padding: 5px;
       color: $White;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: bold;
       &:focus {
         outline: none;
