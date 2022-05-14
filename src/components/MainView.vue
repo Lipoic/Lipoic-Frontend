@@ -15,7 +15,7 @@ const headerMenuHandler = (): void => {
     <header>
       <BlockHeaderVue ref="headerRef" />
     </header>
-    <main class="wrapper" @click="headerMenuHandler">
+    <main class="wrapper" @touchstart="headerMenuHandler">
       <slot></slot>
     </main>
     <footer>
