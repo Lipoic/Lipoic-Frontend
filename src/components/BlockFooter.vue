@@ -70,8 +70,7 @@ const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
       border-radius: 5px;
       padding: 5px;
       color: $White;
-      font-size: 1.1rem;
-      font-weight: bold;
+      font-size: 1.05rem;
       &:focus {
         outline: none;
       }

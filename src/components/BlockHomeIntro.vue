@@ -3,6 +3,10 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper';
+import TypingEffect from '@/components/TypingEffect.vue';
+
+let texts = ['abc'];
+
 const modules = [Pagination];
 </script>
 
@@ -30,8 +34,8 @@ const modules = [Pagination];
       </swiper>
     </div>
     <div class="title">
-      <h1>Lipoic</h1>
-      <p style="white-space: pre-line">{{ $t('home.subtitle') }}</p>
+      <h1>{{ $t('home.title') }}</h1>
+      <TypingEffect style="white-space: pre-line"></TypingEffect>
       <div class="loginBar">
         <router-link to="/login/student" class="first">
           {{ $t('home.login.student') }}
@@ -145,16 +149,6 @@ const modules = [Pagination];
     h1 {
       color: $LightGreen;
       font-size: 4rem;
-    }
-
-    p {
-      color: $White;
-      font-size: 2rem;
-
-      @include pad {
-        text-align: center;
-        padding: 0 10px;
-      }
     }
 
     .loginBar {
