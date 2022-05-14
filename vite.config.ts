@@ -13,7 +13,6 @@ export default defineConfig({
     },
   },
   build: {
-    target: '2015',
     terserOptions: {
       compress: {
         // Prevent Infinity from being compressed to 1/0, may cause performance issues on Chrome
@@ -21,6 +20,7 @@ export default defineConfig({
         drop_console: VITE_DROP_CONSOLE,
       },
     },
+    minify: 'terser',
     // Speed up packing
     brotliSize: false,
     chunkSizeWarningLimit: 2000,
