@@ -1,3 +1,16 @@
+<script lang="ts" setup>
+import I18nHelper from '@/locales/i18n_helper';
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+let selectedLanguage = ref(I18nHelper.locale);
+
+function changeLanguage() {
+  I18nHelper.setLocale(selectedLanguage.value);
+  window.location.reload();
+}
+</script>
+
 <template>
   <div class="footer">
     <div class="logo">
@@ -7,6 +20,18 @@
       />
     </div>
     <div class="copyright">Copyright © 2022 Lipoic. All rights reserved.</div>
+    <div class="languageSelector">
+      <select v-model="selectedLanguage" v-on:change="changeLanguage">
+        <option
+          v-for="language in I18nHelper.locales"
+          :key="language"
+          :value="language"
+        >
+          {{(useI18n().messages.value as any)[language]['flag'] }}
+          {{(useI18n().messages.value as any)[language]['name'] }}
+        </option>
+      </select>
+    </div>
   </div>
 </template>
 
@@ -35,6 +60,21 @@
   }
   .copyright {
     color: $White;
+  }
+  .languageSelector {
+    margin-top: 10px;
+    select {
+      background-color: $LightBlack;
+      //border: 1px solid $LightGreen;
+      border-radius: 5px;
+      padding: 5px;
+      color: $White;
+      font-size: 1.2rem;
+      font-weight: bold;
+      &:focus {
+        outline: none;
+      }
+    }
   }
 }
 </style>

@@ -12,7 +12,7 @@ const links = [
   { path: '/demo', name: i18n.t('header.links.demo') },
 ];
 
-/**menu */
+/** Menu handler */
 const isMenuOpen = ref<boolean>();
 const checkMenuOpen = () => {
   if (window.innerWidth >= 700) isMenuOpen.value = false;
@@ -53,7 +53,9 @@ onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
           <router-link :to="link.path" v-text="link.name" />
         </li>
         <li>
-          <router-link to="/account" class="login">LOGIN</router-link>
+          <router-link to="/account" class="login">{{
+            $t('header.login')
+          }}</router-link>
         </li>
       </ul>
     </div>

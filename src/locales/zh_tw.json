@@ -1,1 +1,9 @@
-{}
+{
+  "name": "繁體中文 (台灣)",
+  "flag": "🇹🇼",
+  "header.links.home": "首頁",
+  "header.links.about": "關於",
+  "header.links.feature": "特色",
+  "header.links.demo": "展示",
+  "header.login": "登入"
+}

@@ -1,6 +1,9 @@
 {
+  "name": "English (USA)",
+  "flag": "🇱🇷",
   "header.links.home": "Home",
   "header.links.about": "About",
   "header.links.feature": "Features",
-  "header.links.demo": "Demo"
+  "header.links.demo": "Demo",
+  "header.login": "Login"
 }
