@@ -46,6 +46,7 @@ function _createRouter(): Router {
         page_path: to.path,
         page_title: to.name,
         page_location: to.path,
+      },
       {
         global: true,
       }
