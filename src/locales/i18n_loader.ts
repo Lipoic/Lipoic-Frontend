@@ -8,6 +8,7 @@ class i18nLoader {
     I18n<Record<string, Record<string, string>>, unknown, unknown, true>
   > {
     const i18nMessages: Record<string, Record<string, string>> = {};
+
     for (const locale of this.locales) {
       i18nMessages[locale] = (
         await import(`/src/locales/${locale}.json`)
