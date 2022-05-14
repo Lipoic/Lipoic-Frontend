@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+
+import { useI18n } from 'vue-i18n';
 import menuImg from '@/assets/menu.svg';
+const i18n = useI18n({});
 
 const links = [
-  { path: '/', name: '首頁' },
-  { path: '/about', name: '關於' },
-  { path: '/feature', name: '特色' },
-  { path: '/demo', name: '展示' },
+  { path: '/', name: i18n.t('header.links.home') },
+  { path: '/about', name: i18n.t('header.links.about') },
+  { path: '/feature', name: i18n.t('header.links.feature') },
+  { path: '/demo', name: i18n.t('header.links.demo') },
 ];
 
 /**menu */
