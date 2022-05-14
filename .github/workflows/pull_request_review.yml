@@ -55,27 +55,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
-      - name: Install dependencies
-        run: yarn
-
-      - name: Build
-        run: yarn build
-
       - name: Deploy Preview to Netlify
         id: deploy_preview
-        uses: nwtgck/actions-netlify@v1.2
+      - uses: jsmrcaga/action-netlify-deploy@master
         with:
-          publish-dir: './dist'
-          github-token: ${{ github.token }}
-          deploy-message: 'Deploy Preview from GitHub Actions'
-          enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-          alias: deploy-preview-${{ github.event.number }}
-          github-deployment-environment: pull_request
-        env:
+          NETLIFY_DEPLOY_MESSAGE: 'Deploy Preview from GitHub Actions'
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+          build_directory: './dist'
+          deploy_alias: deploy-preview-${{ github.event.number }}
+          build_command: yarn build
         timeout-minutes: 1
 
       - name: Set deployment status to success
@@ -85,9 +75,9 @@ jobs:
           repository: ${{ github.repository }}
           deployment: ${{ fromJson(steps.create_deployment.outputs.data).id }}
           environment: pull_request
-          environment_url: ${{ steps.deploy_preview.outputs.deploy-url }}
+          environment_url: ${{ steps.deploy_preview.outputs.NETLIFY_PREVIEW_URL }}
           log_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          description: 'Preview the page: ${{ steps.deploy_preview.outputs.deploy-url }}'
+          description: 'Preview the page: ${{ steps.deploy_preview.outputs.NETLIFY_PREVIEW_URL }}'
           mediaType: '{"previews": ["ant-man"]}'
           state: success
         env:
