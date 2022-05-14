@@ -39,16 +39,11 @@ function _createRouter(): Router {
   router.afterEach((to) => {
     const analytics = FirebaseHelper.getAnalytics();
     if (analytics === null) return;
-    logEvent(
-      analytics,
-      'page_view',
-      {
-        page_path: to.path,
-        page_title: to.name?.toString(),
-        page_location: to.path,
-      },
-      { global: true }
-    );
+    logEvent(analytics, 'page_view', {
+      page_path: to.path,
+      page_title: to.name?.toString(),
+      page_location: to.fullPath,
+    });
   });
 
   return router;
