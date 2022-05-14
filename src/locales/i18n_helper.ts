@@ -8,12 +8,24 @@ type i18nType = I18n<
 >;
 
 class I18nHelper {
-  static defaultLocale = 'zh_tw';
+  static defaultLocale = 'zh-TW';
   static get locale(): string {
-    return window.localStorage.getItem('locale') || this.defaultLocale;
+    const storageLocal = window.localStorage.getItem('locale');
+
+    if (storageLocal != null && this.locales.includes(storageLocal)) {
+      return storageLocal;
+    } else {
+      const userLocale = navigator.language;
+
+      if (this.locales.includes(userLocale)) {
+        return userLocale;
+      } else {
+        return this.defaultLocale;
+      }
+    }
   }
 
-  static locales: Array<string> = [this.defaultLocale, 'en_us', 'zh_cn'];
+  static locales: Array<string> = [this.defaultLocale, 'en-US', 'zh-CN'];
 
   private static i18n: i18nType | null;
 
