@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { onUnmounted, withDefaults, defineProps, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -11,13 +10,13 @@ const props = withDefaults(
   { i18nTexts: () => [], texts: () => [] }
 );
 
-let texts = [...props.i18nTexts.map((_) => i18n.t(_)), ...props.texts];
+let texts = [...props.i18nTexts.map((key) => i18n.t(key)), ...props.texts];
 
 let typeValue = ref('');
 let typeStatus = ref(false);
 
 let typingSpeed = defineTypingSpeed;
-let erasingSpeed = 45;
+let erasingSpeed = 40;
 let newTextDelay = 500;
 let textIndex = 0;
 let charIndex = 0;
@@ -26,7 +25,7 @@ let timeOut: ReturnType<typeof setTimeout> | undefined = void 0;
 
 const typeText = () => {
   typingSpeed = /[a-zA-Z0-9\\.]+/.test(texts[textIndex])
-    ? 100
+    ? 85
     : defineTypingSpeed;
 
   if (charIndex < texts[textIndex].length) {

@@ -35,7 +35,7 @@ const modules = [Pagination];
     </div>
     <div class="title">
       <h1>{{ $t('home.title') }}</h1>
-      <TypingEffect :i18nTexts="[t('home.subtitle.1'), 'open source']" />
+      <TypingEffect :i18nTexts="['home.subtitle.1', 'home.subtitle.2']" />
       <div class="loginBar">
         <router-link to="/login/student" class="first">
           {{ $t('home.login.student') }}
