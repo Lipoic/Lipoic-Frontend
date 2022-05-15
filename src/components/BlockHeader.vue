@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n';
-import { ref, onMounted, onUnmounted, defineExpose } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 import menuImg from '@/assets/menu.svg';
-import { useI18nType } from '@/helper/I18nHelper';
-const { t } = useI18n() as useI18nType;
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const links = [
   { path: '/', i18nName: 'header.links.home' },
