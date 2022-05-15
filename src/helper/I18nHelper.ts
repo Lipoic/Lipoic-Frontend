@@ -13,16 +13,14 @@ export class I18nHelper {
     const storageLocal = localStorage.getItem('locale');
 
     // If user has set the locale in localStorage, use it
-    if (storageLocal != null && this.locales.includes(storageLocal)) {
+    if (storageLocal && this.locales.includes(storageLocal)) {
       return storageLocal;
     }
 
     const browserLocale = navigator.language;
 
     // Set the locale by the browser's language
-    if (this.locales.includes(browserLocale)) {
-      return browserLocale;
-    }
+    if (this.locales.includes(browserLocale)) return browserLocale;
 
     return this.defaultLocale;
   }
@@ -63,17 +61,16 @@ export class I18nHelper {
   }
 
   private static setTitle() {
-    if (this.i18n == null) return;
+    if (!this.i18n) return;
     document.title = this.i18n.global.t('app.title');
   }
 
   static setLocale(locale: string) {
-    if (this.i18n != null) {
-      this.i18n.global.locale = locale;
-    }
+    if (this.i18n) this.i18n.global.locale = locale;
+
     localStorage.setItem('locale', locale);
     this.setTitle();
-    location.reload();
+    // location.reload();
   }
 }
 

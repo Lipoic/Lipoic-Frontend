@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { onUnmounted, ref } from 'vue';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { onUnmounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const i18n = useI18n();
@@ -18,7 +19,15 @@ let newTextDelay = 800;
 let textIndex = 0;
 let charIndex = 0;
 
-let timeOut: ReturnType<typeof setTimeout> | null = null;
+let timeOut: ReturnType<typeof setTimeout> | undefined;
+
+watch(i18n.locale, () => {
+  texts = [...props.i18nTextKeys.map((key) => i18n.t(key))];
+  erasingSpeed = charIndex = 0;
+  typeValue.value = '';
+  clearTimeout(timeOut!);
+  typeText();
+});
 
 const typeText = () => {
   // If the text is english, speed up typing speed
@@ -48,11 +57,7 @@ const eraseText = () => {
   }
 };
 
-onUnmounted(() => {
-  if (timeOut != null) {
-    clearTimeout(timeOut);
-  }
-});
+onUnmounted(() => clearTimeout(timeOut!));
 </script>
 
 <template>

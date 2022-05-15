@@ -5,7 +5,8 @@ import I18nHelper from '@/helper/I18nHelper';
 import ExpandMoreSvg from '@/assets/other/ExpandMore.svg';
 
 const i18n = useI18n();
-const selectedLanguage = ref(I18nHelper.locale);
+
+const selectedLanguage = ref(i18n.locale);
 const showSetLanguages = ref(false);
 
 const changeLanguage = (locale: string) => I18nHelper.setLocale(locale);
