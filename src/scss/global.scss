@@ -1,15 +1,21 @@
-// font - Roboto
+// Font - Roboto
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-//font - Noto Sans (font fot transitional chinese
+// Font - Noto Sans (font for traditional chinese)
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-// variables
+// Font - Noto Sans (font for simplified chinese)
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+// Variables
 $Black: #353535;
-$LightBlack: #4f4f4f;
-$LightGreen: #6de8d7;
 $White: #ffffff;
 $BrightGrey: #555762;
+$LightBlack: #4f4f4f;
+$MainColor: #5efff2;
+
+$MainColor: $MainColor;
+$SecondaryColor: rgb(84, 107, 237);
 
 body,
 html,
@@ -23,7 +29,7 @@ html,
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+  font-family: 'Roboto', 'Noto Sans TC', 'Noto Sans SC', sans-serif;
 }
 
 %link {
