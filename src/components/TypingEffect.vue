@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { useI18nType } from '@/helper/I18nHelper';
 import { onUnmounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const i18n = useI18n();
+const i18n = useI18n() as useI18nType;
 const defineTypingSpeed = 200;
 
 const props = defineProps<{ i18nTextKeys: string[] }>();

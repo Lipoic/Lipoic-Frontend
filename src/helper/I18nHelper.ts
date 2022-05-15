@@ -1,4 +1,4 @@
-import { I18n, createI18n } from 'vue-i18n';
+import { I18n, createI18n, Composer } from 'vue-i18n';
 
 import defaultLanguage from '@/locales/zh-TW.json';
 
@@ -7,6 +7,8 @@ export type i18nType = I18n<
   unknown,
   unknown
 >;
+export type useI18nType = Composer<Record<string, typeof defaultLanguage>>;
+
 export class I18nHelper {
   static defaultLocale = 'en-US';
   static get locale(): string {
@@ -70,7 +72,6 @@ export class I18nHelper {
 
     localStorage.setItem('locale', locale);
     this.setTitle();
-    // location.reload();
   }
 }
 

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
-import I18nHelper from '@/helper/I18nHelper';
+import I18nHelper, { useI18nType } from '@/helper/I18nHelper';
 import ExpandMoreSvg from '@/assets/other/ExpandMore.svg';
 
-const i18n = useI18n();
+const i18n = useI18n() as useI18nType;
 
 const selectedLanguage = ref(i18n.locale);
 const showSetLanguages = ref(false);
