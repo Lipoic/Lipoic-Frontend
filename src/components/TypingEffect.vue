@@ -96,8 +96,8 @@ onUnmounted(() => {
       height: 2rem;
 
       @include phone {
-        margin-top: 0.65rem;
-        height: 1.4rem;
+        margin-top: 0.55rem;
+        height: 1.2rem;
       }
 
       margin-left: 3px;
