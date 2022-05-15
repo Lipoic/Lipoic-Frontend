@@ -111,6 +111,7 @@ const closeSetLanguages = () =>
       }
     }
     ul.set-languages {
+      visibility: hidden;
       transition: all 0.4s ease-in-out 0s;
       padding: 5px;
       background-color: $LightBlack;
@@ -141,6 +142,7 @@ const closeSetLanguages = () =>
     &.show {
       ul.set-languages {
         opacity: 1;
+        visibility: visible;
         transform: translateY(-1em);
       }
       button img {
