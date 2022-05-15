@@ -40,12 +40,12 @@ export class I18nHelper {
     );
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const flagsFiles: Record<string, () => Promise<any>> = import.meta.glob(
-      '@/assets/svg/country-flags/*.svg'
+      '@/assets/flags/*.svg'
     );
     for (const locale of this.locales) {
       messages[locale] = (await files[`../locales/${locale}.json`]()).default;
       this.flags[locale] = (
-        await flagsFiles[`../assets/svg/country-flags/${locale}.svg`]()
+        await flagsFiles[`../assets/flags/${locale}.svg`]()
       ).default;
     }
 
