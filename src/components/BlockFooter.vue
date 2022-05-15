@@ -109,7 +109,7 @@ const closeSetLanguages = () =>
       }
     }
     ul.set-languages {
-      transition: all 1s ease-in-out 0s;
+      transition: all 0.4s ease-in-out 0s;
       padding: 5px;
       background-color: $LightBlack;
       font-size: 1.1rem;
