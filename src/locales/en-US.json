@@ -9,7 +9,8 @@
   "header.login": "Login",
   "footer.copyright": "Copyright © 2022 Lipoic. All rights reserved.",
   "footer.language": "Language:",
-  "home.subtitle": "A multi-function educational platform\nspecially designed for teachers and students.",
+  "home.subtitle.1": "A multi-function educational platform specially designed for teachers and students.",
+  "home.subtitle.2": "Love open source and open education",
   "home.login.student": "Student",
   "home.login.teacher": "Teacher",
   "home.login.parents": "Parents"

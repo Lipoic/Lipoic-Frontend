@@ -3,6 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper';
+import TypingEffect from '@/components/TypingEffect.vue';
+
 const modules = [Pagination];
 </script>
 
@@ -31,7 +33,7 @@ const modules = [Pagination];
     </div>
     <div class="title">
       <h1>Lipoic</h1>
-      <p style="white-space: pre-line">{{ $t('home.subtitle') }}</p>
+      <TypingEffect :i18nTextKeys="['home.subtitle.1', 'home.subtitle.2']" />
       <div class="loginBar">
         <router-link to="/login/student" class="first">
           {{ $t('home.login.student') }}
@@ -53,6 +55,7 @@ const modules = [Pagination];
 @import '@/scss/rwd.breakPoint.scss';
 
 .intro {
+  padding: 20px 0;
   width: 100%;
   display: flex;
   align-items: center;
@@ -138,28 +141,28 @@ const modules = [Pagination];
     align-items: flex-start;
     justify-content: center;
 
+    z-index: 2;
+    width: 35%;
+
     @include pad {
       align-items: center;
+      width: 80%;
     }
 
     h1 {
       color: $MainColor;
       font-size: 4rem;
-    }
-
-    p {
-      color: $White;
-      font-size: 2rem;
-
-      @include pad {
+      @include phone {
         text-align: center;
-        padding: 0 10px;
+        font-size: 12vw;
       }
     }
-
+    .container {
+      max-width: 100%;
+    }
     .loginBar {
-      margin-top: 20px;
-      z-index: 2;
+      margin-top: 30px;
+
       a {
         @extend %link;
         color: $MainColor;

@@ -1,14 +1,12 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
-
 import I18nHelper from '@/helper/I18nHelper';
-import type { useI18nType } from '@/helper/I18nHelper';
-import ExpandMoreSvg from '@/assets/svg/other/ExpandMore.svg';
+import ExpandMoreSvg from '@/assets/other/ExpandMore.svg';
 
-const i18n = useI18n() as useI18nType;
-const selectedLanguage = ref(i18n.locale);
-const showSetLanguages = ref<boolean>(false);
+const i18n = useI18n();
+const selectedLanguage = ref(I18nHelper.locale);
+const showSetLanguages = ref(false);
 
 const changeLanguage = (locale: string) => I18nHelper.setLocale(locale);
 const closeSetLanguages = () =>
@@ -29,7 +27,7 @@ const closeSetLanguages = () =>
         <span
           class="flag"
           :style="{
-            backgroundImage: `url(${I18nHelper.countryFlags[selectedLanguage]})`,
+            backgroundImage: `url(${I18nHelper.flags[selectedLanguage]})`,
           }"
         />
         {{ i18n.getLocaleMessage(selectedLanguage).name }}
@@ -47,7 +45,7 @@ const closeSetLanguages = () =>
           <span
             class="flag"
             :style="{
-              backgroundImage: `url(${I18nHelper.countryFlags[language]})`,
+              backgroundImage: `url(${I18nHelper.flags[language]})`,
             }"
           />
           {{ i18n.getLocaleMessage(language).name }}
@@ -94,18 +92,22 @@ const closeSetLanguages = () =>
     position: relative;
     button {
       color: $White;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       display: flex;
       align-items: center;
       justify-content: center;
-
       border: none;
       outline: none;
       cursor: pointer;
       background-color: transparent;
       transition: color 0.15s ease-out 0s;
+
       img {
         transition: transform 0.15s ease-out 0s;
+      }
+
+      &:focus {
+        outline: none;
       }
     }
     ul.set-languages {
