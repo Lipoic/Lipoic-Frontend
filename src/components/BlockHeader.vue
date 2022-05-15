@@ -122,7 +122,7 @@ defineExpose({
         font-size: 0.8rem;
         font-weight: 500;
         color: $Black;
-        background-color: $LightGreen;
+        background-color: $MainColor;
         padding: 2px 5px;
         border-radius: 2px;
       }
@@ -145,7 +145,7 @@ defineExpose({
       padding-right: 30px;
 
       .router-link-exact-active {
-        color: $LightGreen;
+        color: $MainColor;
       }
 
       a {
@@ -155,14 +155,14 @@ defineExpose({
         font-weight: 500;
 
         &:hover {
-          color: $LightGreen;
+          color: $MainColor;
         }
       }
       .login {
         font-size: 1rem;
         background-color: transparent;
-        border: 1px solid $LightGreen;
-        color: $LightGreen;
+        border: 1px solid $MainColor;
+        color: $MainColor;
 
         border-radius: 5px;
         padding: 5px 15px;
@@ -171,7 +171,7 @@ defineExpose({
         transition: 0.2s ease-in-out;
 
         &:hover {
-          background-color: $LightGreen;
+          background-color: $MainColor;
           color: $White;
         }
       }
