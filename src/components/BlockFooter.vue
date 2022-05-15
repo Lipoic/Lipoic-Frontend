@@ -77,7 +77,7 @@ const closeSetLanguages = () =>
 
     img {
       width: 35px;
-      height: auto;
+      height: 35px;
     }
   }
   .copyright {

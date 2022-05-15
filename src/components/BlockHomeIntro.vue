@@ -1,11 +1,14 @@
 <script lang="ts" setup>
+import { Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper';
+import 'swiper/css/autoplay';
+
 import TypingEffect from '@/components/TypingEffect.vue';
 
-const modules = [Pagination];
+const modules = [Pagination, Autoplay];
 </script>
 
 <template>
@@ -17,7 +20,7 @@ const modules = [Pagination];
       <swiper
         :space-between="15"
         :modules="modules"
-        :autoplay="true"
+        :autoplay="{ delay: 3000 }"
         class="mySwiper"
       >
         <swiper-slide>Slide 1</swiper-slide>

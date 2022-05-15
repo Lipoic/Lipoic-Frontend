@@ -2,10 +2,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useI18nType } from '@/helper/I18nHelper';
 import { onUnmounted, ref, watch } from 'vue';
+import { random } from '@/utils/Math';
+import { onUnmounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const i18n = useI18n() as useI18nType;
 const defineTypingSpeed = 200;
+const defineErasingSpeed = 40;
 
 const props = defineProps<{ i18nTextKeys: string[] }>();
 
@@ -14,8 +17,6 @@ let texts = [...props.i18nTextKeys.map((key) => i18n.t(key))];
 let typeValue = ref('');
 let typeStatus = ref(false);
 
-let typingSpeed = defineTypingSpeed;
-let erasingSpeed = 40;
 let newTextDelay = 800;
 let textIndex = 0;
 let charIndex = 0;
@@ -32,14 +33,16 @@ watch(i18n.locale, () => {
 
 const typeText = () => {
   // If the text is english, speed up typing speed
-  typingSpeed = /[a-zA-Z0-9\\.]+/.test(texts[textIndex])
-    ? 85
-    : defineTypingSpeed;
 
   if (charIndex < texts[textIndex].length) {
     typeStatus.value = true;
     typeValue.value += texts[textIndex].charAt(charIndex++);
-    timeOut = setTimeout(typeText, typingSpeed);
+    timeOut = setTimeout(
+      typeText,
+      /[a-zA-Z0-9\\.]+/.test(texts[textIndex])
+        ? 40 * random(2, 1) * 1.1
+        : defineTypingSpeed
+    );
   } else {
     typeStatus.value = false;
     timeOut = setTimeout(eraseText, newTextDelay);
@@ -50,11 +53,14 @@ const eraseText = () => {
   if (charIndex > 0) {
     typeStatus.value = true;
     typeValue.value = texts[textIndex].substring(0, --charIndex);
-    timeOut = setTimeout(eraseText, erasingSpeed);
+    timeOut = setTimeout(
+      eraseText,
+      /[a-zA-Z0-9\\.]+/.test(texts[textIndex]) ? 10 : defineErasingSpeed
+    );
   } else {
     typeStatus.value = false;
     if (++textIndex >= texts.length) textIndex = 0;
-    timeOut = setTimeout(typeText, typingSpeed + 1e3);
+    timeOut = setTimeout(typeText, defineTypingSpeed + 1e3);
   }
 };
 
