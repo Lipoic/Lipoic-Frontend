@@ -85,7 +85,9 @@ onUnmounted(() => {
     @include pad {
       text-align: center;
       padding: 0 10px;
+      font-size: 1.6rem;
     }
+
     &:after {
       content: '';
       position: absolute;

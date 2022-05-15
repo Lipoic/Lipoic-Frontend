@@ -162,9 +162,7 @@ const modules = [Pagination];
     }
     .loginBar {
       margin-top: 20px;
-      @include phone {
-        font-size: 2.4vw;
-      }
+
       a {
         @extend %link;
         color: $MainColor;
