@@ -3,7 +3,6 @@
 import { useI18nType } from '@/helper/I18nHelper';
 import { onUnmounted, ref, watch } from 'vue';
 import { random } from '@/utils/Math';
-import { onUnmounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const i18n = useI18n() as useI18nType;
@@ -25,7 +24,6 @@ let timeOut: ReturnType<typeof setTimeout> | undefined;
 
 watch(i18n.locale, () => {
   texts = [...props.i18nTextKeys.map((key) => i18n.t(key))];
-  erasingSpeed = charIndex = 0;
   typeValue.value = '';
   clearTimeout(timeOut!);
   typeText();
