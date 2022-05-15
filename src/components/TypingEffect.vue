@@ -24,6 +24,7 @@ let charIndex = 0;
 let timeOut: ReturnType<typeof setTimeout> | null = null;
 
 const typeText = () => {
+  // If the text is english, speed up typing speed
   typingSpeed = /[a-zA-Z0-9\\.]+/.test(texts[textIndex])
     ? 85
     : defineTypingSpeed;
@@ -94,7 +95,14 @@ onUnmounted(() => {
       position: absolute;
       display: inline-block;
       width: 4px;
-      height: 2.85rem;
+      margin-top: 0.75rem;
+      height: 2rem;
+
+      @include phone {
+        margin-top: 0.65rem;
+        height: 1.4rem;
+      }
+
       margin-left: 3px;
       background-color: #fff;
       animation: cursorBlink 0.8s infinite;
