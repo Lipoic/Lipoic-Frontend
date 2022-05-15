@@ -1,4 +1,4 @@
-name: Pull request review
+name: Pull request
 on: [pull_request]
 
 jobs:
@@ -79,6 +79,7 @@ jobs:
           log_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           description: 'Preview the page: ${{ steps.deploy_preview.outputs.NETLIFY_PREVIEW_URL }}'
           mediaType: '{"previews": ["ant-man"]}'
+          auto_inactive: false
           state: success
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -93,6 +94,7 @@ jobs:
           environment: pull request
           log_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           mediaType: '{"previews": ["ant-man"]}'
+          auto_inactive: false
           state: failure
         env:
           GITHUB_TOKEN: ${{ github.token }}
