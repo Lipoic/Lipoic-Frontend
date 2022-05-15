@@ -143,9 +143,11 @@ const modules = [Pagination];
     justify-content: center;
 
     z-index: 2;
+    width: 30%;
 
     @include pad {
       align-items: center;
+      width: 80%;
     }
 
     h1 {
