@@ -60,9 +60,9 @@ const modules = [Pagination];
   position: relative;
   background: linear-gradient(
     -45deg,
-    rgba(110, 130, 255, 1) 0%,
-    rgba(105, 146, 237, 1) 29%,
-    rgba(107, 212, 218, 1) 100%
+    rgba(181, 76, 255, 1) 0%,
+    rgb(84, 107, 237) 50%,
+    rgb(61, 163, 169) 100%
   );
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
