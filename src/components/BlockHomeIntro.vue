@@ -58,7 +58,7 @@ const modules = [Pagination];
   padding: 20px 0;
   width: 100%;
   padding: 45px;
-  max-height: 900px;
+  height: calc(100% - $FooterHeight - $HeaderHeight);
   // footer height: 127px; header height: 80px
   display: flex;
   align-items: center;
