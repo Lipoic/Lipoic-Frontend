@@ -57,6 +57,7 @@ const modules = [Pagination];
 @import '@/scss/rwd.breakPoint.scss';
 
 .intro {
+  padding: 20px 0;
   width: 100%;
   display: flex;
   align-items: center;
@@ -143,7 +144,7 @@ const modules = [Pagination];
     justify-content: center;
 
     z-index: 2;
-    width: 30%;
+    width: 35%;
 
     @include pad {
       align-items: center;
@@ -153,12 +154,19 @@ const modules = [Pagination];
     h1 {
       color: $LightGreen;
       font-size: 4rem;
+      @include phone {
+        text-align: center;
+        font-size: 12vw;
+      }
     }
     .container {
       max-width: 100%;
     }
     .loginBar {
       margin-top: 20px;
+      @include phone {
+        font-size: 2.4vw;
+      }
       a {
         @extend %link;
         color: $LightGreen;
