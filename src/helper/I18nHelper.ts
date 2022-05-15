@@ -1,4 +1,4 @@
-import { I18n, createI18n } from 'vue-i18n';
+import { I18n, createI18n, Composer } from 'vue-i18n';
 
 import defaultLanguage from '@/locales/zh-TW.json';
 
@@ -7,22 +7,22 @@ export type i18nType = I18n<
   unknown,
   unknown
 >;
+export type useI18nType = Composer<Record<string, typeof defaultLanguage>>;
+
 export class I18nHelper {
   static defaultLocale = 'en-US';
   static get locale(): string {
     const storageLocal = localStorage.getItem('locale');
 
     // If user has set the locale in localStorage, use it
-    if (storageLocal != null && this.locales.includes(storageLocal)) {
+    if (storageLocal && this.locales.includes(storageLocal)) {
       return storageLocal;
     }
 
     const browserLocale = navigator.language;
 
     // Set the locale by the browser's language
-    if (this.locales.includes(browserLocale)) {
-      return browserLocale;
-    }
+    if (this.locales.includes(browserLocale)) return browserLocale;
 
     return this.defaultLocale;
   }
@@ -63,17 +63,15 @@ export class I18nHelper {
   }
 
   private static setTitle() {
-    if (this.i18n == null) return;
+    if (!this.i18n) return;
     document.title = this.i18n.global.t('app.title');
   }
 
   static setLocale(locale: string) {
-    if (this.i18n != null) {
-      this.i18n.global.locale = locale;
-    }
+    if (this.i18n) this.i18n.global.locale = locale;
+
     localStorage.setItem('locale', locale);
     this.setTitle();
-    location.reload();
   }
 }
 
