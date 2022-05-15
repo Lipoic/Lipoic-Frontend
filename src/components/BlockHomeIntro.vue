@@ -32,7 +32,7 @@ const modules = [Pagination];
       </swiper>
     </div>
     <div class="title">
-      <h1>{{ $t('home.title') }}</h1>
+      <h1>Lipoic</h1>
       <TypingEffect :i18nTexts="['home.subtitle.1', 'home.subtitle.2']" />
       <div class="loginBar">
         <router-link to="/login/student" class="first">
