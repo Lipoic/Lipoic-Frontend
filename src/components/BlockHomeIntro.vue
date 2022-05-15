@@ -63,9 +63,9 @@ const modules = [Pagination];
   position: relative;
   background: linear-gradient(
     -45deg,
-    rgba(110, 130, 255, 1) 0%,
-    rgba(105, 146, 237, 1) 29%,
-    rgba(107, 212, 218, 1) 100%
+    rgba(181, 76, 255, 1) 0%,
+    rgb(84, 107, 237) 50%,
+    rgb(61, 163, 169) 100%
   );
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
@@ -150,7 +150,7 @@ const modules = [Pagination];
     }
 
     h1 {
-      color: $LightGreen;
+      color: $MainColor;
       font-size: 4rem;
       @include phone {
         text-align: center;
@@ -167,7 +167,7 @@ const modules = [Pagination];
       }
       a {
         @extend %link;
-        color: $LightGreen;
+        color: $MainColor;
         font-weight: bold;
         padding: 10px 30px;
         transition: 0.2s ease-in-out;
@@ -176,35 +176,35 @@ const modules = [Pagination];
         }
 
         &:hover {
-          background-color: $LightGreen;
+          background-color: $MainColor;
           color: $White;
         }
 
         &.first {
           border-radius: 5px 0 0 5px;
           border: {
-            top: 1px solid $LightGreen;
-            right: 0 solid $LightGreen;
-            bottom: 1px solid $LightGreen;
-            left: 1px solid $LightGreen;
+            top: 1px solid $MainColor;
+            right: 0 solid $MainColor;
+            bottom: 1px solid $MainColor;
+            left: 1px solid $MainColor;
           }
         }
         &.middle {
           border-radius: 0;
           border: {
-            top: 1px solid $LightGreen;
-            right: 0 solid $LightGreen;
-            bottom: 1px solid $LightGreen;
-            left: 1px solid $LightGreen;
+            top: 1px solid $MainColor;
+            right: 0 solid $MainColor;
+            bottom: 1px solid $MainColor;
+            left: 1px solid $MainColor;
           }
         }
         &.last {
           border-radius: 0 5px 5px 0;
           border: {
-            top: 1px solid $LightGreen;
-            right: 1px solid $LightGreen;
-            bottom: 1px solid $LightGreen;
-            left: 1px solid $LightGreen;
+            top: 1px solid $MainColor;
+            right: 1px solid $MainColor;
+            bottom: 1px solid $MainColor;
+            left: 1px solid $MainColor;
           }
         }
       }

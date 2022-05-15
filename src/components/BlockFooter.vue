@@ -20,7 +20,7 @@ const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
     </div>
     <div class="copyright">{{ $t('footer.copyright') }}</div>
     <div class="languageSelector">
-      {{ $t('footer.language') }}
+      <span>{{ $t('footer.language') }}</span>
       <select v-model="selectedLanguage" @change="changeLanguage">
         <option
           v-for="language in i18n.availableLocales"
@@ -51,7 +51,7 @@ const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
     background-color: $White;
     border-radius: 50%;
     padding: 3px;
-    border: 3px solid $LightGreen;
+    border: 3px solid $MainColor;
     background-color: $Black;
 
     img {
@@ -74,6 +74,11 @@ const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
       &:focus {
         outline: none;
       }
+    }
+
+    span {
+      font-size: 1.2rem;
+      margin-right: 5px;
     }
   }
 }
