@@ -35,14 +35,24 @@ const modules = [Pagination];
       <h1>Lipoic</h1>
       <TypingEffect :i18nTextKeys="['home.subtitle.1', 'home.subtitle.2']" />
       <div class="loginBar">
-        <router-link to="/login/student" class="first">
-          {{ $t('home.login.student') }}
-        </router-link>
-        <router-link to="/login/teacher" class="middle">
-          {{ $t('home.login.teacher') }}
-        </router-link>
-        <router-link to="/login/parents" class="last">
-          {{ $t('home.login.parents') }}
+        <router-link
+          to="/login/student"
+          class="first"
+          v-t="'home.login.student'"
+          :title="$t('home.login.student')"
+        />
+        <router-link
+          to="/login/teacher"
+          class="middle"
+          v-t="'home.login.teacher'"
+          :title="$t('home.login.teacher')"
+        />
+        <router-link
+          to="/login/parents"
+          class="last"
+          v-t="'home.login.parents'"
+          :title="$t('home.login.parents')"
+        >
         </router-link>
       </div>
     </div>

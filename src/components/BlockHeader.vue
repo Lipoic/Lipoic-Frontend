@@ -57,7 +57,7 @@ defineExpose({
         <li v-for="(link, index) in links" :key="index">
           <router-link
             :to="link.path"
-            v-text="$t(link.i18nName)"
+            v-t="$t(link.i18nName)"
             :title="$t(link.i18nName)"
           />
         </li>
@@ -65,7 +65,7 @@ defineExpose({
           <router-link
             to="/account"
             class="login"
-            v-text="$t('header.login')"
+            v-t="$t('header.login')"
             :title="$t('header.login')"
           />
         </li>

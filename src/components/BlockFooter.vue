@@ -22,7 +22,7 @@ const closeSetLanguages = () =>
         alt="Lipoic"
       />
     </div>
-    <div class="copyright">{{ $t('footer.copyright') }}</div>
+    <div class="copyright" v-t="'footer.copyright'" />
     <div class="languageSelector" :class="{ show: showSetLanguages }">
       <button @click="showSetLanguages = !showSetLanguages">
         <span
