@@ -1,4 +1,5 @@
 {
+  "editor.tabSize": 2,
   "cSpell.words": ["Lipoic", "Pinia", "tochmove"],
   "editor.codeActionsOnSave": {
     "source.fixAll": true
@@ -12,5 +13,5 @@
   "i18n-ally.enabledParsers": ["json"],
   "i18n-ally.sourceLanguage": "en-US",
   "i18n-ally.displayLanguage": "zh-TW",
-  "i18n-ally.enabledFrameworks": ['vue']
+  "i18n-ally.enabledFrameworks": ["vue"]
 }
