@@ -1,64 +1,66 @@
 <script lang="ts" setup>
-import I18nHelper from '@/helper/I18nHelper';
-import { ref } from 'vue';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { onUnmounted, withDefaults, defineProps, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-const i18n = useI18n();
 
-let texts = [i18n.t('home.subtitle.1'), 'open source'];
+const i18n = useI18n();
+const defineTypingSpeed = 200;
+
+const props = withDefaults(
+  defineProps<{ i18nTexts?: string[]; texts?: string[] }>(),
+  { i18nTexts: () => [], texts: () => [] }
+);
+
+let texts = [...props.i18nTexts.map((_) => i18n.t(_)), ...props.texts];
 
 let typeValue = ref('');
 let typeStatus = ref(false);
 
-let typingSpeed = 200;
-
+let typingSpeed = defineTypingSpeed;
 let erasingSpeed = 45;
 let newTextDelay = 500;
 let textIndex = 0;
 let charIndex = 0;
 
-if (I18nHelper.locale.startsWith('zh')) {
-  setTimeout(typeText, newTextDelay + 200);
-} else {
-  typeValue.value = texts[0];
+let timeOut: ReturnType<typeof setTimeout> | undefined = void 0;
 
-  setInterval(() => {
-    if (textIndex >= texts.length) textIndex = 0;
-    typeValue.value = texts[textIndex];
-    textIndex++;
-  }, newTextDelay * 8);
-}
+const typeText = () => {
+  typingSpeed = /[a-zA-Z0-9\\.]+/.test(texts[textIndex])
+    ? 100
+    : defineTypingSpeed;
 
-function typeText() {
   if (charIndex < texts[textIndex].length) {
-    if (!typeStatus.value) typeStatus.value = true;
-    typeValue.value = typeValue.value + texts[textIndex].charAt(charIndex);
-    charIndex += 1;
-    setTimeout(typeText, typingSpeed);
+    typeStatus.value = true;
+    typeValue.value += texts[textIndex].charAt(charIndex++);
+    timeOut = setTimeout(typeText, typingSpeed);
   } else {
     typeStatus.value = false;
-    setTimeout(eraseText, newTextDelay);
+    timeOut = setTimeout(eraseText, newTextDelay);
   }
-}
-
-function eraseText() {
+};
+if (texts.length > 0) typeText();
+const eraseText = () => {
   if (charIndex > 0) {
-    if (!typeStatus.value) typeStatus.value = true;
-    typeValue.value = texts[textIndex].substring(0, charIndex - 1);
-    charIndex -= 1;
-    setTimeout(eraseText, erasingSpeed);
+    typeStatus.value = true;
+    typeValue.value = texts[textIndex].substring(0, --charIndex);
+    timeOut = setTimeout(eraseText, erasingSpeed);
   } else {
     typeStatus.value = false;
-    textIndex += 1;
-    if (textIndex >= texts.length) textIndex = 0;
-    setTimeout(typeText, typingSpeed + 1000);
+    if (++textIndex >= texts.length) textIndex = 0;
+    timeOut = setTimeout(typeText, typingSpeed + 1e3);
   }
-}
+};
+
+onUnmounted(() => clearTimeout(timeOut!));
 </script>
 
 <template>
   <div class="container">
-    <span class="typed-text">{{ typeValue }}</span>
-    <span class="cursor" :class="{ typing: typeStatus }">&nbsp;</span>
+    <span
+      class="typed-text"
+      :class="{ typing: typeStatus }"
+      v-text="typeValue"
+    />
   </div>
 </template>
 
@@ -68,37 +70,43 @@ function eraseText() {
 
 .container {
   display: flex;
-}
 
-span.typed-text {
-  color: $White;
-  font-size: 2rem;
+  span.typed-text {
+    color: $White;
+    font-size: 2rem;
+    position: relative;
+    white-space: pre-line;
+    height: 3rem;
+    display: inline-table;
 
-  @include pad {
-    text-align: center;
-    padding: 0 10px;
+    @include pad {
+      text-align: center;
+      padding: 0 10px;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      display: inline-block;
+      height: 3rem;
+      margin-left: 3px;
+      background-color: #fff;
+      animation: cursorBlink 0.5s infinite;
+    }
+    &.typing:after {
+      animation: none;
+    }
   }
-}
-span.cursor {
-  display: inline-block;
-  margin-left: 3px;
-  width: 4px;
-  background-color: #fff;
-  animation: cursorBlink 1s infinite;
-}
-span.cursor.typing {
-  animation: none;
-}
 
-@keyframes cursorBlink {
-  49% {
-    background-color: #fff;
-  }
-  50% {
-    background-color: transparent;
-  }
-  99% {
-    background-color: transparent;
+  @keyframes cursorBlink {
+    49% {
+      background-color: #fff;
+    }
+    50% {
+      background-color: transparent;
+    }
+    99% {
+      background-color: transparent;
+    }
   }
 }
 </style>

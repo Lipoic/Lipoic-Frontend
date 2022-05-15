@@ -4,7 +4,9 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper';
 import TypingEffect from '@/components/TypingEffect.vue';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const modules = [Pagination];
 </script>
 
@@ -33,7 +35,7 @@ const modules = [Pagination];
     </div>
     <div class="title">
       <h1>{{ $t('home.title') }}</h1>
-      <TypingEffect style="white-space: pre-line"></TypingEffect>
+      <TypingEffect :i18nTexts="[t('home.subtitle.1'), 'open source']" />
       <div class="loginBar">
         <router-link to="/login/student" class="first">
           {{ $t('home.login.student') }}
@@ -140,6 +142,8 @@ const modules = [Pagination];
     align-items: flex-start;
     justify-content: center;
 
+    z-index: 2;
+
     @include pad {
       align-items: center;
     }
@@ -148,10 +152,11 @@ const modules = [Pagination];
       color: $LightGreen;
       font-size: 4rem;
     }
-
+    .container {
+      max-width: 100%;
+    }
     .loginBar {
       margin-top: 20px;
-      z-index: 2;
       a {
         @extend %link;
         color: $LightGreen;
