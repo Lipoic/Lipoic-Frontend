@@ -21,7 +21,7 @@ let newTextDelay = 500;
 let textIndex = 0;
 let charIndex = 0;
 
-let timeOut: ReturnType<typeof setTimeout> | undefined = void 0;
+let timeOut: ReturnType<typeof setTimeout> | null = null;
 
 const typeText = () => {
   typingSpeed = /[a-zA-Z0-9\\.]+/.test(texts[textIndex])
@@ -50,7 +50,11 @@ const eraseText = () => {
   }
 };
 
-onUnmounted(() => clearTimeout(timeOut!));
+onUnmounted(() => {
+  if (timeOut != null) {
+    clearTimeout(timeOut);
+  }
+});
 </script>
 
 <template>

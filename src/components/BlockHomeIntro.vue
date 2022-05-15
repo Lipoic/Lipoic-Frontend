@@ -4,9 +4,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper';
 import TypingEffect from '@/components/TypingEffect.vue';
-import { useI18n } from 'vue-i18n';
 
-const { t } = useI18n();
 const modules = [Pagination];
 </script>
 
