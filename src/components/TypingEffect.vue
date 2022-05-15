@@ -87,10 +87,11 @@ onUnmounted(() => clearTimeout(timeOut!));
       content: '';
       position: absolute;
       display: inline-block;
+      width: 4px;
       height: 3rem;
       margin-left: 3px;
       background-color: #fff;
-      animation: cursorBlink 0.5s infinite;
+      animation: cursorBlink 0.8s infinite;
     }
     &.typing:after {
       animation: none;
