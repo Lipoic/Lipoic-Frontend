@@ -14,7 +14,7 @@ let typeStatus = ref(false);
 
 let typingSpeed = defineTypingSpeed;
 let erasingSpeed = 40;
-let newTextDelay = 500;
+let newTextDelay = 800;
 let textIndex = 0;
 let charIndex = 0;
 
@@ -80,11 +80,15 @@ onUnmounted(() => {
     white-space: pre-line;
     height: 3rem;
     display: inline-table;
+    line-height: 2rem;
+
+    @include phone {
+      font-size: 1.8rem;
+    }
 
     @include pad {
       text-align: center;
       padding: 0 10px;
-      font-size: 1.6rem;
     }
 
     &:after {
@@ -92,12 +96,10 @@ onUnmounted(() => {
       position: absolute;
       display: inline-block;
       width: 4px;
-      margin-top: 0.75rem;
       height: 2rem;
 
       @include phone {
-        margin-top: 0.55rem;
-        height: 1.2rem;
+        height: 1.8rem;
       }
 
       margin-left: 3px;
@@ -110,7 +112,7 @@ onUnmounted(() => {
   }
 
   @keyframes cursorBlink {
-    49% {
+    45% {
       background-color: #fff;
     }
     50% {
