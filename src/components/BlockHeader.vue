@@ -2,10 +2,9 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
 import menuImg from '@/assets/menu.svg';
-import { useI18nType } from '@/helper/I18nHelper';
 import { useI18n } from 'vue-i18n';
 
-const { t } = useI18n() as useI18nType;
+const { t } = useI18n();
 
 const links = [
   { path: '/', i18nName: 'header.links.home' },
