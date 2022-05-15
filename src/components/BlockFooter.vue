@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
-import I18nHelper from '@/helper/I18nHelper';
+import I18nHelper, { useI18nType } from '@/helper/I18nHelper';
 import ExpandMoreSvg from '@/assets/other/ExpandMore.svg';
 
-const i18n = useI18n();
-const selectedLanguage = ref(I18nHelper.locale);
+const i18n = useI18n() as useI18nType;
+
+const selectedLanguage = ref(i18n.locale);
 const showSetLanguages = ref(false);
 
 const changeLanguage = (locale: string) => I18nHelper.setLocale(locale);
@@ -21,7 +22,7 @@ const closeSetLanguages = () =>
         alt="Lipoic"
       />
     </div>
-    <div class="copyright">{{ $t('footer.copyright') }}</div>
+    <div class="copyright" v-t="'footer.copyright'" />
     <div class="languageSelector" :class="{ show: showSetLanguages }">
       <button @click="showSetLanguages = !showSetLanguages">
         <span

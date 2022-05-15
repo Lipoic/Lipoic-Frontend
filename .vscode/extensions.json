@@ -2,6 +2,7 @@
   "recommendations": [
     "johnsoncodehk.volar",
     "esbenp.prettier-vscode",
-    "johnsoncodehk.vscode-typescript-vue-plugin"
+    "johnsoncodehk.vscode-typescript-vue-plugin",
+    "Lokalise.i18n-ally"
   ]
 }

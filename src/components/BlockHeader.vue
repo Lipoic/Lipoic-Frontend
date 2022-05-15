@@ -2,9 +2,6 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
 import menuImg from '@/assets/menu.svg';
-import { useI18n } from 'vue-i18n';
-
-const { t } = useI18n();
 
 const links = [
   { path: '/', i18nName: 'header.links.home' },
@@ -21,13 +18,9 @@ const checkMenuOpen = () => {
 const updateMenuState: (ev: Event) => void = ({ target }) => {
   isMenuOpen.value = (target as HTMLInputElement | null)?.checked;
 };
-const changeMenuCheckboxState = () => {
-  if (isMenuOpen.value === true) {
-    isMenuOpen.value = !isMenuOpen.value;
-  } else {
-    return;
-  }
-};
+
+const changeMenuCheckboxState = () => (isMenuOpen.value &&= false);
+
 onMounted(() => window.addEventListener('resize', checkMenuOpen));
 onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
 
@@ -64,16 +57,16 @@ defineExpose({
         <li v-for="(link, index) in links" :key="index">
           <router-link
             :to="link.path"
-            v-text="t(link.i18nName)"
-            :title="t(link.i18nName)"
+            v-t="$t(link.i18nName)"
+            :title="$t(link.i18nName)"
           />
         </li>
         <li>
           <router-link
             to="/account"
             class="login"
-            v-text="t('header.login')"
-            :title="t('header.login')"
+            v-t="$t('header.login')"
+            :title="$t('header.login')"
           />
         </li>
       </ul>
