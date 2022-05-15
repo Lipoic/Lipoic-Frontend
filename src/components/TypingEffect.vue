@@ -1,16 +1,13 @@
 <script lang="ts" setup>
-import { onUnmounted, withDefaults, defineProps, ref } from 'vue';
+import { onUnmounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const i18n = useI18n();
 const defineTypingSpeed = 200;
 
-const props = withDefaults(
-  defineProps<{ i18nTexts?: string[]; texts?: string[] }>(),
-  { i18nTexts: () => [], texts: () => [] }
-);
+const props = defineProps<{ i18nTextKeys: string[] }>();
 
-let texts = [...props.i18nTexts.map((key) => i18n.t(key)), ...props.texts];
+let texts = [...props.i18nTextKeys.map((key) => i18n.t(key))];
 
 let typeValue = ref('');
 let typeStatus = ref(false);

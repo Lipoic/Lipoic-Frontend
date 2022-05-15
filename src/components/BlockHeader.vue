@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted, onUnmounted, defineExpose } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 import { useI18n } from 'vue-i18n';
 import menuImg from '@/assets/menu.svg';
