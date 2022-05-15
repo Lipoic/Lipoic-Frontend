@@ -55,6 +55,8 @@ const modules = [Pagination];
 .intro {
   width: 100%;
   padding: 45px;
+  min-height: calc(100vh - 207px);
+  // footer height: 127px; header height: 80px
   display: flex;
   align-items: center;
   justify-content: center;
