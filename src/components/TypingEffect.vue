@@ -73,6 +73,7 @@ onUnmounted(() => {
 
 .container {
   display: flex;
+  margin-top: 10px;
 
   span.typed-text {
     color: $White;
@@ -93,7 +94,7 @@ onUnmounted(() => {
       position: absolute;
       display: inline-block;
       width: 4px;
-      height: 3rem;
+      height: 2.85rem;
       margin-left: 3px;
       background-color: #fff;
       animation: cursorBlink 0.8s infinite;

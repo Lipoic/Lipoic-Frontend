@@ -161,7 +161,7 @@ const modules = [Pagination];
       max-width: 100%;
     }
     .loginBar {
-      margin-top: 20px;
+      margin-top: 30px;
 
       a {
         @extend %link;
