@@ -1,13 +1,18 @@
 <script lang="ts" setup>
-import I18nHelper from '@/helper/I18nHelper';
-import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { ref } from 'vue';
 
-let selectedLanguage = ref(I18nHelper.locale);
+import I18nHelper from '@/helper/I18nHelper';
+import type { useI18nType } from '@/helper/I18nHelper';
+import ExpandMoreSvg from '@/assets/svg/other/ExpandMore.svg';
 
-const i18n = useI18n();
+const i18n = useI18n() as useI18nType;
+const selectedLanguage = ref(i18n.locale);
+const showSetLanguages = ref<boolean>(false);
 
-const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
+const changeLanguage = (locale: string) => I18nHelper.setLocale(locale);
+const closeSetLanguages = () =>
+  (showSetLanguages.value = !showSetLanguages.value);
 </script>
 
 <template>
@@ -19,18 +24,35 @@ const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
       />
     </div>
     <div class="copyright">{{ $t('footer.copyright') }}</div>
-    <div class="languageSelector">
-      <span>{{ $t('footer.language') }}</span>
-      <select v-model="selectedLanguage" @change="changeLanguage">
-        <option
+    <div class="languageSelector" :class="{ show: showSetLanguages }">
+      <button @click="showSetLanguages = !showSetLanguages">
+        <span
+          class="flag"
+          :style="{
+            backgroundImage: `url(${I18nHelper.countryFlags[selectedLanguage]})`,
+          }"
+        />
+        {{ i18n.getLocaleMessage(selectedLanguage).name }}
+        <img :src="ExpandMoreSvg" alt="Expand more" />
+      </button>
+      <ul class="set-languages">
+        <li
           v-for="language in i18n.availableLocales"
           :key="language"
-          :value="language"
+          @click="[changeLanguage(language), closeSetLanguages()]"
+          :title="i18n.getLocaleMessage(language).name.toString()"
+          :aria-label="i18n.getLocaleMessage(language).name.toString()"
+          :class="language === selectedLanguage ? 'active' : void 0"
         >
-          {{ i18n.getLocaleMessage(language).flag }}
+          <span
+            class="flag"
+            :style="{
+              backgroundImage: `url(${I18nHelper.countryFlags[language]})`,
+            }"
+          />
           {{ i18n.getLocaleMessage(language).name }}
-        </option>
-      </select>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -63,22 +85,77 @@ const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
     color: $White;
   }
   .languageSelector {
-    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     color: $White;
-    select {
-      background-color: $LightBlack;
-      border-radius: 5px;
-      padding: 5px;
+    margin-top: 10px;
+    position: relative;
+    button {
       color: $White;
       font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background-color: transparent;
+      transition: color 0.15s ease-out 0s;
+
+      img {
+        transition: transform 0.15s ease-out 0s;
+      }
+
       &:focus {
         outline: none;
       }
     }
+    ul.set-languages {
+      transition: all 0.4s ease-in-out 0s;
+      padding: 5px;
+      background-color: $LightBlack;
+      font-size: 1.1rem;
+      position: absolute;
+      bottom: 150%;
+      width: 200px;
+      height: auto;
+      max-height: calc(100vh - 100px);
 
-    span {
-      font-size: 1.2rem;
+      overflow: auto;
+      border-radius: 8px;
+
+      opacity: 0;
+      li {
+        padding: 8px 5px;
+        border-radius: 5px;
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+
+        &:hover,
+        &.active {
+          background-color: $Black;
+        }
+      }
+    }
+    &.show {
+      ul.set-languages {
+        opacity: 1;
+        transform: translateY(-1em);
+      }
+      button img {
+        transform: rotate(180deg);
+      }
+    }
+    .flag {
       margin-right: 5px;
+      width: 25px;
+      height: 25px;
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-position: center;
     }
   }
 }
