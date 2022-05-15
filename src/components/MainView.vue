@@ -29,7 +29,7 @@ const headerMenuHandler = (): void => {
 .main {
   display: flex;
   flex-direction: column;
-  height: auto;
+  height: 100%;
   .wrapper {
     display: flex;
     align-items: center;
