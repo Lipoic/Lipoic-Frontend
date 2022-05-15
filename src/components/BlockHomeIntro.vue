@@ -143,7 +143,7 @@ const modules = [Pagination];
     }
 
     h1 {
-      color: $LightGreen;
+      color: $MainColor;
       font-size: 4rem;
     }
 
@@ -162,7 +162,7 @@ const modules = [Pagination];
       z-index: 2;
       a {
         @extend %link;
-        color: $LightGreen;
+        color: $MainColor;
         font-weight: bold;
         padding: 10px 30px;
         transition: 0.2s ease-in-out;
@@ -171,35 +171,35 @@ const modules = [Pagination];
         }
 
         &:hover {
-          background-color: $LightGreen;
+          background-color: $MainColor;
           color: $White;
         }
 
         &.first {
           border-radius: 5px 0 0 5px;
           border: {
-            top: 1px solid $LightGreen;
-            right: 0 solid $LightGreen;
-            bottom: 1px solid $LightGreen;
-            left: 1px solid $LightGreen;
+            top: 1px solid $MainColor;
+            right: 0 solid $MainColor;
+            bottom: 1px solid $MainColor;
+            left: 1px solid $MainColor;
           }
         }
         &.middle {
           border-radius: 0;
           border: {
-            top: 1px solid $LightGreen;
-            right: 0 solid $LightGreen;
-            bottom: 1px solid $LightGreen;
-            left: 1px solid $LightGreen;
+            top: 1px solid $MainColor;
+            right: 0 solid $MainColor;
+            bottom: 1px solid $MainColor;
+            left: 1px solid $MainColor;
           }
         }
         &.last {
           border-radius: 0 5px 5px 0;
           border: {
-            top: 1px solid $LightGreen;
-            right: 1px solid $LightGreen;
-            bottom: 1px solid $LightGreen;
-            left: 1px solid $LightGreen;
+            top: 1px solid $MainColor;
+            right: 1px solid $MainColor;
+            bottom: 1px solid $MainColor;
+            left: 1px solid $MainColor;
           }
         }
       }

@@ -51,7 +51,7 @@ const changeLanguage = () => I18nHelper.setLocale(selectedLanguage.value);
     background-color: $White;
     border-radius: 50%;
     padding: 3px;
-    border: 3px solid $LightGreen;
+    border: 3px solid $MainColor;
     background-color: $Black;
 
     img {
