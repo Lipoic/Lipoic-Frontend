@@ -35,19 +35,24 @@ const oauthButtons = [
           <span v-t="'auth.login.title'" />
         </div>
         <input
-          type="email"
+          required
+          type="text"
           name="user"
+          maxlength=""
+          pattern="[A-Za-z0-9]+"
           v-model="loginFormData.username"
           :aria-label="$t('auth.login.usernameInput')"
           :placeholder="$t('auth.login.usernameInput')"
           autocomplete="username"
         />
         <input
+          required
           type="password"
           name="password"
           v-model="loginFormData.password"
           :aria-label="$t('auth.login.password')"
           :placeholder="$t('auth.login.password')"
+          pattern="[a-zA-Z0-9]{8,}"
           autocomplete="current-password"
         />
         <div class="loginOptions">
