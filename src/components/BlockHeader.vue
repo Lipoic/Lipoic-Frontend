@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 
-import menuImg from '@/assets/menu.svg';
-
 const links = [
   { path: '/', i18nName: 'header.links.home' },
   { path: '/about', i18nName: 'header.links.about' },
@@ -50,7 +48,7 @@ defineExpose({
       </div>
     </div>
     <label for="menuToggle" class="menuButton">
-      <img :src="menuImg" alt="MENU" />
+      <SvgIcon name="other-menu" color="white" />
     </label>
     <div class="links">
       <ul>
