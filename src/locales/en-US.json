@@ -15,8 +15,6 @@
   "auth.login.title": "Login",
   "auth.login.usernameInput": "Username",
   "auth.login.password": "Password",
-  "auth.login.stayLoggedIn": "Stay Logged In",
-  "auth.login.forgotPassword": "Forgot Password",
   "auth.login.loginButton": "Login",
   "auth.login.haveNoAccount": "Have no account?",
   "auth.login.registerNow": "SignUp Now",

@@ -15,8 +15,6 @@
   "auth.login.title": "登入",
   "auth.login.usernameInput": "使用者名称",
   "auth.login.password": "密码",
-  "auth.login.stayLoggedIn": "保持登入",
-  "auth.login.forgotPassword": "忘記密码",
   "auth.login.loginButton": "登入",
   "auth.login.haveNoAccount": "还没有帐戶吗？",
   "auth.login.registerNow": "立即註册",
