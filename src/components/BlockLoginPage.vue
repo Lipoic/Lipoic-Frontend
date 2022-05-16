@@ -120,6 +120,7 @@
       padding: 10px;
       font-size: 1.5rem;
       color: $White;
+      cursor: pointer;
       background-color: $MainPurple;
     }
 
