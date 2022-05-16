@@ -34,6 +34,7 @@ const oauthButtons = [
         <div class="header">
           <span v-t="'auth.login.title'" />
         </div>
+        <!-- TODO: add pattern & max length-->
         <input
           required
           type="text"
@@ -45,6 +46,7 @@ const oauthButtons = [
           :placeholder="$t('auth.login.usernameInput')"
           autocomplete="username"
         />
+        <!-- TODO: add pattern & max length-->
         <input
           required
           type="password"
@@ -63,19 +65,17 @@ const oauthButtons = [
               name="stayLogin"
               id="stayLogin"
             />
-            <label for="stayLogin"> {{ $t('auth.login.stayLoggedIn') }} </label>
+            <label for="stayLogin" v-t="'auth.login.stayLoggedIn'" />
           </div>
           <a href="#" class="forgot">
             {{ $t('auth.login.forgotPassword') }} ?</a
           >
         </div>
-        <button class="loginButton">
-          {{ $t('auth.login.loginButton') }}
-        </button>
-        <p>{{ $t('auth.login.haveNoAccount') }}</p>
-        <p class="signup">{{ $t('auth.login.registerNow') }}</p>
+        <button class="loginButton" v-t="'auth.login.loginButton'" />
+        <p v-t="'auth.login.haveNoAccount'" />
+        <p class="signup" v-t="'auth.login.registerNow'" />
         <hr style="border-color: #ababab" />
-        <p>{{ $t('auth.login.useOtherMethods') }}</p>
+        <p v-t="'auth.login.useOtherMethods'" />
         <div class="oauthButtons">
           <button
             class="oauthButton"
