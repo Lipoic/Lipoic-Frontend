@@ -69,6 +69,7 @@ const loginFormData = reactive<loginData>({
 
 <style lang="scss">
 @import '@/scss/global.scss';
+@import '@/scss/rwd.breakPoint.scss';
 
 .login {
   background-color: #4d4d4d;
@@ -82,21 +83,32 @@ const loginFormData = reactive<loginData>({
     left: 50%;
     width: 50%;
     height: 100%;
-    padding: 0 0 0 50px;
+    padding: 0 0 0 8%;
+
+    @include pad {
+      left: 0;
+      width: 100%;
+    }
 
     .form {
       display: flex;
       flex-direction: column;
       height: 100%;
+      width: 100%;
       justify-content: center;
       max-width: 400px;
       min-width: 300px;
+
+      @include pad {
+        max-width: 80vw;
+      }
       .header {
         font-size: 2rem;
         font-weight: 600;
         color: $White;
         position: relative;
         margin-bottom: 30px;
+        margin: 0 10px 30px 20px;
 
         &::after {
           content: ' ';
@@ -205,6 +217,9 @@ const loginFormData = reactive<loginData>({
     }
   }
   .left {
+    @include pad {
+      display: none;
+    }
     position: absolute;
     right: 50%;
     width: 100%;
