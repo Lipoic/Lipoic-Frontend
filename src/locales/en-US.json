@@ -19,6 +19,6 @@
   "auth.login.forgotPassword": "Forgot Password",
   "auth.login.loginButton": "Login",
   "auth.login.haveNoAccount": "Have no account?",
-  "auth.login.registerNow": "SignUp Now",
+  "auth.login.registerNow": "Sign Up",
   "auth.login.useOtherMethods": "Or below way"
 }
