@@ -1,15 +1,21 @@
 import { createApp } from 'vue';
-import App from '@/MainApp.vue';
-import router from '@/router';
+import 'virtual:svg-icons-register';
+
 import '@/scss/global.scss';
 import I18nHelper from './helper/I18nHelper';
 import FirebaseHelper from './helper/FirebaseHelper';
 
-async function main() {
+import router from '@/router';
+import App from '@/MainApp.vue';
+import SvgIconComponent from '@/components/SvgIcon.vue';
+
+(async () => {
   FirebaseHelper.init();
   const i18n = await I18nHelper.load();
 
-  createApp(App).use(router).use(i18n).mount('#app');
-}
-
-main();
+  createApp(App)
+    .use(i18n)
+    .use(router)
+    .component('SvgIcon', SvgIconComponent)
+    .mount('#app');
+})();

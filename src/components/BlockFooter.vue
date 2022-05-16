@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
+
 import I18nHelper, { useI18nType } from '@/helper/I18nHelper';
-import ExpandMoreSvg from '@/assets/other/ExpandMore.svg';
 
 const i18n = useI18n() as useI18nType;
 
@@ -32,7 +32,7 @@ const closeSetLanguages = () =>
           }"
         />
         {{ i18n.getLocaleMessage(selectedLanguage).name }}
-        <img :src="ExpandMoreSvg" alt="Expand more" />
+        <SvgIcon name="other-ExpandMore" color="white" />
       </button>
       <ul class="set-languages">
         <li
@@ -103,7 +103,7 @@ const closeSetLanguages = () =>
       background-color: transparent;
       transition: color 0.15s ease-out 0s;
 
-      img {
+      svg {
         transition: transform 0.15s ease-out 0s;
       }
 
@@ -146,7 +146,7 @@ const closeSetLanguages = () =>
         visibility: visible;
         transform: translateY(-1em);
       }
-      button img {
+      button svg {
         transform: rotate(180deg);
       }
     }
