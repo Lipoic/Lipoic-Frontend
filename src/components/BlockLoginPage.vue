@@ -53,6 +53,12 @@ const loginFormData = reactive<loginData>({
       <p>{{ $t('auth.login.haveNoAccount') }}</p>
       <p class="signup">{{ $t('auth.login.registerNow') }}</p>
       <hr />
+      <p>{{ $t('auth.login.useOtherMethods') }}</p>
+      <div class="oauthButtons">
+        <button class="oauthButt">Google</button>
+        <button class="oauthButt">FaceBook</button>
+        <button class="oauthButt">臺灣雲端教育雲帳號</button>
+      </div>
     </div>
   </div>
 </template>
@@ -72,7 +78,7 @@ const loginFormData = reactive<loginData>({
     left: 50%;
     width: 50%;
     height: 100%;
-    padding: 5% calc(5% + 20px) 5% 5%;
+    padding: 2% calc(5% + 60px) 0 2%;
     display: flex;
     flex-direction: column;
 
@@ -81,7 +87,7 @@ const loginFormData = reactive<loginData>({
       font-weight: 600;
       color: $White;
       position: relative;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
 
       &::after {
         content: ' ';
@@ -100,7 +106,7 @@ const loginFormData = reactive<loginData>({
       font-size: 1.2rem;
       background-color: #7c7b7b33;
       outline: none;
-      margin-bottom: 20px;
+      margin-top: 10px;
       color: $White;
     }
 
@@ -135,7 +141,7 @@ const loginFormData = reactive<loginData>({
       }
     }
 
-    button {
+    & > button {
       margin-bottom: 20px;
       border-radius: 15px;
       border: none;
@@ -157,7 +163,35 @@ const loginFormData = reactive<loginData>({
     }
 
     hr {
-      margin-top: 20px;
+      margin: 12px 20px;
+    }
+
+    .oauthButtons {
+      display: flex;
+      flex-direction: column;
+
+      button {
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: none;
+        padding: 10px;
+        font-size: 1rem;
+        color: $White;
+        margin: 10px 50px;
+        cursor: pointer;
+        text-align: start;
+
+        &:nth-child(1) {
+          color: #000;
+          background-color: #ffffff;
+        }
+        &:nth-child(2) {
+          background-color: #1877f2;
+        }
+        &:nth-child(3) {
+          background-color: #2ea6dc;
+        }
+      }
     }
   }
   .left {
