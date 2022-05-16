@@ -8,25 +8,29 @@
       </div>
     </div>
     <div class="right">
-      <div class="header"></div>
-      <form class="block">
-        <div class="email">
-          <input
-            type="email"
-            name="user"
-            :aria-label="$t('auth.login.usernameInput')"
-          />
-          <div aria-hidden="true" v-t="'auth.login.usernameInput'" />
+      <div class="header">{{ $t('auth.login.title') }}</div>
+      <input
+        type="email"
+        name="user"
+        :aria-label="$t('auth.login.usernameInput')"
+        :placeholder="$t('auth.login.usernameInput')"
+      />
+      <input
+        type="password"
+        name="password"
+        :aria-label="$t('auth.login.password')"
+        :placeholder="$t('auth.login.password')"
+      />
+      <div class="loginOptions">
+        <div class="stayLogin">
+          <input type="checkbox" name="stayLogin" id="stayLogin" />
+          <label for="stayLogin"> {{ $t('auth.login.stayLoggedIn') }} </label>
         </div>
-        <div class="password">
-          <input
-            type="password"
-            name="password"
-            :aria-label="$t('auth.login.password')"
-          />
-          <div aria-hidden="true" v-t="'auth.login.password'" />
-        </div>
-      </form>
+        <a href="#" class="forgot"> {{ $t('auth.login.forgotPassword') }} ?</a>
+      </div>
+      <button class="loginButton">{{ $t('auth.login.loginButton') }}</button>
+      <p>{{ $t('auth.login.haveNoAccount') }}</p>
+      <p class="signup">{{ $t('auth.login.registerNow') }}</p>
     </div>
   </div>
 </template>
@@ -46,6 +50,88 @@
     left: 50%;
     width: 50%;
     height: 100%;
+    padding: 5% calc(5% + 20px) 5% 5%;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      font-size: 2rem;
+      font-weight: 600;
+      color: $White;
+      position: relative;
+      margin-bottom: 40px;
+
+      &::after {
+        content: ' ';
+        position: absolute;
+        top: 100%;
+        left: 8px;
+        background-color: $MainColor;
+        width: 50px;
+        height: 5px;
+      }
+    }
+    & > input {
+      border: none;
+      border-radius: 15px;
+      padding: 12px 20px;
+      font-size: 1.2rem;
+      background-color: #7c7b7b33;
+      outline: none;
+      margin-bottom: 20px;
+      color: $White;
+    }
+
+    .loginOptions {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+
+      .stayLogin {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 5px;
+        input[type='checkbox'] {
+          outline: none;
+          width: 18px;
+          height: 18px;
+          border-radius: 5px;
+          accent-color: $MainColor;
+        }
+        label {
+          margin-left: 5px;
+          line-height: 18px;
+          color: $White;
+        }
+      }
+
+      a {
+        color: $White;
+      }
+    }
+
+    button {
+      margin-bottom: 20px;
+      border-radius: 15px;
+      border: none;
+      padding: 10px;
+      font-size: 1.5rem;
+      color: $White;
+      background-color: $MainPurple;
+    }
+
+    p {
+      color: $White;
+      text-align: center;
+      &.signup {
+        color: $MainColor;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
   }
   .left {
     position: absolute;
