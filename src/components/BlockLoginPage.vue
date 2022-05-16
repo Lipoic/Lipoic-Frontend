@@ -7,7 +7,23 @@
         <div class="mask" v-for="_ in 4" :key="_" />
       </div>
     </div>
-    <div class="right"></div>
+    <div class="right">
+      <div class="header"></div>
+      <form class="block">
+        <input
+          type="email"
+          name="user"
+          :aria-label="$t('auth.login.usernameInput')"
+          :placeholder="$t('auth.login.usernameInput')"
+        />
+        <input
+          type="password"
+          name="password"
+          :aria-label="$t('auth.login.password')"
+          :placeholder="$t('auth.login.password')"
+        />
+      </form>
+    </div>
   </div>
 </template>
 
@@ -20,8 +36,15 @@
   width: 100%;
   height: 100%;
   display: flex;
+  position: relative;
+  .right {
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+  }
   .left {
-    position: relative;
+    position: absolute;
     right: 50%;
     width: 100%;
     height: 100%;
