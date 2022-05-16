@@ -10,18 +10,22 @@
     <div class="right">
       <div class="header"></div>
       <form class="block">
-        <input
-          type="email"
-          name="user"
-          :aria-label="$t('auth.login.usernameInput')"
-          :placeholder="$t('auth.login.usernameInput')"
-        />
-        <input
-          type="password"
-          name="password"
-          :aria-label="$t('auth.login.password')"
-          :placeholder="$t('auth.login.password')"
-        />
+        <div class="email">
+          <input
+            type="email"
+            name="user"
+            :aria-label="$t('auth.login.usernameInput')"
+          />
+          <div aria-hidden="true" v-t="'auth.login.usernameInput'" />
+        </div>
+        <div class="password">
+          <input
+            type="password"
+            name="password"
+            :aria-label="$t('auth.login.password')"
+          />
+          <div aria-hidden="true" v-t="'auth.login.password'" />
+        </div>
       </form>
     </div>
   </div>
