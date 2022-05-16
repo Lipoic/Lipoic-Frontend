@@ -20,44 +20,48 @@ const loginFormData = reactive<loginData>({
       </div>
     </div>
     <div class="right">
-      <div class="header">{{ $t('auth.login.title') }}</div>
-      <input
-        type="email"
-        name="user"
-        v-model="loginFormData.username"
-        :aria-label="$t('auth.login.usernameInput')"
-        :placeholder="$t('auth.login.usernameInput')"
-      />
-      <input
-        type="password"
-        name="password"
-        v-model="loginFormData.password"
-        :aria-label="$t('auth.login.password')"
-        :placeholder="$t('auth.login.password')"
-      />
-      <div class="loginOptions">
-        <div class="stayLogin">
-          <input
-            v-model="loginFormData.stayLoggedIn"
-            type="checkbox"
-            name="stayLogin"
-            id="stayLogin"
-          />
-          <label for="stayLogin"> {{ $t('auth.login.stayLoggedIn') }} </label>
+      <div class="form">
+        <div class="header">{{ $t('auth.login.title') }}</div>
+        <input
+          type="email"
+          name="user"
+          v-model="loginFormData.username"
+          :aria-label="$t('auth.login.usernameInput')"
+          :placeholder="$t('auth.login.usernameInput')"
+        />
+        <input
+          type="password"
+          name="password"
+          v-model="loginFormData.password"
+          :aria-label="$t('auth.login.password')"
+          :placeholder="$t('auth.login.password')"
+        />
+        <div class="loginOptions">
+          <div class="stayLogin">
+            <input
+              v-model="loginFormData.stayLoggedIn"
+              type="checkbox"
+              name="stayLogin"
+              id="stayLogin"
+            />
+            <label for="stayLogin"> {{ $t('auth.login.stayLoggedIn') }} </label>
+          </div>
+          <a href="#" class="forgot">
+            {{ $t('auth.login.forgotPassword') }} ?</a
+          >
         </div>
-        <a href="#" class="forgot"> {{ $t('auth.login.forgotPassword') }} ?</a>
-      </div>
-      <button class="loginButton">
-        {{ $t('auth.login.loginButton') }}
-      </button>
-      <p>{{ $t('auth.login.haveNoAccount') }}</p>
-      <p class="signup">{{ $t('auth.login.registerNow') }}</p>
-      <hr />
-      <p>{{ $t('auth.login.useOtherMethods') }}</p>
-      <div class="oauthButtons">
-        <button class="oauthButt">Google</button>
-        <button class="oauthButt">FaceBook</button>
-        <button class="oauthButt">臺灣雲端教育雲帳號</button>
+        <button class="loginButton">
+          {{ $t('auth.login.loginButton') }}
+        </button>
+        <p>{{ $t('auth.login.haveNoAccount') }}</p>
+        <p class="signup">{{ $t('auth.login.registerNow') }}</p>
+        <hr />
+        <p>{{ $t('auth.login.useOtherMethods') }}</p>
+        <div class="oauthButtons">
+          <button class="oauthButt">Google</button>
+          <button class="oauthButt">FaceBook</button>
+          <button class="oauthButt">臺灣雲端教育雲帳號</button>
+        </div>
       </div>
     </div>
   </div>
@@ -78,118 +82,124 @@ const loginFormData = reactive<loginData>({
     left: 50%;
     width: 50%;
     height: 100%;
-    padding: 2% calc(5% + 60px) 0 2%;
-    display: flex;
-    flex-direction: column;
+    padding: 0 0 0 50px;
 
-    .header {
-      font-size: 2rem;
-      font-weight: 600;
-      color: $White;
-      position: relative;
-      margin-bottom: 30px;
-
-      &::after {
-        content: ' ';
-        position: absolute;
-        top: 100%;
-        left: 8px;
-        background-color: $MainColor;
-        width: 50px;
-        height: 5px;
-      }
-    }
-    & > input {
-      border: none;
-      border-radius: 15px;
-      padding: 12px 20px;
-      font-size: 1.2rem;
-      background-color: #7c7b7b33;
-      outline: none;
-      margin-top: 10px;
-      color: $White;
-    }
-
-    .loginOptions {
+    .form {
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      max-width: 400px;
+      min-width: 300px;
+      .header {
+        font-size: 2rem;
+        font-weight: 600;
+        color: $White;
+        position: relative;
+        margin-bottom: 30px;
 
-      .stayLogin {
+        &::after {
+          content: ' ';
+          position: absolute;
+          top: 100%;
+          left: 8px;
+          background-color: $MainColor;
+          width: 50px;
+          height: 5px;
+        }
+      }
+      & > input {
+        border: none;
+        border-radius: 15px;
+        padding: 12px 20px;
+        font-size: 1.2rem;
+        background-color: #7c7b7b33;
+        outline: none;
+        margin-top: 10px;
+        color: $White;
+      }
+
+      .loginOptions {
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         align-items: center;
-        padding: 0 5px;
-        input[type='checkbox'] {
-          outline: none;
-          width: 18px;
-          height: 18px;
-          border-radius: 5px;
-          accent-color: $MainColor;
+        margin-bottom: 20px;
+        margin-top: 10px;
+
+        .stayLogin {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 0 5px;
+          input[type='checkbox'] {
+            outline: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+            accent-color: $MainColor;
+          }
+          label {
+            margin-left: 5px;
+            line-height: 18px;
+            color: $White;
+          }
         }
-        label {
-          margin-left: 5px;
-          line-height: 18px;
+
+        a {
           color: $White;
         }
       }
 
-      a {
-        color: $White;
-      }
-    }
-
-    & > button {
-      margin-bottom: 20px;
-      border-radius: 15px;
-      border: none;
-      padding: 10px;
-      font-size: 1.5rem;
-      color: $White;
-      cursor: pointer;
-      background-color: $MainPurple;
-    }
-
-    p {
-      color: $White;
-      text-align: center;
-      &.signup {
-        color: $MainColor;
-        text-decoration: underline;
-        cursor: pointer;
-      }
-    }
-
-    hr {
-      margin: 12px 20px;
-    }
-
-    .oauthButtons {
-      display: flex;
-      flex-direction: column;
-
-      button {
+      & > button {
         margin-bottom: 20px;
-        border-radius: 5px;
+        border-radius: 15px;
         border: none;
         padding: 10px;
-        font-size: 1rem;
+        font-size: 1.5rem;
         color: $White;
-        margin: 10px 50px;
         cursor: pointer;
-        text-align: start;
+        background-color: $MainPurple;
+      }
 
-        &:nth-child(1) {
-          color: #000;
-          background-color: #ffffff;
+      p {
+        color: $White;
+        text-align: center;
+        &.signup {
+          color: $MainColor;
+          text-decoration: underline;
+          cursor: pointer;
         }
-        &:nth-child(2) {
-          background-color: #1877f2;
-        }
-        &:nth-child(3) {
-          background-color: #2ea6dc;
+      }
+
+      hr {
+        margin: 12px 20px;
+      }
+
+      .oauthButtons {
+        display: flex;
+        flex-direction: column;
+
+        button {
+          border-radius: 5px;
+          border: none;
+          padding: 10px;
+          font-size: 1rem;
+          color: $White;
+          margin: 10px 0;
+          cursor: pointer;
+          text-align: start;
+
+          &:nth-child(1) {
+            color: #000;
+            background-color: #ffffff;
+          }
+          &:nth-child(2) {
+            background-color: #1877f2;
+          }
+          &:nth-child(3) {
+            background-color: #2ea6dc;
+          }
         }
       }
     }
