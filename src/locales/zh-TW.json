@@ -11,5 +11,12 @@
   "home.subtitle.2": "熱愛開放原始碼與開放教育精神",
   "home.login.student": "學生",
   "home.login.teacher": "老師",
-  "home.login.parents": "家長"
+  "home.login.parents": "家長",
+  "auth.login.title": "登入",
+  "auth.login.usernameInput": "使用者名稱",
+  "auth.login.password": "密碼",
+  "auth.login.loginButton": "登入",
+  "auth.login.haveNoAccount": "還沒有帳號嗎？",
+  "auth.login.registerNow": "立即註冊",
+  "auth.login.useOtherMethods": "或用以下方式"
 }

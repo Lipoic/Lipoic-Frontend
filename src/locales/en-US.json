@@ -11,5 +11,12 @@
   "home.subtitle.2": "Loves open source and open education",
   "home.login.student": "Student",
   "home.login.teacher": "Teacher",
-  "home.login.parents": "Parents"
+  "home.login.parents": "Parents",
+  "auth.login.title": "Login",
+  "auth.login.usernameInput": "Username",
+  "auth.login.password": "Password",
+  "auth.login.loginButton": "Login",
+  "auth.login.haveNoAccount": "Have no account?",
+  "auth.login.registerNow": "SignUp Now",
+  "auth.login.useOtherMethods": "Or below way"
 }
