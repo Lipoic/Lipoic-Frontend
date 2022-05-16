@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { reactive } from 'vue';
-import FaceBookSvg from '@/assets/login/facebook.svg';
+import ArrowSvg from '@/assets/login/arrow.svg';
 import GoogleSvg from '@/assets/login/google.svg';
+import FaceBookSvg from '@/assets/login/facebook.svg';
 import TaiwanOpenIdSvg from '@/assets/login/taiwanOpenId.svg';
 
 interface loginData {
@@ -20,11 +21,18 @@ const oauthButtons = [
   { title: 'FaceBook', img: FaceBookSvg },
   { title: '臺灣雲端教育雲帳號', img: TaiwanOpenIdSvg },
 ];
+
+const baseUrl = import.meta.env.BASE_URL;
 </script>
 
 <template>
   <div class="login">
     <div class="left">
+      <div class="hello">
+        <a :href="baseUrl">
+          <img :src="ArrowSvg" class="goBack" alt="" />
+        </a>
+      </div>
       <div class="masks">
         <div class="mask" v-for="_ in 4" :key="_" />
       </div>
@@ -131,7 +139,6 @@ const oauthButtons = [
         font-weight: 600;
         color: $White;
         position: relative;
-        margin-bottom: 30px;
         margin: 0 10px 30px 20px;
 
         span {
@@ -169,8 +176,7 @@ const oauthButtons = [
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
-        margin-top: 10px;
+        margin: 20px;
 
         .stayLogin {
           display: flex;
@@ -228,12 +234,13 @@ const oauthButtons = [
         margin-top: 10px;
 
         .oauthButton {
-          display: flex;
-          align-items: center;
-          justify-content: center;
           border: none;
           padding: 2px;
+          display: flex;
+          cursor: pointer;
           border-radius: 50%;
+          align-items: center;
+          justify-content: center;
           img {
             width: 40px;
             border-radius: 50%;
@@ -256,18 +263,30 @@ const oauthButtons = [
     }
   }
   .left {
-    @include pad {
-      display: none;
-    }
     position: absolute;
     right: 50%;
     width: 100%;
     height: 100%;
+    @include pad {
+      display: none;
+    }
+    .hello {
+      z-index: 2;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      .goBack {
+        margin: 20px;
+        padding: 5px;
+      }
+    }
     .masks {
       width: 98%;
       height: 100%;
       overflow: hidden;
       position: relative;
+      z-index: 1;
       .mask {
         filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.3));
         position: absolute;
