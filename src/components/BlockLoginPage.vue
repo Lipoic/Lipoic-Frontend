@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 import { reactive } from 'vue';
+import FaceBookSvg from '@/assets/login/facebook.svg';
+import GoogleSvg from '@/assets/login/google.svg';
+import TaiwanOpenIdSvg from '@/assets/login/taiwanOpenId.svg';
+
 interface loginData {
   username: string;
   password: string;
@@ -10,6 +14,12 @@ const loginFormData = reactive<loginData>({
   password: '',
   stayLoggedIn: false,
 });
+
+const oauthButtons = [
+  { title: 'Google', img: FaceBookSvg },
+  { title: 'FaceBook', img: GoogleSvg },
+  { title: '臺灣雲端教育雲帳號', img: TaiwanOpenIdSvg },
+];
 </script>
 
 <template>
@@ -20,14 +30,17 @@ const loginFormData = reactive<loginData>({
       </div>
     </div>
     <div class="right">
-      <div class="form">
-        <div class="header">{{ $t('auth.login.title') }}</div>
+      <form @submit="$event.preventDefault()" method="POST">
+        <div class="header">
+          <span v-t="'auth.login.title'" />
+        </div>
         <input
           type="email"
           name="user"
           v-model="loginFormData.username"
           :aria-label="$t('auth.login.usernameInput')"
           :placeholder="$t('auth.login.usernameInput')"
+          autocomplete="username"
         />
         <input
           type="password"
@@ -35,6 +48,7 @@ const loginFormData = reactive<loginData>({
           v-model="loginFormData.password"
           :aria-label="$t('auth.login.password')"
           :placeholder="$t('auth.login.password')"
+          autocomplete="current-password"
         />
         <div class="loginOptions">
           <div class="stayLogin">
@@ -55,19 +69,23 @@ const loginFormData = reactive<loginData>({
         </button>
         <p>{{ $t('auth.login.haveNoAccount') }}</p>
         <p class="signup">{{ $t('auth.login.registerNow') }}</p>
-        <hr />
+        <hr style="border-color: #ababab" />
         <p>{{ $t('auth.login.useOtherMethods') }}</p>
         <div class="oauthButtons">
-          <button class="oauthButt">Google</button>
-          <button class="oauthButt">FaceBook</button>
-          <button class="oauthButt">臺灣雲端教育雲帳號</button>
+          <button
+            class="oauthButt"
+            v-for="({ title, img }, index) in oauthButtons"
+            :key="index"
+          >
+            <img :alt="title" :title="title" :aria-label="title" :src="img" />
+          </button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/scss/global.scss';
 @import '@/scss/rwd.breakPoint.scss';
 
@@ -88,9 +106,10 @@ const loginFormData = reactive<loginData>({
     @include pad {
       left: 0;
       width: 100%;
+      text-align: center;
     }
 
-    .form {
+    form {
       display: flex;
       flex-direction: column;
       height: 100%;
@@ -110,14 +129,17 @@ const loginFormData = reactive<loginData>({
         margin-bottom: 30px;
         margin: 0 10px 30px 20px;
 
-        &::after {
-          content: ' ';
-          position: absolute;
-          top: 100%;
-          left: 8px;
-          background-color: $MainColor;
-          width: 50px;
-          height: 5px;
+        span {
+          position: relative;
+          &:after {
+            content: ' ';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: $MainColor;
+            width: 100%;
+            height: 5px;
+          }
         }
       }
       & > input {
@@ -190,28 +212,14 @@ const loginFormData = reactive<loginData>({
 
       .oauthButtons {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
 
-        button {
-          border-radius: 5px;
+        .oauthButt {
+          background: transparent;
           border: none;
-          padding: 10px;
-          font-size: 1rem;
-          color: $White;
-          margin: 10px 0;
-          cursor: pointer;
-          text-align: start;
-
-          &:nth-child(1) {
-            color: #000;
-            background-color: #ffffff;
-          }
-          &:nth-child(2) {
-            background-color: #1877f2;
-          }
-          &:nth-child(3) {
-            background-color: #2ea6dc;
-          }
+          width: 60px;
         }
       }
     }
