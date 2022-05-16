@@ -26,12 +26,12 @@
     width: 100%;
     height: 100%;
     .masks {
-      width: 100%;
+      width: 98%;
       height: 100%;
       overflow: hidden;
       position: relative;
       .mask {
-        filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.2));
+        filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.3));
         position: absolute;
         top: 0;
         left: 0;
@@ -40,25 +40,34 @@
         line-height: 0;
 
         &:nth-child(1) {
-          border-style: solid;
-          border-width: calc(var(--page-height) * 0.8)
-            calc(var(--page-width) / 2) 0 0;
-          transform: translateX(-4%);
-          border-color: #a3dfda transparent transparent transparent;
+          top: -25%;
+          transform: rotate(-45deg) translateY(-9%);
+          background-color: #a3dfda;
 
           z-index: 4;
         }
         &:nth-child(2) {
+          top: 50%;
+          bottom: 0;
+          transform: rotate(72deg) translateY(25%);
+          background-color: #819fa4;
+
           z-index: 3;
         }
         &:nth-child(3) {
           border-style: solid;
-          border-width: calc(var(--page-height) * 1.5)
-            calc(var(--page-width) / 2) 0 0;
+          border-width: calc(var(--page-height) * 2.5)
+            calc(var(--page-width) / 1.9) 0 0;
           border-color: #5f8385 transparent transparent transparent;
+
           z-index: 2;
         }
         &:nth-child(4) {
+          top: 100%;
+          bottom: 0;
+          transform: rotate(53deg) translateY(-50%);
+          background-color: #cccccc;
+
           z-index: 1;
         }
       }
