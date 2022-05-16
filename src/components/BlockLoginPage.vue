@@ -68,8 +68,8 @@ const oauthButtons = [
             <label for="stayLogin" v-t="'auth.login.stayLoggedIn'" />
           </div>
           <a href="#" class="forgot">
-            {{ $t('auth.login.forgotPassword') }} ?</a
-          >
+            {{ $t('auth.login.forgotPassword') }} ?
+          </a>
         </div>
         <button class="loginButton" v-t="'auth.login.loginButton'" />
         <p v-t="'auth.login.haveNoAccount'" />
@@ -156,6 +156,12 @@ const oauthButtons = [
         outline: none;
         margin-top: 10px;
         color: $White;
+        &:invalid {
+          ~ .loginButton {
+            pointer-events: none;
+            opacity: 0.5;
+          }
+        }
       }
 
       .loginOptions {
