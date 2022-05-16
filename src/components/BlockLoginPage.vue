@@ -1,4 +1,16 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { reactive } from 'vue';
+interface loginData {
+  username: string;
+  password: string;
+  stayLoggedIn: boolean;
+}
+const loginFormData = reactive<loginData>({
+  username: '',
+  password: '',
+  stayLoggedIn: false,
+});
+</script>
 
 <template>
   <div class="login">
@@ -12,25 +24,35 @@
       <input
         type="email"
         name="user"
+        v-model="loginFormData.username"
         :aria-label="$t('auth.login.usernameInput')"
         :placeholder="$t('auth.login.usernameInput')"
       />
       <input
         type="password"
         name="password"
+        v-model="loginFormData.password"
         :aria-label="$t('auth.login.password')"
         :placeholder="$t('auth.login.password')"
       />
       <div class="loginOptions">
         <div class="stayLogin">
-          <input type="checkbox" name="stayLogin" id="stayLogin" />
+          <input
+            v-model="loginFormData.stayLoggedIn"
+            type="checkbox"
+            name="stayLogin"
+            id="stayLogin"
+          />
           <label for="stayLogin"> {{ $t('auth.login.stayLoggedIn') }} </label>
         </div>
         <a href="#" class="forgot"> {{ $t('auth.login.forgotPassword') }} ?</a>
       </div>
-      <button class="loginButton">{{ $t('auth.login.loginButton') }}</button>
+      <button class="loginButton">
+        {{ $t('auth.login.loginButton') }}
+      </button>
       <p>{{ $t('auth.login.haveNoAccount') }}</p>
       <p class="signup">{{ $t('auth.login.registerNow') }}</p>
+      <hr />
     </div>
   </div>
 </template>
@@ -132,6 +154,10 @@
         text-decoration: underline;
         cursor: pointer;
       }
+    }
+
+    hr {
+      margin-top: 20px;
     }
   }
   .left {
