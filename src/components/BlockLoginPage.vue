@@ -38,8 +38,8 @@
         right: 0;
         line-height: 0;
 
+        border-style: solid;
         &:nth-child(1) {
-          border-style: solid;
           border-width: calc(var(--page-height) * 0.92)
             calc(var(--page-width) / 2) 0 0;
           right: 3%;
@@ -48,7 +48,6 @@
           z-index: 4;
         }
         &:nth-child(2) {
-          border-style: solid;
           border-width: calc(var(--page-height)) calc(var(--page-width) * 0.15)
             0 0;
           right: 32%;
@@ -59,7 +58,6 @@
           z-index: 3;
         }
         &:nth-child(3) {
-          border-style: solid;
           border-width: calc(var(--page-height) * 2.6)
             calc(var(--page-width) / 1.9) 0 0;
           border-color: #5f8385 transparent transparent transparent;
@@ -67,7 +65,6 @@
           z-index: 2;
         }
         &:nth-child(4) {
-          border-style: solid;
           border-width: 0 calc(var(--page-width) * 0.47)
             calc(var(--page-height)) calc(var(--page-width) * 0.2);
           border-color: transparent transparent #cccccc transparent;
