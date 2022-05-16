@@ -17,7 +17,7 @@ class FirebaseHelper {
    */
   static init() {
     // If the app is production mode, initialize Firebase.
-    if (process.env.NODE_ENV !== 'production') return;
+    if (import.meta.env.NODE_ENV !== 'production') return;
     console.log('Initializing Firebase...');
 
     const config: FirebaseOptions = {
