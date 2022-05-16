@@ -16,8 +16,8 @@ const loginFormData = reactive<loginData>({
 });
 
 const oauthButtons = [
-  { title: 'Google', img: FaceBookSvg },
-  { title: 'FaceBook', img: GoogleSvg },
+  { title: 'Google', img: GoogleSvg },
+  { title: 'FaceBook', img: FaceBookSvg },
   { title: '臺灣雲端教育雲帳號', img: TaiwanOpenIdSvg },
 ];
 </script>
@@ -30,7 +30,7 @@ const oauthButtons = [
       </div>
     </div>
     <div class="right">
-      <form @submit="$event.preventDefault()" method="POST">
+      <form method="POST">
         <div class="header">
           <span v-t="'auth.login.title'" />
         </div>
@@ -73,7 +73,7 @@ const oauthButtons = [
         <p>{{ $t('auth.login.useOtherMethods') }}</p>
         <div class="oauthButtons">
           <button
-            class="oauthButt"
+            class="oauthButton"
             v-for="({ title, img }, index) in oauthButtons"
             :key="index"
           >
@@ -216,10 +216,30 @@ const oauthButtons = [
         justify-content: center;
         margin-top: 10px;
 
-        .oauthButt {
-          background: transparent;
+        .oauthButton {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           border: none;
-          width: 60px;
+          padding: 2px;
+          border-radius: 50%;
+          img {
+            width: 40px;
+            border-radius: 50%;
+            height: 40px;
+          }
+          &:not(:last-child) {
+            margin-right: 20px;
+          }
+          &:nth-child(1) {
+            background-color: #ffffff;
+          }
+          &:nth-child(2) {
+            background-color: #ffffff;
+          }
+          &:nth-child(3) {
+            background-color: #30a1d4;
+          }
         }
       }
     }
