@@ -20,5 +20,6 @@
   "auth.login.loginButton": "登入",
   "auth.login.haveNoAccount": "還沒有帳號嗎？",
   "auth.login.registerNow": "立即註冊",
-  "auth.login.useOtherMethods": "或用以下方式"
+  "auth.login.useOtherMethods": "或用以下方式",
+  "auth.login.hello": "歡迎來到 Lipoic！"
 }

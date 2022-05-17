@@ -1,9 +1,5 @@
 <script lang="ts" setup>
 import { reactive } from 'vue';
-import ArrowSvg from '@/assets/login/arrow.svg';
-import GoogleSvg from '@/assets/login/google.svg';
-import FaceBookSvg from '@/assets/login/facebook.svg';
-import TaiwanOpenIdSvg from '@/assets/login/taiwanOpenId.svg';
 
 interface loginData {
   username: string;
@@ -17,21 +13,24 @@ const loginFormData = reactive<loginData>({
 });
 
 const oauthButtons = [
-  { title: 'Google', img: GoogleSvg },
-  { title: 'FaceBook', img: FaceBookSvg },
-  { title: '臺灣雲端教育雲帳號', img: TaiwanOpenIdSvg },
+  { title: 'Google', img: 'login-google' },
+  { title: 'FaceBook', img: 'login-facebook' },
+  { title: '臺灣雲端教育雲帳號', img: 'login-taiwanOpenId' },
 ];
-
-const baseUrl = import.meta.env.BASE_URL;
 </script>
 
 <template>
   <div class="login">
     <div class="left">
       <div class="hello">
-        <a :href="baseUrl">
-          <img :src="ArrowSvg" class="goBack" alt="" />
-        </a>
+        <router-link to="/">
+          <SvgIcon
+            name="login-arrow"
+            class="goBack"
+            style="width: 80px; height: 80px"
+          />
+        </router-link>
+        <span v-t="'auth.login.hello'" />
       </div>
       <div class="masks">
         <div class="mask" v-for="_ in 4" :key="_" />
@@ -88,9 +87,11 @@ const baseUrl = import.meta.env.BASE_URL;
           <button
             class="oauthButton"
             v-for="({ title, img }, index) in oauthButtons"
+            :aria-label="title"
+            :title="title"
             :key="index"
           >
-            <img :alt="title" :title="title" :aria-label="title" :src="img" />
+            <SvgIcon :name="img" />
           </button>
         </div>
       </form>
@@ -241,10 +242,10 @@ const baseUrl = import.meta.env.BASE_URL;
           border-radius: 50%;
           align-items: center;
           justify-content: center;
-          img {
-            width: 40px;
+          svg {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            height: 40px;
           }
           &:not(:last-child) {
             margin-right: 20px;
@@ -279,6 +280,22 @@ const baseUrl = import.meta.env.BASE_URL;
       .goBack {
         margin: 20px;
         padding: 5px;
+      }
+      span {
+        color: #395c59;
+        position: absolute;
+        font-size: 2em;
+        left: 10%;
+        top: 18%;
+        &:after {
+          background-color: #435e5b;
+          position: absolute;
+          height: 5px;
+          width: 50%;
+          top: 100%;
+          left: 0;
+          content: '';
+        }
       }
     }
     .masks {
