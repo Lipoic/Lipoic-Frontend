@@ -1,9 +1,7 @@
-<script lang="ts" setup>
-import MainViewVue from '@/components/MainView.vue';
-</script>
+<script lang="ts" setup></script>
 
 <template>
-  <MainViewVue id="account"></MainViewVue>
+  <router-view />
 </template>
 
 <style lang="scss" scoped></style>

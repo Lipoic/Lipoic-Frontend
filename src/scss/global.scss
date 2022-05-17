@@ -13,9 +13,9 @@ $White: #ffffff;
 $BrightGrey: #555762;
 $LightBlack: #4f4f4f;
 $MainColor: #5efff2;
+$MainPurple: #7b6ff6;
 
-$MainColor: $MainColor;
-$SecondaryColor: rgb(84, 107, 237);
+$SecondaryColor: #546bed;
 
 // variables
 $FooterHeight: 127px;
@@ -26,6 +26,10 @@ html,
 #app {
   width: 100%;
   height: 100%;
+}
+img {
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 // global styles

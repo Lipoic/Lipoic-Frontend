@@ -11,5 +11,16 @@
   "home.subtitle.2": "Loves open source and open education",
   "home.login.student": "Student",
   "home.login.teacher": "Teacher",
-  "home.login.parents": "Parents"
+  "home.login.parents": "Parents",
+  "auth.login.welcome": "Welcome to Lipoic",
+  "auth.login.title": "Login",
+  "auth.login.usernameInput": "Username",
+  "auth.login.password": "Password",
+  "auth.login.stayLoggedIn": "Stay Logged In",
+  "auth.login.forgotPassword": "Forgot Password",
+  "auth.login.loginButton": "Login",
+  "auth.login.haveNoAccount": "Have no account?",
+  "auth.login.registerNow": "Sign Up",
+  "auth.login.useOtherMethods": "Or below way",
+  "auth.login.taiwanEduLoginButton": "Taiwan Cloud Education"
 }

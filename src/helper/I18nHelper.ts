@@ -44,7 +44,6 @@ export class I18nHelper {
     );
     for (const locale of this.locales) {
       messages[locale] = (await files[`../locales/${locale}.json`]()).default;
-      console.log(flagsFiles);
 
       this.flags[locale] = (
         await flagsFiles[`../assets/svg/flags/${locale}.svg`]()

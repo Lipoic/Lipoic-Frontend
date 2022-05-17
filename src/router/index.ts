@@ -1,8 +1,13 @@
 import { logEvent } from 'firebase/analytics';
 import FirebaseHelper from '@/helper/FirebaseHelper';
-import { createRouter, createWebHistory, Router } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory,
+  Router,
+  RouteRecordRaw,
+} from 'vue-router';
 
-const routes = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Home',
@@ -17,6 +22,21 @@ const routes = [
     path: '/account',
     name: 'Account',
     component: () => import('@/views/PageAuth.vue'),
+    redirect: {
+      name: 'Login',
+    },
+    children: [
+      {
+        path: 'login',
+        name: 'Login',
+        component: () => import('@/components/BlockLoginPage.vue'),
+      },
+      {
+        path: 'signup',
+        name: 'SignUp',
+        component: () => import('@/components/BlockSignUpPage.vue'),
+      },
+    ],
   },
   {
     path: '/feature',
