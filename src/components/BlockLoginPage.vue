@@ -321,11 +321,10 @@ const oauthButtons = [
       }
 
       .greeting {
-        font-size: 2rem;
+        font-size: 2.5rem;
         font-weight: 600;
         color: #395c59;
         position: absolute;
-        font-size: 2em;
         left: 10%;
         top: 18%;
         &:after {
