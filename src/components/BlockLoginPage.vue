@@ -23,6 +23,14 @@ const oauthButtons = [
   <div class="login">
     <div class="left">
       <div class="hello">
+        <!-- <router-link to="/">
+          <SvgIcon
+            name="login-arrow"
+            class="goBack"
+            style="width: 80px; height: 80px"
+          />
+        </router-link>
+        <span v-t="'auth.login.hello'" /> -->
         <router-link to="/">
           <SvgIcon
             name="login-arrow"
@@ -30,7 +38,7 @@ const oauthButtons = [
             style="width: 80px; height: 80px"
           />
         </router-link>
-        <span v-t="'auth.login.hello'" />
+        <span class="greeting" v-t="'auth.login.welcome'"></span>
       </div>
       <div class="masks">
         <div class="mask" v-for="_ in 4" :key="_" />
@@ -120,7 +128,15 @@ const oauthButtons = [
     @include pad {
       left: 0;
       width: 100%;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+
+      form > .header {
+        padding: 0;
+        text-align: center;
+      }
     }
 
     form {
@@ -129,8 +145,12 @@ const oauthButtons = [
       height: 100%;
       width: 100%;
       justify-content: center;
+      align-items: center;
       max-width: 400px;
-      min-width: 300px;
+
+      & > * {
+        width: 100%;
+      }
 
       @include pad {
         max-width: 80vw;
@@ -140,7 +160,7 @@ const oauthButtons = [
         font-weight: 600;
         color: $White;
         position: relative;
-        margin: 0 10px 30px 20px;
+        padding: 0 10px 30px 20px;
 
         span {
           position: relative;
@@ -157,6 +177,7 @@ const oauthButtons = [
       }
       & > input {
         border: none;
+        max-width: 90vw;
         border-radius: 15px;
         padding: 12px 20px;
         font-size: 1.2rem;
@@ -281,20 +302,22 @@ const oauthButtons = [
         margin: 20px;
         padding: 5px;
       }
-      span {
+
+      .greeting {
+        font-size: 2rem;
+        font-weight: 600;
         color: #395c59;
-        position: absolute;
-        font-size: 2em;
-        left: 10%;
-        top: 18%;
+        position: relative;
+        top: 45px;
+        left: -30px;
         &:after {
-          background-color: #435e5b;
+          content: ' ';
           position: absolute;
-          height: 5px;
-          width: 50%;
           top: 100%;
-          left: 0;
-          content: '';
+          left: 2px;
+          background-color: #435e5b;
+          width: 60%;
+          height: 5px;
         }
       }
     }

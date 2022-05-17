@@ -12,6 +12,7 @@
   "home.login.student": "Student",
   "home.login.teacher": "Teacher",
   "home.login.parents": "Parents",
+  "auth.login.welcome": "Welcome to Lipoic",
   "auth.login.title": "Login",
   "auth.login.usernameInput": "Username",
   "auth.login.password": "Password",
