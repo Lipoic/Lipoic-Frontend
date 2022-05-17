@@ -103,6 +103,7 @@ const oauthButtons = [
         </div>
       </form>
     </div>
+    <div class="bottomMusk"></div>
   </div>
 </template>
 
@@ -391,6 +392,18 @@ const oauthButtons = [
         }
       }
     }
+  }
+
+  .bottomMusk {
+    display: inline;
+    position: absolute;
+    bottom: -360px;
+    right: -500px;
+    height: 500px;
+    width: 760px;
+    background-color: #819fa4;
+    box-shadow: 5px 5px 20px 7px #00000050;
+    transform: rotate(-45deg);
   }
 }
 </style>
