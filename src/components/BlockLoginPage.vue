@@ -23,14 +23,6 @@ const oauthButtons = [
   <div class="login">
     <div class="left">
       <div class="hello">
-        <!-- <router-link to="/">
-          <SvgIcon
-            name="login-arrow"
-            class="goBack"
-            style="width: 80px; height: 80px"
-          />
-        </router-link>
-        <span v-t="'auth.login.hello'" /> -->
         <router-link to="/">
           <SvgIcon
             name="login-arrow"
@@ -55,7 +47,7 @@ const oauthButtons = [
           type="text"
           name="user"
           maxlength=""
-          pattern="[A-Za-z0-9]+"
+          pattern="^[a-zA-Z0-9]+$|(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$)"
           v-model="loginFormData.username"
           :aria-label="$t('auth.login.usernameInput')"
           :placeholder="$t('auth.login.usernameInput')"
