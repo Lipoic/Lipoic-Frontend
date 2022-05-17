@@ -111,7 +111,7 @@ const oauthButtons = [
 @import '@/scss/rwd.breakPoint.scss';
 
 .login {
-  background-color: #4d4d4d;
+  background-color: #3d494a;
 
   width: 100%;
   height: 100%;
