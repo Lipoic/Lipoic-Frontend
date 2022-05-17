@@ -38,7 +38,7 @@ const oauthButtons = [
             style="width: 80px; height: 80px"
           />
         </router-link>
-        <span class="greeting" v-t="'auth.login.welcome'"></span>
+        <span class="greeting" v-t="'auth.login.welcome'" />
       </div>
       <div class="masks">
         <div class="mask" v-for="_ in 4" :key="_" />
@@ -307,9 +307,10 @@ const oauthButtons = [
         font-size: 2rem;
         font-weight: 600;
         color: #395c59;
-        position: relative;
-        top: 45px;
-        left: -30px;
+        position: absolute;
+        font-size: 2em;
+        left: 10%;
+        top: 18%;
         &:after {
           content: ' ';
           position: absolute;
