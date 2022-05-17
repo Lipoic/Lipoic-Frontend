@@ -115,7 +115,7 @@ const oauthButtons = [
 
 .login {
   background-color: #3d494a;
-
+  overflow: hidden;
   width: 100%;
   height: 100%;
   display: flex;
@@ -395,17 +395,19 @@ const oauthButtons = [
       }
     }
   }
-
   .bottomMusk {
-    display: inline;
-    position: absolute;
-    bottom: -360px;
-    right: -500px;
-    height: 500px;
-    width: 760px;
-    background-color: #819fa4;
-    box-shadow: 5px 5px 20px 7px #00000050;
-    transform: rotate(-45deg);
+    display: none;
+    @include pad {
+      display: inline;
+      position: absolute;
+      bottom: -360px;
+      right: -500px;
+      height: 500px;
+      width: 760px;
+      background-color: #819fa4;
+      box-shadow: 5px 5px 20px 7px #00000050;
+      transform: rotate(-45deg);
+    }
   }
 }
 </style>
