@@ -37,6 +37,13 @@ const oauthButtons = [
       </div>
     </div>
     <div class="right">
+      <router-link to="/" class="goBack">
+        <SvgIcon
+          name="login-arrow"
+          class="arrow"
+          style="width: 25px; height: 25px"
+        />
+      </router-link>
       <form method="POST">
         <div class="header">
           <span v-t="'auth.login.title'" />
@@ -128,6 +135,24 @@ const oauthButtons = [
       form > .header {
         padding: 0;
         text-align: center;
+      }
+    }
+
+    .goBack {
+      display: none;
+      @include pad {
+        display: inline;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        padding: 15px;
+        border-radius: 50%;
+        background-color: $MainColor;
+        box-shadow: 5px 5px 20px 7px #00000050;
+
+        .arrow {
+          transform: rotate(-45deg);
+        }
       }
     }
 
