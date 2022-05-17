@@ -120,7 +120,15 @@ const baseUrl = import.meta.env.BASE_URL;
     @include pad {
       left: 0;
       width: 100%;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+
+      form > .header {
+        padding: 0;
+        text-align: center;
+      }
     }
 
     form {
@@ -129,8 +137,12 @@ const baseUrl = import.meta.env.BASE_URL;
       height: 100%;
       width: 100%;
       justify-content: center;
+      align-items: center;
       max-width: 400px;
-      min-width: 300px;
+
+      & > * {
+        width: 100%;
+      }
 
       @include pad {
         max-width: 80vw;
@@ -140,7 +152,7 @@ const baseUrl = import.meta.env.BASE_URL;
         font-weight: 600;
         color: $White;
         position: relative;
-        margin: 0 10px 30px 20px;
+        padding: 0 10px 30px 20px;
 
         span {
           position: relative;
@@ -157,6 +169,7 @@ const baseUrl = import.meta.env.BASE_URL;
       }
       & > input {
         border: none;
+        max-width: 90vw;
         border-radius: 15px;
         padding: 12px 20px;
         font-size: 1.2rem;
