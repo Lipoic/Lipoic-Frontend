@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { reactive } from 'vue';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 
 interface loginData {
   username: string;
@@ -15,7 +17,7 @@ const loginFormData = reactive<loginData>({
 const oauthButtons = [
   { title: 'Google', img: 'login-google' },
   { title: 'FaceBook', img: 'login-facebook' },
-  { title: '臺灣雲端教育雲帳號', img: 'login-taiwanOpenId' },
+  { title: t('auth.login.taiwanEduLoginButton'), img: 'login-taiwanOpenId' },
 ];
 </script>
 

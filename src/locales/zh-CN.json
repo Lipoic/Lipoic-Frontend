@@ -21,5 +21,6 @@
   "auth.login.loginButton": "登入",
   "auth.login.haveNoAccount": "还没有帐戶吗？",
   "auth.login.registerNow": "立即註册",
-  "auth.login.useOtherMethods": "或用以下方式"
+  "auth.login.useOtherMethods": "或用以下方式",
+  "auth.login.taiwanEduLoginButton": "臺湾云端教育帐号"
 }
