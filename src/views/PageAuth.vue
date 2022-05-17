@@ -1,9 +1,9 @@
-<script lang="ts" setup>
-import BlockLoginPageVue from '@/components/BlockLoginPage.vue';
-</script>
+<script lang="ts" setup></script>
 
 <template>
-  <BlockLoginPageVue />
+  <div>
+    <router-view />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>
