@@ -143,15 +143,18 @@ const oauthButtons = [
       @include pad {
         display: inline;
         position: absolute;
-        bottom: 20px;
-        left: 20px;
-        padding: 15px;
-        border-radius: 50%;
+        top: -360px;
+        left: -500px;
+        height: 500px;
+        width: 800px;
         background-color: $MainColor;
         box-shadow: 5px 5px 20px 7px #00000050;
+        transform: rotate(-45deg);
 
         .arrow {
-          transform: rotate(-45deg);
+          position: absolute;
+          bottom: 30px;
+          left: 47%;
         }
       }
     }
