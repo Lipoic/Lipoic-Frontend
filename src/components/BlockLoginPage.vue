@@ -32,6 +32,7 @@ const baseUrl = import.meta.env.BASE_URL;
         <a :href="baseUrl">
           <img :src="ArrowSvg" class="goBack" alt="" />
         </a>
+        <span class="greeting" v-t="'auth.login.welcome'"></span>
       </div>
       <div class="masks">
         <div class="mask" v-for="_ in 4" :key="_" />
@@ -279,6 +280,23 @@ const baseUrl = import.meta.env.BASE_URL;
       .goBack {
         margin: 20px;
         padding: 5px;
+      }
+      .greeting {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #395c59;
+        position: relative;
+        top: 45px;
+        left: -30px;
+        &:after {
+          content: ' ';
+          position: absolute;
+          top: 100%;
+          left: 2px;
+          background-color: #435e5b;
+          width: 60%;
+          height: 5px;
+        }
       }
     }
     .masks {
