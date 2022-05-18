@@ -88,13 +88,18 @@ const oauthButtons = [
             {{ $t('auth.login.forgotPassword') }} ?
           </a>
         </div>
-        <button class="loginButton" v-t="'auth.login.loginButton'" />
+        <button
+          class="loginButton"
+          v-t="'auth.login.loginButton'"
+          type="submit"
+        />
         <p v-t="'auth.login.haveNoAccount'" />
         <p class="signup" v-t="'auth.login.registerNow'" />
         <hr style="border-color: #ababab" />
         <p v-t="'auth.login.useOtherMethods'" />
         <div class="oauthButtons">
           <button
+            type="button"
             class="oauthButton"
             v-for="({ title, img }, index) in oauthButtons"
             :aria-label="title"
