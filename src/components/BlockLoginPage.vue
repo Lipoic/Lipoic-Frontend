@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
+import ToolLangSelector from './ToolLangSelector.vue';
 const { t } = useI18n();
 
 interface loginData {
@@ -108,6 +109,7 @@ const oauthButtons = [
             <SvgIcon :name="img" />
           </button>
         </div>
+        <ToolLangSelector />
       </form>
     </div>
     <div class="bottomMusk"></div>
@@ -281,7 +283,7 @@ const oauthButtons = [
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 10px;
+        margin: 10px 0 20px 0;
 
         .oauthButton {
           border: none;
