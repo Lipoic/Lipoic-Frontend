@@ -16,7 +16,7 @@ const closeSetLanguages = () =>
 
 <template>
   <div class="languageSelector" :class="{ show: showSetLanguages }">
-    <button @click="showSetLanguages = !showSetLanguages">
+    <button @click="showSetLanguages = !showSetLanguages" type="button">
       <span
         class="flag"
         :style="{
@@ -79,12 +79,12 @@ const closeSetLanguages = () =>
   }
   ul.set-languages {
     visibility: hidden;
-    transition: all 0.4s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
     padding: 5px;
     background-color: $LightBlack;
     font-size: 1.1rem;
     position: absolute;
-    bottom: 150%;
+    bottom: 25px;
     width: 200px;
     height: auto;
     max-height: calc(100vh - 100px);
