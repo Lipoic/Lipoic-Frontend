@@ -49,7 +49,7 @@ const oauthButtons = [
       </router-link>
       <form method="POST">
         <div class="header">
-          <span v-t="'auth.login.title'" />
+          <span v-t="'auth.signUp.title'" />
         </div>
         <!-- TODO: add pattern & max length-->
         <input
@@ -69,9 +69,9 @@ const oauthButtons = [
           name="email"
           pattern="^[a-zA-Z0-9]+$|(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$)"
           v-model="signUpFormData.email"
-          :aria-label="$t('auth.login.usernameInput')"
-          :placeholder="$t('auth.login.usernameInput')"
-          autocomplete="username"
+          :aria-label="$t('auth.signUp.email')"
+          :placeholder="$t('auth.signUp.email')"
+          autocomplete="email"
         />
         <!-- TODO: add pattern & max length-->
         <input
@@ -86,15 +86,15 @@ const oauthButtons = [
         />
         <button
           class="signUpButton"
-          v-t="'auth.login.loginButton'"
+          v-t="'auth.signUp.signUpButton'"
           type="submit"
         />
-        <p v-t="'auth.login.haveNoAccount'" />
+        <p v-t="'auth.signUp.alreadyHaveAccount'" />
         <p>
           <router-link
             to="/account/login"
             class="login"
-            v-t="'auth.login.registerNow'"
+            v-t="'auth.signUp.loginNow'"
           />
         </p>
         <ToolLangSelector class="langSelector" />

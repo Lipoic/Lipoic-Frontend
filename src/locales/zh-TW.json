@@ -22,5 +22,10 @@
   "auth.login.haveNoAccount": "還沒有帳號嗎？",
   "auth.login.registerNow": "立即註冊",
   "auth.login.useOtherMethods": "或用以下方式",
-  "auth.login.taiwanEduLoginButton": "臺灣雲端教育帳號"
+  "auth.login.taiwanEduLoginButton": "臺灣雲端教育帳號",
+  "auth.signUp.title": "註冊",
+  "auth.signUp.email": "電子郵件",
+  "auth.signUp.signUpButton": "註冊",
+  "auth.signUp.alreadyHaveAccount": "已經有一個帳號了嗎",
+  "auth.signUp.loginNow": "登入"
 }
