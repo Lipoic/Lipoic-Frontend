@@ -94,7 +94,11 @@ const oauthButtons = [
           type="submit"
         />
         <p v-t="'auth.login.haveNoAccount'" />
-        <p class="signup" v-t="'auth.login.registerNow'" />
+        <router-link
+          to="/account/signup"
+          class="signup"
+          v-t="'auth.login.registerNow'"
+        />
         <hr style="border-color: #ababab" />
         <p v-t="'auth.login.useOtherMethods'" />
         <div class="oauthButtons">
@@ -268,11 +272,13 @@ const oauthButtons = [
       p {
         color: $White;
         text-align: center;
-        &.signup {
-          color: $MainColor;
-          text-decoration: underline;
-          cursor: pointer;
-        }
+      }
+
+      a.signup {
+        color: $MainColor;
+        text-decoration: underline;
+        text-align: center;
+        cursor: pointer;
       }
 
       hr {
