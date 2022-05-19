@@ -2,7 +2,7 @@
 import { reactive } from 'vue';
 import ToolLangSelector from './ToolLangSelector.vue';
 
-interface loginData {
+interface signUpData {
   username: string;
   password: string;
   email: string;
