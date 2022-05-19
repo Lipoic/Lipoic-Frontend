@@ -22,5 +22,10 @@
   "auth.login.haveNoAccount": "Have no account?",
   "auth.login.registerNow": "Sign Up",
   "auth.login.useOtherMethods": "Or below way",
-  "auth.login.taiwanEduLoginButton": "Taiwan Cloud Education"
+  "auth.login.taiwanEduLoginButton": "Taiwan Cloud Education",
+  "auth.signUp.title": "Sign Up",
+  "auth.signUp.email": "Email",
+  "auth.signUp.signUpButton": "Sign Up",
+  "auth.signUp.alreadyHaveAccount": "Already Have An Account?",
+  "auth.signUp.loginNow": "Login Now"
 }
