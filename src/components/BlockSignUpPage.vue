@@ -14,12 +14,6 @@ const signUpFormData = reactive<loginData>({
   password: '',
   email: '',
 });
-
-const oauthButtons = [
-  { title: 'Google', img: 'login-google' },
-  { title: 'FaceBook', img: 'login-facebook' },
-  { title: t('auth.login.taiwanEduLoginButton'), img: 'login-taiwanOpenId' },
-];
 </script>
 
 <template>
