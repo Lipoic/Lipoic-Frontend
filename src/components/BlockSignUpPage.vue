@@ -7,7 +7,7 @@ interface signUpData {
   password: string;
   email: string;
 }
-const signUpFormData = reactive<loginData>({
+const signUpFormData = reactive<signUpData>({
   username: '',
   password: '',
   email: '',
