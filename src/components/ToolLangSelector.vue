@@ -16,7 +16,7 @@ const closeSetLanguages = () =>
 
 <template>
   <div class="languageSelector" :class="{ show: showSetLanguages }">
-    <button @click="showSetLanguages = !showSetLanguages" type="button">
+    <button type="button" @click="showSetLanguages = !showSetLanguages">
       <span
         class="flag"
         :style="{
@@ -30,10 +30,10 @@ const closeSetLanguages = () =>
       <li
         v-for="language in i18n.availableLocales"
         :key="language"
-        @click="[changeLanguage(language), closeSetLanguages()]"
         :title="i18n.getLocaleMessage(language).name.toString()"
         :aria-label="i18n.getLocaleMessage(language).name.toString()"
         :class="language === selectedLanguage ? 'active' : void 0"
+        @click="[changeLanguage(language), closeSetLanguages()]"
       >
         <span
           class="flag"

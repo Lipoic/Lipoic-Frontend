@@ -2,6 +2,7 @@
 import { reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
 import ToolLangSelector from './ToolLangSelector.vue';
+
 const { t } = useI18n();
 
 interface loginData {
@@ -33,10 +34,10 @@ const oauthButtons = [
             style="width: 80px; height: 80px"
           />
         </router-link>
-        <span class="greeting" v-t="'auth.login.welcome'" />
+        <span v-t="'auth.login.welcome'" class="greeting" />
       </div>
       <div class="masks">
-        <div class="mask" v-for="_ in 4" :key="_" />
+        <div v-for="_ in 4" :key="_" class="mask" />
       </div>
     </div>
     <div class="right">
@@ -53,22 +54,22 @@ const oauthButtons = [
         </div>
         <!-- TODO: add pattern & max length-->
         <input
+          v-model="loginFormData.username"
           required
           type="text"
           name="user"
           maxlength=""
           pattern="^[a-zA-Z0-9]+$|(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$)"
-          v-model="loginFormData.username"
           :aria-label="$t('auth.login.usernameInput')"
           :placeholder="$t('auth.login.usernameInput')"
           autocomplete="username"
         />
         <!-- TODO: add pattern & max length-->
         <input
+          v-model="loginFormData.password"
           required
           type="password"
           name="password"
-          v-model="loginFormData.password"
           :aria-label="$t('auth.login.password')"
           :placeholder="$t('auth.login.password')"
           pattern="[a-zA-Z0-9]{8,}"
@@ -77,40 +78,40 @@ const oauthButtons = [
         <div class="loginOptions">
           <div class="stayLogin">
             <input
+              id="stayLogin"
               v-model="loginFormData.stayLoggedIn"
               type="checkbox"
               name="stayLogin"
-              id="stayLogin"
             />
-            <label for="stayLogin" v-t="'auth.login.stayLoggedIn'" />
+            <label v-t="'auth.login.stayLoggedIn'" for="stayLogin" />
           </div>
           <a href="#" class="forgot">
             {{ $t('auth.login.forgotPassword') }} ?
           </a>
         </div>
         <button
-          class="loginButton"
           v-t="'auth.login.loginButton'"
+          class="loginButton"
           type="submit"
         />
         <p v-t="'auth.login.haveNoAccount'" />
         <p>
           <router-link
+            v-t="'auth.login.registerNow'"
             to="/account/signup"
             class="signup"
-            v-t="'auth.login.registerNow'"
           />
         </p>
         <hr style="border-color: #ababab" />
         <p v-t="'auth.login.useOtherMethods'" />
         <div class="oauthButtons">
           <button
+            v-for="({ title, img }, index) in oauthButtons"
+            :key="index"
             type="button"
             class="oauthButton"
-            v-for="({ title, img }, index) in oauthButtons"
             :aria-label="title"
             :title="title"
-            :key="index"
           >
             <SvgIcon :name="img" />
           </button>

@@ -14,10 +14,10 @@ const props = defineProps<{ i18nTextKeys: string[] }>();
 
 let texts = [...props.i18nTextKeys.map((key) => i18n.t(key))];
 
-let typeValue = ref('');
-let typeStatus = ref(false);
+const typeValue = ref('');
+const typeStatus = ref(false);
 
-let newTextDelay = 800;
+const newTextDelay = 800;
 let textIndex = 0;
 let charIndex = 0;
 

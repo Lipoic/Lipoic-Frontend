@@ -1,4 +1,4 @@
-import '@vue/runtime-core';
+import 'vue';
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
