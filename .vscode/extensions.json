@@ -3,6 +3,8 @@
     "johnsoncodehk.volar",
     "esbenp.prettier-vscode",
     "johnsoncodehk.vscode-typescript-vue-plugin",
-    "Lokalise.i18n-ally"
+    "Lokalise.i18n-ally",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint"
   ]
 }
