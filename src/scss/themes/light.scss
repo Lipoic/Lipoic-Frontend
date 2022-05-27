@@ -1,5 +1,7 @@
-html[data-theme='light']:root,
-html.light:root {
-  // TODO add variables
-  --0: 0;
+html[data-theme='light'],
+html.light {
+  &:root {
+    // TODO add variables
+    --0: 0;
+  }
 }

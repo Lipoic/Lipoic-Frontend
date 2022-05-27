@@ -1,5 +1,7 @@
-html[data-theme='dark']:root,
-html.dark:root {
-  // TODO add variables
-  --0: 0;
+html[data-theme='dark'],
+html.dark {
+  &:root {
+    // TODO add variables
+    --0: 0;
+  }
 }
