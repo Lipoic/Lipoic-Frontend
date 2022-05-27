@@ -93,5 +93,8 @@ module.exports = {
 
     // allow use ++ and --
     'no-plusplus': 'off',
+
+    // allow return void
+    'no-useless-return': 'off',
   },
 };
