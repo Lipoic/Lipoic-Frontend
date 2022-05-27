@@ -78,5 +78,20 @@ module.exports = {
 
     // https://eslint.vuejs.org/rules/no-template-shadow.html
     'vue/no-template-shadow': 'off',
+
+    // ????? the role is bug
+    'vue/valid-attribute-name': 'off',
+
+    // allow underscore-dangle
+    'no-underscore-dangle': 'off',
+
+    // allow any syntax
+    'no-restricted-syntax': 'off',
+
+    // allow await in loop
+    'no-await-in-loop': 'off',
+
+    // allow use ++ and --
+    'no-plusplus': 'off',
   },
 };
