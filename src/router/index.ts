@@ -1,11 +1,11 @@
 import { logEvent } from 'firebase/analytics';
-import FirebaseHelper from '@/helper/FirebaseHelper';
 import {
   createRouter,
   createWebHistory,
   Router,
   RouteRecordRaw,
 } from 'vue-router';
+import FirebaseHelper from '@/helper/FirebaseHelper';
 
 const routes: RouteRecordRaw[] = [
   {

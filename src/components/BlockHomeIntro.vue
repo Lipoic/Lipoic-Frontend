@@ -36,24 +36,24 @@ const modules = [Pagination, Autoplay];
     </div>
     <div class="title">
       <h1>Lipoic</h1>
-      <TypingEffect :i18nTextKeys="['home.subtitle.1', 'home.subtitle.2']" />
+      <TypingEffect :i18n-text-keys="['home.subtitle.1', 'home.subtitle.2']" />
       <div class="loginBar">
         <router-link
+          v-t="'home.login.student'"
           to="/login/student"
           class="first"
-          v-t="'home.login.student'"
           :title="$t('home.login.student')"
         />
         <router-link
+          v-t="'home.login.teacher'"
           to="/login/teacher"
           class="middle"
-          v-t="'home.login.teacher'"
           :title="$t('home.login.teacher')"
         />
         <router-link
+          v-t="'home.login.parents'"
           to="/login/parents"
           class="last"
-          v-t="'home.login.parents'"
           :title="$t('home.login.parents')"
         >
         </router-link>

@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
-import plugins from './plugin';
-
 import { fileURLToPath, URL } from 'url';
+import plugins from './plugin';
 
 // https://vitejs.dev/config/
 export default defineConfig({

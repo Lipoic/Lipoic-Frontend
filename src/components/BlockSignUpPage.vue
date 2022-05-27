@@ -25,10 +25,10 @@ const signUpFormData = reactive<signUpData>({
             style="width: 80px; height: 80px"
           />
         </router-link>
-        <span class="greeting" v-t="'auth.login.welcome'" />
+        <span v-t="'auth.login.welcome'" class="greeting" />
       </div>
       <div class="masks">
-        <div class="mask" v-for="_ in 4" :key="_" />
+        <div v-for="_ in 4" :key="_" class="mask" />
       </div>
     </div>
     <div class="right">
@@ -45,48 +45,48 @@ const signUpFormData = reactive<signUpData>({
         </div>
         <!-- TODO: add pattern & max length-->
         <input
+          v-model="signUpFormData.username"
           required
           type="text"
           name="user"
           maxlength=""
           pattern="^[a-zA-Z0-9]+$|(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$)"
-          v-model="signUpFormData.username"
           :aria-label="$t('auth.login.usernameInput')"
           :placeholder="$t('auth.login.usernameInput')"
           autocomplete="username"
         />
         <input
+          v-model="signUpFormData.email"
           required
           type="text"
           name="email"
           pattern="^[a-zA-Z0-9]+$|(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$)"
-          v-model="signUpFormData.email"
           :aria-label="$t('auth.signUp.email')"
           :placeholder="$t('auth.signUp.email')"
           autocomplete="email"
         />
         <!-- TODO: add pattern & max length-->
         <input
+          v-model="signUpFormData.password"
           required
           type="password"
           name="password"
-          v-model="signUpFormData.password"
           :aria-label="$t('auth.login.password')"
           :placeholder="$t('auth.login.password')"
           pattern="[a-zA-Z0-9]{8,}"
           autocomplete="current-password"
         />
         <button
-          class="signUpButton"
           v-t="'auth.signUp.signUpButton'"
+          class="signUpButton"
           type="submit"
         />
         <p v-t="'auth.signUp.alreadyHaveAccount'" />
         <p>
           <router-link
+            v-t="'auth.signUp.loginNow'"
             to="/account/login"
             class="login"
-            v-t="'auth.signUp.loginNow'"
           />
         </p>
         <ToolLangSelector class="langSelector" />

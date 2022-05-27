@@ -30,12 +30,12 @@ defineExpose({
 <template>
   <div class="header">
     <input
+      id="menuToggle"
       style="display: none"
       type="checkbox"
-      id="menuToggle"
       name="menuToggle"
-      @input="updateMenuState"
       :checked="isMenuOpen"
+      @input="updateMenuState"
     />
     <div class="logo">
       <img
@@ -54,16 +54,16 @@ defineExpose({
       <ul>
         <li v-for="(link, index) in links" :key="index">
           <router-link
-            :to="link.path"
             v-t="$t(link.i18nName)"
+            :to="link.path"
             :title="$t(link.i18nName)"
           />
         </li>
         <li>
           <router-link
+            v-t="$t('header.login')"
             to="/account"
             class="login"
-            v-t="$t('header.login')"
             :title="$t('header.login')"
           />
         </li>

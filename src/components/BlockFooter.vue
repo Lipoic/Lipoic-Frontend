@@ -10,7 +10,7 @@ import ToolLangSelector from './ToolLangSelector.vue';
         alt="Lipoic"
       />
     </div>
-    <div class="copyright" v-t="'footer.copyright'" />
+    <div v-t="'footer.copyright'" class="copyright" />
     <ToolLangSelector />
   </div>
 </template>
