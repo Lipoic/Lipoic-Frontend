@@ -1,11 +1,28 @@
 {
   "editor.tabSize": 2,
-  "cSpell.words": ["Lipoic", "Pinia", "tochmove"],
+  "cSpell.words": [
+    "bottomleft",
+    "bottomright",
+    "Lipoic",
+    "Pinia",
+    "stylelint",
+    "tochmove",
+    "topleft",
+    "topright"
+  ],
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": true,
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
   },
+
+  /* stylelint */
+  "stylelint.enable": true,
+  "stylelint.validate": ["vue"],
+
   "eslint.alwaysShowStatus": true,
   "commentTranslate.multiLineMerge": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   // i18n-ally config
   "i18n-ally.localesPaths": ["src/locales"],
   "i18n-ally.keystyle": "nested",
