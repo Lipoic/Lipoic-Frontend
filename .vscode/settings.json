@@ -18,11 +18,12 @@
 
   /* stylelint */
   "stylelint.enable": true,
-  "stylelint.validate": ["vue"],
+  "stylelint.validate": ["vue", "css", "scss", "sass"],
 
   "eslint.alwaysShowStatus": true,
   "commentTranslate.multiLineMerge": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+
   // i18n-ally config
   "i18n-ally.localesPaths": ["src/locales"],
   "i18n-ally.keystyle": "nested",

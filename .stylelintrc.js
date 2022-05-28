@@ -7,6 +7,7 @@ module.exports = {
     'stylelint-config-prettier',
     'stylelint-config-html',
   ],
+  overrides: [{ files: ['src/**/*.scss'], customSyntax: 'postcss-scss' }],
   rules: {
     'selector-class-pattern': null,
     'selector-pseudo-class-no-unknown': [
@@ -15,14 +16,19 @@ module.exports = {
     ],
     'selector-pseudo-element-no-unknown': [
       true,
-      { ignorePseudoElements: ['v-deep', 'v-global', 'v-slotted'] },
+      { ignorePseudoElements: ['v-deep', 'v-global'] },
     ],
-    'at-rule-no-unknown': [true, { ignoreAtRules: ['extend', 'include'] }],
+    'at-rule-no-unknown': [
+      true,
+      { ignoreAtRules: ['extend', 'include', 'mixin'] },
+    ],
 
     'function-no-unknown': [true, { ignoreFunctions: ['/v-bind/'] }],
     'no-invalid-position-at-import-rule': null,
     'selector-id-pattern': null,
     'no-empty-source': null,
+    'no-descending-specificity': null,
+    'declaration-block-no-duplicate-properties': true,
     'order/properties-order': [
       'position',
       'top',

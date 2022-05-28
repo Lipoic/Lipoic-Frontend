@@ -7,7 +7,8 @@
     "dev:host": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "eslint 'src/**/*.{js,jsx,vue,ts,tsx}' --fix"
+    "lint": "eslint 'src/**/*.{js,jsx,vue,ts,tsx}' --fix",
+    "lint:stylelint": "stylelint src/**/*.{vue,css,scss} --fix"
   },
   "dependencies": {
     "@vue/eslint-config-typescript": "^10.0.0",
