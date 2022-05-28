@@ -21,3 +21,13 @@ export default {
     console.log(app);
   },
 };
+
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    $mitt: ReturnType<typeof mitt>;
+  }
+  interface CSSProperties {
+    // for css variables
+    [key: `--${string}`]: string;
+  }
+}
