@@ -241,7 +241,7 @@ const modules = [Pagination, Autoplay];
     position: absolute;
     top: 0;
     z-index: 1; // make the background layer to the bottom
-    width: 10px;
+    width: 100%;
     height: 100%;
     overflow: hidden;
   }
