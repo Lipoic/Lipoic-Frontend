@@ -96,5 +96,8 @@ module.exports = {
 
     // allow return void
     'no-useless-return': 'off',
+
+    // import/no-extraneous-dependencies
+    'import/no-extraneous-dependencies': 'off',
   },
 };
