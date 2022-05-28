@@ -96,5 +96,16 @@ module.exports = {
 
     // allow return void
     'no-useless-return': 'off',
+
+    // import/no-extraneous-dependencies
+    'import/no-extraneous-dependencies': 'off',
+
+    // no-param-reassign
+    'no-param-reassign': 'off',
+
+    // consistent-return
+    'consistent-return': 'off',
+
+    'no-return-await': 'off',
   },
 };

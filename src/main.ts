@@ -9,6 +9,7 @@ import I18nHelper from './helper/I18nHelper';
 import FirebaseHelper from './helper/FirebaseHelper';
 
 import router from '@/router';
+import plugin from '@/plugin';
 import App from '@/MainApp.vue';
 import SvgIconComponent from '@/components/SvgIcon.vue';
 
@@ -16,8 +17,9 @@ import SvgIconComponent from '@/components/SvgIcon.vue';
   FirebaseHelper.init();
   const i18n = await I18nHelper.load();
 
-  createApp(App)
+  const app = createApp(App)
     .use(i18n)
+    .use(plugin)
     .use(router)
     .component('SvgIcon', SvgIconComponent)
     .mount('#app');
