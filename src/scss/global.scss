@@ -9,7 +9,7 @@
 
 // Variables
 $Black: #353535;
-$White: #ffffff;
+$White: #fff;
 $BrightGrey: #555762;
 $LightBlack: #4f4f4f;
 $MainColor: #5efff2;
@@ -27,6 +27,7 @@ html,
   width: 100%;
   height: 100%;
 }
+
 img {
   user-select: none;
   -webkit-user-drag: none;
@@ -34,13 +35,13 @@ img {
 
 // global styles
 * {
-  margin: 0;
   padding: 0;
+  margin: 0;
+  font-family: Roboto, 'Noto Sans TC', 'Noto Sans SC', sans-serif;
   box-sizing: border-box;
-  font-family: 'Roboto', 'Noto Sans TC', 'Noto Sans SC', sans-serif;
 }
 
 %link {
+  color: #fff;
   text-decoration: none;
-  color: #ffffff;
 }

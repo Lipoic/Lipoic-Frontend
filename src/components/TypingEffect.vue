@@ -82,56 +82,58 @@ onUnmounted(() => clearTimeout(timeOut!));
 @import '@/scss/rwd.breakPoint.scss';
 
 .container {
+  @keyframes cursor-blink {
+    45% {
+      background-color: #fff;
+    }
+
+    50% {
+      background-color: transparent;
+    }
+
+    99% {
+      background-color: transparent;
+    }
+  }
+
   display: flex;
   margin-top: 10px;
 
   span.typed-text {
-    color: $White;
-    font-size: 2rem;
-    position: relative;
-    white-space: pre-line;
-    height: 3rem;
-    display: inline-table;
-    line-height: 2rem;
-
     @include phone {
       font-size: 1.8rem;
     }
 
     @include pad {
-      text-align: center;
       padding: 0 10px;
+      text-align: center;
     }
 
-    &:after {
-      content: '';
-      position: absolute;
-      display: inline-block;
-      width: 4px;
-      height: 2rem;
+    position: relative;
+    display: inline-table;
+    height: 3rem;
+    font-size: 2rem;
+    line-height: 2rem;
+    color: $White;
+    white-space: pre-line;
 
+    &::after {
       @include phone {
         height: 1.8rem;
       }
 
+      position: absolute;
+      display: inline-block;
+      width: 4px;
+      height: 2rem;
       margin-left: 3px;
       background-color: #fff;
-      animation: cursorBlink 0.8s infinite;
+      content: '';
+      animation: cursor-blink 0.8s infinite;
     }
-    &.typing:after {
-      animation: none;
-    }
-  }
 
-  @keyframes cursorBlink {
-    45% {
-      background-color: #fff;
-    }
-    50% {
-      background-color: transparent;
-    }
-    99% {
-      background-color: transparent;
+    &.typing::after {
+      animation: none;
     }
   }
 }

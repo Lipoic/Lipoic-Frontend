@@ -128,26 +128,21 @@ const oauthButtons = [
 @import '@/scss/rwd.breakPoint.scss';
 
 .login {
-  background-color: #3d494a;
-  overflow: hidden;
+  position: relative;
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
-  position: relative;
-  .right {
-    position: absolute;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    padding: 0 0 0 8%;
+  overflow: hidden;
+  background-color: #3d494a;
 
+  .right {
     @include pad {
       left: 0;
-      width: 100%;
       display: flex;
+      width: 100%;
+      padding: 0;
       align-items: center;
       justify-content: center;
-      padding: 0;
 
       form > .header {
         padding: 0;
@@ -155,18 +150,23 @@ const oauthButtons = [
       }
     }
 
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    padding: 0 0 0 8%;
+
     .goBack {
-      display: none;
       @include pad {
-        display: inline;
         position: absolute;
         top: -360px;
         left: -500px;
-        height: 500px;
+        display: inline;
         width: 800px;
+        height: 500px;
         background-color: $MainColor;
-        box-shadow: 5px 5px 20px 7px #00000050;
         transform: rotate(-45deg);
+        box-shadow: 5px 5px 20px 7px #00000050;
 
         .arrow {
           position: absolute;
@@ -174,54 +174,60 @@ const oauthButtons = [
           left: 47%;
         }
       }
+
+      display: none;
     }
 
     form {
+      @include pad {
+        max-width: 80vw;
+      }
+
       display: flex;
-      flex-direction: column;
-      height: 100%;
       width: 100%;
+      height: 100%;
+      max-width: 400px;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      max-width: 400px;
 
       & > * {
         width: 100%;
       }
 
-      @include pad {
-        max-width: 80vw;
-      }
       .header {
+        position: relative;
+        padding: 0 10px 30px 20px;
         font-size: 2rem;
         font-weight: 600;
         color: $White;
-        position: relative;
-        padding: 0 10px 30px 20px;
 
         span {
           position: relative;
-          &:after {
-            content: ' ';
+
+          &::after {
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: $MainColor;
             width: 100%;
             height: 5px;
+            background-color: $MainColor;
+            content: ' ';
           }
         }
       }
+
       & > input {
-        border: none;
         max-width: 90vw;
-        border-radius: 15px;
         padding: 12px 20px;
-        font-size: 1.2rem;
-        background-color: #7c7b7b33;
-        outline: none;
         margin-top: 10px;
+        font-size: 1.2rem;
         color: $White;
+        background-color: #7c7b7b33;
+        border: none;
+        border-radius: 15px;
+        outline: none;
+
         &:invalid {
           ~ .loginButton {
             pointer-events: none;
@@ -242,13 +248,15 @@ const oauthButtons = [
           flex-direction: row;
           align-items: center;
           padding: 0 5px;
+
           input[type='checkbox'] {
-            outline: none;
             width: 18px;
             height: 18px;
             border-radius: 5px;
+            outline: none;
             accent-color: $MainColor;
           }
+
           label {
             margin-left: 5px;
             line-height: 18px;
@@ -262,14 +270,14 @@ const oauthButtons = [
       }
 
       & > button {
-        margin-bottom: 20px;
-        border-radius: 15px;
-        border: none;
         padding: 10px;
+        margin-bottom: 20px;
         font-size: 1.5rem;
         color: $White;
         cursor: pointer;
         background-color: $MainPurple;
+        border: none;
+        border-radius: 15px;
       }
 
       p {
@@ -278,10 +286,10 @@ const oauthButtons = [
       }
 
       a {
+        display: inline;
         color: $MainColor;
         text-decoration: underline;
         cursor: pointer;
-        display: inline;
       }
 
       hr {
@@ -292,30 +300,35 @@ const oauthButtons = [
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 10px 0 20px 0;
+        margin: 10px 0 20px;
 
         .oauthButton {
-          border: none;
-          padding: 2px;
           display: flex;
+          padding: 2px;
           cursor: pointer;
+          border: none;
           border-radius: 50%;
           align-items: center;
           justify-content: center;
+
           svg {
             width: 50px;
             height: 50px;
             border-radius: 50%;
           }
+
           &:not(:last-child) {
             margin-right: 20px;
           }
+
           &:nth-child(1) {
-            background-color: #ffffff;
+            background-color: #fff;
           }
+
           &:nth-child(2) {
-            background-color: #ffffff;
+            background-color: #fff;
           }
+
           &:nth-child(3) {
             background-color: #30a1d4;
           }
@@ -323,107 +336,115 @@ const oauthButtons = [
       }
     }
   }
+
   .left {
+    @include pad {
+      display: none;
+    }
+
     position: absolute;
     right: 50%;
     width: 100%;
     height: 100%;
-    @include pad {
-      display: none;
-    }
+
     .hello {
-      z-index: 2;
+      position: absolute;
       left: 50%;
+      z-index: 2;
       width: 50%;
       height: 100%;
-      position: absolute;
+
       .goBack {
-        margin: 20px;
         padding: 5px;
+        margin: 20px;
       }
 
       .greeting {
+        position: absolute;
+        top: 18%;
+        left: 10%;
         font-size: 2.5rem;
         font-weight: 600;
         color: #395c59;
-        position: absolute;
-        left: 10%;
-        top: 18%;
-        &:after {
-          content: ' ';
+
+        &::after {
           position: absolute;
           top: 100%;
           left: 2px;
-          background-color: #435e5b;
           width: 60%;
           height: 5px;
+          background-color: #435e5b;
+          content: ' ';
         }
       }
     }
+
     .masks {
+      position: relative;
+      z-index: 1;
       width: 98%;
       height: 100%;
       overflow: hidden;
-      position: relative;
-      z-index: 1;
+
       .mask {
-        filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.3));
         position: absolute;
         top: 0;
-        left: 0;
         right: 0;
+        left: 0;
         line-height: 0;
-
         border-style: solid;
+        filter: drop-shadow(0 0 15px rgb(0 0 0 / 30%));
+
         &:nth-child(1) {
+          right: 3%;
+          z-index: 4;
+          border-color: #a3dfda transparent transparent;
           border-width: calc(var(--page-height) * 0.92)
             calc(var(--page-width) / 2) 0 0;
-          right: 3%;
-          border-color: #a3dfda transparent transparent transparent;
-
-          z-index: 4;
         }
+
         &:nth-child(2) {
+          top: 25%;
+          right: 32%;
+          z-index: 3;
+          border-color: #819fa4 transparent transparent;
           border-width: calc(var(--page-height)) calc(var(--page-width) * 0.15)
             0 0;
-          right: 32%;
-          top: 25%;
-          border-color: #819fa4 transparent transparent transparent;
           transform: rotateX(180deg);
-
-          z-index: 3;
         }
+
         &:nth-child(3) {
+          z-index: 2;
+          border-color: #5f8385 transparent transparent;
           border-width: calc(var(--page-height) * 2.6)
             calc(var(--page-width) / 1.9) 0 0;
-          border-color: #5f8385 transparent transparent transparent;
-
-          z-index: 2;
         }
+
         &:nth-child(4) {
+          bottom: 0;
+          z-index: 1;
+          border-color: transparent transparent #ccc;
           border-width: 0 calc(var(--page-width) * 0.47)
             calc(var(--page-height)) calc(var(--page-width) * 0.2);
-          border-color: transparent transparent #cccccc transparent;
-          bottom: 0;
-
-          z-index: 1;
         }
       }
     }
   }
+
   .bottomMusk {
-    display: none;
     @include pad {
-      display: inline;
       position: absolute;
-      bottom: -360px;
       right: -500px;
-      height: 500px;
+      bottom: -360px;
+      display: inline;
       width: 760px;
+      height: 500px;
       background-color: #819fa4;
-      box-shadow: 5px 5px 20px 7px #00000050;
       transform: rotate(-45deg);
+      box-shadow: 5px 5px 20px 7px #00000050;
     }
+
+    display: none;
   }
 }
 </style>
