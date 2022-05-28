@@ -30,7 +30,7 @@ import ToolLangSelector from './ToolLangSelector.vue';
     top: 0;
     left: 50%;
     padding: 3px;
-    background-color: $White;
+    background-color: $Black;
     border: 3px solid $MainColor;
     border-radius: 50%;
     transform: translate(-50%, -50%);
