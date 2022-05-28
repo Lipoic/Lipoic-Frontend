@@ -2,6 +2,9 @@ import { createApp } from 'vue';
 import 'virtual:svg-icons-register';
 
 import '@/scss/global.scss';
+import '@/scss/themes/dark.scss';
+import '@/scss/themes/light.scss';
+
 import I18nHelper from './helper/I18nHelper';
 import FirebaseHelper from './helper/FirebaseHelper';
 
