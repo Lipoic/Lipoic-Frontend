@@ -16,7 +16,6 @@
     "swiper": "^8.1.4",
     "vite": "^2.9.8",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vite-plugin-imagemin": "^0.6.1",
     "vue": "^3.2.33",
     "vue-i18n": "9",
     "vue-router": "^4.0.15"
