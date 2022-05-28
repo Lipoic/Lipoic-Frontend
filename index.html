@@ -10,10 +10,6 @@
     />
     <title>Lipoic</title>
     <meta
-      name="description"
-      content="Lipoic 是一個致力於整合與改善遠距授課與線上教室的教育平台，並讓學生能不受空間限制學習知識，老師能更便利地傳授知識，並且我們也熱衷於開放文化的精神，與我們一起翻轉教育吧！"
-    />
-    <meta
       property="og:description"
       content="Lipoic 是一個致力於整合與改善遠距授課與線上教室的教育平台，並讓學生能不受空間限制學習知識，老師能更便利地傳授知識，並且我們也熱衷於開放文化的精神，與我們一起翻轉教育吧！"
     />
@@ -45,8 +41,18 @@
 
     <meta name="msapplication-TileColor" content="#5efff2" />
     <meta name="theme-color" content="#5efff2" />
-    <link rel="apple-touch-icon" href="/icons/pwa-icon-192.png">
+    <link rel="apple-touch-icon" href="/icons/pwa-icon-192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+          .register('/serviceWorker.js')
+          .then((res) => console.log('service worker registered'))
+          .catch((err) => console.log('service worker not registered', err));
+      }
+    </script>
   </head>
+
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
