@@ -1,10 +1,7 @@
 # Lipoic-Frontend
 [![](https://img.shields.io/github/license/Lipoic/Lipoic-Frontend.svg)](LICENSE)
+[![codecov](https://codecov.io/gh/Lipoic/Lipoic-Frontend/branch/develop/graph/badge.svg?token=HHFZ4XjEyl)](https://codecov.io/gh/Lipoic/Lipoic-Frontend)
 <p>&nbsp;</p> 
-
-#### 🌐 README Languages
-
-- English (Current Language)
 
 ## 🎨 Features
 
