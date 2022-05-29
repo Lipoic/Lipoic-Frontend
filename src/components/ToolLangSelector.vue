@@ -49,25 +49,26 @@ const closeSetLanguages = () =>
 
 <style lang="scss">
 @import '../scss/global.scss';
+
 .languageSelector {
+  position: relative;
   display: flex;
+  margin-top: 10px;
+  color: $White;
   align-items: center;
   justify-content: center;
 
-  color: $White;
-  margin-top: 10px;
-  position: relative;
   button {
-    color: $White;
-    font-size: 1.05rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    outline: none;
+    font-size: 1.05rem;
+    color: $White;
     cursor: pointer;
     background-color: transparent;
+    border: none;
+    outline: none;
     transition: color 0.15s ease-out 0s;
+    align-items: center;
+    justify-content: center;
 
     svg {
       transition: transform 0.15s ease-out 0s;
@@ -77,27 +78,27 @@ const closeSetLanguages = () =>
       outline: none;
     }
   }
+
   ul.set-languages {
-    visibility: hidden;
-    transition: all 0.3s ease-in-out 0s;
-    padding: 5px;
-    background-color: $LightBlack;
-    font-size: 1.1rem;
     position: absolute;
     bottom: 25px;
     width: 200px;
     height: auto;
     max-height: calc(100vh - 100px);
-
+    padding: 5px;
     overflow: auto;
+    font-size: 1.1rem;
+    background-color: $LightBlack;
     border-radius: 8px;
-
     opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out 0s;
+
     li {
-      padding: 8px 5px;
-      border-radius: 5px;
       display: flex;
+      padding: 8px 5px;
       cursor: pointer;
+      border-radius: 5px;
       align-items: center;
 
       &:hover,
@@ -106,23 +107,26 @@ const closeSetLanguages = () =>
       }
     }
   }
+
   &.show {
     ul.set-languages {
       opacity: 1;
       visibility: visible;
       transform: translateY(-1em);
     }
+
     button svg {
       transform: rotate(180deg);
     }
   }
+
   .flag {
-    margin-right: 5px;
+    display: inline-block;
     width: 25px;
     height: 25px;
-    display: inline-block;
-    background-repeat: no-repeat;
+    margin-right: 5px;
     background-position: center;
+    background-repeat: no-repeat;
   }
 }
 </style>

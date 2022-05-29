@@ -77,14 +77,14 @@ defineExpose({
 @import '@/scss/rwd.breakPoint.scss';
 
 .header {
+  display: flex;
   width: 100%;
   padding: 10px 25px;
+  overflow: hidden;
   background-color: $Black;
-  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
 
   .logo {
     display: flex;
@@ -98,9 +98,9 @@ defineExpose({
     }
 
     .name {
+      display: flex;
       margin-top: -10px;
       margin-left: 10px;
-      display: flex;
       flex-direction: column;
       align-items: flex-start;
 
@@ -111,11 +111,11 @@ defineExpose({
       }
 
       span {
+        padding: 2px 5px;
         font-size: 0.8rem;
         font-weight: 500;
         color: $Black;
         background-color: $MainColor;
-        padding: 2px 5px;
         border-radius: 2px;
       }
     }
@@ -142,29 +142,29 @@ defineExpose({
 
       a {
         @extend %link;
-        transition: color 0.3s ease-in;
+
         font-size: 1.1rem;
         font-weight: 500;
+        transition: color 0.3s ease-in;
 
         &:hover {
           color: $MainColor;
         }
       }
+
       .login {
+        padding: 5px 15px;
         font-size: 1rem;
+        color: $MainColor;
+        text-decoration: none;
         background-color: transparent;
         border: 1px solid $MainColor;
-        color: $MainColor;
-
         border-radius: 5px;
-        padding: 5px 15px;
-
-        text-decoration: none;
         transition: 0.2s ease-in-out;
 
         &:hover {
-          background-color: $MainColor;
           color: $White;
+          background-color: $MainColor;
         }
       }
     }
@@ -180,43 +180,43 @@ defineExpose({
       display: block;
 
       & ~ .links {
-        animation: slide 1s;
+        position: absolute;
+        top: 75px;
+        right: 0;
         z-index: 100;
+        width: 100%;
+        padding: 30px 0;
+        background-color: #1b1b1b;
+        transform: scale(0, 1);
+        animation: slide 1s;
+        transition: transform 1s;
+        transform-origin: center right;
         @keyframes slide {
           from,
           to {
             z-index: -1;
           }
         }
-        width: 100%;
-        position: absolute;
-        background-color: #1b1b1b;
-        top: 75px;
-        right: 0;
-        transform: scale(0, 1);
-        transform-origin: center right;
-        transition: transform 1s;
-        padding: 30px 0;
 
         ul {
           flex-direction: column;
           width: 100%;
+
           li {
             width: 100%;
             padding: 0;
             text-align: center;
+
             a[href] {
-              width: 100%;
               display: block;
-              opacity: 0;
-              padding: 0;
               width: 100%;
-              color: $White;
-              border: none;
-              text-align: center;
-              font-weight: initial;
               padding: 10px;
               margin-bottom: 10px;
+              font-weight: initial;
+              color: $White;
+              text-align: center;
+              border: none;
+              opacity: 0;
 
               &:hover {
                 background-color: #353535;
@@ -227,8 +227,10 @@ defineExpose({
       }
     }
   }
+
   #menuToggle:checked ~ .links {
     transform: scale(1);
+
     li,
     a {
       opacity: 1;

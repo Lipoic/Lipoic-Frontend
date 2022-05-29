@@ -17,28 +17,30 @@ import ToolLangSelector from './ToolLangSelector.vue';
 
 <style lang="scss" scoped>
 @import '../scss/global.scss';
+
 .footer {
-  background-color: $Black;
+  position: relative;
+  z-index: 5;
   padding: 30px;
   text-align: center;
-  z-index: 5;
-  position: relative;
+  background-color: $Black;
+
   .logo {
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: $White;
-    border-radius: 50%;
     padding: 3px;
-    border: 3px solid $MainColor;
     background-color: $Black;
+    border: 3px solid $MainColor;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
 
     img {
       width: 35px;
       height: 35px;
     }
   }
+
   .copyright {
     color: $White;
   }

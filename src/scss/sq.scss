@@ -2,13 +2,13 @@
 
 li {
   position: absolute;
+  bottom: -150px;
   display: block;
-  list-style: none;
   width: 20px;
   height: 20px;
-  background: rgba(255, 255, 255, 0.2);
+  list-style: none;
+  background: rgb(255 255 255 / 20%);
   animation: matrix 25s linear infinite;
-  bottom: -150px;
 
   &:nth-child(1) {
     left: 25%;
@@ -54,7 +54,7 @@ li {
     animation-delay: 3s;
   }
 
-  &::nth-child(7) {
+  &:nth-child(7) {
     left: 35%;
     width: 150px;
     height: 150px;

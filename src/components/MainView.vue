@@ -30,11 +30,13 @@ const headerMenuHandler = (): void => {
   display: flex;
   flex-direction: column;
   height: auto;
+
   .wrapper {
     display: flex;
     align-items: center;
     flex-direction: column;
     flex-grow: 1;
+
     :deep(&) > * {
       height: 100%;
     }
