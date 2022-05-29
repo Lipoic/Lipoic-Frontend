@@ -17,6 +17,15 @@ jobs:
             **/*.ts
             **/*.vue
             **/*.scss
+  stylelint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: stylelint
+        uses: reviewdog/action-stylelint@v1
+        with:
+          github_token: ${{ github.token }}
+          stylelint_input: '**/*.{css,scss}''
   build:
     runs-on: ubuntu-latest
     steps:
