@@ -1,0 +1,20 @@
+name: test
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: yarn
+      - name: Test and generate coverage
+        run: yarn coverage
+      - uses: codecov/codecov-action@v2
+        with:
+          files: ./coverage/lcov.info
