@@ -9,20 +9,18 @@ export type i18nType = I18n<
 >;
 export type useI18nType = Composer<Record<string, typeof defaultLanguage>>;
 
-export class I18nHelper {
+export default class I18nHelper {
   static defaultLocale = 'en-US';
   static get locale(): string {
-    const storageLocal = localStorage.getItem('locale');
+    /// get locale from localStorage or the browser's language
+    const storageLocal = localStorage.getItem('locale') || navigator.language;
 
     // If user has set the locale in localStorage, use it
-    if (storageLocal && this.locales.includes(storageLocal)) {
+    if (
+      this.locales.some((_) => _.toLowerCase() === storageLocal.toLowerCase())
+    ) {
       return storageLocal;
     }
-
-    const browserLocale = navigator.language;
-
-    // Set the locale by the browser's language
-    if (this.locales.includes(browserLocale)) return browserLocale;
 
     return this.defaultLocale;
   }
@@ -75,5 +73,3 @@ export class I18nHelper {
     this.setTitle();
   }
 }
-
-export default I18nHelper;

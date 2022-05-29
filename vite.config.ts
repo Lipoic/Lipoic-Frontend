@@ -24,5 +24,7 @@ export default defineConfig({
     brotliSize: false,
     chunkSizeWarningLimit: 2000,
   },
-  test: {},
+  test: {
+    environment: 'happy-dom',
+  },
 });
