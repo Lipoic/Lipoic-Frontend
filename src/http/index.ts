@@ -1,8 +1,18 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-import configs from '../configs/http';
+import configs, { statusCodes } from '@/configs/http';
+import { delay } from '@/utils';
 
 export type urlType = `/${string}`;
+export interface resultErrorData {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  error?: any;
+  message: string;
+  /** result config | 請求設定 */
+  config: AxiosRequestConfig;
+}
 
 const { CancelToken } = axios;
 const source = CancelToken.source();
@@ -41,11 +51,45 @@ http.interceptors.request.use((config) => {
 http.interceptors.response.use(
   (rss) => {
     const { config } = rss;
+    // TODO add type
+    const { message, code } = rss.data;
     // TODO add notify vue component
-    config.notify;
+    if (Object.values(configs.SuccessCodes).includes(code) && config.notify) {
+      // TODO add success store message
+    } else if (config.notifyError) {
+      // TODO add error store message
+      const rejectData: resultErrorData = { data: rss.data, message, config };
+      return Promise.reject(rejectData);
+    }
   },
-  async (error) => {
-    error;
+  async (err: { response: resultErrorData & { status: number } }) => {
+    const error = err.response;
+
+    const { config, status, data } = error;
+    config.__retryCount ||= 0;
+
+    const msg =
+      (config.__retryCount === 0
+        ? 'error occurred:'
+        : `Reconnecting  ${config.__retryCount} times:`) +
+      JSON.stringify({
+        baseUrl: config.baseURL,
+        path: config.url,
+        error: data ? data.message : error.message,
+      });
+
+    const rejectData: resultErrorData = { message: msg, config, error };
+
+    if (
+      status === 404 ||
+      !config?.relink ||
+      config.__retryCount >= configs.retry
+    )
+      return Promise.reject(rejectData);
+
+    config.__retryCount += 1;
+
+    return delay(configs.retryDelay).then(() => http(config));
   }
 );
 

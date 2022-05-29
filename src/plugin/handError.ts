@@ -1,5 +1,3 @@
-import mitt from 'mitt';
-
 import { AppType } from '.';
 
 export default (app: AppType) => {
