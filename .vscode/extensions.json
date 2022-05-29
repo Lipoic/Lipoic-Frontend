@@ -5,6 +5,7 @@
     "Vue.vscode-typescript-vue-plugin",
     "Lokalise.i18n-ally",
     "editorconfig.editorconfig",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "ZixuanChen.vitest-explorer"
   ]
 }

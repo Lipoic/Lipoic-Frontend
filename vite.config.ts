@@ -1,4 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
+
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'url';
 
@@ -22,4 +24,5 @@ export default defineConfig({
     brotliSize: false,
     chunkSizeWarningLimit: 2000,
   },
+  test: {},
 });
