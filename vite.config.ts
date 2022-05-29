@@ -25,6 +25,9 @@ export default defineConfig({
     chunkSizeWarningLimit: 2000,
   },
   test: {
+    coverage: {
+      reporter: ['html', 'lcov'],
+    },
     environment: 'happy-dom',
   },
 });
