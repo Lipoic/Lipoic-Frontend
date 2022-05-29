@@ -25,7 +25,7 @@ jobs:
         uses: reviewdog/action-stylelint@v1
         with:
           github_token: ${{ github.token }}
-          stylelint_input: '**/*.{css,scss}''
+          stylelint_input: '**/*.{css,scss}'
   build:
     runs-on: ubuntu-latest
     steps:
