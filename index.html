@@ -38,7 +38,20 @@
       name="keywords"
       content="Lipoic,台灣教育,教育平台,教育平臺,遠距教學,線上教學,翻轉教育,電子書,偏鄉教育,開放教育,開放文化,開源精神"
     />
+
+    <meta name="msapplication-TileColor" content="#5efff2" />
+    <link rel="apple-touch-icon" href="/icons/pwa-icon-192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+          .register('/serviceWorker.js')
+          .then((res) => console.log('service worker registered'))
+          .catch((err) => console.log('service worker not registered', err));
+      }
+    </script>
   </head>
+
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>

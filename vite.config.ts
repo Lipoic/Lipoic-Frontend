@@ -1,10 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'url';
-import plugins from './plugin';
+
+import vue from '@vitejs/plugin-vue';
+import svgIcon from './plugin/svgIcon';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [...plugins()],
+  plugins: [vue(), svgIcon()],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   build: {
     terserOptions: {
