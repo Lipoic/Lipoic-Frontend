@@ -5,7 +5,7 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: yarn install
       - name: Run eslint on changed files
         uses: tj-actions/eslint-changed-files@v11
@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: yarn install
       - name: stylelint
         uses: reviewdog/action-stylelint@v1
         with:
@@ -29,7 +30,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install dependencies
         run: yarn
       - name: Build
@@ -37,7 +38,7 @@ jobs:
   deployment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Create deployment
         id: create_deployment
         uses: octokit/request-action@v2.x
