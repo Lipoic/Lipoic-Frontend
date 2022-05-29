@@ -27,7 +27,7 @@ export default class I18nHelper {
 
   static locales: string[] = [this.defaultLocale, 'zh-TW', 'zh-CN'];
   static flags: Record<string, string> = {};
-  private static i18n: i18nType | null;
+  static i18n: i18nType | null;
 
   static async load(): Promise<i18nType> {
     const messages: Record<string | string, typeof defaultLanguage> = {};
