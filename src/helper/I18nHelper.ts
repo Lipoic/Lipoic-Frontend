@@ -12,22 +12,22 @@ export type useI18nType = Composer<Record<string, typeof defaultLanguage>>;
 export class I18nHelper {
   static defaultLocale = 'en-US';
   static get locale(): string {
-    const storageLocal = localStorage.getItem('locale');
+    const storageLocal = (
+      localStorage.getItem('locale') || navigator.language
+    ).toLocaleLowerCase();
 
     // If user has set the locale in localStorage, use it
-    if (storageLocal && this.locales.includes(storageLocal)) {
+    if (storageLocal && this.formalLocales.includes(storageLocal)) {
       return storageLocal;
     }
-
-    const browserLocale = navigator.language;
-
-    // Set the locale by the browser's language
-    if (this.locales.includes(browserLocale)) return browserLocale;
 
     return this.defaultLocale;
   }
 
   static locales: string[] = [this.defaultLocale, 'zh-TW', 'zh-CN'];
+  static formalLocales: string[] = I18nHelper.locales.map((_) =>
+    _.toLocaleLowerCase()
+  );
   static flags: Record<string, string> = {};
   private static i18n: i18nType | null;
 
