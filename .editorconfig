@@ -5,6 +5,7 @@ root = true
 charset = utf-8
 indent_style = space # indent style / 縮排格式 ( tab | space )
 indent_size = 2 # indent size / 缩排大小
+end_of_line = lf # end of line / 設定換行類型 ( lf | cr | crlf )
 trim_trailing_whitespace = true # trim trailing whitespace / 去除行首空白
 insert_final_newline = true # insert final newline  / 於文件尾插入空行
 
