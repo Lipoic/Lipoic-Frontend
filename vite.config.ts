@@ -27,6 +27,7 @@ export default defineConfig({
   test: {
     coverage: {
       reporter: ['html', 'lcov'],
+      all: true,
     },
     environment: 'happy-dom',
   },
