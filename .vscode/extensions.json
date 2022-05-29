@@ -2,7 +2,7 @@
   "recommendations": [
     "vue.volar",
     "esbenp.prettier-vscode",
-    "vue.vscode-typescript-vue-plugin",
+    "Vue.vscode-typescript-vue-plugin",
     "lokalise.i18n-ally",
     "editorconfig.editorconfig",
     "dbaeumer.vscode-eslint",
