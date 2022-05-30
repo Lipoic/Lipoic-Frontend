@@ -52,7 +52,7 @@ defineExpose({
     </label>
     <div class="links">
       <ul>
-        <li v-for="(link, index) in links" :key="index">
+        <li v-for="link in links" v-once :key="link.path">
           <router-link
             v-t="$t(link.i18nName)"
             :to="link.path"

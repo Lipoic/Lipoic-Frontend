@@ -14,7 +14,7 @@ const modules = [Pagination, Autoplay];
 <template>
   <div class="intro">
     <ul class="circles">
-      <li v-for="key in 10" :key="key"></li>
+      <li v-for="_ in 10" v-once :key="_" />
     </ul>
     <div class="slideBlock">
       <swiper
