@@ -14,7 +14,8 @@ const modules = [Pagination, Autoplay];
 <template>
   <div class="intro">
     <ul class="circles">
-      <li v-for="_ in 10" v-once :key="_" />
+      <!-- eslint-disable-next-line vue/require-v-for-key vue/no-unused-vars -->
+      <li v-for="_ in 10" v-once />
     </ul>
     <div class="slideBlock">
       <swiper

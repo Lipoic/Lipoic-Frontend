@@ -22,9 +22,7 @@ const changeMenuCheckboxState = () => (isMenuOpen.value &&= false);
 onMounted(() => window.addEventListener('resize', checkMenuOpen));
 onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
 
-defineExpose({
-  changeMenuCheckboxState,
-});
+defineExpose({ changeMenuCheckboxState });
 </script>
 
 <template>
@@ -52,7 +50,8 @@ defineExpose({
     </label>
     <div class="links">
       <ul>
-        <li v-for="link in links" v-once :key="link.path">
+        <!-- eslint-disable-next-line vue/require-v-for-key -->
+        <li v-for="link in links" v-once>
           <router-link
             v-t="$t(link.i18nName)"
             :to="link.path"

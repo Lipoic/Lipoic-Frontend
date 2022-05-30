@@ -12,6 +12,17 @@ const showSetLanguages = ref(false);
 const changeLanguage = (locale: string) => I18nHelper.setLocale(locale);
 const closeSetLanguages = () =>
   (showSetLanguages.value = !showSetLanguages.value);
+
+const changeEventLanguage = (e: MouseEvent) => {
+  const ev = <MouseEvent & { target?: HTMLDivElement }>e;
+  if (
+    ev.target?.nodeName.toLocaleLowerCase() === 'li' &&
+    ev.target.dataset.language
+  ) {
+    changeLanguage(ev.target.dataset.language);
+    closeSetLanguages();
+  }
+};
 </script>
 
 <template>
@@ -26,20 +37,19 @@ const closeSetLanguages = () =>
       {{ i18n.getLocaleMessage(selectedLanguage).name }}
       <SvgIcon name="other-ExpandMore" color="white" />
     </button>
-    <ul class="set-languages">
+    <ul class="set-languages" @click="changeEventLanguage">
+      <!-- eslint-disable-next-line vue/require-v-for-key vue/no-unused-vars -->
       <li
         v-for="language in i18n.availableLocales"
-        :key="language"
+        v-once
         :title="i18n.getLocaleMessage(language).name.toString()"
-        :aria-label="i18n.getLocaleMessage(language).name.toString()"
         :class="language === selectedLanguage ? 'active' : void 0"
-        @click="[changeLanguage(language), closeSetLanguages()]"
+        :aria-label="i18n.getLocaleMessage(language).name.toString()"
+        :data-language="language"
       >
         <span
           class="flag"
-          :style="{
-            backgroundImage: `url(${I18nHelper.flags[language]})`,
-          }"
+          :style="{ backgroundImage: `url(${I18nHelper.flags[language]})` }"
         />
         {{ i18n.getLocaleMessage(language).name }}
       </li>

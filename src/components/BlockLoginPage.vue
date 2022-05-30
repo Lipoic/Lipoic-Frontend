@@ -37,7 +37,8 @@ const oauthButtons = [
         <span v-t="'auth.login.welcome'" class="greeting" />
       </div>
       <div class="masks">
-        <div v-for="_ in 4" v-once :key="_" class="mask" />
+        <!-- eslint-disable-next-line vue/require-v-for-key vue/no-unused-vars -->
+        <div v-for="_ in 4" v-once class="mask" />
       </div>
     </div>
     <div class="right">
@@ -85,9 +86,7 @@ const oauthButtons = [
             />
             <label v-t="'auth.login.stayLoggedIn'" for="stayLogin" />
           </div>
-          <a href="#" class="forgot">
-            {{ $t('auth.login.forgotPassword') }} ?
-          </a>
+          <a v-t="'auth.login.forgotPassword'" href="#" class="forgot" />
         </div>
         <button
           v-t="'auth.login.loginButton'"
@@ -105,9 +104,10 @@ const oauthButtons = [
         <hr style="border-color: #ababab" />
         <p v-t="'auth.login.useOtherMethods'" />
         <div class="oauthButtons">
+          <!-- eslint-disable-next-line vue/require-v-for-key -->
           <button
-            v-for="({ title, img }, index) in oauthButtons"
-            :key="index"
+            v-for="{ title, img } in oauthButtons"
+            v-once
             type="button"
             class="oauthButton"
             :aria-label="title"
