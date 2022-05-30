@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: xRealNeon/VuePagesAction@3415ebf6420a1d77fb8ff4e60c8624c30edd48ef
         with:
           username: 'Lipoic'
