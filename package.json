@@ -37,7 +37,6 @@
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-vue": "9.0.1",
-    "happy-dom": "4.1.0",
     "postcss-html": "1.4.1",
     "postcss-scss": "4.0.4",
     "prettier": "2.6.2",
