@@ -3,25 +3,14 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'url';
-import viteImagemin from 'vite-plugin-imagemin';
 
 import vue from '@vitejs/plugin-vue';
 import svgIcon from './plugin/svgIcon';
+import build from './plugin/build';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    svgIcon(),
-    viteImagemin({
-      svgo: {
-        plugins: [
-          { name: 'removeViewBox' },
-          { name: 'removeEmptyAttrs', active: false },
-        ],
-      },
-    }),
-  ],
+  plugins: [vue(), build(), svgIcon()],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   build: {
     terserOptions: {
