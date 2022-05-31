@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import { createApp, defineAsyncComponent } from 'vue';
 import 'virtual:svg-icons-register';
 
 import '@/scss/global.scss';
@@ -9,8 +9,11 @@ import I18nHelper from './helper/I18nHelper';
 import FirebaseHelper from './helper/FirebaseHelper';
 
 import router from '@/router';
-import App from '@/MainApp.vue';
-import SvgIconComponent from '@/components/SvgIcon.vue';
+
+const App = defineAsyncComponent(() => import('@/MainApp.vue'));
+const SvgIconComponent = defineAsyncComponent(
+  () => import('@/components/SvgIcon.vue')
+);
 
 (async () => {
   FirebaseHelper.init();

@@ -1,7 +1,12 @@
 <script lang="ts" setup>
-import MainViewVue from '@/components/MainView.vue';
+import { defineAsyncComponent } from 'vue';
 
-import BlockHomeIntroVue from '@/components/BlockHomeIntro.vue';
+const MainViewVue = defineAsyncComponent(
+  () => import('@/components/MainView.vue')
+);
+const BlockHomeIntroVue = defineAsyncComponent(
+  () => import('@/components/BlockHomeIntro.vue')
+);
 </script>
 
 <template>

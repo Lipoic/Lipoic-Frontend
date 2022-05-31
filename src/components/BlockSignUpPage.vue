@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-import { reactive } from 'vue';
-import ToolLangSelector from './ToolLangSelector.vue';
+import { defineAsyncComponent, reactive } from 'vue';
 
+const ToolLangSelector = defineAsyncComponent(
+  () => import('./ToolLangSelector.vue')
+);
 interface signUpData {
   username: string;
   password: string;

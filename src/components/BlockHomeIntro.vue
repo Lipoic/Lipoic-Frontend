@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { defineAsyncComponent } from 'vue';
 import { Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
@@ -6,8 +7,9 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
-import TypingEffect from '@/components/TypingEffect.vue';
-
+const TypingEffect = defineAsyncComponent(
+  () => import('@/components/TypingEffect.vue')
+);
 const modules = [Pagination, Autoplay];
 </script>
 

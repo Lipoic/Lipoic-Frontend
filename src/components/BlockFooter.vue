@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-import ToolLangSelector from './ToolLangSelector.vue';
+import { defineAsyncComponent } from 'vue';
+
+const ToolLangSelector = defineAsyncComponent(
+  () => import('./ToolLangSelector.vue')
+);
 </script>
 
 <template>

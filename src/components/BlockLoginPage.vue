@@ -1,8 +1,10 @@
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { defineAsyncComponent, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
-import ToolLangSelector from './ToolLangSelector.vue';
 
+const ToolLangSelector = defineAsyncComponent(
+  () => import('./ToolLangSelector.vue')
+);
 const { t } = useI18n();
 
 interface loginData {
