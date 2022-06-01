@@ -16,7 +16,7 @@
     "@vue/eslint-config-typescript": "10.0.0",
     "firebase": "9.8.2",
     "pinia": "2.0.14",
-    "swiper": "8.2.1",
+    "swiper": "8.2.2",
     "vite": "2.9.9",
     "vite-plugin-svg-icons": "2.0.1",
     "vue": "3.2.36",
