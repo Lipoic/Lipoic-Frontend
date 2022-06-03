@@ -7,10 +7,11 @@ import { fileURLToPath, URL } from 'url';
 import vue from '@vitejs/plugin-vue';
 import svgIcon from './plugin/svgIcon';
 import build from './plugin/build';
+import PWAPlugin from './plugin/pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), build(), svgIcon()],
+  plugins: [vue(), build(), svgIcon(), PWAPlugin()],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   build: {
     terserOptions: {

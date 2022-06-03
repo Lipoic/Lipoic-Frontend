@@ -41,15 +41,6 @@
 
     <meta name="msapplication-TileColor" content="#5efff2" />
     <link rel="apple-touch-icon" href="/icons/pwa-icon-192.png" />
-    <link rel="manifest" href="/manifest.json" />
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker
-          .register('/serviceWorker.js')
-          .then((res) => console.log('service worker registered'))
-          .catch((err) => console.log('service worker not registered', err));
-      }
-    </script>
   </head>
 
   <body>
