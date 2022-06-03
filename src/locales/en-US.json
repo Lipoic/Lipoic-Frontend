@@ -1,31 +1,47 @@
 {
   "name": "English (US)",
-  "app.title": "Lipoic - Flipping classroom with us",
-  "header.links.home": "Home",
-  "header.links.about": "About",
-  "header.links.feature": "Features",
-  "header.links.demo": "Demo",
-  "header.login": "Login",
-  "footer.copyright": "Copyright © 2022 Lipoic. All rights reserved.",
-  "home.subtitle.1": "A multifunctional, educational platform specifically designed for teachers and students",
-  "home.subtitle.2": "Loves open source and open education",
-  "home.login.student": "Student",
-  "home.login.teacher": "Teacher",
-  "home.login.parents": "Parents",
-  "auth.login.welcome": "Welcome to Lipoic",
-  "auth.login.title": "Login",
-  "auth.login.usernameInput": "Username",
-  "auth.login.password": "Password",
-  "auth.login.stayLoggedIn": "Stay Logged In",
-  "auth.login.forgotPassword": "Forgot Password",
-  "auth.login.loginButton": "Login",
-  "auth.login.haveNoAccount": "Have no account?",
-  "auth.login.registerNow": "Sign Up",
-  "auth.login.useOtherMethods": "Or below way",
-  "auth.login.taiwanEduLoginButton": "Taiwan Cloud Education",
-  "auth.signUp.title": "Sign Up",
-  "auth.signUp.email": "Email",
-  "auth.signUp.signUpButton": "Sign Up",
-  "auth.signUp.alreadyHaveAccount": "Already Have An Account?",
-  "auth.signUp.loginNow": "Login Now"
+  "app": { "title": "Lipoic - Flipping classroom with us" },
+  "header": {
+    "links": {
+      "home": "Home",
+      "about": "About",
+      "feature": "Features",
+      "demo": "Demo"
+    },
+    "login": "Login"
+  },
+  "footer": { "copyright": "Copyright © 2022 Lipoic. All rights reserved." },
+  "home": {
+    "subtitle": {
+      "1": "A multifunctional, educational platform specifically designed for teachers and students",
+      "2": "Loves open source and open education"
+    },
+    "login": {
+      "student": "Student",
+      "teacher": "Teacher",
+      "parents": "Parents"
+    }
+  },
+  "auth": {
+    "login": {
+      "welcome": "Welcome to Lipoic",
+      "title": "Login",
+      "usernameInput": "Username",
+      "password": "Password",
+      "stayLoggedIn": "Stay Logged In",
+      "forgotPassword": "Forgot Password",
+      "loginButton": "Login",
+      "haveNoAccount": "Have no account?",
+      "registerNow": "Sign Up",
+      "useOtherMethods": "Or below way",
+      "taiwanEduLoginButton": "Taiwan Cloud Education"
+    },
+    "signUp": {
+      "title": "Sign Up",
+      "email": "Email",
+      "signUpButton": "Sign Up",
+      "alreadyHaveAccount": "Already Have An Account?",
+      "loginNow": "Login Now"
+    }
+  }
 }
