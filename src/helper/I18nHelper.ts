@@ -71,5 +71,7 @@ export default class I18nHelper {
 
     localStorage.setItem('locale', locale);
     this.setTitle();
+
+    location.reload();
   }
 }
