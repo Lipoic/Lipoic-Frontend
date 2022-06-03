@@ -30,8 +30,7 @@ const signUpFormData = reactive<signUpData>({
         <span v-t="'auth.login.welcome'" class="greeting" />
       </div>
       <div class="masks">
-        <!-- eslint-disable-next-line vue/require-v-for-key vue/no-unused-vars -->
-        <div v-for="_ in 4" v-once class="mask" />
+        <div v-for="_ in 4" v-once :key="_" class="mask" />
       </div>
     </div>
     <div class="right">

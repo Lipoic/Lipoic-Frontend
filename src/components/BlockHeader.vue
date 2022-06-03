@@ -50,8 +50,7 @@ defineExpose({ changeMenuCheckboxState });
     </label>
     <div class="links">
       <ul>
-        <!-- eslint-disable-next-line vue/require-v-for-key -->
-        <li v-for="link in links" v-once>
+        <li v-for="link in links" v-once :key="link.path">
           <router-link
             v-t="$t(link.i18nName)"
             :to="link.path"

@@ -38,10 +38,10 @@ const changeEventLanguage = (e: MouseEvent) => {
       <SvgIcon name="other-ExpandMore" color="white" />
     </button>
     <ul class="set-languages" @click="changeEventLanguage">
-      <!-- eslint-disable-next-line vue/require-v-for-key vue/no-unused-vars -->
       <li
         v-for="language in i18n.availableLocales"
         v-once
+        :key="language"
         :title="i18n.getLocaleMessage(language).name.toString()"
         :class="language === selectedLanguage ? 'active' : void 0"
         :aria-label="i18n.getLocaleMessage(language).name.toString()"
