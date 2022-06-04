@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v3
       - run: yarn install
       - name: Run eslint on changed files
-        uses: tj-actions/eslint-changed-files@v11
+        uses: tj-actions/eslint-changed-files@v12
         with:
           token: ${{ github.token }}
           config_path: '.eslintrc.js'
