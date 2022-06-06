@@ -62,7 +62,4 @@ test('set locale', async () => {
 
   I18nHelper.setLocale('zh-TW');
   expect(I18nHelper.locale).toEqual('zh-TW');
-  expect(document.title).toEqual(
-    I18nHelper.i18n?.global.getLocaleMessage('zh-TW')['app.title']
-  );
 });

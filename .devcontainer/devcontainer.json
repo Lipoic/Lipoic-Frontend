@@ -18,7 +18,8 @@
 		"dbaeumer.vscode-eslint",
 		"ms-vsliveshare.vsliveshare",
 		"ms-vsliveshare.vsliveshare-audio",
-		"esbenp.prettier-vscode"
+		"esbenp.prettier-vscode",
+		"ZixuanChen.vitest-explorer"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

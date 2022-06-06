@@ -24,7 +24,6 @@ export default defineConfig({
     minify: 'terser',
     // Speed up packing
     brotliSize: false,
-    sourcemap: false,
     chunkSizeWarningLimit: 2000,
   },
   test: {
