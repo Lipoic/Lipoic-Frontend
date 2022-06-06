@@ -17,16 +17,18 @@ const SvgIconComponent = defineAsyncComponent(
 );
 
 (async () => {
-  FirebaseHelper.init();
   const i18n = await I18nHelper.load();
 
-  const intervalMS = 60 * 60 * 1000;
-
-  registerSW({ onRegistered: (_) => _ && setInterval(_.update, intervalMS) });
+  // Register service worker and auto-update service worker every hour.
+  registerSW({
+    onRegistered: (_) => _ && setInterval(_.update, 60 * 60 * 1000),
+  });
 
   createApp(App)
     .use(i18n)
     .use(router)
     .component('SvgIcon', SvgIconComponent)
     .mount('#app');
+
+  FirebaseHelper.init();
 })();
