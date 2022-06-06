@@ -39,6 +39,8 @@ defineExpose({ changeMenuCheckboxState });
       <img
         src="https://raw.githubusercontent.com/Lipoic/Lipoic-Assets/main/logo/logo.svg"
         alt="Lipoic"
+        width="60"
+        height="60"
       />
       <div class="name">
         <h1>Lipoic</h1>
