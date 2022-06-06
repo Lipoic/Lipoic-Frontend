@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, reactive } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 
 /*  For Safari support because there are a bug of vh and vw unit of Safari. */
-const pageWidthHeight = reactive({
-  height: window.innerHeight,
-  width: window.innerWidth,
-});
+
+/*  For Safari support because there are a bug of vh and vw unit of Safari. */
+const setStyle = (key: `--${string}`, value: string | null) =>
+  document.documentElement.style.setProperty(key, value);
 
 const setStyles = () => {
-  pageWidthHeight.height = window.innerHeight;
-  pageWidthHeight.width = window.innerWidth;
+  setStyle('--page-height', `${window.innerHeight}px`);
+  setStyle('--page-width', `${window.innerWidth}px`);
 };
 
 addEventListener('resize', setStyles);
@@ -48,10 +48,3 @@ const setScheme = (_isLight: boolean | string) => {
 <template>
   <router-view />
 </template>
-
-<style lang="scss">
-:root {
-  --page-height: v-bind('pageWidthHeight.height');
-  --page-width: v-bind('pageWidthHeight.width');
-}
-</style>
