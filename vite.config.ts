@@ -6,12 +6,11 @@ import { fileURLToPath, URL } from 'url';
 
 import vue from '@vitejs/plugin-vue';
 import svgIcon from './plugin/svgIcon';
-import build from './plugin/build';
 import PWAPlugin from './plugin/pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), build(), svgIcon(), PWAPlugin()],
+  plugins: [vue(), svgIcon(), PWAPlugin()],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   build: {
     terserOptions: {
@@ -27,13 +26,6 @@ export default defineConfig({
     brotliSize: false,
     sourcemap: false,
     chunkSizeWarningLimit: 2000,
-    rollupOptions: {
-      output: {
-        entryFileNames: `assets/js/[name]-[hash].js`,
-        chunkFileNames: `assets/js/[name]-[hash].js`,
-        assetFileNames: `assets/[ext]/[name]-[hash].[ext]`,
-      },
-    },
   },
   test: {
     coverage: {

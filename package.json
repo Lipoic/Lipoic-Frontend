@@ -15,7 +15,6 @@
   "dependencies": {
     "@vue/eslint-config-typescript": "10.0.0",
     "firebase": "9.8.2",
-    "html-minifier": "^4.0.0",
     "pinia": "2.0.14",
     "swiper": "8.2.2",
     "vite": "2.9.9",
@@ -25,7 +24,6 @@
     "vue-router": "4.0.15"
   },
   "devDependencies": {
-    "@types/html-minifier": "^4.0.2",
     "@types/node": "17.0.36",
     "@typescript-eslint/eslint-plugin": "5.27.0",
     "@typescript-eslint/parser": "5.27.0",
