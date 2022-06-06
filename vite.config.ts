@@ -30,6 +30,13 @@ export default defineConfig({
     coverage: {
       reporter: ['html', 'lcov'],
       all: true,
+      exclude: [
+        'node_modules/**',
+        'dist/**',
+        'public/**',
+        'plugin/**',
+        '.stylelintrc.js',
+      ],
     },
     environment: 'happy-dom',
   },
