@@ -2,6 +2,10 @@
   "name": "lipoic-frontend",
   "private": true,
   "version": "0.0.0",
+  "author": {
+    "name": "Lipoic"
+  },
+  "license": "GPL-3.0",
   "scripts": {
     "dev": "vite",
     "dev:host": "vite --host",

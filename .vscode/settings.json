@@ -3,12 +3,15 @@
   "cSpell.words": [
     "bottomleft",
     "bottomright",
+    "changefreq",
+    "lastmod",
     "Lipoic",
     "Pinia",
     "stylelint",
     "tochmove",
     "topleft",
-    "topright"
+    "topright",
+    "urlset"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
