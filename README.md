@@ -25,4 +25,4 @@ yarn dev
 - [Typescript](https://www.typescriptlang.org/)
 - [Pinia](https://pinia.vuejs.org/)
 
-[📦 package use 📦](package.md)
+[📦 package use 📦](.github/package.md)
