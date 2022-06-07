@@ -9,10 +9,7 @@ const ToolLangSelector = defineAsyncComponent(
 <template>
   <div class="footer">
     <div class="logo">
-      <img
-        src="https://raw.githubusercontent.com/Lipoic/Lipoic-Assets/main/logo/logo.svg"
-        alt="Lipoic"
-      />
+      <SvgIcon name="logo" />
     </div>
     <div v-t="'footer.copyright'" class="copyright" />
     <ToolLangSelector />
@@ -20,7 +17,7 @@ const ToolLangSelector = defineAsyncComponent(
 </template>
 
 <style lang="scss" scoped>
-@import '../scss/global.scss';
+@import '@/scss/global.scss';
 
 .footer {
   position: relative;
