@@ -7,13 +7,12 @@
     "dev:host": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "eslint \"*.{js,jsx,vue,ts,tsx}\" --fix",
-    "lint:stylelint": "stylelint *.{vue,css,scss} --fix",
-    "lint:prettier": "prettier *.{js,jsx,vue,ts,tsx,json} --write",
+    "lint": "eslint \"*.{js,jsx,vue,ts,tsx}\" --ignore-pattern *.config.js --fix",
+    "lint:stylelint": "stylelint src/**/*.{vue,css,scss} --fix",
+    "lint:prettier": "prettier src/**/*.{js,jsx,vue,ts,tsx,json} --write",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "prepare": "husky install",
-    "precommit": "lint-staged"
+    "prepare": "husky install"
   },
   "dependencies": {
     "firebase": "9.8.2",
