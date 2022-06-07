@@ -1,0 +1,7 @@
+{
+  "*.{vue,js,ts,jsx,tsx,scss}": [
+    "yarn lint",
+    "yarn lint:prettier",
+    "yarn lint:stylelint"
+  ]
+}
