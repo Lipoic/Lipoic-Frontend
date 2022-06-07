@@ -57,10 +57,8 @@
     "vue-tsc": "0.36.1"
   },
   "lint-staged": {
-    "*.{vue,js,ts,jsx,tsx,scss,css,json}": [
-      "yarn lint",
-      "yarn lint:prettier",
-      "yarn lint:stylelint"
-    ]
+    "*.{js,jsx,vue,ts,tsx,json}": "yarn lint:prettier",
+    "*.{js,jsx,vue,ts,tsx}": "yarn lint",
+    "*.{vue,scss,css}": "yarn lint:stylelint"
   }
 }
