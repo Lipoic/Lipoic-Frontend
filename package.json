@@ -7,10 +7,12 @@
     "dev:host": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "eslint 'src/**/*.{js,jsx,vue,ts,tsx}' --fix",
+    "lint": "eslint \"src/**/*.{js,jsx,vue,ts,tsx}\" --fix",
     "lint:stylelint": "stylelint src/**/*.{vue,css,scss} --fix",
+    "lint:prettier": "prettier src/**/*.{js,jsx,vue,ts,tsx,json} --write",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@vue/eslint-config-typescript": "10.0.0",
@@ -24,6 +26,7 @@
     "vue-router": "4.0.15"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.2",
     "@types/node": "17.0.36",
     "@typescript-eslint/eslint-plugin": "5.27.0",
     "@typescript-eslint/parser": "5.27.0",
@@ -35,9 +38,11 @@
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-vue": "9.1.0",
+    "happy-dom": "5.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.0",
     "postcss-html": "1.4.1",
     "postcss-scss": "4.0.4",
-    "happy-dom": "5.0.0",
     "prettier": "2.6.2",
     "sass": "1.52.2",
     "stylelint": "14.8.5",
@@ -47,7 +52,16 @@
     "stylelint-order": "5.0.0",
     "stylelint-scss": "4.2.0",
     "typescript": "4.7.3",
+    "vite-plugin-pwa": "^0.12.0",
     "vitest": "0.13.1",
     "vue-tsc": "0.36.1"
+  },
+  "lint-staged": {
+    "*.{vue,js,ts,jsx,tsx}": [
+      "yarn lint",
+      "yarn lint:prettier",
+      "git add"
+    ],
+    "*.{json}": "prettier --write--parser json"
   }
 }
