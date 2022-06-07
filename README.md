@@ -25,4 +25,4 @@ yarn dev
 - [Typescript](https://www.typescriptlang.org/)
 - [Pinia](https://pinia.vuejs.org/)
 
-[package](package.md ':include :type=markdown')
+[📦 package use 📦](package.md)
