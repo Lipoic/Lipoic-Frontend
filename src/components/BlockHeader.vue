@@ -49,14 +49,14 @@ defineExpose({ changeMenuCheckboxState });
       <ul>
         <li v-for="link in links" v-once :key="link.path">
           <router-link
-            v-t="$t(link.i18nName)"
+            v-t="link.i18nName"
             :to="link.path"
             :title="$t(link.i18nName)"
           />
         </li>
         <li>
           <router-link
-            v-t="$t('header.login')"
+            v-t="'header.login'"
             to="/account"
             class="login"
             :title="$t('header.login')"
