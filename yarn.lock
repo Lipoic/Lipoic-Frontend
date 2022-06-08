@@ -3642,10 +3642,10 @@ graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.10.tgz"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
 
-happy-dom@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-5.0.0.tgz#82fa520b232f41a7be02e6be118d8d8764349508"
-  integrity sha512-n47uxVRW2prLQ1mYEfwc5JPeMmiQGHpUsM0edtqlKIWJlAvpZJmq0ZAKdeDuZ/f1Gu8kXumy9jyWsJ1zRT7VEw==
+happy-dom@5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-5.2.0.tgz#feb5c03e2cf435e333e0ae08e00eb369af2afe15"
+  integrity sha512-WbMaOZjadH7/c15U1I1GheswXX12g/QxTPjs9gYHZQGl+Xx9X5eQEj84BQ5ivjFLFR6oJ56lL5+jcesXP0FLjg==
   dependencies:
     css.escape "^1.5.1"
     he "^1.2.0"
