@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { defineAsyncComponent } from 'vue';
 import { Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
@@ -6,15 +7,16 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
-import TypingEffect from '@/components/TypingEffect.vue';
-
+const TypingEffect = defineAsyncComponent(
+  () => import('@/components/TypingEffect.vue')
+);
 const modules = [Pagination, Autoplay];
 </script>
 
 <template>
   <div class="intro">
     <ul class="circles">
-      <li v-for="key in 10" :key="key"></li>
+      <li v-for="_ in 10" v-once :key="_" />
     </ul>
     <div class="slideBlock">
       <swiper

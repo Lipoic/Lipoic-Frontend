@@ -1,5 +1,5 @@
 <template>
-  <svg aria-hidden="true" class="svg-icon-spin" :class="svgIcon">
+  <svg v-once aria-hidden="true" class="svg-icon-spin" :class="svgIcon">
     <use :xlink:href="symbolId" :fill="color" />
   </svg>
 </template>

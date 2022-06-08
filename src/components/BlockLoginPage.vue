@@ -1,8 +1,10 @@
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { defineAsyncComponent, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
-import ToolLangSelector from './ToolLangSelector.vue';
 
+const ToolLangSelector = defineAsyncComponent(
+  () => import('./ToolLangSelector.vue')
+);
 const { t } = useI18n();
 
 interface loginData {
@@ -37,7 +39,7 @@ const oauthButtons = [
         <span v-t="'auth.login.welcome'" class="greeting" />
       </div>
       <div class="masks">
-        <div v-for="_ in 4" :key="_" class="mask" />
+        <div v-for="_ in 4" v-once :key="_" class="mask" />
       </div>
     </div>
     <div class="right">
@@ -85,9 +87,7 @@ const oauthButtons = [
             />
             <label v-t="'auth.login.stayLoggedIn'" for="stayLogin" />
           </div>
-          <a href="#" class="forgot">
-            {{ $t('auth.login.forgotPassword') }} ?
-          </a>
+          <a v-t="'auth.login.forgotPassword'" href="#" class="forgot" />
         </div>
         <button
           v-t="'auth.login.loginButton'"
@@ -106,8 +106,9 @@ const oauthButtons = [
         <p v-t="'auth.login.useOtherMethods'" />
         <div class="oauthButtons">
           <button
-            v-for="({ title, img }, index) in oauthButtons"
-            :key="index"
+            v-for="{ title, img } in oauthButtons"
+            v-once
+            :key="title"
             type="button"
             class="oauthButton"
             :aria-label="title"

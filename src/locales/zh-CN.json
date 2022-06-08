@@ -1,31 +1,43 @@
 {
   "name": "简体中文 (中国)",
-  "app.title": "Lipoic - 与我们一起翻转教育",
-  "header.links.home": "首页",
-  "header.links.about": "关于",
-  "header.links.feature": "特色",
-  "header.links.demo": "演示",
-  "header.login": "登入",
-  "footer.copyright": "版权所有 © 2022 Lipoic. 保留所有权利。",
-  "home.subtitle.1": "专门为师生们设计的多功能教育平台",
-  "home.subtitle.2": "熱愛開放原始碼與開放教育精神",
-  "auth.login.welcome": "欢迎来到 Lipoic",
-  "home.login.student": "学生",
-  "home.login.teacher": "老师",
-  "home.login.parents": "家长",
-  "auth.login.title": "登入",
-  "auth.login.usernameInput": "用户名称",
-  "auth.login.password": "密码",
-  "auth.login.stayLoggedIn": "保持登入",
-  "auth.login.forgotPassword": "忘記密码",
-  "auth.login.loginButton": "登入",
-  "auth.login.haveNoAccount": "还没有帐戶吗？",
-  "auth.login.registerNow": "立即註册",
-  "auth.login.useOtherMethods": "或用以下方式",
-  "auth.login.taiwanEduLoginButton": "臺湾云端教育帐号",
-  "auth.signUp.title": "註册",
-  "auth.signUp.email": "电子邮件",
-  "auth.signUp.signUpButton": "註册",
-  "auth.signUp.alreadyHaveAccount": "已经有一个帐号了吗",
-  "auth.signUp.loginNow": "登入"
+  "app": { "title": "Lipoic - 与我们一起翻转教育" },
+  "header": {
+    "links": {
+      "home": "首页",
+      "about": "关于",
+      "feature": "特色",
+      "demo": "演示"
+    },
+    "login": "登入"
+  },
+  "footer": { "copyright": "版权所有 © 2022 Lipoic. 保留所有权利。" },
+  "home": {
+    "subtitle": {
+      "1": "专门为师生们设计的多功能教育平台",
+      "2": "熱愛開放原始碼與開放教育精神"
+    },
+    "login": { "student": "学生", "teacher": "老师", "parents": "家长" }
+  },
+  "auth": {
+    "login": {
+      "welcome": "欢迎来到 Lipoic",
+      "title": "登入",
+      "usernameInput": "用户名称",
+      "password": "密码",
+      "stayLoggedIn": "保持登入",
+      "forgotPassword": "忘記密码",
+      "loginButton": "登入",
+      "haveNoAccount": "还没有帐戶吗？",
+      "registerNow": "立即註册",
+      "useOtherMethods": "或用以下方式",
+      "taiwanEduLoginButton": "臺湾云端教育帐号"
+    },
+    "signUp": {
+      "title": "註册",
+      "email": "电子邮件",
+      "signUpButton": "註册",
+      "alreadyHaveAccount": "已经有一个帐号了吗",
+      "loginNow": "登入"
+    }
+  }
 }

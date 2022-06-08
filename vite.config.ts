@@ -6,10 +6,11 @@ import { fileURLToPath, URL } from 'url';
 
 import vue from '@vitejs/plugin-vue';
 import svgIcon from './plugin/svgIcon';
+import PWAPlugin from './plugin/pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), svgIcon()],
+  plugins: [vue(), svgIcon(), PWAPlugin()],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   build: {
     terserOptions: {
@@ -18,6 +19,7 @@ export default defineConfig({
         keep_infinity: true,
         drop_console: false,
       },
+      format: { comments: false },
     },
     minify: 'terser',
     // Speed up packing
@@ -28,6 +30,13 @@ export default defineConfig({
     coverage: {
       reporter: ['html', 'lcov'],
       all: true,
+      exclude: [
+        'node_modules/**',
+        'dist/**',
+        'public/**',
+        'plugin/**',
+        '.stylelintrc.js',
+      ],
     },
     environment: 'happy-dom',
   },

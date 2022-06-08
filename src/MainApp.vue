@@ -2,6 +2,8 @@
 import { onMounted, onUnmounted } from 'vue';
 
 /*  For Safari support because there are a bug of vh and vw unit of Safari. */
+
+/*  For Safari support because there are a bug of vh and vw unit of Safari. */
 const setStyle = (key: `--${string}`, value: string | null) =>
   document.documentElement.style.setProperty(key, value);
 
@@ -46,5 +48,3 @@ const setScheme = (_isLight: boolean | string) => {
 <template>
   <router-view />
 </template>
-
-<style lang="scss"></style>
