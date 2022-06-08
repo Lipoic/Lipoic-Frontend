@@ -1,9 +1,9 @@
 import httpConfig from './http';
 
 export interface configsType {
-  /** There are settings for requests | 有關於請求的設定 */
+  /** There are settings for requests */
   http: typeof httpConfig;
-  /** send debug to server | 發送錯誤報告至伺服器 */
+  /** send debug to server */
   debugServer: boolean;
 }
 
