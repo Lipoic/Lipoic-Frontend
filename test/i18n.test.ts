@@ -50,6 +50,20 @@ describe('load i18n files', () => {
   });
 });
 
+test('set title', async () => {
+  document.title = 'test';
+  vi.spyOn(I18nHelper, 'i18n', 'get').mockReturnValue(null);
+  vi.spyOn(I18nHelper, 'i18n', 'set').mockImplementation((_) => {
+    // no-op
+  });
+
+  await I18nHelper.load();
+
+  expect(document.title).toEqual('test');
+
+  vi.clearAllMocks();
+});
+
 test('set locale', async () => {
   await I18nHelper.load();
 
@@ -58,11 +72,9 @@ test('set locale', async () => {
   vi.spyOn(I18nHelper, 'defaultLocale', 'get').mockReturnValue('unknown');
 
   expect(I18nHelper.locale).toEqual('unknown');
-  vi.restoreAllMocks();
+  vi.clearAllMocks();
 
+  vi.spyOn(localStorage, 'getItem').mockReturnValue('zh-TW');
   I18nHelper.setLocale('zh-TW');
   expect(I18nHelper.locale).toEqual('zh-TW');
-  expect(document.title).toEqual(
-    I18nHelper.i18n?.global.getLocaleMessage('zh-TW')['app.title']
-  );
 });

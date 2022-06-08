@@ -22,9 +22,7 @@ const changeMenuCheckboxState = () => (isMenuOpen.value &&= false);
 onMounted(() => window.addEventListener('resize', checkMenuOpen));
 onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
 
-defineExpose({
-  changeMenuCheckboxState,
-});
+defineExpose({ changeMenuCheckboxState });
 </script>
 
 <template>
@@ -38,10 +36,7 @@ defineExpose({
       @input="updateMenuState"
     />
     <div class="logo">
-      <img
-        src="https://raw.githubusercontent.com/Lipoic/Lipoic-Assets/main/logo/logo.svg"
-        alt="Lipoic"
-      />
+      <SvgIcon name="logo" class="svg" />
       <div class="name">
         <h1>Lipoic</h1>
         <span>EDU</span>
@@ -52,16 +47,16 @@ defineExpose({
     </label>
     <div class="links">
       <ul>
-        <li v-for="(link, index) in links" :key="index">
+        <li v-for="link in links" v-once :key="link.path">
           <router-link
-            v-t="$t(link.i18nName)"
+            v-t="link.i18nName"
             :to="link.path"
             :title="$t(link.i18nName)"
           />
         </li>
         <li>
           <router-link
-            v-t="$t('header.login')"
+            v-t="'header.login'"
             to="/account"
             class="login"
             :title="$t('header.login')"
@@ -79,7 +74,7 @@ defineExpose({
 .header {
   display: flex;
   width: 100%;
-  padding: 10px 25px;
+  padding: 10px 5px;
   overflow: hidden;
   background-color: $Black;
   flex-direction: row;
@@ -92,9 +87,9 @@ defineExpose({
     align-items: center;
     justify-content: center;
 
-    img {
+    svg {
       width: 60px;
-      height: auto;
+      height: 60px;
     }
 
     .name {

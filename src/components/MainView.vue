@@ -1,8 +1,12 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-import BlockHeaderVue from '@/components/BlockHeader.vue';
-import BlockFooterVue from '@/components/BlockFooter.vue';
+import { defineAsyncComponent, ref } from 'vue';
 
+const BlockHeaderVue = defineAsyncComponent(
+  () => import('@/components/BlockHeader.vue')
+);
+const BlockFooterVue = defineAsyncComponent(
+  () => import('@/components/BlockFooter.vue')
+);
 // Child event
 const headerRef = ref<InstanceType<typeof BlockHeaderVue> | null>(null);
 const headerMenuHandler = (): void => {
@@ -16,8 +20,8 @@ const headerMenuHandler = (): void => {
     <header>
       <BlockHeaderVue ref="headerRef" />
     </header>
-    <main class="wrapper" @touchstart="headerMenuHandler">
-      <slot></slot>
+    <main class="wrapper" @touchstart.passive="headerMenuHandler">
+      <slot />
     </main>
     <footer>
       <BlockFooterVue />

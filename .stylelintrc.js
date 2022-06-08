@@ -4,8 +4,8 @@ module.exports = {
   customSyntax: 'postcss-html',
   extends: [
     'stylelint-config-standard',
-    'stylelint-config-prettier',
     'stylelint-config-html',
+    'stylelint-config-prettier',
   ],
   overrides: [{ files: ['src/**/*.scss'], customSyntax: 'postcss-scss' }],
   rules: {

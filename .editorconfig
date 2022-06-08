@@ -3,10 +3,10 @@ root = true
 
 [*]
 charset = utf-8
-indent_style = space # indent style / 縮排格式 ( tab | space )
-indent_size = 2 # indent size / 缩排大小
-trim_trailing_whitespace = true # trim trailing whitespace / 去除行首空白
-insert_final_newline = true # insert final newline  / 於文件尾插入空行
+indent_style = space # indent style
+indent_size = 2 # indent size
+trim_trailing_whitespace = true # trim trailing whitespace
+insert_final_newline = true # insert final newline
 
 [*.md]
 max_line_length = off

@@ -1,14 +1,15 @@
 <script lang="ts" setup>
-import ToolLangSelector from './ToolLangSelector.vue';
+import { defineAsyncComponent } from 'vue';
+
+const ToolLangSelector = defineAsyncComponent(
+  () => import('./ToolLangSelector.vue')
+);
 </script>
 
 <template>
   <div class="footer">
     <div class="logo">
-      <img
-        src="https://raw.githubusercontent.com/Lipoic/Lipoic-Assets/main/logo/logo.svg"
-        alt="Lipoic"
-      />
+      <SvgIcon name="logo" />
     </div>
     <div v-t="'footer.copyright'" class="copyright" />
     <ToolLangSelector />
@@ -16,7 +17,7 @@ import ToolLangSelector from './ToolLangSelector.vue';
 </template>
 
 <style lang="scss" scoped>
-@import '../scss/global.scss';
+@import '@/scss/global.scss';
 
 .footer {
   position: relative;

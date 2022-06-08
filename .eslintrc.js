@@ -62,7 +62,8 @@ module.exports = {
     // no-unused-vars
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
-    'vue/no-unused-vars': ['error'],
+    // in vue no-unused-vars white list `_`
+    'vue/no-unused-vars': ['error', { ignorePattern: '^_' }],
 
     // use void
     'no-void': 'off',
@@ -79,9 +80,6 @@ module.exports = {
     // https://eslint.vuejs.org/rules/no-template-shadow.html
     'vue/no-template-shadow': 'off',
 
-    // ????? the role is bug
-    'vue/valid-attribute-name': 'off',
-
     // allow underscore-dangle
     'no-underscore-dangle': 'off',
 
@@ -93,8 +91,5 @@ module.exports = {
 
     // allow use ++ and --
     'no-plusplus': 'off',
-
-    // allow return void
-    'no-useless-return': 'off',
   },
 };

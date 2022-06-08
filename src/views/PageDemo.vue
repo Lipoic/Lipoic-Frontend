@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-import MainViewVue from '@/components/MainView.vue';
+import { defineAsyncComponent } from 'vue';
+
+const MainViewVue = defineAsyncComponent(
+  () => import('@/components/MainView.vue')
+);
 </script>
 
 <template>
