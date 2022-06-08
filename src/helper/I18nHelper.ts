@@ -67,9 +67,7 @@ export default class I18nHelper {
   }
 
   static setLocale(locale: string) {
-    if (this.i18n) this.i18n.global.locale = locale;
-
     localStorage.setItem('locale', locale);
-    this.setTitle();
+    location.reload();
   }
 }

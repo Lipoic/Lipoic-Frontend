@@ -3,9 +3,10 @@
     "Vue.volar",
     "esbenp.prettier-vscode",
     "Vue.vscode-typescript-vue-plugin",
-    "Lokalise.i18n-ally",
+    "lokalise.i18n-ally",
     "editorconfig.editorconfig",
     "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
     "ZixuanChen.vitest-explorer"
   ]
 }

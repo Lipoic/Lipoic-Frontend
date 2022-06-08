@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { defineAsyncComponent } from 'vue';
 import { Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
@@ -6,15 +7,16 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
-import TypingEffect from '@/components/TypingEffect.vue';
-
+const TypingEffect = defineAsyncComponent(
+  () => import('@/components/TypingEffect.vue')
+);
 const modules = [Pagination, Autoplay];
 </script>
 
 <template>
   <div class="intro">
     <ul class="circles">
-      <li v-for="key in 10" :key="key"></li>
+      <li v-for="_ in 10" v-once :key="_" />
     </ul>
     <div class="slideBlock">
       <swiper
@@ -68,23 +70,6 @@ const modules = [Pagination, Autoplay];
 @import '@/scss/rwd.breakPoint.scss';
 
 .intro {
-  padding: 20px 0;
-  width: 100%;
-  padding: 45px;
-  height: calc(100% - $FooterHeight - $HeaderHeight);
-  // footer height: 127px; header height: 80px
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background: linear-gradient(
-    -45deg,
-    rgba(181, 76, 255, 1) 0%,
-    rgb(84, 107, 237) 50%,
-    rgb(61, 163, 169) 100%
-  );
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
   @include pad {
     flex-direction: column-reverse;
     justify-content: center;
@@ -94,50 +79,76 @@ const modules = [Pagination, Autoplay];
     padding: 60px 0;
   }
 
+  position: relative;
+  // footer height: 127px; header height: 80px
+  display: flex;
+  width: 100%;
+  height: calc(100% - $FooterHeight - $HeaderHeight);
+  padding: 45px;
+  background: linear-gradient(
+    -45deg,
+    rgb(181 76 255 / 100%) 0%,
+    rgb(84 107 237) 50%,
+    rgb(61 163 169) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  align-items: center;
+  justify-content: center;
+
   .slideBlock {
-    margin-right: 80px;
     @include pad {
-      margin-right: 0;
       margin-top: 60px;
+      margin-right: 0;
     }
+
+    @include pad {
+      margin-bottom: 20px;
+    }
+
+    margin-right: 80px;
+
     .swiper {
-      max-width: 30vw;
-      width: 500px;
-      height: 500px;
-      max-height: 30vw;
-      border-radius: 15px;
       @include pad {
-        min-width: 250px;
-        min-height: 250px;
-        max-height: 70vw;
-        max-width: 70vw;
         width: 500px;
         height: 500px;
+        max-width: 70vw;
+        max-height: 70vw;
+        min-width: 250px;
+        min-height: 250px;
+
         img {
           width: 250px;
           height: 250px;
         }
       }
       @include phone {
+        max-width: 70vw;
+        max-height: 70vw;
         min-width: 250px;
         min-height: 250px;
-        max-height: 70vw;
-        max-width: 70vw;
+
         img {
           width: 250px;
           height: 250px;
         }
       }
+
+      width: 500px;
+      height: 500px;
+      max-width: 30vw;
+      max-height: 30vw;
+      border-radius: 15px;
+
       .swiper-slide {
-        background: {
-          color: $White;
-        }
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-
         border-radius: 15px;
+        background: {
+          color: $White;
+        }
 
         img {
           width: 300px;
@@ -145,53 +156,52 @@ const modules = [Pagination, Autoplay];
         }
       }
     }
-
-    @include pad {
-      margin-bottom: 20px;
-    }
   }
 
   .title {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-
-    z-index: 2;
-    width: 35%;
-
     @include pad {
       align-items: center;
       width: 80%;
     }
 
+    z-index: 2;
+    display: flex;
+    width: 35%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
     h1 {
-      color: $MainColor;
-      font-size: 4rem;
       @include phone {
-        text-align: center;
         font-size: 12vw;
+        text-align: center;
       }
+
+      font-size: 4rem;
+      color: $MainColor;
     }
+
     .container {
       max-width: 100%;
     }
+
     .loginBar {
       margin-top: 30px;
 
       a {
         @extend %link;
-        color: $MainColor;
-        font-weight: bold;
-        padding: 10px 30px;
-        transition: 0.2s ease-in-out;
         @include phone {
           padding: 10px 20px;
         }
 
+        padding: 10px 30px;
+        font-weight: bold;
+        color: $MainColor;
+        transition: 0.2s ease-in-out;
+
         &:hover {
-          background-color: $MainColor;
           color: $White;
+          background-color: $MainColor;
         }
 
         &.first {
@@ -203,6 +213,7 @@ const modules = [Pagination, Autoplay];
             left: 1px solid $MainColor;
           }
         }
+
         &.middle {
           border-radius: 0;
           border: {
@@ -212,6 +223,7 @@ const modules = [Pagination, Autoplay];
             left: 1px solid $MainColor;
           }
         }
+
         &.last {
           border-radius: 0 5px 5px 0;
           border: {
@@ -224,14 +236,16 @@ const modules = [Pagination, Autoplay];
       }
     }
   }
+
   .circles {
+    @import '@/scss/sq.scss';
+
     position: absolute;
+    top: 0;
     z-index: 1; // make the background layer to the bottom
     width: 100%;
     height: 100%;
     overflow: hidden;
-    top: 0;
-    @import '@/scss/sq.scss';
   }
 }
 </style>
