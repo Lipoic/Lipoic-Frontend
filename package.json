@@ -21,7 +21,7 @@
     "vite-plugin-svg-icons": "2.0.1",
     "vue": "3.2.37",
     "vue-i18n": "9.1.10",
-    "vue-router": "4.0.15"
+    "vue-router": "4.0.16"
   },
   "devDependencies": {
     "@types/node": "17.0.36",
