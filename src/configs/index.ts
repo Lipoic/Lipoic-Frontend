@@ -1,12 +1,12 @@
-import httpConfig from './http';
+import HttpConfig from './http';
 
-export interface configsType {
-  /** There are settings for requests */
-  http: typeof httpConfig;
+export interface Config {
+  /** Request and http configuration */
+  http: typeof HttpConfig;
 }
 
-export const configs: configsType = {
-  http: httpConfig,
+export const config: Config = {
+  http: HttpConfig,
 };
 
-export default configs;
+export default config;

@@ -2,7 +2,7 @@ import mitt from 'mitt';
 import { App as VueApp } from 'vue';
 
 import handError from './handError';
-import configs from '@/configs';
+import config from '@/configs';
 
 export type AppType = VueApp<Element>;
 
@@ -13,7 +13,7 @@ export default {
     handError(app);
 
     // global configs
-    app.config.globalProperties.options = configs;
+    app.config.globalProperties.options = config;
 
     // add emit
     app.provide('$mitt', mitt());

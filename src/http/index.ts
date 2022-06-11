@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-import configs, { statusCodes } from '@/configs/http';
+import configs from '@/configs/http';
 import { delay } from '@/utils';
 
 export type urlType = `/${string}`;
@@ -52,16 +52,20 @@ http.interceptors.request.use((config) => {
 });
 
 http.interceptors.response.use(
-  (rss) => {
-    const { config } = rss;
+  (response) => {
+    const { config } = response;
     // TODO add type
-    const { message, code } = rss.data;
+    const { message, code } = response.data;
     // TODO add notify vue component
-    if (Object.values(configs.SuccessCodes).includes(code) && config.notify) {
+    if (code === 200 && config.notify) {
       // TODO add success store message
     } else if (config.notifyError) {
       // TODO add error store message
-      const rejectData: resultErrorData = { data: rss.data, message, config };
+      const rejectData: resultErrorData = {
+        data: response.data,
+        message,
+        config,
+      };
       return Promise.reject(rejectData);
     }
   },
