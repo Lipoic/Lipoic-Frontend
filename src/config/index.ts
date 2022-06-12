@@ -5,7 +5,7 @@ export interface Config {
   http: HttpConfig;
 }
 
-export const defaultHttpConfig: HttpConfig = {
+const defaultHttpConfig: HttpConfig = {
   headers: {
     'content-type': 'application/json;charset=UTF-8',
   },
