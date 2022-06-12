@@ -28,20 +28,25 @@ export class HttpClient {
 
     this.axios.interceptors.request.use(this.requestHandler.bind(this));
 
+    this.axios.interceptors.response.use(
+      this.responseHandler.bind(this),
+      this.responseErrorHandler.bind(this)
     );
   }
 
-  async post<T>(
+  async post<T, G = Response<T>>(
     path: PathType,
     data?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<Response<T>> {
+  ): Promise<G> {
     return this.getRequestData(this.axios.post(path, data, config));
   }
 
+  async get<T, G = Response<T>>(
     path: PathType,
     params?: unknown,
     config?: AxiosRequestConfig
+  ): Promise<G> {
     return this.getRequestData(this.axios.get(path, { params, ...config }));
   }
 
@@ -125,6 +130,3 @@ declare module 'axios' {
 const client = new HttpClient();
 export const http = client.axios;
 export default client;
-const data = http.get<{
-  awa: string;
-}>('');
