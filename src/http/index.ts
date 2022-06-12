@@ -1,7 +1,8 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 import { delay } from '@/utils';
-import HttpConfig from '@/configs/http';
+import HttpConfig from '@/config/http';
+import globalConfig from '@/config';
 
 export interface resultErrorData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,23 +15,10 @@ export interface resultErrorData {
 
 export type PathType = `/${string}`;
 
-export const defaultHttpConfig: HttpConfig = {
-  headers: {
-    'content-type': 'application/json;charset=UTF-8',
-  },
-  relink: true,
-  retry: 2,
-  timeout: 5000,
-  notify: false,
-  notifyError: false,
-  baseURL: 'https://api.lipoic.org',
-  messageDuration: 4000,
-};
-
 export default class HttpClient {
   private axios: AxiosInstance;
 
-  constructor(config: Partial<HttpConfig> = defaultHttpConfig) {
+  constructor(config: Partial<HttpConfig> = globalConfig.http) {
     this.axios = axios.create(config);
 
     this.axios.interceptors.request.use((_config) => {
@@ -93,15 +81,14 @@ export default class HttpClient {
         if (
           status === 404 ||
           !_config.relink ||
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          _config.__retryCount >= (config.retry || defaultHttpConfig.retry!)
+          _config.__retryCount >= (config.retry || globalConfig.http.retry)
         )
           return Promise.reject(rejectData);
 
         _config.__retryCount += 1;
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        return delay(config.timeout || defaultHttpConfig.timeout!).then(() =>
+        return delay(config.timeout || globalConfig.http.timeout!).then(() =>
           this.axios(_config)
         );
       }
