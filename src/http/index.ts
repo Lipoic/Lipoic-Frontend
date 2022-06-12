@@ -26,9 +26,10 @@ export class HttpClient {
     this.config = <HttpConfig>deepAssign(globalConfig.http, config);
     this.axios = axios.create(this.config);
 
-    this.axios.interceptors.request.use((_) => this.requestHandler(_));
-    this.axios.interceptors.response.use(this.responseHandler, (error) =>
-      this.responseErrorHandler(error, this.config)
+    this.axios.interceptors.request.use(this.requestHandler.bind(this));
+    this.axios.interceptors.response.use(
+      this.responseHandler.bind(this),
+      this.responseErrorHandler.bind(this)
     );
   }
 
@@ -88,13 +89,10 @@ export class HttpClient {
     return response;
   }
 
-  private async responseErrorHandler<T>(
-    error: {
-      response?: AxiosResponse<Response<T>, unknown>;
-      config: AxiosRequestConfig;
-    },
-    _config: Partial<HttpConfig>
-  ) {
+  private async responseErrorHandler<T>(error: {
+    response?: AxiosResponse<Response<T>, unknown>;
+    config: AxiosRequestConfig;
+  }) {
     const { config } = error;
 
     if (error.response) {
@@ -118,7 +116,7 @@ export class HttpClient {
     config.__retryCount += 1;
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return delay(_config.timeout || globalConfig.http.timeout!).then(() =>
+    return delay(this.config.timeout || globalConfig.http.timeout!).then(() =>
       this.axios(config)
     );
   }
