@@ -19,7 +19,7 @@ export interface ResponseErrorData<T> extends Response<T> {
 export type PathType = `/${string}`;
 
 export class HttpClient {
-  public axios: AxiosInstance;
+  public readonly axios: AxiosInstance;
   private config: Partial<HttpConfig>;
 
   constructor(config: Partial<HttpConfig> = globalConfig.http) {
@@ -39,11 +39,9 @@ export class HttpClient {
     return this.getRequestData(this.axios.post(path, data, config));
   }
 
-  async get<T>(
     path: PathType,
     params?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<T> {
     return this.getRequestData(this.axios.get(path, { params, ...config }));
   }
 
@@ -127,3 +125,6 @@ declare module 'axios' {
 const client = new HttpClient();
 export const http = client.axios;
 export default client;
+const data = http.get<{
+  awa: string;
+}>('');
