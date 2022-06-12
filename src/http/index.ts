@@ -19,7 +19,7 @@ export interface ResponseErrorData<T> extends Response<T> {
 export type PathType = `/${string}`;
 
 export class HttpClient {
-  private axios: AxiosInstance;
+  public axios: AxiosInstance;
   private config: Partial<HttpConfig>;
 
   constructor(config: Partial<HttpConfig> = globalConfig.http) {
