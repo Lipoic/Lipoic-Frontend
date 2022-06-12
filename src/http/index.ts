@@ -123,6 +123,5 @@ declare module 'axios' {
   }
 }
 
-const _http = new HttpClient();
-export const http = _http.axios;
-export default _http;
+const client = new HttpClient();
+export default client;
