@@ -16,14 +16,14 @@ export interface resultErrorData {
 export type PathType = `/${string}`;
 
 export default class HttpClient {
-  public http: AxiosInstance;
+  public axios: AxiosInstance;
   private config: Partial<HttpConfig>;
 
   constructor(config: Partial<HttpConfig> = globalConfig.http) {
-    this.http = axios.create(config);
+    this.axios = axios.create(config);
     this.config = config;
 
-    const { http } = this;
+    const { axios: http } = this;
 
     http.interceptors.request.use(this.requestHandler.bind(this));
 
@@ -33,20 +33,32 @@ export default class HttpClient {
     );
   }
 
-  async post(path: PathType, data?: unknown, config?: AxiosRequestConfig) {
-    return await this.http.post(path, data, config).catch(Promise.reject);
+  async post(
+    path: PathType,
+    data?: unknown,
+    config?: AxiosRequestConfig
+  ): Promise<AxiosResponse> {
+    return await this.axios.post(path, data, config).catch(Promise.reject);
   }
 
-  async get(path: PathType, params?: unknown, config?: AxiosRequestConfig) {
-    return await this.http
+  async get(
+    path: PathType,
+    params?: unknown,
+    config?: AxiosRequestConfig
+  ): Promise<AxiosResponse> {
+    return await this.axios
       .get(path, { params, ...config })
       .catch(Promise.reject);
   }
 
-  async uploadFile(path: PathType, file: File, config?: AxiosRequestConfig) {
+  async uploadFile(
+    path: PathType,
+    file: File,
+    config?: AxiosRequestConfig
+  ): Promise<AxiosResponse> {
     const param = new FormData();
     param.append('file', file, file.name);
-    return await this.http
+    return await this.axios
       .post(path, param, {
         ...config,
         headers: { 'Content-Type': 'multipart/form-data' },
@@ -121,7 +133,7 @@ export default class HttpClient {
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return delay(this.config.timeout || globalConfig.http.timeout!).then(() =>
-      this.http(_config)
+      this.axios(_config)
     );
   }
 }
