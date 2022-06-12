@@ -14,7 +14,7 @@ const defaultHttpConfig: HttpConfig = {
   timeout: 1500,
   baseURL:
     import.meta.env.MODE === 'production'
-      ? 'https://api.lipoic.org'
+      ? 'https://lipoic-test-server.herokuapp.com' // TODO: change to https://api.lipoic.org
       : 'https://lipoic-test-server.herokuapp.com',
 };
 

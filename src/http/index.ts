@@ -9,7 +9,6 @@ import { deepAssign } from '@/utils/Object';
 export interface Response<T> {
   code: number;
   message: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: T;
 }
 
