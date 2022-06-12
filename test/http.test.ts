@@ -70,8 +70,14 @@ test('notfound path', async () => {
   );
 });
 
-test('unknown path', async () => {
+test('unknown path (enable reconnect)', async () => {
   const client = new HttpClient({ baseURL });
+
+  await expect(client.get('/abc')).rejects.toThrow();
+});
+
+test('unknown path (disable reconnect)', async () => {
+  const client = new HttpClient({ baseURL, reconnect: false });
 
   await expect(client.get('/abc')).rejects.toThrow();
 });

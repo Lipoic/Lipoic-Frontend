@@ -115,8 +115,6 @@ export class HttpClient {
     }
     config.__retryCount += 1;
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    await delay(this.config.timeout || globalConfig.http.timeout!);
     return await this.axios(config);
   }
 }
