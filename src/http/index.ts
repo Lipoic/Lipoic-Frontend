@@ -4,12 +4,15 @@ import { delay } from '@/utils';
 import HttpConfig from '@/config/http';
 import globalConfig from '@/config';
 
-export interface resultErrorData {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  error?: any;
+/// https://github.com/Lipoic/Lipoic-Server/blob/7b678356a6079a7255cd42cd708780e9093d056c/src/router/src/data/response.rs#L8
+export interface Response<T> {
+  code: number;
   message: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data?: T;
+}
+
+export interface ResponseErrorData<T> extends Response<T> {
   config: AxiosRequestConfig;
 }
 
@@ -25,28 +28,26 @@ export default class HttpClient {
 
     this.axios.interceptors.request.use(this.requestHandler.bind(this));
 
-    this.axios.interceptors.response.use(
-      this.responseHandler.bind(this),
-      this.responseErrorHandler.bind(this)
-    );
+    this.axios.interceptors.response.use(this.responseHandler.bind(this));
   }
 
-  async post(
+  async post<T>(
     path: PathType,
     data?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<AxiosResponse> {
-    return await this.axios.post(path, data, config).catch(Promise.reject);
+  ): Promise<Response<T>> {
+    return (await this.axios.post(path, data, config).catch(Promise.reject))
+      .data;
   }
 
-  async get(
+  async get<T>(
     path: PathType,
     params?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<AxiosResponse> {
-    return await this.axios
-      .get(path, { params, ...config })
-      .catch(Promise.reject);
+  ): Promise<Response<T>> {
+    return (
+      await this.axios.get(path, { params, ...config }).catch(Promise.reject)
+    ).data;
   }
 
   async uploadFile(
@@ -81,32 +82,20 @@ export default class HttpClient {
     return this.config;
   }
 
-  private responseHandler(_response: AxiosResponse) {
+  private responseHandler<T>(response: AxiosResponse<Response<T>, unknown>) {
+    this.responseErrorHandler(response);
     // TODO: success and error callback
   }
 
-  private async responseErrorHandler(err: {
-    response: resultErrorData & { status: number };
-  }) {
-    const { response } = err;
-
+  private async responseErrorHandler<T>(
+    response: AxiosResponse<Response<T>, unknown>
+  ) {
     const { config, data, status } = response;
     config.__retryCount ||= 0;
 
-    const msg =
-      (config.__retryCount === 0
-        ? 'error occurred:'
-        : `Reconnecting  ${config.__retryCount} times:`) +
-      JSON.stringify({
-        baseUrl: config.baseURL,
-        path: config.url,
-        error: data ? data.message : response.message,
-      });
-
-    const rejectData: resultErrorData = {
-      message: msg,
+    const errorData: ResponseErrorData<T> = {
+      ...data,
       config,
-      error: response,
     };
 
     if (
@@ -114,7 +103,7 @@ export default class HttpClient {
       !config.relink ||
       config.__retryCount >= (this.config.retry || globalConfig.http.retry)
     )
-      return Promise.reject(rejectData);
+      return Promise.reject(errorData);
 
     config.__retryCount += 1;
 
