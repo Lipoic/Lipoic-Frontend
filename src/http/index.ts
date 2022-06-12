@@ -75,18 +75,16 @@ export default class HttpClient {
     const { config } = response;
     // TODO add type
     const { message, code } = response.data;
-    // TODO add notify vue component
-    if (code === 200 && config.notify) {
-      // TODO add success store message
-    } else if (config.notifyError) {
-      // TODO add error store message
-      const result: resultErrorData = {
-        data: response.data,
-        message,
-        config,
-      };
-      return Promise.reject(result);
-    }
+    // TODO add notify callback
+    // if (code === 200 && config.notify) {
+    // } else if (config.notifyError) {
+    //   const result: resultErrorData = {
+    //     data: response.data,
+    //     message,
+    //     config,
+    //   };
+    //   return Promise.reject(result);
+    // }
   }
   protected async responseErrorHandler(err: {
     response: resultErrorData & { status: number };
@@ -133,8 +131,6 @@ declare module 'axios' {
     relink?: boolean;
     retry?: number;
     retryDelay?: number;
-    notify?: boolean;
-    notifyError?: boolean;
     __retryCount?: number;
   }
 }
