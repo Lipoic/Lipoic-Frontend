@@ -3,7 +3,6 @@ import axios, { AxiosRequestConfig } from 'axios';
 import configs from '@/configs/http';
 import { delay } from '@/utils';
 
-export type urlType = `/${string}`;
 export interface resultErrorData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: any;
@@ -99,10 +98,10 @@ http.interceptors.response.use(
   }
 );
 
-export const getUrl = (url: urlType) => `${configs.baseUrl}${url}`;
+export const getUrl = (path: string) => `${configs.baseUrl}/${path}`;
 
 export const post = async (
-  path: urlType,
+  path: string,
   params?: unknown,
   config?: AxiosRequestConfig
 ) => {
@@ -110,7 +109,7 @@ export const post = async (
 };
 
 export const get = async (
-  path: urlType,
+  path: string,
   params?: unknown,
   config?: AxiosRequestConfig
 ) => {
@@ -120,7 +119,7 @@ export const get = async (
 };
 
 export const uploadFile = async (
-  path: urlType,
+  path: string,
   file: File,
   config?: AxiosRequestConfig
 ) => {
