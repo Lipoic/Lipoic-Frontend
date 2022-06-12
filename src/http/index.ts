@@ -33,10 +33,6 @@ export class HttpClient {
     );
   }
 
-  public async getRequestData<T>(response: Promise<AxiosResponse>): Promise<T> {
-    return (await response).data;
-  }
-
   public async post<T, G = Response<T>>(
     path: PathType,
     data?: unknown,
@@ -66,6 +62,12 @@ export class HttpClient {
     config?: AxiosRequestConfig
   ): Promise<G> {
     return this.getRequestData(this.axios.delete(path, config));
+  }
+
+  private async getRequestData<T>(
+    response: Promise<AxiosResponse>
+  ): Promise<T> {
+    return (await response).data;
   }
 
   private requestHandler(config: AxiosRequestConfig) {
