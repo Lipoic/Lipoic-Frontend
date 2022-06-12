@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 
 export interface HttpConfig extends AxiosRequestConfig {
-  relink: boolean;
+  reconnect: boolean;
   retry: number;
 
   token?: string;

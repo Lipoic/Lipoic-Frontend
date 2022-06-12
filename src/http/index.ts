@@ -108,7 +108,7 @@ export class HttpClient {
 
     config.__retryCount ||= 0;
     if (
-      config.relink === false ||
+      config.reconnect === false ||
       config.__retryCount >= (config.retry ?? globalConfig.http.retry)
     ) {
       // TODO: error callback
@@ -126,7 +126,7 @@ export class HttpClient {
 
 declare module 'axios' {
   interface AxiosRequestConfig {
-    relink?: boolean;
+    reconnect?: boolean;
     retry?: number;
     __retryCount?: number;
   }

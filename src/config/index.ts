@@ -9,7 +9,7 @@ const defaultHttpConfig: HttpConfig = {
   headers: {
     'content-type': 'application/json;charset=UTF-8',
   },
-  relink: true,
+  reconnect: true,
   retry: 2,
   timeout: 1500,
   baseURL:
