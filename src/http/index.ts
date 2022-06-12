@@ -36,18 +36,19 @@ export class HttpClient {
     data?: unknown,
     config?: AxiosRequestConfig
   ): Promise<Response<T>> {
-    return (await this.axios.post(path, data, config).catch(Promise.reject))
-      .data;
+    return this.getRequestData(this.axios.post(path, data, config));
   }
 
   async get<T>(
     path: PathType,
     params?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<Response<T>> {
-    return (
-      await this.axios.get(path, { params, ...config }).catch(Promise.reject)
-    ).data;
+  ): Promise<T> {
+    return this.getRequestData(this.axios.get(path, { params, ...config }));
+  }
+
+  async getRequestData(request: Promise<AxiosResponse>) {
+    return await request.catch(() => ({ data: void 0 })).then((_) => _.data);
   }
 
   async uploadFile(
@@ -124,4 +125,5 @@ declare module 'axios' {
 }
 
 const client = new HttpClient();
+export const http = client.axios;
 export default client;
