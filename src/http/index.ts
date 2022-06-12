@@ -15,7 +15,7 @@ export interface resultErrorData {
 
 export type PathType = `/${string}`;
 
-export default class HttpClient {
+export class HttpClient {
   public axios: AxiosInstance;
   private config: Partial<HttpConfig>;
 
@@ -133,3 +133,7 @@ declare module 'axios' {
     __retryCount?: number;
   }
 }
+
+const _http = new HttpClient();
+export const http = _http.axios;
+export default _http;
