@@ -23,11 +23,9 @@ export default class HttpClient {
     this.axios = axios.create(config);
     this.config = config;
 
-    const { axios: http } = this;
+    this.axios.interceptors.request.use(this.requestHandler.bind(this));
 
-    http.interceptors.request.use(this.requestHandler.bind(this));
-
-    http.interceptors.response.use(
+    this.axios.interceptors.response.use(
       this.responseHandler.bind(this),
       this.responseErrorHandler.bind(this)
     );
@@ -66,7 +64,7 @@ export default class HttpClient {
       .catch(Promise.reject);
   }
 
-  protected requestHandler(_config: AxiosRequestConfig<unknown>) {
+  private requestHandler(_config: AxiosRequestConfig<unknown>) {
     _config.headers = {
       ..._config.headers,
       ...this.config.headers,
@@ -82,23 +80,12 @@ export default class HttpClient {
 
     return this.config;
   }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  protected responseHandler(response: AxiosResponse<any, any>) {
-    const { config } = response;
-    // TODO add type
-    const { message, code } = response.data;
-    // TODO add notify callback
-    // if (code === 200 && config.notify) {
-    // } else if (config.notifyError) {
-    //   const result: resultErrorData = {
-    //     data: response.data,
-    //     message,
-    //     config,
-    //   };
-    //   return Promise.reject(result);
-    // }
+
+  private responseHandler(response: AxiosResponse) {
+    // TODO: success and error callback
   }
-  protected async responseErrorHandler(err: {
+
+  private async responseErrorHandler(err: {
     response: resultErrorData & { status: number };
   }) {
     const error = err.response;
