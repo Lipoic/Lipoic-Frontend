@@ -5,22 +5,38 @@ import { HttpClient } from '@/http';
 
 const baseURL = 'http://localhost:8000';
 
-const home = {
+const getResponse = {
   code: 200,
   message: 'ok',
   data: 'hello world',
 };
 
+const postResponse = {
+  code: 200,
+  message: 'ok',
+  data: 'success created data',
+};
+
 test('get method', async () => {
   const client = new HttpClient({ baseURL });
-  const response = await client.get('/');
+  const response = await client.get('/get');
 
-  expect(response).toEqual(home);
+  expect(response).toEqual(getResponse);
+});
+
+test('post method', async () => {
+  const client = new HttpClient({ baseURL });
+  const response = await client.post('/post');
+
+  expect(response).toEqual(postResponse);
 });
 
 export const restHandlers = [
-  rest.get(`${baseURL}/`, (_req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(home));
+  rest.get(`${baseURL}/get`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(getResponse));
+  }),
+  rest.post(`${baseURL}/post`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(postResponse));
   }),
 ];
 
