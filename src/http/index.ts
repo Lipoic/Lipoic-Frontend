@@ -3,6 +3,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { delay } from '@/utils';
 import HttpConfig from '@/config/http';
 import globalConfig from '@/config';
+import { deepAssign } from '@/utils/Object';
 
 /// https://github.com/Lipoic/Lipoic-Server/blob/7b678356a6079a7255cd42cd708780e9093d056c/src/router/src/data/response.rs#L8
 export interface Response<T> {
@@ -24,7 +25,7 @@ export class HttpClient {
 
   constructor(config: Partial<HttpConfig> = globalConfig.http) {
     this.axios = axios.create(config);
-    this.config = config;
+    this.config = <HttpConfig>deepAssign(globalConfig.http, config);
 
     this.axios.interceptors.request.use((_) => this.requestHandler(_));
     this.axios.interceptors.response.use(
