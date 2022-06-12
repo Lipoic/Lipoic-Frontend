@@ -26,32 +26,31 @@ export class HttpClient {
     this.axios = axios.create(config);
     this.config = config;
 
-    this.axios.interceptors.request.use(this.requestHandler.bind(this));
-
+    this.axios.interceptors.request.use((_) => this.requestHandler(_));
     this.axios.interceptors.response.use(
-      this.responseHandler.bind(this),
-      this.responseErrorHandler.bind(this)
+      (_) => this.responseHandler(_),
+      (_) => this.responseErrorHandler(_)
     );
   }
 
-  async post<T, G = Response<T>>(
+  async post<T>(
     path: PathType,
     data?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<G> {
+  ): Promise<Response<T>> {
     return this.getRequestData(this.axios.post(path, data, config));
   }
 
-  async get<T, G = Response<T>>(
+  async get<T>(
     path: PathType,
     params?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<G> {
+  ): Promise<Response<T>> {
     return this.getRequestData(this.axios.get(path, { params, ...config }));
   }
 
-  async getRequestData(request: Promise<AxiosResponse>) {
-    return await request.catch(() => ({ data: void 0 })).then((_) => _.data);
+  async getRequestData(response: Promise<AxiosResponse>) {
+    return (await response).data;
   }
 
   async uploadFile(
@@ -69,26 +68,26 @@ export class HttpClient {
       .catch(Promise.reject);
   }
 
-  private requestHandler(_config: AxiosRequestConfig<unknown>) {
-    _config.headers = {
-      ..._config.headers,
+  private requestHandler(config: AxiosRequestConfig) {
+    config.headers = {
+      ...config.headers,
       ...this.config.headers,
     };
 
-    _config.retry ??= this.config.retry;
-    _config.retryDelay ??= this.config.timeout;
+    config.retry ??= this.config.retry;
+    config.retryDelay ??= this.config.timeout;
 
     if (this.config.token) {
       // TODO add token from stores.user.token & stores.user.type
-      _config.headers.Authorization = `Bearer ${this.config.token}`;
+      config.headers.Authorization = `Bearer ${this.config.token}`;
     }
 
-    return this.config;
+    return config;
   }
 
   private responseHandler<T>(response: AxiosResponse<Response<T>, unknown>) {
-    this.responseErrorHandler(response);
     // TODO: success and error callback
+    return response;
   }
 
   private async responseErrorHandler<T>(
@@ -128,5 +127,4 @@ declare module 'axios' {
 }
 
 const client = new HttpClient();
-export const http = client.axios;
 export default client;
