@@ -11,6 +11,7 @@ export interface resultErrorData {
   message: string;
   config: AxiosRequestConfig;
 }
+export type PathType = `/${string}`;
 
 const { CancelToken } = axios;
 const source = CancelToken.source();
@@ -59,12 +60,12 @@ http.interceptors.response.use(
       // TODO add success store message
     } else if (config.notifyError) {
       // TODO add error store message
-      const rejectData: resultErrorData = {
+      const result: resultErrorData = {
         data: response.data,
         message,
         config,
       };
-      return Promise.reject(rejectData);
+      return Promise.reject(result);
     }
   },
   async (err: { response: resultErrorData & { status: number } }) => {
@@ -98,35 +99,31 @@ http.interceptors.response.use(
   }
 );
 
-export const getUrl = (path: string) => `${configs.baseUrl}/${path}`;
-
 export const post = async (
-  path: string,
+  path: PathType,
   params?: unknown,
   config?: AxiosRequestConfig
 ) => {
-  return await http.post(getUrl(path), params, config).catch(Promise.reject);
+  return await http.post(path, params, config).catch(Promise.reject);
 };
 
 export const get = async (
-  path: string,
+  path: PathType,
   params?: unknown,
   config?: AxiosRequestConfig
 ) => {
-  return await http
-    .get(getUrl(path), { params, ...config })
-    .catch(Promise.reject);
+  return await http.get(path, { params, ...config }).catch(Promise.reject);
 };
 
 export const uploadFile = async (
-  path: string,
+  path: PathType,
   file: File,
   config?: AxiosRequestConfig
 ) => {
   const param = new FormData();
   param.append('file', file, file.name);
   return await http
-    .post(getUrl(path), param, {
+    .post(path, param, {
       ...config,
       headers: { 'Content-Type': 'multipart/form-data' },
     })
