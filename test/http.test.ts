@@ -29,6 +29,11 @@ const deleteResponse = {
   data: 'success deleted data',
 };
 
+const notfoundResponse = {
+  code: 404,
+  message: 'Resource not found.',
+};
+
 test('get method', async () => {
   const client = new HttpClient({ baseURL });
   const response = await client.get('/item');
@@ -57,6 +62,14 @@ test('delete method', async () => {
   expect(response).toEqual(deleteResponse);
 });
 
+test('notfound path', async () => {
+  const client = new HttpClient({ baseURL });
+
+  await expect(client.get('/test')).rejects.toThrowError(
+    /^Resource not found.$/
+  );
+});
+
 export const restHandlers = [
   rest.get(`${baseURL}/item`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json(getResponse));
@@ -69,6 +82,9 @@ export const restHandlers = [
   }),
   rest.delete(`${baseURL}/item`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json(deleteResponse));
+  }),
+  rest.all(`${baseURL}/test`, (_req, res, ctx) => {
+    return res(ctx.status(404), ctx.json(notfoundResponse));
   }),
 ];
 
