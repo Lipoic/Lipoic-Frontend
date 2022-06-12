@@ -32,6 +32,10 @@ export class HttpClient {
     );
   }
 
+  private async getRequestData(response: Promise<AxiosResponse>) {
+    return (await response).data;
+  }
+
   async post<T>(
     path: PathType,
     data?: unknown,
@@ -46,10 +50,6 @@ export class HttpClient {
     config?: AxiosRequestConfig
   ): Promise<Response<T>> {
     return this.getRequestData(this.axios.get(path, { params, ...config }));
-  }
-
-  async getRequestData(response: Promise<AxiosResponse>) {
-    return (await response).data;
   }
 
   async uploadFile(
@@ -90,26 +90,29 @@ export class HttpClient {
 
   private async responseErrorHandler<T>(
     error: {
-      response: AxiosResponse<Response<T>, unknown>;
+      response?: AxiosResponse<Response<T>, unknown>;
+      config: AxiosRequestConfig;
     },
     _config: Partial<HttpConfig>
   ) {
-    const { config, data, status } = error.response;
-    config.__retryCount ||= 0;
+    const { config } = error;
 
-    const errorData: ResponseErrorData<T> = {
-      ...data,
-      config,
-    };
+    if (error.response) {
+      const errorData: ResponseErrorData<T> = {
+        ...error.response.data,
+        config,
+      };
 
-    if (
-      status === 404 ||
-      config.relink === false ||
-      config.__retryCount >= (_config.retry || globalConfig.http.retry)
-    ) {
       return Promise.reject(errorData);
     }
 
+    config.__retryCount ||= 0;
+    if (
+      config.relink === false ||
+      config.__retryCount >= (config.retry || globalConfig.http.retry)
+    ) {
+      return Promise.reject(error);
+    }
     config.__retryCount += 1;
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
