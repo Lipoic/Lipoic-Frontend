@@ -33,38 +33,38 @@ export class HttpClient {
     );
   }
 
-  private async getRequestData(response: Promise<AxiosResponse>) {
+  public async getRequestData<T>(response: Promise<AxiosResponse>): Promise<T> {
     return (await response).data;
   }
 
-  async post<T>(
+  public async post<T, G = Response<T>>(
     path: PathType,
     data?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<Response<T>> {
+  ): Promise<G> {
     return this.getRequestData(this.axios.post(path, data, config));
   }
 
-  async get<T>(
+  public async get<T, G = Response<T>>(
     path: PathType,
     params?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<Response<T>> {
+  ): Promise<G> {
     return this.getRequestData(this.axios.get(path, { params, ...config }));
   }
 
-  async patch<T>(
+  public async patch<T, G = Response<T>>(
     path: PathType,
     data?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<Response<T>> {
+  ): Promise<G> {
     return this.getRequestData(this.axios.patch(path, data, config));
   }
 
-  async delete<T>(
+  public async delete<T, G = Response<T>>(
     path: PathType,
     config?: AxiosRequestConfig
-  ): Promise<Response<T>> {
+  ): Promise<G> {
     return this.getRequestData(this.axios.delete(path, config));
   }
 
@@ -84,7 +84,7 @@ export class HttpClient {
     return config;
   }
 
-  private responseHandler<T>(response: AxiosResponse<Response<T>, unknown>) {
+  private responseHandler(response: AxiosResponse<unknown, unknown>) {
     // TODO: success callback
     return response;
   }
@@ -107,7 +107,7 @@ export class HttpClient {
     config.__retryCount ||= 0;
     if (
       config.relink === false ||
-      config.__retryCount >= (config.retry || globalConfig.http.retry)
+      config.__retryCount >= (config.retry ?? globalConfig.http.retry)
     ) {
       // TODO: error callback
 
@@ -131,4 +131,5 @@ declare module 'axios' {
 }
 
 const client = new HttpClient();
+export const http = client.axios;
 export default client;
