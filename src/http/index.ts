@@ -52,19 +52,19 @@ export class HttpClient {
     return this.getRequestData(this.axios.get(path, { params, ...config }));
   }
 
-  async uploadFile(
+  async patch<T>(
     path: PathType,
-    file: File,
+    data?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<AxiosResponse> {
-    const param = new FormData();
-    param.append('file', file, file.name);
-    return await this.axios
-      .post(path, param, {
-        ...config,
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })
-      .catch(Promise.reject);
+  ): Promise<Response<T>> {
+    return this.getRequestData(this.axios.patch(path, data, config));
+  }
+
+  async delete<T>(
+    path: PathType,
+    config?: AxiosRequestConfig
+  ): Promise<Response<T>> {
+    return this.getRequestData(this.axios.delete(path, config));
   }
 
   private requestHandler(config: AxiosRequestConfig) {
@@ -76,7 +76,7 @@ export class HttpClient {
     config.retry ??= this.config.retry;
 
     if (this.config.token) {
-      // TODO add token from stores.user.token & stores.user.type
+      // TODO add token from stores
       config.headers.Authorization = `Bearer ${this.config.token}`;
     }
 
@@ -84,7 +84,7 @@ export class HttpClient {
   }
 
   private responseHandler<T>(response: AxiosResponse<Response<T>, unknown>) {
-    // TODO: success and error callback
+    // TODO: success callback
     return response;
   }
 
@@ -111,6 +111,8 @@ export class HttpClient {
       config.relink === false ||
       config.__retryCount >= (config.retry || globalConfig.http.retry)
     ) {
+      // TODO: error callback
+
       return Promise.reject(error);
     }
     config.__retryCount += 1;
