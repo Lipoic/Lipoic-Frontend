@@ -76,8 +76,6 @@ export class HttpClient {
       ...this.config.headers,
     };
 
-    config.retry ??= this.config.retry;
-
     if (this.config.token) {
       // TODO add token from stores
       config.headers.Authorization = `Bearer ${this.config.token}`;
@@ -93,7 +91,7 @@ export class HttpClient {
 
   private async responseErrorHandler<T>(error: {
     response?: AxiosResponse<Response<T>, unknown>;
-    config: AxiosRequestConfig;
+    config: HttpConfig;
   }) {
     const { config } = error;
 
@@ -118,16 +116,13 @@ export class HttpClient {
     config.__retryCount += 1;
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return delay(this.config.timeout || globalConfig.http.timeout!).then(() =>
-      this.axios(config)
-    );
+    await delay(this.config.timeout || globalConfig.http.timeout!);
+    return await this.axios(config);
   }
 }
 
 declare module 'axios' {
   interface AxiosRequestConfig {
-    reconnect?: boolean;
-    retry?: number;
     __retryCount?: number;
   }
 }
