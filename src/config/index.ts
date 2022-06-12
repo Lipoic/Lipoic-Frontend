@@ -11,8 +11,11 @@ const defaultHttpConfig: HttpConfig = {
   },
   relink: true,
   retry: 2,
-  timeout: 3000,
-  baseURL: 'https://api.lipoic.org',
+  timeout: 1500,
+  baseURL:
+    import.meta.env.MODE === 'production'
+      ? 'https://api.lipoic.org'
+      : 'https://lipoic-test-server.herokuapp.com',
 };
 
 export const globalConfig: Config = {

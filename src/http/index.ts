@@ -24,8 +24,8 @@ export class HttpClient {
   private readonly config: Partial<HttpConfig>;
 
   constructor(config: Partial<HttpConfig> = globalConfig.http) {
-    this.axios = axios.create(config);
     this.config = <HttpConfig>deepAssign(globalConfig.http, config);
+    this.axios = axios.create(this.config);
 
     this.axios.interceptors.request.use((_) => this.requestHandler(_));
     this.axios.interceptors.response.use(this.responseHandler, (error) =>
