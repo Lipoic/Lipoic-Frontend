@@ -81,46 +81,46 @@ export default class HttpClient {
     return this.config;
   }
 
-  private responseHandler(response: AxiosResponse) {
+  private responseHandler(_response: AxiosResponse) {
     // TODO: success and error callback
   }
 
   private async responseErrorHandler(err: {
     response: resultErrorData & { status: number };
   }) {
-    const error = err.response;
+    const { response } = err;
 
-    const { config: _config, status, data } = error;
-    _config.__retryCount ||= 0;
+    const { config, data, status } = response;
+    config.__retryCount ||= 0;
 
     const msg =
-      (_config.__retryCount === 0
+      (config.__retryCount === 0
         ? 'error occurred:'
-        : `Reconnecting  ${_config.__retryCount} times:`) +
+        : `Reconnecting  ${config.__retryCount} times:`) +
       JSON.stringify({
-        baseUrl: _config.baseURL,
-        path: _config.url,
-        error: data ? data.message : error.message,
+        baseUrl: config.baseURL,
+        path: config.url,
+        error: data ? data.message : response.message,
       });
 
     const rejectData: resultErrorData = {
       message: msg,
-      config: _config,
-      error,
+      config,
+      error: response,
     };
 
     if (
       status === 404 ||
-      !_config.relink ||
-      _config.__retryCount >= (this.config.retry || globalConfig.http.retry)
+      !config.relink ||
+      config.__retryCount >= (this.config.retry || globalConfig.http.retry)
     )
       return Promise.reject(rejectData);
 
-    _config.__retryCount += 1;
+    config.__retryCount += 1;
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return delay(this.config.timeout || globalConfig.http.timeout!).then(() =>
-      this.axios(_config)
+      this.axios(config)
     );
   }
 }
