@@ -70,6 +70,12 @@ test('notfound path', async () => {
   );
 });
 
+test('unknown path', async () => {
+  const client = new HttpClient({ baseURL });
+
+  await expect(client.get('/abc')).rejects.toThrow();
+});
+
 export const restHandlers = [
   rest.get(`${baseURL}/item`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json(getResponse));
