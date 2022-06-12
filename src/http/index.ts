@@ -21,16 +21,15 @@ export type PathType = `/${string}`;
 
 export class HttpClient {
   public readonly axios: AxiosInstance;
-  private config: Partial<HttpConfig>;
+  private readonly config: Partial<HttpConfig>;
 
   constructor(config: Partial<HttpConfig> = globalConfig.http) {
     this.axios = axios.create(config);
     this.config = <HttpConfig>deepAssign(globalConfig.http, config);
 
     this.axios.interceptors.request.use((_) => this.requestHandler(_));
-    this.axios.interceptors.response.use(
-      (_) => this.responseHandler(_),
-      (_) => this.responseErrorHandler(_)
+    this.axios.interceptors.response.use(this.responseHandler, (error) =>
+      this.responseErrorHandler(error, this.config)
     );
   }
 
@@ -76,7 +75,6 @@ export class HttpClient {
     };
 
     config.retry ??= this.config.retry;
-    config.retryDelay ??= this.config.timeout;
 
     if (this.config.token) {
       // TODO add token from stores.user.token & stores.user.type
@@ -92,9 +90,12 @@ export class HttpClient {
   }
 
   private async responseErrorHandler<T>(
-    response: AxiosResponse<Response<T>, unknown>
+    error: {
+      response: AxiosResponse<Response<T>, unknown>;
+    },
+    _config: Partial<HttpConfig>
   ) {
-    const { config, data, status } = response;
+    const { config, data, status } = error.response;
     config.__retryCount ||= 0;
 
     const errorData: ResponseErrorData<T> = {
@@ -104,15 +105,16 @@ export class HttpClient {
 
     if (
       status === 404 ||
-      !config.relink ||
-      config.__retryCount >= (this.config.retry || globalConfig.http.retry)
-    )
+      config.relink === false ||
+      config.__retryCount >= (_config.retry || globalConfig.http.retry)
+    ) {
       return Promise.reject(errorData);
+    }
 
     config.__retryCount += 1;
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return delay(this.config.timeout || globalConfig.http.timeout!).then(() =>
+    return delay(_config.timeout || globalConfig.http.timeout!).then(() =>
       this.axios(config)
     );
   }
@@ -122,7 +124,6 @@ declare module 'axios' {
   interface AxiosRequestConfig {
     relink?: boolean;
     retry?: number;
-    retryDelay?: number;
     __retryCount?: number;
   }
 }

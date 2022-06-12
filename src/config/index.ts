@@ -11,10 +11,8 @@ const defaultHttpConfig: HttpConfig = {
   },
   relink: true,
   retry: 2,
-  timeout: 5000,
-  notifyError: false,
+  timeout: 3000,
   baseURL: 'https://api.lipoic.org',
-  messageDuration: 4000,
 };
 
 export const globalConfig: Config = {
