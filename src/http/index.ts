@@ -1,7 +1,7 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import configs from '@/configs/http';
 import { delay } from '@/utils';
+import HttpConfig from '@/configs/http';
 
 export interface resultErrorData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -11,124 +11,124 @@ export interface resultErrorData {
   message: string;
   config: AxiosRequestConfig;
 }
+
 export type PathType = `/${string}`;
 
-const { CancelToken } = axios;
-const source = CancelToken.source();
-
-const http = axios.create({
-  baseURL: configs.baseUrl,
-  withCredentials: true,
-  cancelToken: source.token,
-  timeout: configs.retryDelay,
-});
-
-http.interceptors.request.use((config) => {
-  const { url } = config;
-
-  config.headers = {
-    ...configs.headers,
-    ...config.headers,
-  };
-
-  if (config.retry === void 0) config.retry = configs.retry;
-  if (config.retryDelay === void 0) config.retryDelay = configs.retryDelay;
-  if (config.retryDelay === void 0) config.retryDelay = configs.retryDelay;
-  if (config.retryDelay === void 0) config.retryDelay = configs.retryDelay;
-  if (config.retryDelay === void 0) config.retryDelay = configs.retryDelay;
-
-  if (
-    url &&
-    configs.allowTokenUrl.some((item) => {
-      return item instanceof RegExp ? item.test(url) : url.includes(item);
-    })
-  ) {
-    // TODO add token from stores.user.token & stores.user.type
-    config.headers.Authorization = `Bearer `;
-  }
-
-  return config;
-});
-
-http.interceptors.response.use(
-  (response) => {
-    const { config } = response;
-    // TODO add type
-    const { message, code } = response.data;
-    // TODO add notify vue component
-    if (code === 200 && config.notify) {
-      // TODO add success store message
-    } else if (config.notifyError) {
-      // TODO add error store message
-      const result: resultErrorData = {
-        data: response.data,
-        message,
-        config,
-      };
-      return Promise.reject(result);
-    }
+export const defaultHttpConfig: HttpConfig = {
+  headers: {
+    'content-type': 'application/json;charset=UTF-8',
   },
-  async (err: { response: resultErrorData & { status: number } }) => {
-    const error = err.response;
+  relink: true,
+  retry: 2,
+  timeout: 5000,
+  notify: false,
+  notifyError: false,
+  baseURL: 'https://api.lipoic.org',
+  messageDuration: 4000,
+};
 
-    const { config, status, data } = error;
-    config.__retryCount ||= 0;
+export default class HttpClient {
+  private axios: AxiosInstance;
 
-    const msg =
-      (config.__retryCount === 0
-        ? 'error occurred:'
-        : `Reconnecting  ${config.__retryCount} times:`) +
-      JSON.stringify({
-        baseUrl: config.baseURL,
-        path: config.url,
-        error: data ? data.message : error.message,
-      });
+  constructor(config: Partial<HttpConfig> = defaultHttpConfig) {
+    this.axios = axios.create(config);
 
-    const rejectData: resultErrorData = { message: msg, config, error };
+    this.axios.interceptors.request.use((_config) => {
+      _config.headers = {
+        ..._config.headers,
+        ...config.headers,
+      };
 
-    if (
-      status === 404 ||
-      !config?.relink ||
-      config.__retryCount >= configs.retry
-    )
-      return Promise.reject(rejectData);
+      if (_config.retry === undefined) _config.retry = config.retry;
+      if (_config.retryDelay === undefined) _config.retryDelay = config.timeout;
 
-    config.__retryCount += 1;
+      if (config.token) {
+        // TODO add token from stores.user.token & stores.user.type
+        _config.headers.Authorization = `Bearer ${config.token}`;
+      }
 
-    return delay(configs.retryDelay).then(() => http(config));
+      return config;
+    });
+
+    this.axios.interceptors.response.use(
+      (response) => {
+        const { config } = response;
+        // TODO add type
+        const { message, code } = response.data;
+        // TODO add notify vue component
+        if (code === 200 && config.notify) {
+          // TODO add success store message
+        } else if (config.notifyError) {
+          // TODO add error store message
+          const result: resultErrorData = {
+            data: response.data,
+            message,
+            config,
+          };
+          return Promise.reject(result);
+        }
+      },
+      async (err: { response: resultErrorData & { status: number } }) => {
+        const error = err.response;
+
+        const { config: _config, status, data } = error;
+        _config.__retryCount ||= 0;
+
+        const msg =
+          (_config.__retryCount === 0
+            ? 'error occurred:'
+            : `Reconnecting  ${_config.__retryCount} times:`) +
+          JSON.stringify({
+            baseUrl: _config.baseURL,
+            path: _config.url,
+            error: data ? data.message : error.message,
+          });
+
+        const rejectData: resultErrorData = {
+          message: msg,
+          config: _config,
+          error,
+        };
+
+        if (
+          status === 404 ||
+          !_config.relink ||
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          _config.__retryCount >= (config.retry || defaultHttpConfig.retry!)
+        )
+          return Promise.reject(rejectData);
+
+        _config.__retryCount += 1;
+
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return delay(config.timeout || defaultHttpConfig.timeout!).then(() =>
+          this.axios(_config)
+        );
+      }
+    );
   }
-);
 
-export const post = async (
-  path: PathType,
-  params?: unknown,
-  config?: AxiosRequestConfig
-) => {
-  return await http.post(path, params, config).catch(Promise.reject);
-};
+  async post(path: PathType, data?: unknown, config?: AxiosRequestConfig) {
+    return await this.axios.post(path, data, config).catch(Promise.reject);
+  }
 
-export const get = async (
-  path: PathType,
-  params?: unknown,
-  config?: AxiosRequestConfig
-) => {
-  return await http.get(path, { params, ...config }).catch(Promise.reject);
-};
+  async get(path: PathType, params?: unknown, config?: AxiosRequestConfig) {
+    return await this.axios
+      .get(path, { params, ...config })
+      .catch(Promise.reject);
+  }
 
-export const uploadFile = async (
-  path: PathType,
-  file: File,
-  config?: AxiosRequestConfig
-) => {
-  const param = new FormData();
-  param.append('file', file, file.name);
-  return await http
-    .post(path, param, {
-      ...config,
-      headers: { 'Content-Type': 'multipart/form-data' },
-    })
-    .catch(Promise.reject);
-};
+  async uploadFile(path: PathType, file: File, config?: AxiosRequestConfig) {
+    const param = new FormData();
+    param.append('file', file, file.name);
+    return await this.axios
+      .post(path, param, {
+        ...config,
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .catch(Promise.reject);
+  }
+}
 
 declare module 'axios' {
   interface AxiosRequestConfig {

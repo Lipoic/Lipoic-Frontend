@@ -1,21 +1,16 @@
-export const HttpConfig = {
-  headers: {
-    'content-type': 'application/json;charset=UTF-8',
-  },
-  relink: true,
-  retry: 2,
-  retryDelay: 5e3,
-  /** notify on success */
-  notify: false,
+import { AxiosRequestConfig } from 'axios';
+
+export interface HttpConfig extends AxiosRequestConfig {
+  headers: { [key: string]: string };
+  relink: boolean;
+  retry: number;
   /** notify on error */
-  notifyError: false,
-  baseUrl: 'https://api.lipoic.org',
-  /** allow add token url
-   * @type {(string|RegExp)[]}
-   */
-  allowTokenUrl: [/^\//],
+  notifyError: boolean;
   /** message duration of errors or warnings */
-  messageDuration: 4e3,
-};
+  messageDuration: number;
+  token?: string;
+
+  __retryCount?: number;
+}
 
 export default HttpConfig;
