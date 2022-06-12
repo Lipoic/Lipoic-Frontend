@@ -28,7 +28,7 @@ export class HttpClient {
 
     this.axios.interceptors.request.use(this.requestHandler.bind(this));
 
-    this.axios.interceptors.response.use(this.responseHandler.bind(this));
+    );
   }
 
   async post<T>(
