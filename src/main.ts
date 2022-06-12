@@ -11,7 +11,6 @@ import FirebaseHelper from './helper/FirebaseHelper';
 
 import router from '@/router';
 import plugin from '@/plugin';
-import HttpClient from './http';
 
 const App = defineAsyncComponent(() => import('@/MainApp.vue'));
 const SvgIconComponent = defineAsyncComponent(
