@@ -1963,14 +1963,14 @@
   resolved "https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.1.4.tgz"
   integrity sha512-IiA0SvDrJEgXvVxjNkHPFfDx6SXw0b/TUkqMcDZWNg9fnCAHbTpoo59YfJ9QLFkwa3raau5vSlRVzMSLDnfdtQ==
 
-"@vue/eslint-config-typescript@10.0.0":
-  version "10.0.0"
-  resolved "https://registry.npmjs.org/@vue/eslint-config-typescript/-/eslint-config-typescript-10.0.0.tgz"
-  integrity sha512-F94cL8ug3FaYXlCfU5/wiGjk1qeadmoBpRGAOBq+qre3Smdupa59dd6ZJrsfRODpsMPyTG7330juMDsUvpZ3Rw==
+"@vue/eslint-config-typescript@11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@vue/eslint-config-typescript/-/eslint-config-typescript-11.0.0.tgz#bac0cb2d381625b5bf568d2025acffc0fd09113e"
+  integrity sha512-txuRzxnQVmtUvvy9UyWUy9sHWXNeRPGmSPqP53hRtaiUeCTAondI9Ho9GQYI/8/eWljYOST7iA4Aa8sANBkWaA==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.0.0"
     "@typescript-eslint/parser" "^5.0.0"
-    vue-eslint-parser "^8.0.0"
+    vue-eslint-parser "^9.0.0"
 
 "@vue/reactivity-transform@3.2.37":
   version "3.2.37"
@@ -3250,7 +3250,7 @@ eslint-scope@^5.1.1:
     esrecurse "^4.3.0"
     estraverse "^4.1.1"
 
-eslint-scope@^7.0.0, eslint-scope@^7.1.1:
+eslint-scope@^7.1.1:
   version "7.1.1"
   resolved "https://registry.npmjs.org/eslint-scope/-/eslint-scope-7.1.1.tgz"
   integrity sha512-QKQM/UXpIiHcLqJ5AOyIW7XZmzjkzQXYE54n1++wb0u9V/abW3l9uQnxX8Z5Xd18xyKIMTUAyQ0k1e8pz6LUrw==
@@ -3270,7 +3270,7 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-2.1.0.tgz"
   integrity sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==
 
-eslint-visitor-keys@^3.1.0, eslint-visitor-keys@^3.3.0:
+eslint-visitor-keys@^3.3.0:
   version "3.3.0"
   resolved "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-3.3.0.tgz"
   integrity sha512-mQ+suqKJVyeuwGYHAdjMFqjCyfl8+Ldnxuyp3ldiMBFKkvytrXUZWaiPCEav8qDHKty44bD+qV1IP4T+w+xXRA==
@@ -3316,7 +3316,7 @@ eslint@8.17.0:
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
 
-espree@^9.0.0, espree@^9.3.1, espree@^9.3.2:
+espree@^9.3.1, espree@^9.3.2:
   version "9.3.2"
   resolved "https://registry.npmjs.org/espree/-/espree-9.3.2.tgz"
   integrity sha512-D211tC7ZwouTIuY5x9XnS0E9sWNChB7IYKX/Xp5eQj3nFXhqmiUDB9q27y76oFl8jTg3pXcQx/bpxMfs3CIZbA==
@@ -6666,22 +6666,9 @@ vue-demi@*:
   resolved "https://registry.npmjs.org/vue-demi/-/vue-demi-0.12.5.tgz"
   integrity sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==
 
-vue-eslint-parser@^8.0.0:
-  version "8.3.0"
-  resolved "https://registry.npmjs.org/vue-eslint-parser/-/vue-eslint-parser-8.3.0.tgz"
-  integrity sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g==
-  dependencies:
-    debug "^4.3.2"
-    eslint-scope "^7.0.0"
-    eslint-visitor-keys "^3.1.0"
-    espree "^9.0.0"
-    esquery "^1.4.0"
-    lodash "^4.17.21"
-    semver "^7.3.5"
-
-vue-eslint-parser@^9.0.1:
+vue-eslint-parser@^9.0.0, vue-eslint-parser@^9.0.1:
   version "9.0.2"
-  resolved "https://registry.npmjs.org/vue-eslint-parser/-/vue-eslint-parser-9.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-9.0.2.tgz#d2535516f3f55adb387939427fe741065eb7948a"
   integrity sha512-uCPQwTGjOtAYrwnU+76pYxalhjsh7iFBsHwBqDHiOPTxtICDaraO4Szw54WFTNZTAEsgHHzqFOu1mmnBOBRzDA==
   dependencies:
     debug "^4.3.4"
