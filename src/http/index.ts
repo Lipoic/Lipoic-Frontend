@@ -60,15 +60,13 @@ export class HttpClient {
       }
     }
 
-    return this.getRequestData(
-      this.axios.post(
-        path,
-        formBody,
-        <AxiosRequestConfig>deepAssign({
-          headers: { 'Content-Type': 'multipart/form-data' },
-          config,
-        })
-      )
+    return this.post(
+      path,
+      formBody,
+      <AxiosRequestConfig>deepAssign({
+        headers: { 'Content-Type': 'multipart/form-data' },
+        config,
+      })
     );
   }
 
