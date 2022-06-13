@@ -17,5 +17,12 @@ export const signUpUser = async () =>
 /** login user
  * @url https://api-docs.lipoic.org/router/apis/user/api/fn.login.html
  */
-export const loginUser = async () =>
-  (await httpClient.post<UserToken>('/user/login')).data;
+export const loginUser = async (email: string, password: string) => {
+  const data = {
+    email,
+    password,
+  };
+
+  return (await httpClient.postForm<UserToken>('/user/login', data)).data
+    ?.token;
+};

@@ -55,8 +55,11 @@ export class HttpClient {
     for (const [key, value] of Object.entries(data || {})) {
       if (value instanceof Blob || typeof value === 'string') {
         formBody.append(key, value);
-      } else formBody.append(key, value.value, value.fileName);
+      } else {
+        formBody.append(key, value.value, value.fileName);
+      }
     }
+
     return this.getRequestData(
       this.axios.post(
         path,
