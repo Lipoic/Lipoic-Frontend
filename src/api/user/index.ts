@@ -1,6 +1,6 @@
 import httpClient from '@/http';
 import { UserInfo, UserMode, UserToken } from './type';
-import { Code } from '@/api/type';
+import { Code } from '@/api/code';
 
 /** get user info
  * @url https://api-docs.lipoic.org/router/apis/user/api/fn.user_info.html
