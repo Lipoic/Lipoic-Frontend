@@ -8,7 +8,7 @@ import { Code } from '@/api/code';
 export const getUserInfo = async () =>
   (await httpClient.get<UserInfo>('/user/info')).data;
 
-/** user sign up
+/** sign up for an account
  * @url https://api-docs.lipoic.org/router/apis/user/api/fn.sign_up.html
  */
 export const signUp = async (
@@ -27,7 +27,7 @@ export const signUp = async (
   return (await httpClient.postForm<Code.OK>('/user/sign-up', data)).data;
 };
 
-/** login user
+/** login account with username and password
  * @url https://api-docs.lipoic.org/router/apis/user/api/fn.login.html
  */
 export const login = async (email: string, password: string) =>
