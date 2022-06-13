@@ -34,3 +34,10 @@ export enum UserMode {
   Teacher,
   Parents,
 }
+
+/** User Token
+ * @url https://api-docs.lipoic.org/router/data/auth_data/struct.Token.html
+ */
+export interface UserToken {
+  token: string;
+}

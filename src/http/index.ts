@@ -5,7 +5,9 @@ import HttpConfig from '@/config/http';
 import globalConfig from '@/config';
 import { deepAssign } from '@/utils/Object';
 
-/// https://github.com/Lipoic/Lipoic-Server/blob/7b678356a6079a7255cd42cd708780e9093d056c/src/router/src/data/response.rs#L8
+/** API Response
+ * @url https://github.com/Lipoic/Lipoic-Server/blob/7b678356a6079a7255cd42cd708780e9093d056c/src/router/src/data/response.rs#L8
+ */
 export interface Response<T> {
   code: number;
   message: string;
@@ -151,6 +153,5 @@ declare module 'axios' {
   }
 }
 
-const client = new HttpClient();
-export const http = client.axios;
-export default client;
+const httpClient = new HttpClient();
+export default httpClient;
