@@ -6,3 +6,15 @@ import { UserInfo } from './type';
  */
 export const getUserInfo = async () =>
   (await http.get<UserInfo>('/user/info')).data;
+
+/** user sign up
+ * @url https://api-docs.lipoic.org/router/apis/user/api/fn.sign_up.html
+ */
+export const signUpUser = async () =>
+  (await http.post<string>('/user/sign-up')).data;
+
+/** login user
+ * @url https://api-docs.lipoic.org/router/apis/user/api/fn.login.html
+ */
+export const loginUser = async () =>
+  (await http.post<string>('/user/login')).data;
