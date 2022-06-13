@@ -1,3 +1,5 @@
+export type TokenType = string;
+
 /** code data
  * @url https://api-docs.lipoic.org/router/data/code/struct.Code.html#
  * @url https://github.com/Lipoic/Lipoic-Server/blob/main/src/router/src/data/code.rs#L27-L39

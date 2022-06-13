@@ -1,6 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-import { delay } from '@/utils';
 import HttpConfig from '@/config/http';
 import globalConfig from '@/config';
 import { deepAssign } from '@/utils/Object';
@@ -19,6 +18,10 @@ export interface ResponseErrorData<T> extends Response<T> {
 }
 
 export type PathType = `/${string}`;
+export type PostFormType = Record<
+  string,
+  string | Blob | { value: string | Blob; fileName?: string }
+>;
 
 export class HttpClient {
   public readonly axios: AxiosInstance;
@@ -45,19 +48,15 @@ export class HttpClient {
 
   public async postForm<T, G = Response<T>>(
     path: PathType,
-    data?: Record<
-      string,
-      string | Blob | { value: string | Blob; fileName?: string }
-    >,
+    data?: PostFormType,
     config?: AxiosRequestConfig
   ): Promise<G> {
     const formBody = new FormData();
+
     for (const [key, value] of Object.entries(data || {})) {
       if (value instanceof Blob || typeof value === 'string') {
         formBody.append(key, value);
-      } else {
-        formBody.append(key, value.value, value.fileName);
-      }
+      } else formBody.append(key, value.value, value.fileName);
     }
 
     return this.post(

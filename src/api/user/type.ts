@@ -1,3 +1,5 @@
+import { TokenType } from '../type';
+
 /** UserInfo
  * @url https://api-docs.lipoic.org/router/data/user/struct.UserInfo.html
  */
@@ -39,5 +41,5 @@ export enum UserMode {
  * @url https://api-docs.lipoic.org/router/data/auth_data/struct.Token.html
  */
 export interface UserToken {
-  token: string;
+  token: TokenType;
 }
