@@ -41,6 +41,32 @@ export class HttpClient {
     return this.getRequestData(this.axios.post(path, data, config));
   }
 
+  public async postForm<T, G = Response<T>>(
+    path: PathType,
+    data?: Record<
+      string,
+      string | Blob | { value: string | Blob; fileName?: string }
+    >,
+    config?: AxiosRequestConfig
+  ): Promise<G> {
+    const formBody = new FormData();
+    for (const [key, value] of Object.entries(data || {})) {
+      if (value instanceof Blob || typeof value === 'string') {
+        formBody.append(key, value);
+      } else formBody.append(key, value.value, value.fileName);
+    }
+    return this.getRequestData(
+      this.axios.post(
+        path,
+        formBody,
+        <AxiosRequestConfig>deepAssign({
+          headers: { 'Content-Type': 'multipart/form-data' },
+          config,
+        })
+      )
+    );
+  }
+
   public async get<T, G = Response<T>>(
     path: PathType,
     params?: unknown,
