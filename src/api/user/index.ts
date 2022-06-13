@@ -11,7 +11,7 @@ export const getUserInfo = async () =>
 /** user sign up
  * @url https://api-docs.lipoic.org/router/apis/user/api/fn.sign_up.html
  */
-export const signUpUser = async (
+export const signUp = async (
   username: string,
   email: string,
   password: string,
@@ -30,7 +30,7 @@ export const signUpUser = async (
 /** login user
  * @url https://api-docs.lipoic.org/router/apis/user/api/fn.login.html
  */
-export const loginUser = async (email: string, password: string) => {
+export const login = async (email: string, password: string) => {
   const data = {
     email,
     password,
