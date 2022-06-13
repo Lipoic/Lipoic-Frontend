@@ -1,6 +1,7 @@
 import httpClient from '@/http';
-import { UserInfo, UserMode, UserToken } from './type';
+import { UserInfo, UserMode } from './type';
 import { Code } from '@/api/code';
+import { AuthToken } from '@/api/authentication/type';
 
 /** get user info
  * @url https://api-docs.lipoic.org/router/apis/user/api/fn.user_info.html
@@ -31,5 +32,5 @@ export const signUp = async (
  * @url https://api-docs.lipoic.org/router/apis/user/api/fn.login.html
  */
 export const login = async (email: string, password: string) =>
-  (await httpClient.postForm<UserToken>('/user/login', { email, password }))
+  (await httpClient.postForm<AuthToken>('/user/login', { email, password }))
     .data?.token;
