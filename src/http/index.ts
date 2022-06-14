@@ -93,10 +93,17 @@ export class HttpClient {
       ...this.config.headers,
     };
 
-    if (this.config.token) {
-      // TODO add token from stores
-      config.headers.Authorization = `Bearer ${this.config.token}`;
-    }
+    let { token } = this.config;
+    try {
+      const userStore = useUserStore();
+
+      if (config.token === true) token = userStore.getToken;
+      else if (typeof config.token === 'string') token = config.token;
+
+      token && (config.headers.Authorization = `Bearer ${token}`);
+
+      // eslint-disable-next-line no-empty
+    } catch {}
 
     return config;
   }
