@@ -1,11 +1,11 @@
-import HttpConfig from '@/config/http';
+import { AxiosRequestConfig } from 'axios';
 
 export interface Config {
   /** Request and http configuration */
-  http: HttpConfig;
+  http: AxiosRequestConfig;
 }
 
-const defaultHttpConfig: HttpConfig = {
+const defaultHttpConfig: AxiosRequestConfig = {
   headers: {
     'content-type': 'application/json;charset=UTF-8',
   },
@@ -13,8 +13,9 @@ const defaultHttpConfig: HttpConfig = {
   retry: 2,
   baseURL:
     import.meta.env.MODE === 'production'
-      ? 'https://lipoic-test-server.herokuapp.com' // TODO: change to https://api.lipoic.org
-      : 'https://lipoic-test-server.herokuapp.com',
+      ? 'http://localhost:4173' // TODO: change to https://api.lipoic.org
+      : '/api',
+  // https://lipoic-test-server.herokuapp.com
 };
 
 export const globalConfig: Config = {

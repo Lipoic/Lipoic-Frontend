@@ -1,34 +1,18 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-import HttpConfig from '@/config/http';
+import { useUserStore } from '@/stores/models/user';
 import globalConfig from '@/config';
 import { deepAssign } from '@/utils/Object';
+import { Code } from '@/api/code';
 
-/** API Response
- * @url https://github.com/Lipoic/Lipoic-Server/blob/7b678356a6079a7255cd42cd708780e9093d056c/src/router/src/data/response.rs#L8
- */
-export interface Response<T> {
-  code: number;
-  message: string;
-  data?: T;
-}
-
-export interface ResponseErrorData<T> extends Response<T> {
-  config: AxiosRequestConfig;
-}
-
-export type PathType = `/${string}`;
-export type PostFormType = Record<
-  string,
-  string | Blob | { value: string | Blob; fileName?: string }
->;
+export const useToken: AxiosRequestConfig = { token: true };
 
 export class HttpClient {
   public readonly axios: AxiosInstance;
-  private readonly config: Partial<HttpConfig>;
+  private readonly config: Partial<AxiosRequestConfig>;
 
-  constructor(config: Partial<HttpConfig> = globalConfig.http) {
-    this.config = <HttpConfig>deepAssign(globalConfig.http, config);
+  constructor(config: Partial<AxiosRequestConfig> = globalConfig.http) {
+    this.config = <AxiosRequestConfig>deepAssign(globalConfig.http, config);
     this.axios = axios.create(this.config);
 
     this.axios.interceptors.request.use(this.requestHandler.bind(this));
@@ -99,15 +83,16 @@ export class HttpClient {
   }
 
   private requestHandler(config: AxiosRequestConfig) {
-    config.headers = {
-      ...config.headers,
-      ...this.config.headers,
-    };
+    const userStore = useUserStore();
 
-    if (this.config.token) {
-      // TODO add token from stores
-      config.headers.Authorization = `Bearer ${this.config.token}`;
-    }
+    config.headers = { ...this.config.headers, ...config.headers };
+
+    let { token } = this.config;
+
+    if (config.token === true) token = userStore.getToken;
+    else if (typeof config.token === 'string') token = config.token;
+
+    token && (config.headers.Authorization = `Bearer ${token}`);
 
     return config;
   }
@@ -119,7 +104,7 @@ export class HttpClient {
 
   private async responseErrorHandler<T>(error: {
     response?: AxiosResponse<Response<T>, unknown>;
-    config: HttpConfig;
+    config: AxiosRequestConfig;
   }) {
     const { config } = error;
 
@@ -135,7 +120,7 @@ export class HttpClient {
     config.__retryCount ||= 0;
     if (
       config.reconnect === false ||
-      config.__retryCount >= (config.retry ?? globalConfig.http.retry)
+      config.__retryCount >= (config.retry ?? (globalConfig.http.retry || 0))
     ) {
       // TODO: error callback
 
@@ -149,9 +134,37 @@ export class HttpClient {
 
 declare module 'axios' {
   interface AxiosRequestConfig {
+    /** retry count don'ts touch
+     * @private
+     */
     __retryCount?: number;
+    /** use token */
+    token?: boolean | string;
+    /** number of retry */
+    retry?: number;
+    /** try reconnect */
+    reconnect?: boolean;
   }
 }
+
+/** API Response
+ * @url https://github.com/Lipoic/Lipoic-Server/blob/7b678356a6079a7255cd42cd708780e9093d056c/src/router/src/data/response.rs#L8
+ */
+export interface Response<D = unknown> {
+  code: Code;
+  message: string;
+  data?: D;
+}
+
+export interface ResponseErrorData<T> extends Response<T> {
+  config: AxiosRequestConfig;
+}
+
+export type PathType = `/${string}`;
+export type PostFormType = Record<
+  string,
+  string | Blob | { value: string | Blob; fileName?: string }
+>;
 
 const httpClient = new HttpClient();
 export default httpClient;

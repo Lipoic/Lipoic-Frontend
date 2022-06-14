@@ -1,4 +1,4 @@
-import httpClient from '@/http';
+import httpClient, { useToken } from '@/http';
 import { UserInfo, UserMode } from './type';
 import { Code } from '@/api/code';
 import { AuthToken } from '@/api/authentication/type';
@@ -7,7 +7,7 @@ import { AuthToken } from '@/api/authentication/type';
  * @url https://api-docs.lipoic.org/router/apis/user/api/fn.user_info.html
  */
 export const getUserInfo = async () =>
-  (await httpClient.get<UserInfo>('/user/info')).data;
+  (await httpClient.get<UserInfo>('/user/info', void 0, useToken)).data;
 
 /** sign up for an account
  * @url https://api-docs.lipoic.org/router/apis/user/api/fn.sign_up.html

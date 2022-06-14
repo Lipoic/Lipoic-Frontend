@@ -17,8 +17,6 @@ export default {
 
     // add emit
     app.provide('$mitt', mitt());
-
-    console.log(app);
   },
 };
 
