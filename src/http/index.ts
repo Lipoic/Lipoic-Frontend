@@ -123,14 +123,15 @@ export class HttpClient {
 
     config.__retryCount ||= 0;
 
-    if (
-      config.reconnect === false ||
-      config.__retryCount >= (config.retry ?? (globalConfig.http.retry || 0))
-    ) {
+    if (config.reconnect === false) {
       // TODO: error callback
 
       return Promise.reject(error);
     }
+    if (config.reconnect && config.__retryCount >= (this.config.retry || 0)) {
+      return Promise.reject(error);
+    }
+
     config.__retryCount += 1;
 
     return await this.axios({});
