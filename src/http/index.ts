@@ -118,6 +118,7 @@ export class HttpClient {
     }
 
     config.__retryCount ||= 0;
+
     if (
       config.reconnect === false ||
       config.__retryCount >= (config.retry ?? (globalConfig.http.retry || 0))
