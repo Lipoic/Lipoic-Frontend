@@ -1,4 +1,9 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from 'axios';
 
 import { useUserStore } from '@/stores/models/user';
 import globalConfig from '@/config';
@@ -102,18 +107,17 @@ export class HttpClient {
     return response;
   }
 
-  private async responseErrorHandler<T>(error: {
-    response?: AxiosResponse<Response<T>, unknown>;
-    config: AxiosRequestConfig & { __retryCount?: number };
-  }) {
-    const { config } = error;
+  private async responseErrorHandler(
+    error: AxiosError & { response: Response<unknown> }
+  ) {
+    let { config } = error;
+    config ||= {};
 
     if (error.response) {
-      const errorData: ResponseErrorData<T> = {
-        ...error.response.data,
+      const errorData: ResponseErrorData<unknown> = {
+        ...error.response,
         config,
       };
-
       return Promise.reject(errorData);
     }
 
@@ -129,7 +133,7 @@ export class HttpClient {
     }
     config.__retryCount += 1;
 
-    return await this.axios(config);
+    return await this.axios({});
   }
 }
 
