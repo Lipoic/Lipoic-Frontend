@@ -104,7 +104,7 @@ export class HttpClient {
 
   private async responseErrorHandler<T>(error: {
     response?: AxiosResponse<Response<T>, unknown>;
-    config: AxiosRequestConfig;
+    config: AxiosRequestConfig & { __retryCount?: number };
   }) {
     const { config } = error;
 
