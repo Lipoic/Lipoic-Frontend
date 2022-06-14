@@ -111,23 +111,9 @@ export class HttpClient {
     error: AxiosError & { response: Response<unknown> }
   ) {
     let { config } = error;
+
     config ||= {};
-
-    if (error.response) {
-      const errorData: ResponseErrorData<unknown> = {
-        ...error.response,
-        config,
-      };
-      Promise.reject(errorData);
-    }
-
     config.__retryCount ||= 0;
-
-    if (config.reconnect === false) {
-      // TODO: error callback
-
-      return Promise.reject(error);
-    }
 
     if (
       config.reconnect &&
@@ -136,7 +122,11 @@ export class HttpClient {
       return await this.axios(config);
     }
 
-    return Promise.reject(error);
+    // eslint-disable-next-line prefer-promise-reject-errors
+    return Promise.reject({
+      ...error.response,
+      config,
+    });
   }
 }
 
