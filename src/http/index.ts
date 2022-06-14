@@ -88,45 +88,53 @@ export class HttpClient {
   }
 
   private requestHandler(config: AxiosRequestConfig) {
-    const userStore = useUserStore();
+    config.headers = {
+      ...config.headers,
+      ...this.config.headers,
+    };
 
-    config.headers = { ...this.config.headers, ...config.headers };
-
-    let { token } = this.config;
-
-    if (config.token === true) token = userStore.getToken;
-    else if (typeof config.token === 'string') token = config.token;
-
-    token && (config.headers.Authorization = `Bearer ${token}`);
-
+    if (this.config.token) {
+      // TODO add token from stores
+      config.headers.Authorization = `Bearer ${this.config.token}`;
+    }
     return config;
   }
 
   private responseHandler(response: AxiosResponse<unknown, unknown>) {
     // TODO: success callback
+    console.log(response);
+
     return response;
   }
 
-  private async responseErrorHandler(
-    error: AxiosError & { response: Response<unknown> }
-  ) {
-    let { config } = error;
+  private async responseErrorHandler<T>(error: {
+    response?: AxiosResponse<Response<T>, unknown>;
+    config: AxiosRequestConfig;
+  }) {
+    const { config } = error;
 
-    config ||= {};
+    if (error.response) {
+      const errorData: ResponseErrorData<T> = {
+        ...error.response.data,
+        config,
+      };
+
+      return Promise.reject(errorData);
+    }
+
     config.__retryCount ||= 0;
 
     if (
-      config.reconnect &&
-      config.__retryCount++ <= (config.retry || this.config.retry || 0)
+      config.reconnect === false ||
+      config.__retryCount >= (config.retry ?? (globalConfig.http.retry || 0))
     ) {
-      return await this.axios(config);
-    }
+      // TODO: error callback
 
-    // eslint-disable-next-line prefer-promise-reject-errors
-    return Promise.reject({
-      ...error.response,
-      config,
-    });
+      return Promise.reject(error);
+    }
+    config.__retryCount += 1;
+
+    return await this.axios(config);
   }
 }
 

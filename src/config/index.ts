@@ -13,9 +13,8 @@ const defaultHttpConfig: AxiosRequestConfig = {
   retry: 2,
   baseURL:
     import.meta.env.MODE === 'production'
-      ? 'http://localhost:4173' // TODO: change to https://api.lipoic.org
-      : '/api',
-  // https://lipoic-test-server.herokuapp.com
+      ? 'https://lipoic-test-server.herokuapp.com' // TODO: change to https://api.lipoic.org
+      : '/',
 };
 
 export const globalConfig: Config = {
