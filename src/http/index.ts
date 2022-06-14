@@ -97,12 +97,12 @@ export class HttpClient {
       // TODO add token from stores
       config.headers.Authorization = `Bearer ${this.config.token}`;
     }
+
     return config;
   }
 
   private responseHandler(response: AxiosResponse<unknown, unknown>) {
     // TODO: success callback
-    console.log(response);
 
     return response;
   }

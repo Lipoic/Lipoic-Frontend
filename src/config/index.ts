@@ -14,7 +14,7 @@ const defaultHttpConfig: AxiosRequestConfig = {
   baseURL:
     import.meta.env.MODE === 'production'
       ? 'https://lipoic-test-server.herokuapp.com' // TODO: change to https://api.lipoic.org
-      : '/',
+      : 'https://lipoic-test-server.herokuapp.com',
 };
 
 export const globalConfig: Config = {
