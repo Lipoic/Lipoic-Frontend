@@ -107,14 +107,16 @@ export class HttpClient {
     return response;
   }
 
-  private async responseErrorHandler<T>(error: {
-    response?: AxiosResponse<Response<T>, unknown>;
-    config: AxiosRequestConfig;
-  }) {
+  private async responseErrorHandler(
+    error: AxiosError & {
+      response?: AxiosResponse<Response, unknown>;
+      config: AxiosRequestConfig;
+    }
+  ) {
     const { config } = error;
 
     if (error.response) {
-      const errorData: ResponseErrorData<T> = {
+      const errorData: ResponseErrorData = {
         ...error.response.data,
         config,
       };
@@ -162,7 +164,7 @@ export interface Response<D = unknown> {
   data?: D;
 }
 
-export interface ResponseErrorData<T> extends Response<T> {
+export interface ResponseErrorData<T = unknown> extends Response<T> {
   config: AxiosRequestConfig;
 }
 
