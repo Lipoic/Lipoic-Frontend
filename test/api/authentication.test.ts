@@ -1,4 +1,13 @@
-import { afterAll, afterEach, beforeAll, test, expect, describe } from 'vitest';
+import { setActivePinia, createPinia } from 'pinia';
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  test,
+  expect,
+  describe,
+  beforeEach,
+} from 'vitest';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
 import { globalConfig } from '@/config';
@@ -18,6 +27,10 @@ const facebookOauthUrl =
 
 const mockToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+
+beforeEach(() => {
+  setActivePinia(createPinia());
+});
 
 describe('oauth', () => {
   test('get google oauth url', async () => {

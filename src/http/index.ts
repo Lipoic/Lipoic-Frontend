@@ -10,8 +10,6 @@ import globalConfig from '@/config';
 import { deepAssign } from '@/utils/Object';
 import { Code } from '@/api/code';
 
-export const useToken: AxiosRequestConfig = { token: true };
-
 export class HttpClient {
   public readonly axios: AxiosInstance;
   private readonly config: Partial<AxiosRequestConfig>;
@@ -93,17 +91,12 @@ export class HttpClient {
       ...this.config.headers,
     };
 
-    let { token } = this.config;
-    try {
-      const userStore = useUserStore();
-
-      if (config.token === true) token = userStore.getToken;
-      else if (typeof config.token === 'string') token = config.token;
-
-      token && (config.headers.Authorization = `Bearer ${token}`);
-
-      // eslint-disable-next-line no-empty
-    } catch {}
+    const store = useUserStore();
+    const token = store.token || config.token || this.config.token;
+    if (config.authentication && token) {
+      config.token = token;
+      config.headers.Authorization = `Bearer ${token}`;
+    }
 
     return config;
   }
@@ -114,12 +107,7 @@ export class HttpClient {
     return response;
   }
 
-  private async responseErrorHandler(
-    error: AxiosError & {
-      response?: AxiosResponse<Response, unknown>;
-      config: AxiosRequestConfig;
-    }
-  ) {
+  private async responseErrorHandler(error: AxiosError<Response, unknown>) {
     const { config } = error;
 
     if (error.response) {
@@ -153,12 +141,12 @@ declare module 'axios' {
      * @private
      */
     __retryCount?: number;
-    /** use token */
-    token?: boolean | string;
-    /** number of retry */
-    retry?: number;
-    /** try reconnect */
+
     reconnect?: boolean;
+    retry?: number;
+    authentication?: boolean;
+
+    token?: string;
   }
 }
 

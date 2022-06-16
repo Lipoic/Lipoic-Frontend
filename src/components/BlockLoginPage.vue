@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { getGoogleOauthUrl, getFacebookOauthUrl } from '@/api/authentication';
 
 const ToolLangSelector = defineAsyncComponent(
   () => import('./ToolLangSelector.vue')
@@ -19,9 +20,25 @@ const loginFormData = reactive<loginData>({
 });
 
 const oauthButtons = [
-  { title: 'Google', img: 'login-google' },
-  { title: 'FaceBook', img: 'login-facebook' },
-  { title: t('auth.login.taiwanEduLoginButton'), img: 'login-taiwanOpenId' },
+  {
+    title: 'Google',
+    img: 'login-google',
+    click: async () => {
+      console.log('clicked google');
+      const url = await getGoogleOauthUrl('https://lipoic.org/oauth/google');
+      console.log(url);
+    },
+  },
+  {
+    title: 'FaceBook',
+    img: 'login-facebook',
+    click: () => {},
+  },
+  {
+    title: t('auth.login.taiwanEduLoginButton'),
+    img: 'login-taiwanOpenId',
+    click: () => {},
+  },
 ];
 </script>
 
@@ -106,13 +123,14 @@ const oauthButtons = [
         <p v-t="'auth.login.useOtherMethods'" />
         <div class="oauthButtons">
           <button
-            v-for="{ title, img } in oauthButtons"
+            v-for="{ title, img, click } in oauthButtons"
             v-once
             :key="title"
             type="button"
             class="oauthButton"
             :aria-label="title"
             :title="title"
+            @click="click"
           >
             <SvgIcon :name="img" />
           </button>

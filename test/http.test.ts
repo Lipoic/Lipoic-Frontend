@@ -1,6 +1,15 @@
-import { afterAll, afterEach, beforeAll, test, expect } from 'vitest';
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  test,
+  expect,
+  beforeEach,
+} from 'vitest';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
+
+import { createPinia, setActivePinia } from 'pinia';
 import { HttpClient } from '@/http';
 
 const baseURL = 'http://localhost:8000';
@@ -33,6 +42,10 @@ const notfoundResponse = {
   code: 404,
   message: 'Resource not found.',
 };
+
+beforeEach(() => {
+  setActivePinia(createPinia());
+});
 
 test('get method', async () => {
   const client = new HttpClient({ baseURL });

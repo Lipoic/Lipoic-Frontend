@@ -1,31 +1,21 @@
 import { defineStore } from 'pinia';
+import { UserInfo } from '@/api/user/type';
 
-import type { ConnectAccount, UserMode } from '@/api/user/type';
 import { getUserInfo } from '@/api/user';
 
-export interface UserStoreType {
+export interface UserStore {
   token?: string;
 
-  username?: string;
-  email?: string;
-  modes?: UserMode[];
-  connects?: ConnectAccount[];
+  info?: UserInfo;
 }
 
 export const useUserStore = defineStore({
   id: 'user',
-  state: (): UserStoreType => ({}),
-  getters: {
-    getToken(): string | undefined {
-      return this.token;
-    },
-  },
+  state: (): UserStore => ({}),
   actions: {
-    setUserInfo(userInfo: UserStoreType): void {
-      this.username = userInfo.username;
-      this.email = userInfo.email;
-      this.modes = userInfo.modes;
-      this.connects = userInfo.connects;
+    setUserInfo(userInfo: UserStore): void {
+      this.info = userInfo.info;
+      this.token = userInfo.token;
     },
     setToken(token: string): void {
       this.token = token;
