@@ -24,20 +24,30 @@ const oauthButtons = [
     title: 'Google',
     img: 'login-google',
     click: async () => {
-      console.log('clicked google');
       const url = await getGoogleOauthUrl('https://lipoic.org/oauth/google');
-      console.log(url);
+      if (url) {
+        window.location.href = url;
+      }
     },
   },
   {
     title: 'FaceBook',
     img: 'login-facebook',
-    click: () => {},
+    click: async () => {
+      const url = await getFacebookOauthUrl(
+        'https://lipoic.org/oauth/facebook'
+      );
+      if (url) {
+        window.location.href = url;
+      }
+    },
   },
   {
     title: t('auth.login.taiwanEduLoginButton'),
     img: 'login-taiwanOpenId',
-    click: () => {},
+    click: () => {
+      // no-op
+    },
   },
 ];
 </script>
