@@ -11,12 +11,12 @@ const { t } = useI18n();
 interface loginData {
   username: string;
   password: string;
-  stayLoggedIn: boolean;
+  rememberMe: boolean;
 }
 const loginFormData = reactive<loginData>({
   username: '',
   password: '',
-  stayLoggedIn: false,
+  rememberMe: false,
 });
 
 const oauthButtons = [
@@ -24,7 +24,7 @@ const oauthButtons = [
     title: 'Google',
     img: 'login-google',
     click: async () => {
-      const url = await getGoogleOauthUrl('https://lipoic.org/oauth/google');
+      const url = await getGoogleOauthUrl(`${location.origin}/oauth/google`);
       if (url) {
         window.location.href = url;
       }
@@ -35,7 +35,7 @@ const oauthButtons = [
     img: 'login-facebook',
     click: async () => {
       const url = await getFacebookOauthUrl(
-        'https://lipoic.org/oauth/facebook'
+        `${location.origin}/oauth/facebook`
       );
       if (url) {
         window.location.href = url;
@@ -105,14 +105,14 @@ const oauthButtons = [
           autocomplete="current-password"
         />
         <div class="loginOptions">
-          <div class="stayLogin">
+          <div class="rememberMe">
             <input
-              id="stayLogin"
-              v-model="loginFormData.stayLoggedIn"
+              id="rememberMe"
+              v-model="loginFormData.rememberMe"
               type="checkbox"
-              name="stayLogin"
+              name="rememberMe"
             />
-            <label v-t="'auth.login.stayLoggedIn'" for="stayLogin" />
+            <label v-t="'auth.login.rememberMe'" for="rememberMe" />
           </div>
           <a v-t="'auth.login.forgotPassword'" href="#" class="forgot" />
         </div>
@@ -272,7 +272,7 @@ const oauthButtons = [
         align-items: center;
         margin: 20px;
 
-        .stayLogin {
+        .rememberMe {
           display: flex;
           flex-direction: row;
           align-items: center;

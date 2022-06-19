@@ -30,10 +30,13 @@ const headerMenuHandler = (): void => {
 </template>
 
 <style lang="scss" scoped>
+@import '@/scss/global.scss';
+
 .main {
   display: flex;
   flex-direction: column;
-  height: auto;
+  height: 100%;
+  background-color: $LightBlack;
 
   .wrapper {
     display: flex;

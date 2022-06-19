@@ -1,6 +1,12 @@
 {
   "name": "English (US)",
   "app": { "title": "Lipoic - Flipping classroom with us" },
+  "ui": {
+    "error": {
+      "title": "Error",
+      "message": "An error has occurred. Please try again later."
+    }
+  },
   "header": {
     "links": {
       "home": "Home",
@@ -28,10 +34,10 @@
       "title": "Login",
       "usernameInput": "Username",
       "password": "Password",
-      "stayLoggedIn": "Stay Logged In",
-      "forgotPassword": "Forgot Password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot Password?",
       "loginButton": "Login",
-      "haveNoAccount": "Have no account?",
+      "haveNoAccount": "Don't have an account?",
       "registerNow": "Sign Up",
       "useOtherMethods": "Or below way",
       "taiwanEduLoginButton": "Taiwan Cloud Education"

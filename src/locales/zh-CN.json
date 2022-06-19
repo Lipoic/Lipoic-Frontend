@@ -24,7 +24,7 @@
       "title": "登入",
       "usernameInput": "用户名称",
       "password": "密码",
-      "stayLoggedIn": "保持登入",
+      "rememberMe": "保持登入",
       "forgotPassword": "忘記密码",
       "loginButton": "登入",
       "haveNoAccount": "还没有帐戶吗？",

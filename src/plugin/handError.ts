@@ -6,6 +6,6 @@ export default (app: AppType) => {
     const { message, stack } = err;
     console.error(message);
     console.error(stack);
-    // TODO add post to server error
+    // TODO send errors to server
   };
 };

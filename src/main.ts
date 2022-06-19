@@ -6,6 +6,7 @@ import '@/scss/themes/dark.scss';
 import '@/scss/themes/light.scss';
 import { registerSW } from 'virtual:pwa-register';
 
+import LoadingPlugin from 'vue-loading-overlay';
 import I18nHelper from './helper/I18nHelper';
 import FirebaseHelper from './helper/FirebaseHelper';
 
@@ -31,6 +32,7 @@ const SvgIconComponent = defineAsyncComponent(
     .use(store)
     .use(plugin)
     .use(router)
+    .component('Loading', LoadingPlugin)
     .component('SvgIcon', SvgIconComponent)
     .mount('#app');
 
