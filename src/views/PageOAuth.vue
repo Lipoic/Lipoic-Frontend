@@ -57,12 +57,12 @@ login();
           :width="100"
           :height="100"
         ></Loading>
-        <h1>正在登入中...</h1>
+        <h1 v-t="'auth.login.loading'"></h1>
         {{ token }}
       </div>
       <div v-if="error" class="error">
-        <h1 v-t="'ui.error.title'"></h1>
-        <p v-t="'ui.error.message'"></p>
+        <h1 v-t="'auth.login.loginFailed'"></h1>
+        <p v-t="'error.message'"></p>
       </div>
     </div>
   </MainViewVue>

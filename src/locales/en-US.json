@@ -1,53 +1,56 @@
 {
-  "name": "English (US)",
-  "app": { "title": "Lipoic - Flipping classroom with us" },
-  "ui": {
-    "error": {
-      "title": "Error",
-      "message": "An error has occurred. Please try again later."
-    }
-  },
-  "header": {
-    "links": {
-      "home": "Home",
-      "about": "About",
-      "feature": "Features",
-      "demo": "Demo"
-    },
-    "login": "Login"
-  },
-  "footer": { "copyright": "Copyright © 2022 Lipoic. All rights reserved." },
-  "home": {
-    "subtitle": {
-      "1": "A multifunctional, educational platform specifically designed for teachers and students",
-      "2": "Loves open source and open education"
-    },
-    "login": {
-      "student": "Student",
-      "teacher": "Teacher",
-      "parents": "Parents"
-    }
+  "app": {
+    "title": "Lipoic - Flipping classroom with us"
   },
   "auth": {
     "login": {
-      "welcome": "Welcome to Lipoic",
-      "title": "Login",
-      "usernameInput": "Username",
-      "password": "Password",
-      "rememberMe": "Remember me",
       "forgotPassword": "Forgot Password?",
-      "loginButton": "Login",
       "haveNoAccount": "Don't have an account?",
+      "loading": "Logging in...",
+      "loginButton": "Login",
+      "loginFailed": "Login failed",
+      "password": "Password",
       "registerNow": "Sign Up",
+      "rememberMe": "Remember me",
+      "taiwanEduLoginButton": "Taiwan Cloud Education",
+      "title": "Login",
       "useOtherMethods": "Or below way",
-      "taiwanEduLoginButton": "Taiwan Cloud Education"
+      "usernameInput": "Username",
+      "welcome": "Welcome to Lipoic"
     },
     "signUp": {
-      "title": "Sign Up",
-      "email": "Email",
-      "signUpButton": "Sign Up",
       "alreadyHaveAccount": "Already Have An Account?",
-      "loginNow": "Login Now"
+      "email": "Email",
+      "loginNow": "Login Now",
+      "signUpButton": "Sign Up",
+      "title": "Sign Up"
     }
-  }
+  },
+  "error": {
+    "message": "An error has occurred. Please try again later."
+  },
+  "footer": {
+    "copyright": "Copyright © 2022 Lipoic. All rights reserved."
+  },
+  "header": {
+    "links": {
+      "about": "About",
+      "demo": "Demo",
+      "feature": "Features",
+      "home": "Home"
+    },
+    "login": "Login"
+  },
+  "home": {
+    "login": {
+      "parents": "Parents",
+      "student": "Student",
+      "teacher": "Teacher"
+    },
+    "subtitle": {
+      "1": "A multifunctional, educational platform specifically designed for teachers and students",
+      "2": "Loves open source and open education"
+    }
+  },
+  "name": "English (US)"
 }
