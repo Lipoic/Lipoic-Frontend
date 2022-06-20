@@ -54,11 +54,11 @@ login();
 </script>
 
 <template>
-  <MainViewVue id="oauth" class="oauth">
+  <MainViewVue id="oauth">
     <div class="container">
       <div v-if="!error" class="loading">
         <Loading
-          active="true"
+          :active="true"
           :color="'#7b6ff6'"
           :width="100"
           :height="100"
