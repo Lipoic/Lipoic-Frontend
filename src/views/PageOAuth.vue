@@ -1,7 +1,11 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
 import { defineAsyncComponent, ref } from 'vue';
-import { getTokenByGoogleOauthCode } from '@/api/authentication';
+import {
+  getTokenByFacebookOauthCode,
+  getTokenByGoogleOauthCode,
+} from '@/api/authentication';
+import { useUserStore } from '@/stores/models/user';
 
 const MainViewVue = defineAsyncComponent(
   () => import('@/components/MainView.vue')
@@ -10,16 +14,14 @@ const MainViewVue = defineAsyncComponent(
 const route = useRouter().currentRoute.value;
 const type = route.path.split('/').pop();
 const { code } = route.query;
-let token: string | undefined;
-const loading = ref(true);
 const error = ref(false);
 
 async function login() {
   if (!code) {
     error.value = true;
-    loading.value = false;
     return;
   }
+  let token: string | undefined;
 
   try {
     if (type === 'google') {
@@ -29,19 +31,23 @@ async function login() {
       );
       console.log(token);
     } else if (type === 'facebook') {
-      token = '';
+      token = await getTokenByFacebookOauthCode(
+        code.toString(),
+        `${location.origin}/oauth/facebook`
+      );
     } else {
-      loading.value = false;
+      error.value = true;
     }
   } catch (err) {
     error.value = true;
   }
 
   if (token) {
-    loading.value = false;
-    // location.href = '/';
+    const store = useUserStore();
+    store.setToken(token);
+    await store.getUserInfo();
+    location.href = '/';
   }
-  console.log(error);
 }
 
 login();
@@ -52,13 +58,12 @@ login();
     <div class="container">
       <div v-if="!error" class="loading">
         <Loading
-          v-model:active="loading"
+          active="true"
           :color="'#7b6ff6'"
           :width="100"
           :height="100"
         ></Loading>
         <h1 v-t="'auth.login.loading'"></h1>
-        {{ token }}
       </div>
       <div v-if="error" class="error">
         <h1 v-t="'auth.login.loginFailed'"></h1>
