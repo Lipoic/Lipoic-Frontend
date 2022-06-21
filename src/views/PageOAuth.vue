@@ -12,8 +12,8 @@ const MainViewVue = defineAsyncComponent(
 );
 
 const route = useRouter().currentRoute.value;
-const type = route.path.split('/').pop();
-const { code } = route.query;
+const type = route.path.split('/').filter((str) => str)[1];
+const code = route.query.code?.toString();
 const error = ref(false);
 
 async function login() {
@@ -21,18 +21,18 @@ async function login() {
     error.value = true;
     return;
   }
+
   let token: string | undefined;
 
   try {
     if (type === 'google') {
       token = await getTokenByGoogleOauthCode(
-        code.toString(),
+        code,
         `${location.origin}/oauth/google`
       );
-      console.log(token);
     } else if (type === 'facebook') {
       token = await getTokenByFacebookOauthCode(
-        code.toString(),
+        `${code}#_=_`, // fix facebook oauth code
         `${location.origin}/oauth/facebook`
       );
     } else {
@@ -91,10 +91,6 @@ login();
 
   p {
     color: $White;
-
-    a {
-      color: cornflowerblue;
-    }
   }
 }
 

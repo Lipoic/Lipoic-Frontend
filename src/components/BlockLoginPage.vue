@@ -24,7 +24,7 @@ const oauthButtons = [
     title: 'Google',
     img: 'login-google',
     click: async () => {
-      const url = await getGoogleOauthUrl(`${location.origin}/oauth/google`);
+      const url = await getGoogleOauthUrl(`${location.origin}/oauth/google/`);
       if (url) {
         window.location.href = url;
       }
@@ -35,7 +35,7 @@ const oauthButtons = [
     img: 'login-facebook',
     click: async () => {
       const url = await getFacebookOauthUrl(
-        `${location.origin}/oauth/facebook`
+        `${location.origin}/oauth/facebook/`
       );
       if (url) {
         window.location.href = url;
