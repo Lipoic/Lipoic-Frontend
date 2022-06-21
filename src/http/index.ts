@@ -6,7 +6,7 @@ import axios, {
 } from 'axios';
 
 import { useUserStore } from '@/stores/models/user';
-import globalConfig from '@/config';
+import globalConfig from '@/utils/config';
 import { deepAssign } from '@/utils/Object';
 import { Code } from '@/api/code';
 

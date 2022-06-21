@@ -10,7 +10,7 @@ import {
 } from 'vitest';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
-import { globalConfig } from '@/config';
+import { globalConfig } from '@/utils/config';
 import {
   getGoogleOauthUrl,
   getFacebookOauthUrl,

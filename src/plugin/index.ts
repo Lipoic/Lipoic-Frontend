@@ -2,7 +2,7 @@ import mitt from 'mitt';
 import { App as VueApp } from 'vue';
 
 import handError from './handError';
-import globalConfig from '@/config';
+import globalConfig from '@/utils/config';
 
 export type AppType = VueApp<Element>;
 
