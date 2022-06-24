@@ -1,4 +1,3 @@
-import mitt from 'mitt';
 import { App as VueApp } from 'vue';
 
 import handError from './handError';
@@ -14,16 +13,10 @@ export default {
 
     // global configs
     app.config.globalProperties.options = globalConfig;
-
-    // add emit
-    app.provide('$mitt', mitt());
   },
 };
 
 declare module 'vue' {
-  interface ComponentCustomProperties {
-    $mitt: ReturnType<typeof mitt>;
-  }
   interface CSSProperties {
     // for css variables
     [key: `--${string}`]: string;

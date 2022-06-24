@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import md5 from 'md5';
+import { useUserStore } from '@/stores/models/user';
+import { UserInfo } from '@/api/user/type';
 
 const links = [
   { path: '/', i18nName: 'header.links.home' },
@@ -7,6 +10,8 @@ const links = [
   { path: '/feature', i18nName: 'header.links.feature' },
   { path: '/demo', i18nName: 'header.links.demo' },
 ];
+
+const userStore = useUserStore();
 
 /** Menu handler */
 const isMenuOpen = ref<boolean>();
@@ -23,6 +28,11 @@ onMounted(() => window.addEventListener('resize', checkMenuOpen));
 onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
 
 defineExpose({ changeMenuCheckboxState });
+
+function getUserAvatar(info: UserInfo) {
+  // TODO: because the backend does not provide the avatar URL, so temporary use gravatar.
+  return `https://www.gravatar.com/avatar/${md5(info.email)}`;
+}
 </script>
 
 <template>
@@ -42,8 +52,14 @@ defineExpose({ changeMenuCheckboxState });
         <span>EDU</span>
       </div>
     </div>
+
     <label for="menuToggle" class="menuButton">
-      <SvgIcon name="other-menu" color="white" />
+      <SvgIcon v-if="!userStore.isLoggedIn()" name="other-menu" color="white" />
+      <img
+        v-if="userStore.isLoggedIn()"
+        :src="getUserAvatar(userStore.info!)"
+        alt="user avatar"
+      />
     </label>
     <div class="links">
       <ul>
@@ -56,11 +72,20 @@ defineExpose({ changeMenuCheckboxState });
         </li>
         <li>
           <router-link
+            v-if="!userStore.isLoggedIn()"
             v-t="'header.login'"
             to="/account"
             class="login"
             :title="$t('header.login')"
           />
+          <div v-if="userStore.isLoggedIn()">
+            <img
+              :src="getUserAvatar(userStore.info!)"
+              alt="user avatar"
+              class="avatar"
+            />
+            {{ userStore.info?.username }}
+          </div>
         </li>
       </ul>
     </div>
@@ -70,6 +95,7 @@ defineExpose({ changeMenuCheckboxState });
 <style lang="scss" scoped>
 @import '@/scss/global.scss';
 @import '@/scss/rwd.breakPoint.scss';
+// @import 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0';
 
 .header {
   display: flex;
@@ -162,6 +188,16 @@ defineExpose({ changeMenuCheckboxState });
           background-color: $MainColor;
         }
       }
+
+      .avatar {
+        @include phone {
+          display: none;
+        }
+
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+      }
     }
   }
 
@@ -170,6 +206,12 @@ defineExpose({ changeMenuCheckboxState });
     width: 35px;
     height: 35px;
     cursor: pointer;
+
+    img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
 
     @include phone {
       display: block;

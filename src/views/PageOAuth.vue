@@ -28,12 +28,12 @@ async function login() {
     if (type === 'google') {
       token = await getTokenByGoogleOauthCode(
         code,
-        `${location.origin}/oauth/google`
+        `${location.origin}/oauth/google/`
       );
     } else if (type === 'facebook') {
       token = await getTokenByFacebookOauthCode(
         `${code}#_=_`, // fix facebook oauth code
-        `${location.origin}/oauth/facebook`
+        `${location.origin}/oauth/facebook/`
       );
     } else {
       error.value = true;
@@ -45,7 +45,7 @@ async function login() {
   if (token) {
     const store = useUserStore();
     store.setToken(token);
-    await store.getUserInfo();
+    await store.setUserInfo();
     location.href = '/';
   }
 }

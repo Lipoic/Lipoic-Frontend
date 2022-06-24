@@ -11,7 +11,7 @@ export interface UserStore {
 export const useUserStore = defineStore({
   id: 'user',
   state: (): UserStore => {
-    const info = localStorage.getItem('info');
+    const info = localStorage.getItem('user_info');
 
     return {
       token: localStorage.getItem('token'),
@@ -19,19 +19,19 @@ export const useUserStore = defineStore({
     };
   },
   actions: {
-    setUserInfo(userInfo: UserInfo): void {
-      this.info = userInfo;
-      localStorage.setItem('user_info', JSON.stringify(userInfo));
+    isLoggedIn(): boolean {
+      return this.info !== null && this.token !== null;
+    },
+    async setUserInfo(): Promise<void> {
+      const info = await getUserInfo();
+      if (info) {
+        this.info = info;
+        localStorage.setItem('user_info', JSON.stringify(info));
+      }
     },
     setToken(token: string): void {
       this.token = token;
       localStorage.setItem('token', token);
-    },
-    async getUserInfo() {
-      const info = await getUserInfo();
-      if (info) {
-        this.setUserInfo(info);
-      }
     },
   },
 });
