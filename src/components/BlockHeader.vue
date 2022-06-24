@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import md5 from 'md5';
 import { useUserStore } from '@/stores/models/user';
 import { UserInfo } from '@/api/user/type';
+import UserInfoVue from './Header/UserInfo.vue';
 
 const links = [
   { path: '/', i18nName: 'header.links.home' },
@@ -56,8 +57,8 @@ function getUserAvatar(info: UserInfo) {
     <label for="menuToggle" class="menuButton">
       <SvgIcon v-if="!userStore.isLoggedIn()" name="other-menu" color="white" />
       <img
-        v-if="userStore.isLoggedIn()"
-        :src="getUserAvatar(userStore.info!)"
+        v-if="userStore.isLoggedIn() && userStore.info"
+        :src="getUserAvatar(userStore.info)"
         alt="user avatar"
       />
     </label>
@@ -70,7 +71,7 @@ function getUserAvatar(info: UserInfo) {
             :title="$t(link.i18nName)"
           />
         </li>
-        <li>
+        <!-- <li>
           <router-link
             v-if="!userStore.isLoggedIn()"
             v-t="'header.login'"
@@ -78,15 +79,16 @@ function getUserAvatar(info: UserInfo) {
             class="login"
             :title="$t('header.login')"
           />
-          <div v-if="userStore.isLoggedIn()">
+          <div v-if="userStore.isLoggedIn() && userStore.info">
             <img
-              :src="getUserAvatar(userStore.info!)"
+              :src="getUserAvatar(userStore.info)"
               alt="user avatar"
               class="avatar"
             />
             {{ userStore.info?.username }}
           </div>
-        </li>
+        </li> -->
+        <li><UserInfoVue /></li>
       </ul>
     </div>
   </div>
@@ -101,7 +103,6 @@ function getUserAvatar(info: UserInfo) {
   display: flex;
   width: 100%;
   padding: 10px 5px;
-  overflow: hidden;
   background-color: $Black;
   flex-direction: row;
   justify-content: space-between;
