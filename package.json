@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@vue/eslint-config-typescript": "11.0.0",
-    "firebase": "9.8.3",
+    "firebase": "9.8.4",
     "pinia": "2.0.14",
     "swiper": "8.2.4",
     "vite": "2.9.12",
