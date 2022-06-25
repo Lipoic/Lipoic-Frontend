@@ -1,9 +1,13 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { defineAsyncComponent, ref } from 'vue';
 
 import md5 from 'md5';
 import { useUserStore } from '@/stores/models/user';
 import { UserInfo } from '@/api/user/type';
+
+const PageLinks = defineAsyncComponent(
+  () => import('@/components/header/PageLinks.vue')
+);
 
 const menuState = ref<undefined | ''>(void 0);
 const toggleMenu = (state?: boolean) => {
@@ -25,23 +29,17 @@ function getUserAvatar(info: UserInfo) {
     :open="menuState"
     @click="toggleMenu()"
   >
-    <div
-      class="user-info"
-      :title="`more ${userStore.info.username}`"
-      :aria-label="`more ${userStore.info.username}`"
-    >
+    <div class="user-info" :title="`More info`" :aria-label="`More info`">
       <img
         class="user-icon"
         :src="getUserAvatar(userStore.info)"
-        :alt="`${userStore.info.username} avatar`"
+        :alt="`${userStore.info.username}'s avatar`"
       />
     </div>
     <SvgIcon name="login-ExpandMore" class="expand-more" color="white" />
     <ul class="user-more">
-      <li>option1</li>
-      <li>option2</li>
-      <li>option3</li>
-      <li class="sign-out">登出</li>
+      <PageLinks />
+      <li class="logout" @chick="userStore.logout()">登出</li>
     </ul>
   </div>
   <div v-else class="user">
@@ -53,25 +51,89 @@ function getUserAvatar(info: UserInfo) {
       :title="$t('header.login')"
       :aria-label="$t('header.login')"
     />
+    <div class="menuButton"><SvgIcon name="other-menu" color="white" /></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@import '@/scss/global.scss';
+@import '@/scss/rwd.breakPoint.scss';
+
 .user {
   position: relative;
   z-index: 9;
   display: flex;
   align-items: center;
 
+  .menuButton {
+    display: none;
+
+    @include phone {
+      display: block;
+      padding-right: 10px;
+
+      & ~ .links {
+        position: absolute;
+        top: 75px;
+        right: 0;
+        z-index: 100;
+        width: 100%;
+        padding: 30px 0;
+        background-color: #1b1b1b;
+        transform: scale(0, 1);
+        animation: slide 1s;
+        transition: transform 1s;
+        transform-origin: center right;
+        @keyframes slide {
+          from,
+          to {
+            z-index: -1;
+          }
+        }
+
+        ul {
+          flex-direction: column;
+          width: 100%;
+
+          li {
+            width: 100%;
+            padding: 0;
+            text-align: center;
+
+            a[href] {
+              display: block;
+              width: 100%;
+              padding: 10px;
+              margin-bottom: 10px;
+              font-weight: initial;
+              color: $White;
+              text-align: center;
+              border: none;
+              opacity: 0;
+
+              &:hover {
+                background-color: #353535;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   .login {
-    padding: 4px 10px;
-    color: #fff;
-    background-color: #3796ff;
+    padding: 5px 15px;
+    font-size: 1rem;
+    color: $MainColor;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1px solid $MainColor;
     border-radius: 5px;
-    transition: background-color 200ms ease-in-out;
+    transition: 0.2s ease-in-out;
 
     &:hover {
-      background-color: #377dff !important;
+      color: $White;
+      background-color: $MainColor;
     }
   }
 
@@ -102,31 +164,26 @@ function getUserAvatar(info: UserInfo) {
     .user-more {
       position: absolute;
       top: 100%;
-      left: -50%;
-      min-width: 100px;
-      padding: 12px;
+      left: -55%;
+      padding: 10px 25px;
       margin-top: 12px;
       color: rgb(160 160 160);
       list-style: none;
-      background-color: #17181e;
+      background-color: $DarkBlack;
       border-radius: 6px;
 
       li {
-        padding: 5px 12px;
-        font-size: 14pt;
+        padding: 5px;
+        font-size: 1.3rem;
         font-weight: 500;
         cursor: pointer;
         transition: color 0.15s ease-in-out;
-
-        &:hover {
-          color: white !important;
-        }
 
         &:not(:first-child) {
           margin-top: 8px;
         }
 
-        &.sign-out {
+        &.logout {
           color: red;
         }
       }

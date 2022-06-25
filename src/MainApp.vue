@@ -48,7 +48,7 @@ const setScheme = (_isLight: boolean | string) => {
 onBeforeMount(async () => {
   const userStore = useUserStore();
   // https://github.com/vuejs/pinia/discussions/512
-  userStore.userInit();
+  userStore.init();
 });
 </script>
 
