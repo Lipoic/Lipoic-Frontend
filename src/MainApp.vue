@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue';
+import { useUserStore } from '@/stores/models/user';
 import http from '@/http';
+
+const userStore = useUserStore();
+
+// https://github.com/vuejs/pinia/discussions/512
+userStore.userInit();
 
 /*  For Safari support because there are a bug of vh and vw unit of Safari. */
 const setStyle = (key: `--${string}`, value: string | null) =>

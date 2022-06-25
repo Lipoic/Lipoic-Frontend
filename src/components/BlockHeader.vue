@@ -1,8 +1,5 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import md5 from 'md5';
-import { useUserStore } from '@/stores/models/user';
-import { UserInfo } from '@/api/user/type';
 import UserInfoVue from './Header/UserInfo.vue';
 
 const links = [
@@ -11,8 +8,6 @@ const links = [
   { path: '/feature', i18nName: 'header.links.feature' },
   { path: '/demo', i18nName: 'header.links.demo' },
 ];
-
-const userStore = useUserStore();
 
 /** Menu handler */
 const isMenuOpen = ref<boolean>();
@@ -23,17 +18,11 @@ const updateMenuState: (ev: Event) => void = ({ target }) => {
   isMenuOpen.value = (target as HTMLInputElement | null)?.checked;
 };
 
-const changeMenuCheckboxState = () => (isMenuOpen.value &&= false);
+const changeMenuCheckboxState = () => (isMenuOpen.value = false);
+defineExpose({ changeMenuCheckboxState });
 
 onMounted(() => window.addEventListener('resize', checkMenuOpen));
 onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
-
-defineExpose({ changeMenuCheckboxState });
-
-function getUserAvatar(info: UserInfo) {
-  // TODO: because the backend does not provide the avatar URL, so temporary use gravatar.
-  return `https://www.gravatar.com/avatar/${md5(info.email)}`;
-}
 </script>
 
 <template>
@@ -55,12 +44,7 @@ function getUserAvatar(info: UserInfo) {
     </div>
 
     <label for="menuToggle" class="menuButton">
-      <SvgIcon v-if="!userStore.isLoggedIn()" name="other-menu" color="white" />
-      <img
-        v-if="userStore.isLoggedIn() && userStore.info"
-        :src="getUserAvatar(userStore.info)"
-        alt="user avatar"
-      />
+      <SvgIcon name="other-menu" color="white" />
     </label>
     <div class="links">
       <ul>
@@ -71,23 +55,6 @@ function getUserAvatar(info: UserInfo) {
             :title="$t(link.i18nName)"
           />
         </li>
-        <!-- <li>
-          <router-link
-            v-if="!userStore.isLoggedIn()"
-            v-t="'header.login'"
-            to="/account"
-            class="login"
-            :title="$t('header.login')"
-          />
-          <div v-if="userStore.isLoggedIn() && userStore.info">
-            <img
-              :src="getUserAvatar(userStore.info)"
-              alt="user avatar"
-              class="avatar"
-            />
-            {{ userStore.info?.username }}
-          </div>
-        </li> -->
         <li><UserInfoVue /></li>
       </ul>
     </div>
@@ -188,16 +155,6 @@ function getUserAvatar(info: UserInfo) {
           color: $White;
           background-color: $MainColor;
         }
-      }
-
-      .avatar {
-        @include phone {
-          display: none;
-        }
-
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
       }
     }
   }
