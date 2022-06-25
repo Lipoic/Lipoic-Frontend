@@ -140,22 +140,6 @@ onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
           color: $MainColor;
         }
       }
-
-      .login {
-        padding: 5px 15px;
-        font-size: 1rem;
-        color: $MainColor;
-        text-decoration: none;
-        background-color: transparent;
-        border: 1px solid $MainColor;
-        border-radius: 5px;
-        transition: 0.2s ease-in-out;
-
-        &:hover {
-          color: $White;
-          background-color: $MainColor;
-        }
-      }
     }
   }
 

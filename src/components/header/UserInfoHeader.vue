@@ -52,6 +52,8 @@ function getUserAvatar(info: UserInfo) {
 </template>
 
 <style lang="scss" scoped>
+@import '@/scss/global.scss';
+
 .user {
   position: relative;
   z-index: 9;
@@ -59,14 +61,18 @@ function getUserAvatar(info: UserInfo) {
   align-items: center;
 
   .login {
-    padding: 4px 10px;
-    color: #fff;
-    background-color: #3796ff;
+    padding: 5px 15px;
+    font-size: 1rem;
+    color: $MainColor;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1px solid $MainColor;
     border-radius: 5px;
-    transition: background-color 200ms ease-in-out;
+    transition: 0.2s ease-in-out;
 
     &:hover {
-      background-color: #377dff !important;
+      color: $White;
+      background-color: $MainColor;
     }
   }
 
