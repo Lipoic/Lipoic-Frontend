@@ -147,7 +147,7 @@ const modules = [Pagination, Autoplay];
         justify-content: center;
         border-radius: 15px;
         background: {
-          color: $White;
+          color: white;
         }
 
         img {
@@ -200,7 +200,7 @@ const modules = [Pagination, Autoplay];
         transition: 0.2s ease-in-out;
 
         &:hover {
-          color: $White;
+          color: white;
           background-color: $MainColor;
         }
 

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const props = defineProps<{ direction: 'row' | 'column' }>();
+
 const links = [
   { path: '/', i18nName: 'header.links.home' },
   { path: '/about', i18nName: 'header.links.about' },
@@ -9,7 +11,14 @@ const links = [
 
 <template>
   <div class="links">
-    <li v-for="link in links" v-once :key="link.path">
+    <li
+      v-for="link in links"
+      v-once
+      :key="link.path"
+      :style="`flex-direction: ${props.direction}; ${
+        props.direction === 'row' ? 'padding-top: 10px' : 'padding: 12px'
+      };`"
+    >
       <router-link
         v-t="link.i18nName"
         :to="link.path"
@@ -25,12 +34,10 @@ const links = [
 
 .links {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  list-style: none;
 
   li {
-    padding-top: 10px;
-
     .router-link-exact-active {
       color: $MainColor;
     }

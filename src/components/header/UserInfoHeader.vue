@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-import { defineAsyncComponent, ref } from 'vue';
+import { ref } from 'vue';
 
 import md5 from 'md5';
 import { useUserStore } from '@/stores/models/user';
 import { UserInfo } from '@/api/user/type';
+import PageLinksVue from '@/components/header/PageLinks.vue';
 
-const PageLinks = defineAsyncComponent(
-  () => import('@/components/header/PageLinks.vue')
-);
+const props = defineProps<{ info: UserInfo }>();
 
 const menuState = ref<undefined | ''>(void 0);
 const toggleMenu = (state?: boolean) => {
@@ -23,35 +22,19 @@ function getUserAvatar(info: UserInfo) {
 </script>
 
 <template>
-  <div
-    v-if="userStore.isLoggedIn() && userStore.info"
-    class="user"
-    :open="menuState"
-    @click="toggleMenu()"
-  >
+  <div class="user" :open="menuState" @click="toggleMenu()">
     <div class="user-info" :title="`More info`" :aria-label="`More info`">
       <img
         class="user-icon"
-        :src="getUserAvatar(userStore.info)"
-        :alt="`${userStore.info.username}'s avatar`"
+        :src="getUserAvatar(props.info)"
+        :alt="`${props.info.username}'s avatar`"
       />
     </div>
     <SvgIcon name="login-ExpandMore" class="expand-more" color="white" />
     <ul class="user-more">
-      <PageLinks />
+      <PageLinksVue direction="row"></PageLinksVue>
       <li class="logout" @chick="userStore.logout()">登出</li>
     </ul>
-  </div>
-  <div v-else class="user">
-    <router-link
-      v-once
-      v-t="'header.login'"
-      to="/account"
-      class="login"
-      :title="$t('header.login')"
-      :aria-label="$t('header.login')"
-    />
-    <div class="menuButton"><SvgIcon name="other-menu" color="white" /></div>
   </div>
 </template>
 
@@ -64,78 +47,6 @@ function getUserAvatar(info: UserInfo) {
   z-index: 9;
   display: flex;
   align-items: center;
-
-  .menuButton {
-    display: none;
-
-    @include phone {
-      display: block;
-      padding-right: 10px;
-
-      & ~ .links {
-        position: absolute;
-        top: 75px;
-        right: 0;
-        z-index: 100;
-        width: 100%;
-        padding: 30px 0;
-        background-color: #1b1b1b;
-        transform: scale(0, 1);
-        animation: slide 1s;
-        transition: transform 1s;
-        transform-origin: center right;
-        @keyframes slide {
-          from,
-          to {
-            z-index: -1;
-          }
-        }
-
-        ul {
-          flex-direction: column;
-          width: 100%;
-
-          li {
-            width: 100%;
-            padding: 0;
-            text-align: center;
-
-            a[href] {
-              display: block;
-              width: 100%;
-              padding: 10px;
-              margin-bottom: 10px;
-              font-weight: initial;
-              color: $White;
-              text-align: center;
-              border: none;
-              opacity: 0;
-
-              &:hover {
-                background-color: #353535;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .login {
-    padding: 5px 15px;
-    font-size: 1rem;
-    color: $MainColor;
-    text-decoration: none;
-    background-color: transparent;
-    border: 1px solid $MainColor;
-    border-radius: 5px;
-    transition: 0.2s ease-in-out;
-
-    &:hover {
-      color: $White;
-      background-color: $MainColor;
-    }
-  }
 
   .expand-more {
     transition: transform 0.15s ease-out 0s;

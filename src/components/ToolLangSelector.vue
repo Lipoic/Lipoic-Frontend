@@ -64,14 +64,14 @@ const changeEventLanguage = (e: MouseEvent) => {
   position: relative;
   display: flex;
   margin-top: 10px;
-  color: $White;
+  color: white;
   align-items: center;
   justify-content: center;
 
   button {
     display: flex;
     font-size: 1.05rem;
-    color: $White;
+    color: white;
     cursor: pointer;
     background-color: transparent;
     border: none;

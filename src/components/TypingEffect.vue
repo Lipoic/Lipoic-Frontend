@@ -115,7 +115,7 @@ onUnmounted(() => clearTimeout(timeOut!));
     height: 3rem;
     font-size: 2rem;
     line-height: 2rem;
-    color: $White;
+    color: white;
     white-space: pre-line;
 
     &::after {

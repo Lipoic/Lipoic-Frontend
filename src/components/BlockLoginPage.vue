@@ -229,7 +229,7 @@ const oauthButtons = [
         padding: 0 10px 30px 20px;
         font-size: 2rem;
         font-weight: 600;
-        color: $White;
+        color: white;
 
         span {
           position: relative;
@@ -251,7 +251,7 @@ const oauthButtons = [
         padding: 12px 20px;
         margin-top: 10px;
         font-size: 1.2rem;
-        color: $White;
+        color: white;
         background-color: #7c7b7b33;
         border: none;
         border-radius: 15px;
@@ -289,12 +289,12 @@ const oauthButtons = [
           label {
             margin-left: 5px;
             line-height: 18px;
-            color: $White;
+            color: white;
           }
         }
 
         a {
-          color: $White;
+          color: white;
         }
       }
 
@@ -302,7 +302,7 @@ const oauthButtons = [
         padding: 10px;
         margin-bottom: 20px;
         font-size: 1.5rem;
-        color: $White;
+        color: white;
         cursor: pointer;
         background-color: $MainPurple;
         border: none;
@@ -310,7 +310,7 @@ const oauthButtons = [
       }
 
       p {
-        color: $White;
+        color: white;
         text-align: center;
       }
 

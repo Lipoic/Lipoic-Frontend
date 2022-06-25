@@ -43,7 +43,7 @@ const ToolLangSelector = defineAsyncComponent(
   }
 
   .copyright {
-    color: $White;
+    color: white;
   }
 }
 </style>

@@ -80,7 +80,7 @@ login();
 .loading {
   h1 {
     padding-top: 15px;
-    color: $White;
+    color: white;
   }
 }
 
@@ -90,7 +90,7 @@ login();
   }
 
   p {
-    color: $White;
+    color: white;
   }
 }
 
