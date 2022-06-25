@@ -2,8 +2,8 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import UserInfoHeader from '@/components/header/UserInfoHeader.vue';
 import { useUserStore } from '@/stores/models/user';
-import PageLinksVue from './PageLinks.vue';
-import LoginButtonVue from './LoginButton.vue';
+import PageLinksVue from '@/components/header/PageLinks.vue';
+import LoginButtonVue from '@/components/header/LoginButton.vue';
 
 /** Menu handler */
 const isMenuOpen = ref<boolean>();
@@ -43,15 +43,14 @@ const userStore = useUserStore();
     <div v-if="userStore.isLoggedIn() && userStore.info">
       <UserInfoHeader :info="userStore.info"></UserInfoHeader>
     </div>
-    <div v-else>
-      <label for="menuToggle" class="menuButton">
-        <SvgIcon name="other-menu" color="white" />
-      </label>
-      <div class="links">test</div>
-
-      <!-- <PageLinksVue direction="column" class="links"></PageLinksVue> -->
-      <LoginButtonVue class="loginButton"></LoginButtonVue>
+    <label v-if="!userStore.isLoggedIn()" for="menuToggle" class="menuButton">
+      <SvgIcon name="other-menu" color="white" />
+    </label>
+    <div v-if="!userStore.isLoggedIn()" class="links">
+      <PageLinksVue direction="row" class="desktop"></PageLinksVue>
+      <PageLinksVue direction="column" class="phone"></PageLinksVue>
     </div>
+    <LoginButtonVue class="loginButton"></LoginButtonVue>
   </div>
 </template>
 
@@ -103,8 +102,31 @@ const userStore = useUserStore();
     }
   }
 
+  .links {
+    .phone {
+      display: none;
+
+      @include phone {
+        display: flex;
+
+        :is(a[href]) {
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    .desktop {
+      @include phone {
+        display: none;
+      }
+    }
+  }
+
   .menuButton {
     display: none;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
 
     @include phone {
       display: block;
@@ -112,7 +134,6 @@ const userStore = useUserStore();
 
       & ~ .links {
         position: absolute;
-        flex-direction: column;
         top: 75px;
         right: 0;
         z-index: 100;
@@ -129,28 +150,6 @@ const userStore = useUserStore();
             z-index: -1;
           }
         }
-
-        li {
-          width: 100%;
-          padding: 0;
-          text-align: center;
-
-          a[href] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            font-weight: initial;
-            color: white;
-            text-align: center;
-            border: none;
-            opacity: 0;
-
-            &:hover {
-              background-color: #353535;
-            }
-          }
-        }
       }
     }
   }
@@ -163,14 +162,14 @@ const userStore = useUserStore();
       display: none;
     }
   }
+}
 
-  #menuToggle:checked ~ .links {
-    transform: scale(1);
+#menuToggle:checked ~ .links {
+  transform: scale(1);
 
-    li,
-    a {
-      opacity: 1;
-    }
+  li,
+  a {
+    opacity: 1;
   }
 }
 </style>

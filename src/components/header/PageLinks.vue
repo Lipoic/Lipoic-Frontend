@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-const props = defineProps<{ direction: 'row' | 'column' }>();
+const props = defineProps<{
+  direction: 'row' | 'column';
+}>();
 
 const links = [
   { path: '/', i18nName: 'header.links.home' },
@@ -10,14 +12,14 @@ const links = [
 </script>
 
 <template>
-  <div class="links">
+  <div class="links" :style="{ flexDirection: `${props.direction}` }">
     <li
       v-for="link in links"
       v-once
       :key="link.path"
-      :style="`flex-direction: ${props.direction}; ${
-        props.direction === 'row' ? 'padding-top: 10px' : 'padding: 12px'
-      };`"
+      :style="
+        props.direction === 'row' ? { padding: '10px' } : { paddingTop: '12px' }
+      "
     >
       <router-link
         v-t="link.i18nName"
@@ -45,7 +47,7 @@ const links = [
     a {
       @extend %link;
 
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 500;
       transition: color 0.3s ease-in;
 
