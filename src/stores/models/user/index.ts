@@ -4,13 +4,16 @@ import { UserInfo } from '@/api/user/type';
 import { getUserInfo } from '@/api/user';
 
 export interface UserStore {
-  token?: string;
-  info?: UserInfo;
+  token?: string | null;
+  info: UserInfo | null;
 }
 
 export const useUserStore = defineStore({
   id: 'user',
-  state: (): UserStore => ({ token: void 0, info: void 0 }),
+  state: (): UserStore => ({
+    token: null,
+    info: null,
+  }),
   actions: {
     isLoggedIn(): boolean {
       return !!(this.info && this.token);
@@ -29,8 +32,8 @@ export const useUserStore = defineStore({
     userInit() {
       const info = localStorage.getItem('user_info');
 
-      this.token = localStorage.getItem('token') || void 0;
-      this.info = info ? <UserInfo>JSON.parse(info) : void 0;
+      this.token = localStorage.getItem('token');
+      this.info = info ? <UserInfo>JSON.parse(info) : null;
     },
   },
 });

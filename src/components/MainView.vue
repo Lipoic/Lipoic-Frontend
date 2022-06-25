@@ -2,7 +2,7 @@
 import { defineAsyncComponent, ref } from 'vue';
 
 const BlockHeaderVue = defineAsyncComponent(
-  () => import('@/components/BlockHeader.vue')
+  () => import('@/components/header/BlockHeader.vue')
 );
 const BlockFooterVue = defineAsyncComponent(
   () => import('@/components/BlockFooter.vue')

@@ -1,3 +1,23 @@
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+import md5 from 'md5';
+import { useUserStore } from '@/stores/models/user';
+import { UserInfo } from '@/api/user/type';
+
+const menuState = ref<undefined | ''>(void 0);
+const toggleMenu = (state?: boolean) => {
+  menuState.value = state ?? menuState.value !== void 0 ? void 0 : '';
+};
+
+const userStore = useUserStore();
+
+function getUserAvatar(info: UserInfo) {
+  // TODO: because the backend does not provide the avatar URL, so temporary use gravatar.
+  return `https://www.gravatar.com/avatar/${md5(info.email)}`;
+}
+</script>
+
 <template>
   <div v-if="userStore.isLoggedIn() && userStore.info" class="user">
     <div
@@ -6,9 +26,8 @@
       :aria-label="`more ${userStore.info.username}`"
     >
       <img
-        v-memo="userStore.info"
         class="user-icon"
-        src="https://cdn.discordapp.com/avatars/688181698822799414/f6534feffc3f15cf439cb2fdd579aab5.png"
+        :src="getUserAvatar(userStore.info)"
         :alt="`${userStore.info.username} avatar`"
       />
     </div>
@@ -31,19 +50,6 @@
     />
   </div>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-import { useUserStore } from '@/stores/models/user';
-
-const menuState = ref<undefined | ''>(void 0);
-const toggleMenu = (state?: boolean) => {
-  menuState.value = state ?? menuState.value !== void 0 ? void 0 : '';
-};
-
-const userStore = useUserStore();
-</script>
 
 <style lang="scss" scoped>
 .user {

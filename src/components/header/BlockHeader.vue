@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import UserInfoVue from './Header/UserInfo.vue';
+import UserInfoHeader from '@/components/header/UserInfoHeader.vue';
 
 const links = [
   { path: '/', i18nName: 'header.links.home' },
@@ -55,7 +55,7 @@ onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
             :title="$t(link.i18nName)"
           />
         </li>
-        <li><UserInfoVue /></li>
+        <li><UserInfoHeader /></li>
       </ul>
     </div>
   </div>
