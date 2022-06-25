@@ -19,7 +19,12 @@ function getUserAvatar(info: UserInfo) {
 </script>
 
 <template>
-  <div v-if="userStore.isLoggedIn() && userStore.info" class="user">
+  <div
+    v-if="userStore.isLoggedIn() && userStore.info"
+    class="user"
+    :open="menuState"
+    @click="toggleMenu()"
+  >
     <div
       class="user-info"
       :title="`more ${userStore.info.username}`"
@@ -39,7 +44,7 @@ function getUserAvatar(info: UserInfo) {
       <li class="sign-out">登出</li>
     </ul>
   </div>
-  <div v-else class="user" :open="menuState" @click="toggleMenu()">
+  <div v-else class="user">
     <router-link
       v-once
       v-t="'header.login'"
@@ -52,8 +57,6 @@ function getUserAvatar(info: UserInfo) {
 </template>
 
 <style lang="scss" scoped>
-@import '@/scss/global.scss';
-
 .user {
   position: relative;
   z-index: 9;
@@ -61,18 +64,14 @@ function getUserAvatar(info: UserInfo) {
   align-items: center;
 
   .login {
-    padding: 5px 15px;
-    font-size: 1rem;
-    color: $MainColor;
-    text-decoration: none;
-    background-color: transparent;
-    border: 1px solid $MainColor;
+    padding: 4px 10px;
+    color: #fff;
+    background-color: #3796ff;
     border-radius: 5px;
-    transition: 0.2s ease-in-out;
+    transition: background-color 200ms ease-in-out;
 
     &:hover {
-      color: $White;
-      background-color: $MainColor;
+      background-color: #377dff !important;
     }
   }
 
