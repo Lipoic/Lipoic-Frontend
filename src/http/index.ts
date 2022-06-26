@@ -123,7 +123,6 @@ export class HttpClient {
       // if the token is invalid, logout
       if (error.response.status === 401 && store.isLoggedIn()) {
         store.logout();
-
         return null;
       }
 
@@ -143,8 +142,7 @@ export class HttpClient {
     ) {
       // TODO: error callback
 
-      Promise.reject(error);
-      return null;
+      return Promise.reject(error);
     }
     config.__retryCount += 1;
 
