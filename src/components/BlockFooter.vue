@@ -2,7 +2,7 @@
 import { defineAsyncComponent } from 'vue';
 
 const ToolLangSelector = defineAsyncComponent(
-  () => import('./ToolLangSelector.vue')
+  () => import('@/components/ToolLangSelector.vue')
 );
 </script>
 

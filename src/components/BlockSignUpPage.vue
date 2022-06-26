@@ -2,7 +2,7 @@
 import { defineAsyncComponent, reactive } from 'vue';
 
 const ToolLangSelector = defineAsyncComponent(
-  () => import('./ToolLangSelector.vue')
+  () => import('@/components/ToolLangSelector.vue')
 );
 interface signUpData {
   username: string;

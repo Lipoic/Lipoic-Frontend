@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 import { getGoogleOauthUrl, getFacebookOauthUrl } from '@/api/authentication';
+import { useUserStore } from '@/stores/models/user';
 
 const ToolLangSelector = defineAsyncComponent(
-  () => import('./ToolLangSelector.vue')
+  () => import('@/components/ToolLangSelector.vue')
 );
 const { t } = useI18n();
 
@@ -50,6 +52,12 @@ const oauthButtons = [
     },
   },
 ];
+
+const userStore = useUserStore();
+
+if (userStore.isLoggedIn()) {
+  useRouter().push('/');
+}
 </script>
 
 <template>
