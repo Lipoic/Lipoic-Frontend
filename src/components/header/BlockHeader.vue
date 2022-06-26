@@ -25,14 +25,6 @@ const userStore = useUserStore();
 
 <template>
   <div class="header">
-    <input
-      id="menuToggle"
-      style="display: none"
-      type="checkbox"
-      name="menuToggle"
-      :checked="isMenuOpen"
-      @input="updateMenuState"
-    />
     <div class="logo">
       <SvgIcon name="logo" class="svg" />
       <div class="name">
@@ -44,6 +36,14 @@ const userStore = useUserStore();
       <UserInfoHeader :info="userStore.info"></UserInfoHeader>
     </div>
     <div v-else class="links">
+      <input
+        id="menuToggle"
+        style="display: none"
+        type="checkbox"
+        name="menuToggle"
+        :checked="isMenuOpen"
+        @input="updateMenuState"
+      />
       <label for="menuToggle" class="menuButton">
         <SvgIcon name="other-menu" color="white" />
       </label>
@@ -108,11 +108,7 @@ const userStore = useUserStore();
 
     .loginButton {
       padding-right: 10px;
-      padding-left: 5px;
-
-      @include phone {
-        display: none;
-      }
+      padding-left: 10px;
     }
 
     .phone {

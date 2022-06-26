@@ -28,7 +28,7 @@
 
   &:hover {
     color: white;
-    background-color: $MainColor;
+    background-color: $SecondaryColor;
   }
 }
 </style>
