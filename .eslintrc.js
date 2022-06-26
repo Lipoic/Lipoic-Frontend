@@ -91,24 +91,5 @@ module.exports = {
 
     // allow use ++ and --
     'no-plusplus': 'off',
-
-    // allow return void
-    'no-useless-return': 'off',
-
-    // no-param-reassign
-    'no-param-reassign': 'off',
-
-    // consistent-return
-    'consistent-return': 'off',
-
-    // allow return await
-    'no-return-await': 'off',
-
-    // class this methods
-    'class-methods-use-this': 'off',
   },
-  overrides: [
-    // fix ts type error
-    { files: ['*.ts', '*.tsx'], rules: { 'no-dupe-class-members': 'off' } },
-  ],
 };
