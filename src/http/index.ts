@@ -20,7 +20,7 @@ export class HttpClient {
 
     this.axios.interceptors.request.use(this.requestHandler.bind(this));
     this.axios.interceptors.response.use(
-      this.responseHandler.bind(this),
+      HttpClient.responseHandler.bind(this),
       this.responseErrorHandler.bind(this)
     );
   }
@@ -30,7 +30,7 @@ export class HttpClient {
     data?: unknown,
     config?: AxiosRequestConfig
   ): Promise<G> {
-    return this.getRequestData(this.axios.post(path, data, config));
+    return HttpClient.getRequestData(this.axios.post(path, data, config));
   }
 
   public async postForm<T, G = Response<T>>(
@@ -61,7 +61,9 @@ export class HttpClient {
     params?: unknown,
     config?: AxiosRequestConfig
   ): Promise<G> {
-    return this.getRequestData(this.axios.get(path, { params, ...config }));
+    return HttpClient.getRequestData(
+      this.axios.get(path, { params, ...config })
+    );
   }
 
   public async patch<T, G = Response<T>>(
@@ -69,23 +71,27 @@ export class HttpClient {
     data?: unknown,
     config?: AxiosRequestConfig
   ): Promise<G> {
-    return this.getRequestData(this.axios.patch(path, data, config));
+    return HttpClient.getRequestData(this.axios.patch(path, data, config));
   }
 
   public async delete<T, G = Response<T>>(
     path: PathType,
     config?: AxiosRequestConfig
   ): Promise<G> {
-    return this.getRequestData(this.axios.delete(path, config));
+    return HttpClient.getRequestData(this.axios.delete(path, config));
   }
 
-  private async getRequestData<T>(
+  private static async getRequestData<T>(
     response: Promise<AxiosResponse>
   ): Promise<T> {
     return (await response).data;
   }
 
-  private requestHandler(config: AxiosRequestConfig) {
+  private requestHandler(
+    _config: AxiosRequestConfig
+  ): AxiosRequestConfig<unknown> {
+    const config = _config;
+
     config.headers = {
       ...config.headers,
       ...this.config.headers,
@@ -101,13 +107,15 @@ export class HttpClient {
     return config;
   }
 
-  private responseHandler(response: AxiosResponse<unknown, unknown>) {
+  private static responseHandler(response: AxiosResponse<unknown, unknown>) {
     // TODO: success callback
 
     return response;
   }
 
-  private async responseErrorHandler(error: AxiosError<Response, unknown>) {
+  private async responseErrorHandler(
+    error: AxiosError<Response, unknown>
+  ): Promise<AxiosResponse<Response, unknown> | null> {
     const { config } = error;
 
     if (error.response) {
@@ -115,7 +123,8 @@ export class HttpClient {
       // if the token is invalid, logout
       if (error.response.status === 401 && store.isLoggedIn()) {
         store.logout();
-        return;
+
+        return null;
       }
 
       const errorData: ResponseErrorData = {
@@ -134,11 +143,12 @@ export class HttpClient {
     ) {
       // TODO: error callback
 
-      return Promise.reject(error);
+      Promise.reject(error);
+      return null;
     }
     config.__retryCount += 1;
 
-    return await this.axios(config);
+    return this.axios(config);
   }
 }
 
