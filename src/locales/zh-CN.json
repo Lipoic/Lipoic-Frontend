@@ -33,7 +33,7 @@
   },
   "header": {
     "action": {
-      "logout": "註銷"
+      "logout": "注销"
     },
     "links": {
       "about": "关于",
