@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+
 import { setActivePinia, createPinia } from 'pinia';
 import {
   afterAll,
