@@ -32,10 +32,8 @@ const userStore = useUserStore();
         <span>EDU</span>
       </div>
     </div>
-    <div v-if="userStore.isLoggedIn() && userStore.info">
-      <UserInfoHeader :info="userStore.info"></UserInfoHeader>
-    </div>
-    <div v-else class="links">
+
+    <div class="links">
       <input
         id="menuToggle"
         style="display: none"
@@ -49,7 +47,12 @@ const userStore = useUserStore();
       </label>
       <PageLinksVue direction="row" class="desktop"></PageLinksVue>
       <PageLinksVue direction="column" class="phone"></PageLinksVue>
-      <LoginButtonVue class="loginButton"></LoginButtonVue>
+      <div v-if="userStore.isLoggedIn() && userStore.info">
+        <UserInfoHeader :info="userStore.info"></UserInfoHeader>
+      </div>
+      <div v-else>
+        <LoginButtonVue class="loginButton"></LoginButtonVue>
+      </div>
     </div>
   </div>
 </template>
@@ -108,7 +111,6 @@ const userStore = useUserStore();
 
     .loginButton {
       padding-right: 10px;
-      padding-left: 10px;
     }
 
     .phone {
@@ -120,38 +122,38 @@ const userStore = useUserStore();
     }
 
     .desktop {
+      padding-right: 10px;
+
       @include phone {
         display: none;
       }
     }
-  }
 
-  .menuButton {
-    display: none;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
+    .menuButton {
+      display: none;
 
-    @include phone {
-      display: block;
-      padding-right: 10px;
+      @include phone {
+        display: block;
+        padding-right: 10px;
+        cursor: pointer;
 
-      & ~ .links {
-        position: absolute;
-        top: 75px;
-        right: 0;
-        z-index: 100;
-        width: 100%;
-        padding: 30px 0;
-        background-color: #1b1b1b;
-        transform: scale(0, 1);
-        animation: slide 1s;
-        transition: transform 1s;
-        transform-origin: center right;
-        @keyframes slide {
-          from,
-          to {
-            z-index: -1;
+        & ~ .links {
+          position: absolute;
+          top: 75px;
+          right: 0;
+          z-index: 100;
+          width: 100%;
+          padding: 30px 0;
+          background-color: $DarkBlack;
+          transform: scale(0, 1);
+          animation: slide 1s;
+          transition: transform 1s;
+          transform-origin: center right;
+          @keyframes slide {
+            from,
+            to {
+              z-index: -1;
+            }
           }
         }
       }

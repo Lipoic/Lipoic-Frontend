@@ -11,7 +11,9 @@ const MainViewVue = defineAsyncComponent(
   () => import('@/components/MainView.vue')
 );
 
-const route = useRouter().currentRoute.value;
+const router = useRouter();
+
+const route = router.currentRoute.value;
 const type = route.path.split('/').filter((str) => str)[1];
 const code = route.query.code?.toString();
 const error = ref(false);
@@ -46,7 +48,7 @@ async function login() {
     const store = useUserStore();
     store.setToken(token);
     await store.setUserInfo();
-    location.href = '/';
+    router.push('/');
   }
 }
 

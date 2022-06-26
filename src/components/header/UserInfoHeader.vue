@@ -8,9 +8,9 @@ import PageLinksVue from '@/components/header/PageLinks.vue';
 
 const props = defineProps<{ info: UserInfo }>();
 
-const menuState = ref<undefined | ''>(void 0);
-const toggleMenu = (state?: boolean) => {
-  menuState.value = state ?? menuState.value !== void 0 ? void 0 : '';
+const menuState = ref<undefined | ''>('');
+const toggleMenu = () => {
+  menuState.value = menuState.value !== void 0 ? void 0 : '';
 };
 
 const userStore = useUserStore();
@@ -32,8 +32,7 @@ function getUserAvatar(info: UserInfo) {
     </div>
     <SvgIcon name="login-ExpandMore" class="expand-more" color="white" />
     <ul class="user-more">
-      <PageLinksVue direction="row"></PageLinksVue>
-      <li class="logout" @chick="userStore.logout()">登出</li>
+      <li class="logout" @click="userStore.logout()">登出</li>
     </ul>
   </div>
 </template>
