@@ -10,9 +10,6 @@ export default {
   install: (app: AppType) => {
     // install error handler
     handError(app);
-
-    // global configs
-    app.config.globalProperties.options = globalConfig;
   },
 };
 
