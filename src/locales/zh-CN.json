@@ -32,6 +32,9 @@
     "copyright": "版权所有 © 2022 Lipoic. 保留所有权利。"
   },
   "header": {
+    "action": {
+      "logout": "註銷"
+    },
     "links": {
       "about": "关于",
       "demo": "演示",

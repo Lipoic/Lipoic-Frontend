@@ -33,6 +33,9 @@
     "copyright": "Copyright © 2022 Lipoic. All rights reserved."
   },
   "header": {
+    "action": {
+      "logout": "Logout"
+    },
     "links": {
       "about": "About",
       "demo": "Demo",
@@ -48,7 +51,7 @@
       "teacher": "Teacher"
     },
     "subtitle": {
-      "1": "A multifunctional, educational platform specifically designed for teachers and students",
+      "1": "A multifunctional, educational platform for teachers and students",
       "2": "Loves open source and open education"
     }
   },

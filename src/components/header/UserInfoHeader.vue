@@ -36,15 +36,19 @@ function getUserAvatar(info: UserInfo) {
       />
       <SvgIcon name="login-ExpandMore" class="expand-more" color="white" />
     </div>
-    <ul class="user-more">
+    <div class="user-more">
       <PageLinksVue
         direction="column"
         :login-button="false"
         class="links"
       ></PageLinksVue>
       <hr />
-      <li class="logout" @click="userStore.logout()">登出</li>
-    </ul>
+      <li
+        v-t="'header.action.logout'"
+        class="logout"
+        @click="userStore.logout()"
+      ></li>
+    </div>
   </div>
 </template>
 
@@ -85,18 +89,22 @@ function getUserAvatar(info: UserInfo) {
     .user-more {
       position: absolute;
       top: 100%;
-      left: -55%;
+      right: 0;
+      left: -50px;
+      display: flex;
       padding: 10px 25px;
-      margin-top: 12px;
-      color: rgb(160 160 160);
+      margin-top: 10px;
+      flex-direction: column;
+      text-align: center;
       list-style: none;
       background-color: $DarkBlack;
       border-radius: 6px;
 
       li {
-        padding: 5px;
-        font-size: 1.3rem;
+        padding-top: 5px;
+        font-size: 1.35rem;
         font-weight: 500;
+        color: white;
         cursor: pointer;
         transition: color 0.15s ease-in-out;
 
