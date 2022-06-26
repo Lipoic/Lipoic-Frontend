@@ -8,7 +8,7 @@ import PageLinksVue from '@/components/header/PageLinks.vue';
 
 const props = defineProps<{ info: UserInfo }>();
 
-const menuState = ref<undefined | ''>('');
+const menuState = ref<undefined | ''>(undefined);
 const toggleMenu = () => {
   menuState.value = menuState.value !== void 0 ? void 0 : '';
 };
@@ -22,16 +22,27 @@ function getUserAvatar(info: UserInfo) {
 </script>
 
 <template>
-  <div class="user" :open="menuState" @click="toggleMenu()">
-    <div class="user-info" :title="`More info`" :aria-label="`More info`">
+  <div class="user" :open="menuState">
+    <div
+      class="user-info"
+      :title="`More info`"
+      :aria-label="`More info`"
+      @click="toggleMenu()"
+    >
       <img
         class="user-icon"
         :src="getUserAvatar(props.info)"
         :alt="`${props.info.username}'s avatar`"
       />
+      <SvgIcon name="login-ExpandMore" class="expand-more" color="white" />
     </div>
-    <SvgIcon name="login-ExpandMore" class="expand-more" color="white" />
     <ul class="user-more">
+      <PageLinksVue
+        direction="column"
+        :login-button="false"
+        class="links"
+      ></PageLinksVue>
+      <hr />
       <li class="logout" @click="userStore.logout()">登出</li>
     </ul>
   </div>
@@ -89,12 +100,26 @@ function getUserAvatar(info: UserInfo) {
         cursor: pointer;
         transition: color 0.15s ease-in-out;
 
-        &:not(:first-child) {
-          margin-top: 8px;
-        }
-
         &.logout {
           color: red;
+        }
+      }
+
+      hr {
+        display: none;
+
+        @include phone {
+          display: block;
+          margin-bottom: 8px;
+        }
+      }
+
+      .links {
+        display: none;
+
+        @include phone {
+          display: flex;
+          padding-bottom: 12px;
         }
       }
     }

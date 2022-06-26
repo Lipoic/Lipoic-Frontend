@@ -34,23 +34,31 @@ const userStore = useUserStore();
     </div>
 
     <div class="links">
-      <input
-        id="menuToggle"
-        style="display: none"
-        type="checkbox"
-        name="menuToggle"
-        :checked="isMenuOpen"
-        @input="updateMenuState"
-      />
-      <label for="menuToggle" class="menuButton">
-        <SvgIcon name="other-menu" color="white" />
-      </label>
-      <PageLinksVue direction="row" class="desktop"></PageLinksVue>
-      <PageLinksVue direction="column" class="phone"></PageLinksVue>
+      <PageLinksVue
+        direction="row"
+        :login-button="false"
+        class="desktop"
+      ></PageLinksVue>
       <div v-if="userStore.isLoggedIn() && userStore.info">
         <UserInfoHeader :info="userStore.info"></UserInfoHeader>
       </div>
       <div v-else>
+        <input
+          id="menuToggle"
+          style="display: none"
+          type="checkbox"
+          name="menuToggle"
+          :checked="isMenuOpen"
+          @input="updateMenuState"
+        />
+        <label for="menuToggle" class="menuButton">
+          <SvgIcon name="other-menu" color="white" />
+        </label>
+        <PageLinksVue
+          direction="column"
+          :login-button="!userStore.isLoggedIn()"
+          class="phone"
+        ></PageLinksVue>
         <LoginButtonVue class="loginButton"></LoginButtonVue>
       </div>
     </div>
@@ -111,6 +119,10 @@ const userStore = useUserStore();
 
     .loginButton {
       padding-right: 10px;
+
+      @include phone {
+        display: none;
+      }
     }
 
     .phone {
@@ -134,7 +146,6 @@ const userStore = useUserStore();
 
       @include phone {
         display: block;
-        padding-right: 10px;
         cursor: pointer;
 
         & ~ .links {

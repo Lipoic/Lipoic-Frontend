@@ -1,14 +1,19 @@
 <script lang="ts" setup>
 const props = defineProps<{
   direction: 'row' | 'column';
+  loginButton: boolean;
 }>();
 
 const links = [
-  { path: '/', i18nName: 'header.links.home' },
-  { path: '/about', i18nName: 'header.links.about' },
-  { path: '/feature', i18nName: 'header.links.feature' },
-  { path: '/demo', i18nName: 'header.links.demo' },
+  { path: '/', i18nKey: 'header.links.home' },
+  { path: '/about', i18nKey: 'header.links.about' },
+  { path: '/feature', i18nKey: 'header.links.feature' },
+  { path: '/demo', i18nKey: 'header.links.demo' },
 ];
+
+if (props.loginButton) {
+  links.push({ path: '/account', i18nKey: 'header.login' });
+}
 </script>
 
 <template>
@@ -22,9 +27,9 @@ const links = [
       "
     >
       <router-link
-        v-t="link.i18nName"
+        v-t="link.i18nKey"
         :to="link.path"
-        :title="$t(link.i18nName)"
+        :title="$t(link.i18nKey)"
       />
     </li>
   </div>
