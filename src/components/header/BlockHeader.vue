@@ -43,14 +43,14 @@ const userStore = useUserStore();
     <div v-if="userStore.isLoggedIn() && userStore.info">
       <UserInfoHeader :info="userStore.info"></UserInfoHeader>
     </div>
-    <label v-if="!userStore.isLoggedIn()" for="menuToggle" class="menuButton">
-      <SvgIcon name="other-menu" color="white" />
-    </label>
-    <div v-if="!userStore.isLoggedIn()" class="links">
+    <div v-else class="links">
+      <label for="menuToggle" class="menuButton">
+        <SvgIcon name="other-menu" color="white" />
+      </label>
       <PageLinksVue direction="row" class="desktop"></PageLinksVue>
       <PageLinksVue direction="column" class="phone"></PageLinksVue>
+      <LoginButtonVue class="loginButton"></LoginButtonVue>
     </div>
-    <LoginButtonVue class="loginButton"></LoginButtonVue>
   </div>
 </template>
 
@@ -103,15 +103,23 @@ const userStore = useUserStore();
   }
 
   .links {
+    display: flex;
+    align-items: center;
+
+    .loginButton {
+      padding-right: 10px;
+      padding-left: 5px;
+
+      @include phone {
+        display: none;
+      }
+    }
+
     .phone {
       display: none;
 
       @include phone {
         display: flex;
-
-        :is(a[href]) {
-          font-size: 1.6rem;
-        }
       }
     }
 
@@ -151,15 +159,6 @@ const userStore = useUserStore();
           }
         }
       }
-    }
-  }
-
-  .loginButton {
-    padding-right: 10px;
-    padding-left: 5px;
-
-    @include phone {
-      display: none;
     }
   }
 }
