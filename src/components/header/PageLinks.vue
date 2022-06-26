@@ -12,7 +12,7 @@ const links = [
 ];
 
 if (props.loginButton) {
-  links.push({ path: '/account', i18nKey: 'header.login' });
+  links.push({ path: '/account/login', i18nKey: 'header.login' });
 }
 </script>
 

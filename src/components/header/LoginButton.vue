@@ -5,7 +5,7 @@
     <router-link
       v-once
       v-t="'header.login'"
-      to="/account"
+      to="/account/login"
       class="button"
       :title="$t('header.login')"
       :aria-label="$t('header.login')"
