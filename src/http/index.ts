@@ -111,6 +111,13 @@ export class HttpClient {
     const { config } = error;
 
     if (error.response) {
+      const store = useUserStore();
+      // if the token is invalid, logout
+      if (error.response.status === 401 && store.isLoggedIn()) {
+        store.logout();
+        return;
+      }
+
       const errorData: ResponseErrorData = {
         ...error.response.data,
         config,
