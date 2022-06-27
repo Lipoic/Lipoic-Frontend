@@ -19,7 +19,11 @@ export const useUserStore = defineStore({
       const info = localStorage.getItem('user_info');
 
       this.token = localStorage.getItem('token');
-      this.info = info ? <UserInfo>JSON.parse(info) : null;
+      try {
+        this.info = info ? <UserInfo>JSON.parse(info) : null;
+      } catch (error) {
+        this.info = null;
+      }
     },
     isLoggedIn(): boolean {
       return !!(this.info && this.token);
