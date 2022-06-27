@@ -42,9 +42,7 @@ const oauthButtons = [
 
 const userStore = useUserStore();
 
-if (userStore.isLoggedIn()) {
-  useRouter().push('/');
-}
+if (userStore.isLoggedIn()) useRouter().push('/');
 </script>
 
 <template>
