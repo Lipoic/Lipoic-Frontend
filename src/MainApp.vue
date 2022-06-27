@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue';
-
-/*  For Safari support because there are a bug of vh and vw unit of Safari. */
+import { onBeforeMount, onMounted, onUnmounted } from 'vue';
+import { useUserStore } from '@/stores/models/user';
+import http from '@/http';
 
 /*  For Safari support because there are a bug of vh and vw unit of Safari. */
 const setStyle = (key: `--${string}`, value: string | null) =>
@@ -18,6 +18,7 @@ onUnmounted(() => removeEventListener('resize', setStyles));
 
 /* color scheme */
 onMounted(() => {
+  http.get('/');
   const storage = localStorage.getItem('theme');
   if (!storage) {
     const mql = matchMedia('(prefers-color-scheme: dark)');
@@ -43,6 +44,12 @@ const setScheme = (_isLight: boolean | string) => {
   html?.classList.add(scheme);
   html?.classList.remove(schemes[+!isLight]);
 };
+
+onBeforeMount(async () => {
+  const userStore = useUserStore();
+  // https://github.com/vuejs/pinia/discussions/512
+  userStore.init();
+});
 </script>
 
 <template>

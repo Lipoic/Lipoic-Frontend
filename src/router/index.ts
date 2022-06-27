@@ -21,10 +21,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/account',
     name: 'Account',
-    component: () => import('@/views/PageAuth.vue'),
-    redirect: {
-      name: 'Login',
-    },
+    component: () => import('@/views/RouterView.vue'),
     children: [
       {
         path: 'login',
@@ -47,6 +44,23 @@ const routes: RouteRecordRaw[] = [
     path: '/demo',
     name: 'Demo',
     component: () => import('@/views/PageDemo.vue'),
+  },
+  {
+    path: '/oauth',
+    name: 'OAuth',
+    component: () => import('@/views/RouterView.vue'),
+    children: [
+      {
+        path: 'google',
+        name: 'Google OAuth',
+        component: () => import('@/views/PageOAuth.vue'),
+      },
+      {
+        path: 'facebook',
+        name: 'Facebook OAuth',
+        component: () => import('@/views/PageOAuth.vue'),
+      },
+    ],
   },
 ];
 

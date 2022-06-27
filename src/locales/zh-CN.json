@@ -1,43 +1,57 @@
 {
-  "name": "简体中文 (中国)",
-  "app": { "title": "Lipoic - 与我们一起翻转教育" },
-  "header": {
-    "links": {
-      "home": "首页",
-      "about": "关于",
-      "feature": "特色",
-      "demo": "演示"
-    },
-    "login": "登入"
-  },
-  "footer": { "copyright": "版权所有 © 2022 Lipoic. 保留所有权利。" },
-  "home": {
-    "subtitle": {
-      "1": "专门为师生们设计的多功能教育平台",
-      "2": "熱愛開放原始碼與開放教育精神"
-    },
-    "login": { "student": "学生", "teacher": "老师", "parents": "家长" }
+  "app": {
+    "title": "Lipoic - 与我们一起翻转教育"
   },
   "auth": {
     "login": {
-      "welcome": "欢迎来到 Lipoic",
-      "title": "登入",
-      "usernameInput": "用户名称",
-      "password": "密码",
-      "stayLoggedIn": "保持登入",
       "forgotPassword": "忘記密码",
-      "loginButton": "登入",
       "haveNoAccount": "还没有帐戶吗？",
+      "loading": "登錄中...",
+      "loginButton": "登錄",
+      "password": "密码",
       "registerNow": "立即註册",
+      "rememberMe": "保持登錄",
+      "title": "登錄",
       "useOtherMethods": "或用以下方式",
-      "taiwanEduLoginButton": "臺湾云端教育帐号"
+      "usernameInput": "用户名称",
+      "welcome": "欢迎来到 Lipoic"
     },
     "signUp": {
-      "title": "註册",
-      "email": "电子邮件",
-      "signUpButton": "註册",
       "alreadyHaveAccount": "已经有一个帐号了吗",
-      "loginNow": "登入"
+      "email": "电子邮件",
+      "loginNow": "登錄",
+      "signUpButton": "註册",
+      "title": "註册"
     }
-  }
+  },
+  "error": {
+    "message": "发生未知错误，请稍后再试。"
+  },
+  "footer": {
+    "copyright": "版权所有 © 2022 Lipoic. 保留所有权利。"
+  },
+  "header": {
+    "action": {
+      "logout": "注销"
+    },
+    "links": {
+      "about": "关于",
+      "demo": "演示",
+      "feature": "特色",
+      "home": "首页"
+    },
+    "login": "登錄"
+  },
+  "home": {
+    "login": {
+      "parents": "家长",
+      "student": "学生",
+      "teacher": "老师"
+    },
+    "subtitle": {
+      "1": "专门为师生们设计的多功能教育平台",
+      "2": "熱愛開放原始碼與開放教育精神"
+    }
+  },
+  "name": "简体中文 (中国)"
 }

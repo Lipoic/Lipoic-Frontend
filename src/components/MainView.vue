@@ -2,7 +2,7 @@
 import { defineAsyncComponent, ref } from 'vue';
 
 const BlockHeaderVue = defineAsyncComponent(
-  () => import('@/components/BlockHeader.vue')
+  () => import('@/components/header/BlockHeader.vue')
 );
 const BlockFooterVue = defineAsyncComponent(
   () => import('@/components/BlockFooter.vue')
@@ -30,10 +30,13 @@ const headerMenuHandler = (): void => {
 </template>
 
 <style lang="scss" scoped>
+@import '@/scss/global.scss';
+
 .main {
   display: flex;
   flex-direction: column;
-  height: auto;
+  min-height: 100%;
+  background-color: $LightBlack;
 
   .wrapper {
     display: flex;

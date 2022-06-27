@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useI18n } from 'vue-i18n';
 import { onUnmounted, ref, watch } from 'vue';
 
@@ -27,6 +26,7 @@ watch(i18n.locale, () => {
   texts = [...props.i18nTextKeys.map((key) => i18n.t(key))];
   charIndex = 0;
   typeValue.value = '';
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   clearTimeout(timeOut!);
   typeText();
 });
@@ -64,6 +64,7 @@ const eraseText = () => {
   }
 };
 
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 onUnmounted(() => clearTimeout(timeOut!));
 </script>
 
@@ -114,7 +115,7 @@ onUnmounted(() => clearTimeout(timeOut!));
     height: 3rem;
     font-size: 2rem;
     line-height: 2rem;
-    color: $White;
+    color: white;
     white-space: pre-line;
 
     &::after {

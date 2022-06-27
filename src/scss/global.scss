@@ -1,8 +1,7 @@
 // Variables
 $Black: #353535;
-$White: #fff;
-$BrightGrey: #555762;
-$LightBlack: #4f4f4f;
+$LightBlack: #424242;
+$DarkBlack: #1f1f1f;
 $MainColor: #5efff2;
 $MainPurple: #7b6ff6;
 
@@ -34,5 +33,9 @@ img {
 
 %link {
   color: #fff;
+  text-decoration: none;
+}
+
+a[href] {
   text-decoration: none;
 }

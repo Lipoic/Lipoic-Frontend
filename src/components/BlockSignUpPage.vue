@@ -2,7 +2,7 @@
 import { defineAsyncComponent, reactive } from 'vue';
 
 const ToolLangSelector = defineAsyncComponent(
-  () => import('./ToolLangSelector.vue')
+  () => import('@/components/ToolLangSelector.vue')
 );
 interface signUpData {
   username: string;
@@ -175,7 +175,7 @@ const signUpFormData = reactive<signUpData>({
         padding: 0 10px 30px 20px;
         font-size: 2rem;
         font-weight: 600;
-        color: $White;
+        color: white;
 
         span {
           position: relative;
@@ -197,7 +197,7 @@ const signUpFormData = reactive<signUpData>({
         padding: 12px 20px;
         margin-top: 10px;
         font-size: 1.2rem;
-        color: $White;
+        color: white;
         background-color: #7c7b7b33;
         border: none;
         border-radius: 15px;
@@ -215,7 +215,7 @@ const signUpFormData = reactive<signUpData>({
         padding: 10px;
         margin: 20px;
         font-size: 1.5rem;
-        color: $White;
+        color: white;
         cursor: pointer;
         background-color: $MainPurple;
         border: none;
@@ -223,7 +223,7 @@ const signUpFormData = reactive<signUpData>({
       }
 
       p {
-        color: $White;
+        color: white;
         text-align: center;
       }
 
