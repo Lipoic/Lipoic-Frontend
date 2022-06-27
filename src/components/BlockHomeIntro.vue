@@ -42,19 +42,19 @@ const modules = [Pagination, Autoplay];
       <div class="loginBar">
         <router-link
           v-t="'home.login.student'"
-          to="/login/student"
+          to="/account/login/mode?=student"
           class="first"
           :title="$t('home.login.student')"
         />
         <router-link
           v-t="'home.login.teacher'"
-          to="/login/teacher"
+          to="/account/login/mode?=teacher"
           class="middle"
           :title="$t('home.login.teacher')"
         />
         <router-link
           v-t="'home.login.parents'"
-          to="/login/parents"
+          to="/account/login/mode?=parents"
           class="last"
           :title="$t('home.login.parents')"
         >
