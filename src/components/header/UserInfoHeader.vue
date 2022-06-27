@@ -86,7 +86,7 @@ function getUserAvatar(info: UserInfo) {
 
 .menu-true {
   .expand-more {
-    transform: rotate(180deg);
+    transform: scaleY(-1);
   }
 
   .user-more {
