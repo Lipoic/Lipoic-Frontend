@@ -44,13 +44,6 @@ const oauthButtons = [
       }
     },
   },
-  {
-    title: t('auth.login.taiwanEduLoginButton'),
-    img: 'login-taiwanOpenId',
-    click: () => {
-      // no-op
-    },
-  },
 ];
 
 const userStore = useUserStore();
