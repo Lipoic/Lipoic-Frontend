@@ -35,7 +35,12 @@ const changeEventLanguage = (e: MouseEvent) => {
         }"
       />
       {{ i18n.getLocaleMessage(selectedLanguage).name }}
-      <SvgIcon name="other-ExpandMore" color="white" />
+      <SvgIcon
+        name="other-ExpandMore"
+        color="white"
+        width="32px"
+        height="32px"
+      />
     </button>
     <ul class="set-languages" @click="changeEventLanguage">
       <li

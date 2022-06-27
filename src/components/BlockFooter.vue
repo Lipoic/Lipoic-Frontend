@@ -9,7 +9,7 @@ const ToolLangSelector = defineAsyncComponent(
 <template>
   <div class="footer">
     <div class="logo">
-      <SvgIcon name="logo" />
+      <SvgIcon name="logo" width="32px" height="32px" />
     </div>
     <div v-t="'footer.copyright'" class="copyright" />
     <ToolLangSelector />
