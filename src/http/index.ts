@@ -100,7 +100,6 @@ export class HttpClient {
     const store = useUserStore();
     const token = store.token || config.token || this.config.token;
     if (config.authentication && token) {
-      config.token = token;
       config.headers.Authorization = `Bearer ${token}`;
     }
 
