@@ -8,9 +8,9 @@ import PageLinksVue from '@/components/header/PageLinks.vue';
 
 const props = defineProps<{ info: UserInfo }>();
 
-const menuState = ref<undefined | ''>(undefined);
+const menuState = ref(false);
 const toggleMenu = () => {
-  menuState.value = menuState.value !== void 0 ? void 0 : '';
+  menuState.value = !menuState.value;
 };
 
 const userStore = useUserStore();
@@ -22,7 +22,7 @@ function getUserAvatar(info: UserInfo) {
 </script>
 
 <template>
-  <div class="user" :open="menuState">
+  <div :class="`user menu-${menuState}`">
     <div
       class="user-info"
       :title="`More info`"
@@ -76,59 +76,61 @@ function getUserAvatar(info: UserInfo) {
       border-radius: 50%;
     }
   }
+}
 
-  &:not([open]) .user-more {
+.menu-false {
+  .user-more {
     display: none;
   }
+}
 
-  &[open] {
-    .expand-more {
-      transform: rotate(180deg);
+.menu-true {
+  .expand-more {
+    transform: rotate(180deg);
+  }
+
+  .user-more {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: -50px;
+    display: flex;
+    padding: 10px 25px;
+    margin-top: 10px;
+    flex-direction: column;
+    text-align: center;
+    list-style: none;
+    background-color: $DarkBlack;
+    border-radius: 6px;
+
+    li {
+      padding-top: 5px;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: white;
+      cursor: pointer;
+      transition: color 0.15s ease-in-out;
+
+      &.logout {
+        color: red;
+      }
     }
 
-    .user-more {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      left: -50px;
-      display: flex;
-      padding: 10px 25px;
-      margin-top: 10px;
-      flex-direction: column;
-      text-align: center;
-      list-style: none;
-      background-color: $DarkBlack;
-      border-radius: 6px;
+    hr {
+      display: none;
 
-      li {
-        padding-top: 5px;
-        font-size: 1.35rem;
-        font-weight: 500;
-        color: white;
-        cursor: pointer;
-        transition: color 0.15s ease-in-out;
-
-        &.logout {
-          color: red;
-        }
+      @include phone {
+        display: block;
+        margin-bottom: 8px;
       }
+    }
 
-      hr {
-        display: none;
+    .links {
+      display: none;
 
-        @include phone {
-          display: block;
-          margin-bottom: 8px;
-        }
-      }
-
-      .links {
-        display: none;
-
-        @include phone {
-          display: flex;
-          padding-bottom: 12px;
-        }
+      @include phone {
+        display: flex;
+        padding-bottom: 12px;
       }
     }
   }
