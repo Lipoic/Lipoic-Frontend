@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { useRouter } from 'vue-router';
 import { UserInfo } from '@/api/user/type';
 
 import { getUserInfo } from '@/api/user';
@@ -43,7 +44,7 @@ export const useUserStore = defineStore({
       localStorage.removeItem('token');
       localStorage.removeItem('user_info');
       this.init();
-      location.href = '/';
+      useRouter().push('/');
     },
   },
 });
