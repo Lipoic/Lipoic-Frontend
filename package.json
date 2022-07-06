@@ -40,7 +40,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-vue": "9.1.1",
     "happy-dom": "5.4.0",
-    "msw": "0.42.3",
+    "msw": "0.43.0",
     "postcss-html": "1.4.1",
     "postcss-scss": "4.0.4",
     "prettier": "2.7.1",
