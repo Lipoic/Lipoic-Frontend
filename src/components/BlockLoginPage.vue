@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, reactive } from 'vue';
-import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { getGoogleOauthUrl, getFacebookOauthUrl } from '@/api/authentication';
 import { useUserStore } from '@/stores/models/user';
@@ -8,7 +7,6 @@ import { useUserStore } from '@/stores/models/user';
 const ToolLangSelector = defineAsyncComponent(
   () => import('@/components/ToolLangSelector.vue')
 );
-const { t } = useI18n();
 
 interface loginData {
   username: string;
@@ -27,9 +25,7 @@ const oauthButtons = [
     img: 'login-google',
     click: async () => {
       const url = await getGoogleOauthUrl(`${location.origin}/oauth/google/`);
-      if (url) {
-        window.location.href = url;
-      }
+      if (url) window.location.href = url;
     },
   },
   {
@@ -39,18 +35,14 @@ const oauthButtons = [
       const url = await getFacebookOauthUrl(
         `${location.origin}/oauth/facebook/`
       );
-      if (url) {
-        window.location.href = url;
-      }
+      if (url) window.location.href = url;
     },
   },
 ];
 
 const userStore = useUserStore();
 
-if (userStore.isLoggedIn()) {
-  useRouter().push('/');
-}
+if (userStore.isLoggedIn()) useRouter().push('/');
 </script>
 
 <template>
@@ -61,7 +53,8 @@ if (userStore.isLoggedIn()) {
           <SvgIcon
             name="login-arrow"
             class="goBack"
-            style="width: 80px; height: 80px"
+            width="80px"
+            height="80px"
           />
         </router-link>
         <span v-t="'auth.login.welcome'" class="greeting" />
@@ -72,11 +65,7 @@ if (userStore.isLoggedIn()) {
     </div>
     <div class="right">
       <router-link to="/" class="goBack">
-        <SvgIcon
-          name="login-arrow"
-          class="arrow"
-          style="width: 25px; height: 25px"
-        />
+        <SvgIcon name="login-arrow" class="arrow" width="25px" height="25px" />
       </router-link>
       <form method="POST">
         <div class="header">
@@ -143,7 +132,7 @@ if (userStore.isLoggedIn()) {
             :title="title"
             @click="click"
           >
-            <SvgIcon :name="img" />
+            <SvgIcon :name="img" width="25px" height="25px" />
           </button>
         </div>
         <ToolLangSelector />

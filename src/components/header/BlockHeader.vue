@@ -5,6 +5,8 @@ import { useUserStore } from '@/stores/models/user';
 import PageLinksVue from '@/components/header/PageLinks.vue';
 import LoginButtonVue from '@/components/header/LoginButton.vue';
 
+const userStore = useUserStore();
+
 /** Menu handler */
 const isMenuOpen = ref<boolean>();
 const checkMenuOpen = () => {
@@ -19,14 +21,12 @@ defineExpose({ changeMenuCheckboxState });
 
 onMounted(() => window.addEventListener('resize', checkMenuOpen));
 onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
-
-const userStore = useUserStore();
 </script>
 
 <template>
   <div class="header">
     <div class="logo">
-      <SvgIcon name="logo" class="svg" />
+      <SvgIcon name="logo" width="60px" height="60px" />
       <div class="name">
         <h1>Lipoic</h1>
         <span>EDU</span>
@@ -34,13 +34,9 @@ const userStore = useUserStore();
     </div>
 
     <div class="links">
-      <PageLinksVue
-        direction="row"
-        :login-button="false"
-        class="desktop"
-      ></PageLinksVue>
+      <PageLinksVue direction="row" :login-button="false" class="desktop" />
       <div v-if="userStore.isLoggedIn() && userStore.info">
-        <UserInfoHeader :info="userStore.info"></UserInfoHeader>
+        <UserInfoHeader :info="userStore.info" />
       </div>
       <div v-else>
         <input
@@ -52,14 +48,14 @@ const userStore = useUserStore();
           @input="updateMenuState"
         />
         <label for="menuToggle" class="menuButton">
-          <SvgIcon name="other-menu" color="white" />
+          <SvgIcon name="other-menu" color="white" width="32px" height="32px" />
         </label>
         <PageLinksVue
           direction="column"
           :login-button="!userStore.isLoggedIn()"
           class="phone"
-        ></PageLinksVue>
-        <LoginButtonVue class="loginButton"></LoginButtonVue>
+        />
+        <LoginButtonVue class="loginButton" />
       </div>
     </div>
   </div>
@@ -83,11 +79,6 @@ const userStore = useUserStore();
     flex-direction: row;
     align-items: center;
     justify-content: center;
-
-    svg {
-      width: 60px;
-      height: 60px;
-    }
 
     .name {
       display: flex;

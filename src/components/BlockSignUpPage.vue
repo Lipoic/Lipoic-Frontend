@@ -24,7 +24,8 @@ const signUpFormData = reactive<signUpData>({
           <SvgIcon
             name="login-arrow"
             class="goBack"
-            style="width: 80px; height: 80px"
+            width="80px"
+            height="80px"
           />
         </router-link>
         <span v-t="'auth.login.welcome'" class="greeting" />
@@ -35,11 +36,7 @@ const signUpFormData = reactive<signUpData>({
     </div>
     <div class="right">
       <router-link to="/" class="goBack">
-        <SvgIcon
-          name="login-arrow"
-          class="arrow"
-          style="width: 25px; height: 25px"
-        />
+        <SvgIcon name="login-arrow" class="arrow" width="25px" height="25px" />
       </router-link>
       <form method="POST">
         <div class="header">

@@ -34,7 +34,13 @@ function getUserAvatar(info: UserInfo) {
         :src="getUserAvatar(props.info)"
         :alt="`${props.info.username}'s avatar`"
       />
-      <SvgIcon name="login-ExpandMore" class="expand-more" color="white" />
+      <SvgIcon
+        name="login-ExpandMore"
+        class="expand-more"
+        color="white"
+        width="32px"
+        height="32px"
+      />
     </div>
     <div class="user-more">
       <PageLinksVue
@@ -86,7 +92,7 @@ function getUserAvatar(info: UserInfo) {
 
 .menu-true {
   .expand-more {
-    transform: scaleY(-1);
+    transform: scaleY(-100%);
   }
 
   .user-more {

@@ -43,6 +43,7 @@ export const useUserStore = defineStore({
       localStorage.removeItem('token');
       localStorage.removeItem('user_info');
       this.init();
+      // TODO use useRouter().push('/');
       location.href = '/';
     },
   },
