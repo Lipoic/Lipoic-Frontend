@@ -59,12 +59,7 @@ login();
   <MainViewVue id="oauth">
     <div class="container">
       <div v-if="!error" class="loading">
-        <Loading
-          :active="true"
-          :color="'#7b6ff6'"
-          :width="100"
-          :height="100"
-        ></Loading>
+        <Loading :active="true" :color="'#7b6ff6'" :width="100" :height="100" />
         <h1 v-t="'auth.login.loading'"></h1>
       </div>
       <div v-if="error" class="error">
