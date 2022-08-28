@@ -17,7 +17,7 @@ if (props.loginButton) {
 </script>
 
 <template>
-  <div class="links" :style="{ flexDirection: `${props.direction}` }">
+  <div class="links" :style="{ flexDirection: props.direction }">
     <li
       v-for="link in links"
       v-once
