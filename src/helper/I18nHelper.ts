@@ -1,4 +1,4 @@
-import { I18n, createI18n, Composer } from 'vue-i18n';
+import { I18n, createI18n, Composer, useI18n } from 'vue-i18n';
 
 import defaultLanguage from '@/locales/zh-TW.json';
 
@@ -41,16 +41,21 @@ export default class I18nHelper {
       '@/assets/svg/flags/*.svg'
     );
     for (const locale of this.locales) {
-      messages[locale] = (await files[`../locales/${locale}.json`]()).default;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const filePath = Object.keys(files).find((_) => _.includes(locale))!;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const flagFilePath = Object.keys(flagsFiles).find((_) =>
+        _.includes(locale)
+      )!;
 
-      this.flags[locale] = (
-        await flagsFiles[`../assets/svg/flags/${locale}.svg`]()
-      ).default;
+      messages[locale] = (await files[filePath]()).default;
+      this.flags[locale] = (await flagsFiles[flagFilePath]()).default;
     }
 
     const i18n: i18nType = createI18n({
       fallbackLocale: this.defaultLocale,
       locale: this.locale,
+      legacy: false,
       messages,
     });
 
@@ -63,7 +68,7 @@ export default class I18nHelper {
 
   private static setTitle() {
     if (!this.i18n) return;
-    document.title = this.i18n.global.t('app.title');
+    document.title = this.i18n.global.getLocaleMessage(this.locale).app.title;
   }
 
   static setLocale(locale: string) {
