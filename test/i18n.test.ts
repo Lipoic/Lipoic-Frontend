@@ -46,7 +46,9 @@ describe('load i18n files', () => {
   });
 
   test('check document title', async () => {
-    expect(document.title).toEqual(I18nHelper.i18n?.global.t('app.title'));
+    expect(document.title).toEqual(
+      I18nHelper.i18n?.global.getLocaleMessage(I18nHelper.locale).app.title
+    );
   });
 });
 
