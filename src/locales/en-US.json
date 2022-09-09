@@ -54,5 +54,11 @@
       "2": "Loves open source and open education"
     }
   },
+  "about": {
+    "whoWeAre": {
+      "title": "Who We Are",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit beatae atque eveniet non, eligendi aperiam sapiente maxime quidem eos eius voluptas iure nemo dolor. Dignissimos excepturi veniam esse vel ea."
+    }
+  },
   "name": "English (US)"
 }
