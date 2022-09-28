@@ -12,7 +12,7 @@ jobs:
     name: Deploy
     steps:
       - uses: actions/checkout@v3
-      - uses: xRealNeon/VuePagesAction@3415ebf6420a1d77fb8ff4e60c8624c30edd48ef
+      - uses: xRealNeon/VuePagesAction@bb1a496e439e523025f6f37a2bd37ce8a8835c04
         with:
           username: 'Lipoic'
           reponame: 'Lipoic-Frontend'
