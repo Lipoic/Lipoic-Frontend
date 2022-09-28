@@ -1,0 +1,1 @@
+body,html,#app{width:100%;height:100%}img{user-select:none;-webkit-user-drag:none}*{padding:0;margin:0;font-family:Roboto,Noto Sans TC,Noto Sans SC,sans-serif;box-sizing:border-box}a[href]{text-decoration:none}html[data-theme=dark]:root,html.dark:root{--test-0: 0}html[data-theme=light]:root,html.light:root{--test-0: 0}
