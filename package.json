@@ -13,7 +13,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@vue/eslint-config-typescript": "11.0.0",
+    "@vue/eslint-config-typescript": "11.0.2",
     "axios": "0.27.2",
     "firebase": "9.9.4",
     "md5": "2.3.0",
