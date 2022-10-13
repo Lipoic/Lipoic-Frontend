@@ -14,12 +14,12 @@ const closeSetLanguages = () =>
   (showSetLanguages.value = !showSetLanguages.value);
 
 const changeEventLanguage = (e: MouseEvent) => {
-  const ev = <MouseEvent & { target?: HTMLDivElement }>e;
+  const target = e.target as HTMLDivElement;
   if (
-    ev.target?.nodeName.toLocaleLowerCase() === 'li' &&
-    ev.target.dataset.language
+    target?.nodeName.toLocaleLowerCase() === 'li' &&
+    target.dataset.language
   ) {
-    changeLanguage(ev.target.dataset.language);
+    changeLanguage(target.dataset.language);
     closeSetLanguages();
   }
 };
