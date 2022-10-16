@@ -30,8 +30,8 @@ module.exports = {
     // Use interface first
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
 
-    // prettier error
-    'prettier/prettier': ['error'],
+    // prettier warn
+    'prettier/prettier': ['warn', { endOfLine: 'auto' }],
 
     // Remove unnecessary class newlines
     'lines-between-class-members': 'off',

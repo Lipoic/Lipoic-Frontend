@@ -49,8 +49,8 @@ const contentList = ref({
 
   h1 {
     font-size: 3rem;
-    color: white;
     letter-spacing: 2px;
+    color: white;
   }
 }
 
@@ -62,29 +62,30 @@ const contentList = ref({
   justify-content: center;
 
   h1 {
+    display: flex;
     width: 500px;
     max-width: 90vw;
     padding: 80px;
     margin: 20px auto;
+    color: white;
     background-color: $SecondaryColor;
-    display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
   }
+
   p {
+    display: flex;
     width: 45%;
     height: 500px;
-    color: #fefefe;
-
     margin: 20px auto;
-    display: flex;
+    color: #fefefe;
     justify-content: center;
     align-items: center;
   }
 
   @include phone {
     flex-direction: column;
+
     h1 {
       height: 200px;
     }
