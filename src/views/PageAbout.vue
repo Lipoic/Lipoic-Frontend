@@ -75,12 +75,14 @@ const contentList = ref({
 
   p {
     display: flex;
-    width: 45%;
+    width: 55%;
     height: 500px;
     margin: 20px auto;
+    font-size: 20px;
     color: #fefefe;
     justify-content: center;
     align-items: center;
+    white-space: pre-line;
   }
 
   @include phone {
