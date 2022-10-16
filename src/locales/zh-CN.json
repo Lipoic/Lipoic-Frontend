@@ -54,9 +54,12 @@
     }
   },
   "about": {
-    "whoWeAre": {
+    "bigIdea": {
       "title": "我们是谁",
       "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit beatae atque eveniet non, eligendi aperiam sapiente maxime quidem eos eius voluptas iure nemo dolor. Dignissimos excepturi veniam esse vel ea."
+    },
+    "members": {
+      "title": "成員"
     }
   },
   "name": "简体中文 (中国)"

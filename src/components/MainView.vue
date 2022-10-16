@@ -44,10 +44,6 @@ const headerMenuHandler = (): void => {
     flex-direction: column;
     flex-grow: 1;
     justify-content: flex-start;
-
-    :deep() > * {
-      height: 100%;
-    }
   }
 }
 </style>

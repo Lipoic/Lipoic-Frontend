@@ -55,9 +55,12 @@
     }
   },
   "about": {
-    "whoWeAre": {
-      "title": "我們是誰",
-      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit beatae atque eveniet non, eligendi aperiam sapiente maxime quidem eos eius voluptas iure nemo dolor. Dignissimos excepturi veniam esse vel ea."
+    "bigIdea": {
+      "title": "Big Idea",
+      "content": "我們致力於打造更好的線上教育環境，期望學生無論經濟條件與居住地，都能接受高品質的教學。\n為了因應疫情，許多學校改以線上進行教學。\n然而，由於事發突，加上很多老師與學生不熟悉操作，種種原因造成的不適應，最終導致教學的效率低下。現行的線上教學現場中，老師往往要使用多個服務來達成目的，例如使用 Google Meet 來進行教學，同時使用 Google Form 來與學生互動，甚至因無法透過一瞥座位確認而花費大半時間點名。因此，正如團隊與平台的名字——Lipoic，我們希望透過整合的線上教室、簡單直覺的操作介面，使教育能夠無遠弗屆。學生不再因為距離而需要提早起床，也不再需要背負大量書本，身處偏鄉的學生也得以接受與都市相同的教育。"
+    },
+    "members": {
+      "title": "成員"
     }
   },
   "name": "繁體中文 (台灣)"

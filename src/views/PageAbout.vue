@@ -1,36 +1,98 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, ref } from 'vue';
-import BlockAboutContentsVue from '@/components/about/BlockAboutContents.vue';
+import BlockAboutMembersVue from '@/components/about/BlockAboutMembers.vue';
 
 const MainViewVue = defineAsyncComponent(
   () => import('@/components/MainView.vue')
 );
 
 const contentList = ref({
-  who: {
-    title: 'about.whoWeAre.title',
-    content: 'about.whoWeAre.content',
+  bigIdea: {
+    title: 'about.bigIdea.title',
+    content: 'about.bigIdea.content',
   },
 });
 </script>
 
 <template>
   <MainViewVue id="about">
+    <div class="title"><h1>關於我們</h1></div>
     <div class="aboutContents">
-      <BlockAboutContentsVue
-        :title="contentList.who.title"
-        :content="contentList.who.content"
-      ></BlockAboutContentsVue>
+      <div class="bigIdea">
+        <h1 v-t="contentList.bigIdea.title"></h1>
+        <p v-t="contentList.bigIdea.content"></p>
+      </div>
+      <BlockAboutMembersVue></BlockAboutMembersVue>
     </div>
   </MainViewVue>
 </template>
 
 <style lang="scss" scoped>
-#about {
-  background-color: #fefefe;
+@import '@/scss/animation.func.scss';
+@import '@/scss/global.scss';
+@import '@/scss/rwd.breakPoint.scss';
+
+.title {
+  display: flex;
+  width: 100%;
+  height: 20vh;
+  background: linear-gradient(
+    -45deg,
+    rgb(181 76 255 / 100%) 0%,
+    rgb(84 107 237) 50%,
+    rgb(61 163 169) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 5s ease infinite;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    font-size: 3rem;
+    color: white;
+    letter-spacing: 2px;
+  }
 }
 
-.aboutContents {
-  padding: 10px 15px;
+.bigIdea {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    width: 500px;
+    max-width: 90vw;
+    padding: 80px;
+    margin: 20px auto;
+    background-color: $SecondaryColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  p {
+    width: 45%;
+    height: 500px;
+    color: #fefefe;
+
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @include phone {
+    flex-direction: column;
+    h1 {
+      height: 200px;
+    }
+
+    p {
+      width: 80%;
+      height: auto;
+    }
+  }
 }
 </style>
