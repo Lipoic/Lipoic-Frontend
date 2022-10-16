@@ -1,5 +1,5 @@
 <template>
-  <div class="memberTitle" v-t="'about.members.title'"></div>
+  <div v-t="'about.members.title'" class="memberTitle"></div>
 </template>
 
 <style lang="scss" scoped>
