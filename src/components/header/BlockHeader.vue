@@ -36,7 +36,7 @@ onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
     <div class="links">
       <PageLinksVue direction="row" :login-button="false" class="desktop" />
       <div v-if="userStore.isLoggedIn() && userStore.info">
-        <UserInfoHeader :info="userStore.info" />
+        <UserInfoHeader :user="userStore.info" />
       </div>
       <div v-else>
         <input

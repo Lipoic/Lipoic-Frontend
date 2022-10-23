@@ -1,13 +1,13 @@
-/** Auth url
- * @url https://api-docs.lipoic.org/router/data/auth_data/struct.AuthUrl.html
+/**
+ * the authentication URL.
  */
-export interface AuthUrl {
+export interface AuthURL {
   url: string;
 }
 
-/** Auth token
- * @url https://api-docs.lipoic.org/router/data/auth_data/struct.Token.html
+/**
+ * the access token.
  */
-export interface AuthToken {
+export interface AccessToken {
   token: string;
 }

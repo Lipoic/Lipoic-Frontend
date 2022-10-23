@@ -1,24 +1,26 @@
-/** UserInfo
- * @url https://api-docs.lipoic.org/router/data/user/struct.UserInfo.html
+/**
+ * The public user info.
  */
-export interface UserInfo {
+export interface PublicUser {
+  id: string;
   username: string;
-  email: string;
+  verifiedEmail: boolean;
   modes: UserMode[];
+  locale: UserLocale;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+/**
+ * The authenticated user information.
+ */
+export interface AuthUser extends PublicUser {
+  email: string;
   connects: ConnectAccount[];
 }
 
-/** ConnectAccount
- * @url https://github.com/Lipoic/Lipoic-Server/blob/main/src/database/src/model/auth/user.rs#L24-L28
- */
-export interface ConnectAccount {
-  account_type: ConnectType;
-  name: string;
-  email: string;
-}
-
-/** ConnectType
- * @url https://github.com/Lipoic/Lipoic-Server/blob/main/src/database/src/model/auth/user.rs#L16-L21
+/**
+ * The connect account type.
  */
 export enum ConnectType {
   Google,
@@ -26,11 +28,40 @@ export enum ConnectType {
   // TaiwanCloudEducation,
 }
 
-/** UserMode
- * @url https://github.com/Lipoic/Lipoic-Server/blob/main/src/database/src/model/auth/user.rs#L30-L35
+/**
+ * The user mode.
  */
 export enum UserMode {
   Student,
   Teacher,
   Parents,
 }
+
+/**
+ * The connect account of the user for save the third party OAuth info (e.g. google, facebook, etc.).
+ */
+export interface ConnectAccount {
+  accountType: ConnectType;
+  name: string;
+  email: string;
+}
+
+/**
+ * Acceptable user locales.
+ *
+ * List of acceptable locales:
+ * - en-US (English - United States)
+ * - zh-CN (Simplified Chinese - China)
+ * - zh-TW (Traditional Chinese - Taiwan)
+ *
+ * @see https://en.wikipedia.org/wiki/IETF_language_tag
+ */
+export const USER_LOCALES = ['en-US', 'zh-CN', 'zh-TW'] as const;
+
+/**
+ * The user locale code.
+ *
+ * @see https://en.wikipedia.org/wiki/IETF_language_tag
+ * @see USER_LOCALES
+ */
+export type UserLocale = typeof USER_LOCALES[number];

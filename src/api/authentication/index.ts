@@ -1,5 +1,5 @@
 import httpClient from '@/http';
-import { AuthUrl, AuthToken } from './type';
+import { AuthURL, AccessToken } from './type';
 
 /** get google oauth url
  * @url https://api-docs.lipoic.org/router/apis/authentication/api/fn.google_oauth.html
@@ -10,7 +10,7 @@ export const getGoogleOauthUrl = async (redirectUri: string) => {
     redirect_uri: redirectUri,
   };
 
-  return (await httpClient.get<AuthUrl>('/authentication/google/url', params))
+  return (await httpClient.get<AuthURL>('/authentication/google/url', params))
     .data?.url;
 };
 
@@ -23,7 +23,7 @@ export const getFacebookOauthUrl = async (redirectUri: string) => {
     redirect_uri: redirectUri,
   };
 
-  return (await httpClient.get<AuthUrl>('/authentication/facebook/url', params))
+  return (await httpClient.get<AuthURL>('/authentication/facebook/url', params))
     .data?.url;
 };
 
@@ -41,7 +41,7 @@ export const getTokenByGoogleOauthCode = async (
     oauth_redirect_uri: oauthRedirectUri,
   };
 
-  return (await httpClient.get<AuthToken>('/authentication/google', params))
+  return (await httpClient.get<AccessToken>('/authentication/google', params))
     .data?.token;
 };
 
@@ -59,6 +59,6 @@ export const getTokenByFacebookOauthCode = async (
     oauth_redirect_uri: oauthRedirectUri,
   };
 
-  return (await httpClient.get<AuthToken>('/authentication/facebook', params))
+  return (await httpClient.get<AccessToken>('/authentication/facebook', params))
     .data?.token;
 };

@@ -3,10 +3,10 @@ import { ref } from 'vue';
 
 import md5 from 'md5';
 import { useUserStore } from '@/stores/models/user';
-import { UserInfo } from '@/api/user/type';
+import { AuthUser } from '@/api/user/type';
 import PageLinksVue from '@/components/header/PageLinks.vue';
 
-const props = defineProps<{ info: UserInfo }>();
+const props = defineProps<{ user: AuthUser }>();
 
 const menuState = ref(false);
 const toggleMenu = () => {
@@ -15,9 +15,9 @@ const toggleMenu = () => {
 
 const userStore = useUserStore();
 
-function getUserAvatar(info: UserInfo) {
+function getUserAvatar(user: AuthUser) {
   // TODO: because the backend does not provide the avatar URL, so temporary use gravatar.
-  return `https://www.gravatar.com/avatar/${md5(info.email)}`;
+  return `https://www.gravatar.com/avatar/${md5(user.email)}`;
 }
 </script>
 
@@ -31,8 +31,8 @@ function getUserAvatar(info: UserInfo) {
     >
       <img
         class="user-icon"
-        :src="getUserAvatar(props.info)"
-        :alt="`${props.info.username}'s avatar`"
+        :src="getUserAvatar(props.user)"
+        :alt="`${props.user.username}'s avatar`"
       />
       <SvgIcon
         name="login-ExpandMore"

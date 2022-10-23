@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
-import { UserInfo } from '@/api/user/type';
+import { AuthUser } from '@/api/user/type';
 
-import { getUserInfo } from '@/api/user';
+import { getCurrentUserInfo } from '@/api/user';
 
 export interface UserStore {
   token?: string | null;
-  info: UserInfo | null;
+  info: AuthUser | null;
 }
 
 export const useUserStore = defineStore({
@@ -20,7 +20,7 @@ export const useUserStore = defineStore({
 
       this.token = localStorage.getItem('token');
       try {
-        this.info = info ? <UserInfo>JSON.parse(info) : null;
+        this.info = info ? <AuthUser>JSON.parse(info) : null;
       } catch (error) {
         this.info = null;
       }
@@ -29,7 +29,7 @@ export const useUserStore = defineStore({
       return !!(this.info && this.token);
     },
     async setUserInfo(): Promise<void> {
-      const info = await getUserInfo();
+      const info = await getCurrentUserInfo();
       if (info) {
         this.info = info;
         localStorage.setItem('user_info', JSON.stringify(info));

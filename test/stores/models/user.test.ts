@@ -1,7 +1,7 @@
 import { createPinia, setActivePinia } from 'pinia';
 import { describe, test, expect, beforeAll, beforeEach } from 'vitest';
 import { useUserStore } from '@/stores/models/user';
-import { ConnectType, UserMode, UserInfo } from '@/api/user/type';
+import { ConnectType, UserMode, AuthUser } from '@/api/user/type';
 
 beforeAll(() => {
   setActivePinia(createPinia());
@@ -18,26 +18,31 @@ beforeEach(() => {
 
 describe('init', () => {
   test('from local storage', () => {
-    const info: UserInfo = {
+    const user: AuthUser = {
+      id: 'user id',
       username: 'test',
+      verifiedEmail: true,
       email: 'test@gmail.com',
       modes: [UserMode.Student],
+      locale: 'en-US',
       connects: [
         {
-          account_type: ConnectType.Google,
+          accountType: ConnectType.Google,
           name: 'test',
           email: 'test@gmail.com',
         },
       ],
+      updatedAt: new Date(),
+      createdAt: new Date(),
     };
 
-    localStorage.setItem('user_info', JSON.stringify(info));
+    localStorage.setItem('user_info', JSON.stringify(user));
     localStorage.setItem('token', 'token');
 
     const store = useUserStore();
     store.init();
 
-    expect(store.info).toEqual(info);
+    expect(store.info).toEqual(user);
   });
 
   test('from local storage with invalid data', () => {
