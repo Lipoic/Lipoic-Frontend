@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { AuthUser } from '@/api/user/type';
 
 import { getCurrentUserInfo } from '@/api/user';
+import { deserializeJson } from '@/utils/util';
 
 export interface UserStore {
   token?: string | null;
@@ -20,7 +21,7 @@ export const useUserStore = defineStore({
 
       this.token = localStorage.getItem('token');
       try {
-        this.info = info ? <AuthUser>JSON.parse(info) : null;
+        this.info = info ? <AuthUser>deserializeJson(info) : null;
       } catch (error) {
         this.info = null;
       }

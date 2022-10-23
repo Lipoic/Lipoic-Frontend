@@ -70,10 +70,21 @@ describe('is logged in', () => {
     const store = useUserStore();
     store.token = 'token';
     store.info = {
+      id: 'user id',
       username: 'test',
-      email: 'test@test.com',
-      modes: [],
-      connects: [],
+      verifiedEmail: true,
+      email: 'test@gmail.com',
+      modes: [UserMode.Student],
+      locale: 'en-US',
+      connects: [
+        {
+          accountType: ConnectType.Google,
+          name: 'test',
+          email: 'test@gmail.com',
+        },
+      ],
+      updatedAt: new Date(),
+      createdAt: new Date(),
     };
 
     expect(store.isLoggedIn()).toBeTruthy();
@@ -83,10 +94,21 @@ describe('is logged in', () => {
     const store = useUserStore();
     store.token = null;
     store.info = {
+      id: 'user id',
       username: 'test',
-      email: 'test@test.com',
-      modes: [],
-      connects: [],
+      verifiedEmail: true,
+      email: 'test@gmail.com',
+      modes: [UserMode.Student],
+      locale: 'en-US',
+      connects: [
+        {
+          accountType: ConnectType.Google,
+          name: 'test',
+          email: 'test@gmail.com',
+        },
+      ],
+      updatedAt: new Date(),
+      createdAt: new Date(),
     };
 
     expect(store.isLoggedIn()).toBeFalsy();
@@ -113,10 +135,21 @@ test('logout', () => {
   const store = useUserStore();
   store.token = 'token';
   store.info = {
+    id: 'user id',
     username: 'test',
-    email: 'test@test.com',
-    modes: [],
-    connects: [],
+    verifiedEmail: true,
+    email: 'test@gmail.com',
+    modes: [UserMode.Student],
+    locale: 'en-US',
+    connects: [
+      {
+        accountType: ConnectType.Google,
+        name: 'test',
+        email: 'test@gmail.com',
+      },
+    ],
+    updatedAt: new Date(),
+    createdAt: new Date(),
   };
 
   store.logout();
