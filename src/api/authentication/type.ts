@@ -1,12 +1,12 @@
 /**
- * the authentication URL.
+ * The authentication URL.
  */
 export interface AuthURL {
   url: string;
 }
 
 /**
- * the access token.
+ * The access token.
  */
 export interface AccessToken {
   token: string;

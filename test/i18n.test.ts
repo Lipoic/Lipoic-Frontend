@@ -1,5 +1,6 @@
 import { expect, test, vi, describe, beforeAll } from 'vitest';
 import I18nHelper from '@/helper/I18nHelper';
+import { USER_LOCALES } from '@/api/user/type';
 
 describe('get locale', () => {
   test('get locale', () => {
@@ -14,12 +15,12 @@ describe('get locale', () => {
     expect(I18nHelper.locale).toEqual(I18nHelper.defaultLocale);
   });
 
-  test('get locale with unknown default locale', () => {
+  test('get locale with other default locale', () => {
     vi.spyOn(localStorage, 'getItem').mockReturnValue(null);
     vi.spyOn(navigator, 'language', 'get').mockReturnValue('unknown');
-    vi.spyOn(I18nHelper, 'defaultLocale', 'get').mockReturnValue('unknown');
+    vi.spyOn(I18nHelper, 'defaultLocale', 'get').mockReturnValue('zh-TW');
 
-    expect(I18nHelper.locale).toEqual('unknown');
+    expect(I18nHelper.locale).toEqual('zh-TW');
   });
 });
 
@@ -32,13 +33,13 @@ describe('load i18n files', () => {
   });
 
   test('check flags', async () => {
-    for (const locale of I18nHelper.locales) {
+    for (const locale of USER_LOCALES) {
       expect(I18nHelper.flags[locale]).toBeDefined();
     }
   });
 
   test('check messages', async () => {
-    for (const locale of I18nHelper.locales) {
+    for (const locale of USER_LOCALES) {
       expect(
         I18nHelper.i18n?.global.getLocaleMessage(locale).name
       ).toBeDefined();
@@ -71,9 +72,9 @@ test('set locale', async () => {
 
   vi.spyOn(localStorage, 'getItem').mockReturnValue(null);
   vi.spyOn(navigator, 'language', 'get').mockReturnValue('unknown');
-  vi.spyOn(I18nHelper, 'defaultLocale', 'get').mockReturnValue('unknown');
+  vi.spyOn(I18nHelper, 'defaultLocale', 'get').mockReturnValue('en-US');
 
-  expect(I18nHelper.locale).toEqual('unknown');
+  expect(I18nHelper.locale).toEqual('en-US');
   vi.clearAllMocks();
 
   vi.spyOn(localStorage, 'getItem').mockReturnValue('zh-TW');

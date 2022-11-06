@@ -1,64 +1,100 @@
+import { UserLocale } from '@/api/user/type';
 import httpClient from '@/http';
 import { AuthURL, AccessToken } from './type';
+import { Code } from '@/api/code';
 
-/** get google oauth url
- * @url https://api-docs.lipoic.org/router/apis/authentication/api/fn.google_oauth.html
+/**
+ * Get google oauth url
+ * @see https://api-docs.lipoic.org/#/Authentication/get_authentication_google_url
  * @param redirectUri the uri to redirect to after login
  */
-export const getGoogleOauthUrl = async (redirectUri: string) => {
-  const params = {
-    redirect_uri: redirectUri,
-  };
+export async function getGoogleOauthUrl(redirectUri: string): Promise<string> {
+  const body = await httpClient.get<AuthURL>('/authentication/google/url', {
+    redirectUri,
+  });
 
-  return (await httpClient.get<AuthURL>('/authentication/google/url', params))
-    .data?.url;
-};
+  if (body.code === Code.SUCCESS && body.data) {
+    return body.data.url;
+  }
 
-/** get facebook oauth url
- * @url https://api-docs.lipoic.org/router/apis/authentication/api/fn.facebook_oauth.html
+  return Promise.reject(body);
+}
+
+/**
+ * Get facebook oauth url
+ * @see https://api-docs.lipoic.org/#/Authentication/get_authentication_facebook_url
  * @param redirectUri the uri to redirect to after login
  */
-export const getFacebookOauthUrl = async (redirectUri: string) => {
-  const params = {
-    redirect_uri: redirectUri,
-  };
+export async function getFacebookOauthUrl(
+  redirectUri: string
+): Promise<string> {
+  const body = await httpClient.get<AuthURL>('/authentication/facebook/url', {
+    redirectUri,
+  });
 
-  return (await httpClient.get<AuthURL>('/authentication/facebook/url', params))
-    .data?.url;
-};
+  if (body.code === Code.SUCCESS && body.data) {
+    return body.data.url;
+  }
 
-/** get token by google oauth code
- * @url https://api-docs.lipoic.org/router/apis/authentication/api/fn.google_oauth_code.html
+  return Promise.reject(body);
+}
+
+/**
+ * Get access token by google oauth code
  * @param code a oauth code from google
- * @param oauthRedirectUri the uri to redirect to after login
+ * @param redirectUri the uri to redirect to after login
+ * @param locale the locale of the user
+ * @see https://api-docs.lipoic.org/#/Authentication/get_authentication_google_callback
  */
-export const getTokenByGoogleOauthCode = async (
+export async function getTokenByGoogleOauthCode(
   code: string,
-  oauthRedirectUri: string
-) => {
+  redirectUri: string,
+  locale: UserLocale
+): Promise<string> {
   const params = {
     code,
-    oauth_redirect_uri: oauthRedirectUri,
+    redirectUri,
+    locale,
   };
 
-  return (await httpClient.get<AccessToken>('/authentication/google', params))
-    .data?.token;
-};
+  const body = await httpClient.get<AccessToken>(
+    '/authentication/google/callback',
+    params
+  );
 
-/** get token by facebook oauth code
- * @url https://api-docs.lipoic.org/router/apis/authentication/api/fn.facebook_oauth_code.html
+  if (body.code === Code.SUCCESS && body.data) {
+    return body.data.token;
+  }
+
+  return Promise.reject(body);
+}
+
+/**
+ * Get access token by facebook oauth code
  * @param code a oauth code from facebook
- * @param oauthRedirectUri the uri to redirect to after login
+ * @param redirectUri the uri to redirect to after login
+ * @param locale the locale of the user
+ * @see https://api-docs.lipoic.org/#/Authentication/get_authentication_facebook_callback
  */
-export const getTokenByFacebookOauthCode = async (
+export async function getTokenByFacebookOauthCode(
   code: string,
-  oauthRedirectUri: string
-) => {
+  redirectUri: string,
+  locale: UserLocale
+): Promise<string> {
   const params = {
     code,
-    oauth_redirect_uri: oauthRedirectUri,
+    redirectUri,
+    locale,
   };
 
-  return (await httpClient.get<AccessToken>('/authentication/facebook', params))
-    .data?.token;
-};
+  const body = await httpClient.get<AccessToken>(
+    '/authentication/facebook/callback',
+    params
+  );
+
+  if (body.code === Code.SUCCESS && body.data) {
+    return body.data.token;
+  }
+
+  return Promise.reject(body);
+}
