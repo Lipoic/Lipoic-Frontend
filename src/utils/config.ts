@@ -14,6 +14,7 @@ const defaultHttpConfig: AxiosRequestConfig = {
   reconnect: true,
   retry: 2,
   baseURL: 'https://api.lipoic.org',
+  validateStatus: (_) => true,
 };
 
 export const globalConfig: Config = {

@@ -9,12 +9,13 @@
       "loading": "Logging in...",
       "loginButton": "Login",
       "loginFailed": "Login failed",
+      "email": "Email",
       "password": "Password",
       "registerNow": "Sign Up",
-      "rememberMe": "Remember me",
+      "stayLoggedIn": "Stay logged in",
       "title": "Login",
       "useOtherMethods": "Or below way",
-      "usernameInput": "Username",
+      "username": "Username",
       "welcome": "Welcome to Lipoic"
     },
     "signUp": {

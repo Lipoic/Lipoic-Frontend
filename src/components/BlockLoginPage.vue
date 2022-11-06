@@ -3,20 +3,21 @@ import { defineAsyncComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { getGoogleOauthUrl, getFacebookOauthUrl } from '@/api/authentication';
 import { useUserStore } from '@/stores/models/user';
+import { login } from '@/api/user';
 
 const ToolLangSelector = defineAsyncComponent(
   () => import('@/components/ToolLangSelector.vue')
 );
 
 interface loginData {
-  username: string;
+  email: string;
   password: string;
-  rememberMe: boolean;
+  stayLoggedIn: boolean;
 }
 const loginFormData = reactive<loginData>({
-  username: '',
+  email: '',
   password: '',
-  rememberMe: false,
+  stayLoggedIn: false,
 });
 
 const oauthButtons = [
@@ -29,7 +30,7 @@ const oauthButtons = [
     },
   },
   {
-    title: 'FaceBook',
+    title: 'Facebook',
     img: 'login-facebook',
     click: async () => {
       const url = await getFacebookOauthUrl(
@@ -43,6 +44,15 @@ const oauthButtons = [
 const userStore = useUserStore();
 
 if (userStore.isLoggedIn()) useRouter().push('/');
+
+async function submit() {
+  const data = await login(loginFormData.email, loginFormData.password);
+  if (data) {
+    userStore.setToken(data.token);
+    await userStore.setUserInfo();
+    useRouter().push('/');
+  }
+}
 </script>
 
 <template>
@@ -71,19 +81,15 @@ if (userStore.isLoggedIn()) useRouter().push('/');
         <div class="header">
           <span v-t="'auth.login.title'" />
         </div>
-        <!-- TODO: add pattern & max length-->
         <input
-          v-model="loginFormData.username"
+          v-model="loginFormData.email"
           required
-          type="text"
-          name="user"
-          maxlength=""
-          pattern="^[a-zA-Z0-9]+$|(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$)"
-          :aria-label="$t('auth.login.usernameInput')"
-          :placeholder="$t('auth.login.usernameInput')"
-          autocomplete="username"
+          type="email"
+          name="email"
+          :aria-label="$t('auth.login.email')"
+          :placeholder="$t('auth.login.email')"
+          autocomplete="email"
         />
-        <!-- TODO: add pattern & max length-->
         <input
           v-model="loginFormData.password"
           required
@@ -91,18 +97,17 @@ if (userStore.isLoggedIn()) useRouter().push('/');
           name="password"
           :aria-label="$t('auth.login.password')"
           :placeholder="$t('auth.login.password')"
-          pattern="[a-zA-Z0-9]{8,}"
           autocomplete="current-password"
         />
         <div class="loginOptions">
-          <div class="rememberMe">
+          <div class="stayLoggedIn">
             <input
-              id="rememberMe"
-              v-model="loginFormData.rememberMe"
+              id="stayLoggedIn"
+              v-model="loginFormData.stayLoggedIn"
               type="checkbox"
-              name="rememberMe"
+              name="stayLoggedIn"
             />
-            <label v-t="'auth.login.rememberMe'" for="rememberMe" />
+            <label v-t="'auth.login.stayLoggedIn'" for="stayLoggedIn" />
           </div>
           <a v-t="'auth.login.forgotPassword'" href="#" class="forgot" />
         </div>
@@ -110,6 +115,7 @@ if (userStore.isLoggedIn()) useRouter().push('/');
           v-t="'auth.login.loginButton'"
           class="loginButton"
           type="submit"
+          @click.prevent="submit"
         />
         <p v-t="'auth.login.haveNoAccount'" />
         <p>
@@ -262,7 +268,7 @@ if (userStore.isLoggedIn()) useRouter().push('/');
         align-items: center;
         margin: 20px;
 
-        .rememberMe {
+        .stayLoggedIn {
           display: flex;
           flex-direction: row;
           align-items: center;

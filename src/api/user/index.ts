@@ -50,7 +50,7 @@ export async function signUp(
     locale,
   };
 
-  const body = await httpClient.post('/user/sign-up', data);
+  const body = await httpClient.post('/user/signup', data);
 
   if (body.code === Code.SUCCESS) {
     return Promise.resolve();

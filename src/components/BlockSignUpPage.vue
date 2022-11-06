@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { signUp } from '@/api/user';
+import I18nHelper from '@/helper/I18nHelper';
 import { defineAsyncComponent, reactive } from 'vue';
 
 const ToolLangSelector = defineAsyncComponent(
@@ -14,6 +16,15 @@ const signUpFormData = reactive<signUpData>({
   password: '',
   email: '',
 });
+
+async function submit() {
+  await signUp(
+    signUpFormData.username,
+    signUpFormData.email,
+    signUpFormData.password,
+    I18nHelper.locale
+  );
+}
 </script>
 
 <template>
@@ -42,29 +53,25 @@ const signUpFormData = reactive<signUpData>({
         <div class="header">
           <span v-t="'auth.signUp.title'" />
         </div>
-        <!-- TODO: add pattern & max length-->
         <input
           v-model="signUpFormData.username"
           required
           type="text"
-          name="user"
+          name="username"
           maxlength=""
-          pattern="^[a-zA-Z0-9]+$|(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$)"
-          :aria-label="$t('auth.login.usernameInput')"
-          :placeholder="$t('auth.login.usernameInput')"
+          :aria-label="$t('auth.login.username')"
+          :placeholder="$t('auth.login.username')"
           autocomplete="username"
         />
         <input
           v-model="signUpFormData.email"
           required
-          type="text"
+          type="email"
           name="email"
-          pattern="^[a-zA-Z0-9]+$|(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$)"
           :aria-label="$t('auth.signUp.email')"
           :placeholder="$t('auth.signUp.email')"
           autocomplete="email"
         />
-        <!-- TODO: add pattern & max length-->
         <input
           v-model="signUpFormData.password"
           required
@@ -72,13 +79,13 @@ const signUpFormData = reactive<signUpData>({
           name="password"
           :aria-label="$t('auth.login.password')"
           :placeholder="$t('auth.login.password')"
-          pattern="[a-zA-Z0-9]{8,}"
           autocomplete="current-password"
         />
         <button
           v-t="'auth.signUp.signUpButton'"
           class="signUpButton"
           type="submit"
+          @click.prevent="submit"
         />
         <p v-t="'auth.signUp.alreadyHaveAccount'" />
         <p>
@@ -201,7 +208,7 @@ const signUpFormData = reactive<signUpData>({
         outline: none;
 
         &:invalid {
-          ~ .loginButton {
+          ~ .signUpButton {
             pointer-events: none;
             opacity: 0.5;
           }

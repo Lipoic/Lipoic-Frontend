@@ -8,12 +8,13 @@
       "haveNoAccount": "还没有帐戶吗？",
       "loading": "登錄中...",
       "loginButton": "登錄",
+      "email": "电子邮件",
       "password": "密码",
       "registerNow": "立即註册",
-      "rememberMe": "保持登錄",
+      "stayLoggedIn": "保持登录",
       "title": "登錄",
       "useOtherMethods": "或用以下方式",
-      "usernameInput": "用户名称",
+      "username": "用户名",
       "welcome": "欢迎来到 Lipoic"
     },
     "signUp": {
