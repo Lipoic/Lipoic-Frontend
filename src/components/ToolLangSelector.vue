@@ -63,7 +63,7 @@ const changeEventLanguage = (e: MouseEvent) => {
 </template>
 
 <style lang="scss">
-@import '../scss/global.scss';
+@import '@/scss/global.scss';
 
 .languageSelector {
   position: relative;

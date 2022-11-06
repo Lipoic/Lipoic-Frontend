@@ -6,6 +6,7 @@ import {
   getTokenByGoogleOauthCode,
 } from '@/api/authentication';
 import { useUserStore } from '@/stores/models/user';
+import I18nHelper from '@/helper/I18nHelper';
 
 const MainViewVue = defineAsyncComponent(
   () => import('@/components/MainView.vue')
@@ -30,12 +31,14 @@ async function login() {
     if (type === 'google') {
       token = await getTokenByGoogleOauthCode(
         code,
-        `${location.origin}/oauth/google/`
+        `${location.origin}/oauth/google/`,
+        I18nHelper.locale
       );
     } else if (type === 'facebook') {
       token = await getTokenByFacebookOauthCode(
-        `${code}#_=_`, // fix facebook oauth code
-        `${location.origin}/oauth/facebook/`
+        `${code}#_=_`, // Fix facebook oauth code
+        `${location.origin}/oauth/facebook/`,
+        I18nHelper.locale
       );
     } else {
       error.value = true;
