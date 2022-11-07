@@ -11,6 +11,7 @@ const LoginStatusVue = defineAsyncComponent(
   () => import('@/components/auth/LoginStatus.vue')
 );
 
+const router = useRouter();
 const error = ref(false);
 const code = useRoute().query.code?.toString();
 
@@ -22,7 +23,7 @@ if (code) {
       const store = useUserStore();
       store.setToken(tokenData.token);
       await store.setUserInfo();
-      await useRouter().push('/');
+      await router.push('/');
     } else {
       error.value = true;
     }

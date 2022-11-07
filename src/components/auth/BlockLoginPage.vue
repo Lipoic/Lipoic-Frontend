@@ -53,7 +53,7 @@ async function submit() {
   if (data) {
     userStore.setToken(data.token);
     await userStore.setUserInfo();
-    router.push('/');
+    await router.push('/');
   }
 }
 </script>
