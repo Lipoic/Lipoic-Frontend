@@ -14,7 +14,12 @@
       "title": "登錄",
       "useOtherMethods": "或用以下方式",
       "username": "用户名",
-      "welcome": "欢迎来到 Lipoic"
+      "welcome": "欢迎来到 Lipoic",
+      "error": {
+        "password": "密码错误，请检查是否正确后再试。",
+        "verifyEmail": "此电子邮件尚未验证，请到您的电子邮件信箱检查信件。",
+        "user": "此用户不存在，请检查您的电子邮件地址是否正确输入。"
+      }
     },
     "signUp": {
       "alreadyHaveAccount": "已经有帐号了吗",

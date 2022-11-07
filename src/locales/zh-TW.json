@@ -15,7 +15,12 @@
       "title": "登入",
       "useOtherMethods": "或用以下方式",
       "username": "使用者名稱",
-      "welcome": "歡迎來到 Lipoic"
+      "welcome": "歡迎來到 Lipoic",
+      "error": {
+        "password": "密碼錯誤，請檢查是否正確後再試。",
+        "verifyEmail": "此電子郵件尚未驗證，請到您的電子郵件信箱檢查信件。",
+        "user": "此使用者不存在，請檢查您的電子郵件地址是否正確輸入。"
+      }
     },
     "signUp": {
       "alreadyHaveAccount": "已經有帳號了嗎",

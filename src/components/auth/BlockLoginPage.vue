@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-import { defineAsyncComponent, reactive } from 'vue';
+import { defineAsyncComponent, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import { getGoogleOauthUrl, getFacebookOauthUrl } from '@/api/authentication';
 import { useUserStore } from '@/stores/models/user';
 import { login } from '@/api/user';
+import { Code } from '@/api/code';
 
 const ToolLangSelector = defineAsyncComponent(
   () => import('@/components/ToolLangSelector.vue')
@@ -47,13 +49,37 @@ const userStore = useUserStore();
 
 if (userStore.isLoggedIn()) router.push('/');
 
-async function submit() {
-  const data = await login(loginFormData.email, loginFormData.password);
+const loginError = ref<string>();
+const i18n = useI18n();
 
-  if (data) {
-    userStore.setToken(data.token);
-    await userStore.setUserInfo();
-    await router.push('/');
+async function submitData() {
+  try {
+    const body = await login(loginFormData.email, loginFormData.password);
+
+    if (body.code === Code.SUCCESS && body.data) {
+      userStore.setToken(body.data.token);
+      await userStore.setUserInfo();
+      await router.push('/');
+    }
+
+    let errorKey!: string;
+
+    switch (body.code) {
+      case Code.Login_User_Error:
+        errorKey = 'auth.login.error.password';
+        break;
+
+      case Code.Login_User_Email_Not_Verified:
+        errorKey = 'auth.login.error.verifyEmail';
+        break;
+
+      case Code.USER_NOT_FOUND:
+        errorKey = 'auth.login.error.user';
+    }
+
+    loginError.value = i18n.t(errorKey);
+  } catch (error) {
+    loginError.value = i18n.t('error.message');
   }
 }
 </script>
@@ -103,13 +129,16 @@ async function submit() {
           autocomplete="current-password"
         />
         <div class="loginOptions">
+          <p class="loginError" :if="loginError == null">
+            {{ loginError }}
+          </p>
           <a v-t="'auth.login.forgotPassword'" href="#" class="forgot" />
         </div>
         <button
           v-t="'auth.login.loginButton'"
           class="loginButton"
           type="submit"
-          @click.prevent="submit"
+          @click.prevent="submitData"
         />
         <p v-t="'auth.login.haveNoAccount'" />
         <p>
@@ -264,6 +293,10 @@ async function submit() {
 
         a {
           color: white;
+        }
+
+        .loginError {
+          color: red;
         }
       }
 

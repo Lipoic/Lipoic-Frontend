@@ -8,8 +8,6 @@ export type i18nType = I18n<
   unknown,
   unknown
 >;
-export type useI18nType = Composer<Record<string, typeof defaultLanguage>>;
-
 export default class I18nHelper {
   static defaultLocale: UserLocale = 'en-US';
   static get locale(): UserLocale {

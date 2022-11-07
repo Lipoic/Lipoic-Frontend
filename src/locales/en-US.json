@@ -15,7 +15,12 @@
       "title": "Login",
       "useOtherMethods": "Or below way",
       "username": "Username",
-      "welcome": "Welcome to Lipoic"
+      "welcome": "Welcome to Lipoic",
+      "error": {
+        "password": "Password is incorrect, please check if it is correct and try again.",
+        "verifyEmail": "This email has not been verified, please check your email inbox for correspondence.",
+        "user": "This user does not exist, please check if your email address is entered correctly."
+      }
     },
     "signUp": {
       "alreadyHaveAccount": "Already Have An Account?",

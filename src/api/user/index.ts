@@ -1,4 +1,4 @@
-import httpClient from '@/http';
+import httpClient, { APIResponseBody } from '@/http';
 import { AuthUser, PublicUser, UserLocale } from '@/api/user/type';
 import { Code } from '@/api/code';
 import { AccessToken } from '@/api/authentication/type';
@@ -70,17 +70,13 @@ export async function signUp(
 export async function login(
   email: string,
   password: string
-): Promise<AccessToken> {
+): Promise<APIResponseBody<AccessToken>> {
   const body = await httpClient.post<AccessToken>('/user/login', {
     email,
     password,
   });
 
-  if (body.code === Code.SUCCESS && body.data) {
-    return body.data;
-  }
-
-  return Promise.reject(body);
+  return body;
 }
 
 /**
