@@ -20,6 +20,8 @@ const loginFormData = reactive<loginData>({
   stayLoggedIn: false,
 });
 
+const router = useRouter();
+
 const oauthButtons = [
   {
     title: 'Google',
@@ -43,14 +45,14 @@ const oauthButtons = [
 
 const userStore = useUserStore();
 
-if (userStore.isLoggedIn()) useRouter().push('/');
+if (userStore.isLoggedIn()) router.push('/');
 
 async function submit() {
   const data = await login(loginFormData.email, loginFormData.password);
   if (data) {
     userStore.setToken(data.token);
     await userStore.setUserInfo();
-    useRouter().push('/');
+    router.push('/');
   }
 }
 </script>
