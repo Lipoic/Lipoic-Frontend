@@ -36,39 +36,39 @@ beforeEach(() => {
 
 describe('oauth', () => {
   test('get google oauth url', async () => {
-    const url = await getGoogleOauthUrl(
+    const data = await getGoogleOauthUrl(
       'https://www.example.com/login/google/callback'
     );
 
-    expect(url).toBe(googleOauthUrl);
+    expect(data.url).toBe(googleOauthUrl);
   });
 
   test('get facebook oauth url', async () => {
-    const url = await getFacebookOauthUrl(
+    const data = await getFacebookOauthUrl(
       'https://www.example.com/login/facebook/callback'
     );
 
-    expect(url).toBe(facebookOauthUrl);
+    expect(data.url).toBe(facebookOauthUrl);
   });
 
   test('get token by google oauth code', async () => {
-    const token = await getTokenByGoogleOauthCode(
+    const data = await getTokenByGoogleOauthCode(
       'test_google_oauth_code',
       'https://www.example.com/login/facebook/callback',
       'en-US'
     );
 
-    expect(token).toBe(mockToken);
+    expect(data.token).toBe(mockToken);
   });
 
   test('get token by facebook oauth code', async () => {
-    const token = await getTokenByFacebookOauthCode(
+    const data = await getTokenByFacebookOauthCode(
       'test_facebook_oauth_code',
       'https://www.example.com/login/facebook/callback',
       'en-US'
     );
 
-    expect(token).toBe(mockToken);
+    expect(data.token).toBe(mockToken);
   });
 });
 

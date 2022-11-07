@@ -15,32 +15,35 @@ import { HttpClient } from '@/http';
 const baseURL = 'http://localhost:8000';
 
 const getResponse = {
-  code: 200,
-  message: 'ok',
-  data: 'hello world',
+  code: 0,
+  data: {
+    message: 'Hello, World!',
+  },
 };
 
 const postResponse = {
-  code: 200,
-  message: 'ok',
-  data: 'success created data',
+  code: 0,
+  data: {
+    message: 'success created data',
+  },
 };
 
 const patchResponse = {
-  code: 200,
-  message: 'ok',
-  data: 'success updated data',
+  code: 0,
+  data: {
+    message: 'success updated data',
+  },
 };
 
 const deleteResponse = {
-  code: 200,
-  message: 'ok',
-  data: 'success deleted data',
+  code: 0,
+  data: {
+    message: 'success deleted data',
+  },
 };
 
 const notfoundResponse = {
-  code: 404,
-  message: 'Resource not found.',
+  code: 1,
 };
 
 beforeEach(() => {
@@ -77,10 +80,13 @@ test('delete method', async () => {
 
 test('notfound path', async () => {
   const client = new HttpClient({ baseURL });
+  const response = await client.get('/test');
 
-  await expect(client.get('/test')).rejects.toThrowError(
-    /^Resource not found.$/
-  );
+  console.log(response);
+
+  expect(response).toEqual({
+    code: 1,
+  });
 });
 
 test('unknown path (enable reconnect)', async () => {
