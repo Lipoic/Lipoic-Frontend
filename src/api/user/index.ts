@@ -82,3 +82,22 @@ export async function login(
 
   return Promise.reject(body);
 }
+
+/**
+ * Verify the email account by the code
+ * @param code A code from the email sent by the backend
+ * @see https://api-docs.lipoic.org/#/User/get_user_verify
+ */
+export async function verifyEmail(code: string): Promise<AccessToken> {
+  const body = await httpClient.get<AccessToken>('/user/verify', { code });
+
+  if (body.code === Code.SUCCESS && body.data) {
+    return body.data;
+  }
+
+  if (body.code === Code.Verify_Email_Error) {
+    return Promise.reject(new Error('The code is invalid or expired'));
+  }
+
+  return Promise.reject(body);
+}

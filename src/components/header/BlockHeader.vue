@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import UserInfoHeader from '@/components/header/UserInfoHeader.vue';
 import { useUserStore } from '@/stores/models/user';
 import PageLinksVue from '@/components/header/PageLinks.vue';
-import LoginButtonVue from '@/components/header/LoginButton.vue';
+import LoginButtonVue from '@/components/auth/LoginButton.vue';
 
 const userStore = useUserStore();
 

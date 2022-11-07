@@ -8,13 +8,13 @@ import { Code } from '@/api/code';
  * @see https://api-docs.lipoic.org/#/Authentication/get_authentication_google_url
  * @param redirectUri the uri to redirect to after login
  */
-export async function getGoogleOauthUrl(redirectUri: string): Promise<string> {
+export async function getGoogleOauthUrl(redirectUri: string): Promise<AuthURL> {
   const body = await httpClient.get<AuthURL>('/authentication/google/url', {
     redirectUri,
   });
 
   if (body.code === Code.SUCCESS && body.data) {
-    return body.data.url;
+    return body.data;
   }
 
   return Promise.reject(body);
@@ -27,13 +27,13 @@ export async function getGoogleOauthUrl(redirectUri: string): Promise<string> {
  */
 export async function getFacebookOauthUrl(
   redirectUri: string
-): Promise<string> {
+): Promise<AuthURL> {
   const body = await httpClient.get<AuthURL>('/authentication/facebook/url', {
     redirectUri,
   });
 
   if (body.code === Code.SUCCESS && body.data) {
-    return body.data.url;
+    return body.data;
   }
 
   return Promise.reject(body);
@@ -50,7 +50,7 @@ export async function getTokenByGoogleOauthCode(
   code: string,
   redirectUri: string,
   locale: UserLocale
-): Promise<string> {
+): Promise<AccessToken> {
   const params = {
     code,
     redirectUri,
@@ -63,7 +63,7 @@ export async function getTokenByGoogleOauthCode(
   );
 
   if (body.code === Code.SUCCESS && body.data) {
-    return body.data.token;
+    return body.data;
   }
 
   return Promise.reject(body);
@@ -80,7 +80,7 @@ export async function getTokenByFacebookOauthCode(
   code: string,
   redirectUri: string,
   locale: UserLocale
-): Promise<string> {
+): Promise<AccessToken> {
   const params = {
     code,
     redirectUri,
@@ -93,7 +93,7 @@ export async function getTokenByFacebookOauthCode(
   );
 
   if (body.code === Code.SUCCESS && body.data) {
-    return body.data.token;
+    return body.data;
   }
 
   return Promise.reject(body);

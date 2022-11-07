@@ -11,14 +11,13 @@
       "email": "电子邮件",
       "password": "密码",
       "registerNow": "立即註册",
-      "stayLoggedIn": "保持登录",
       "title": "登錄",
       "useOtherMethods": "或用以下方式",
       "username": "用户名",
       "welcome": "欢迎来到 Lipoic"
     },
     "signUp": {
-      "alreadyHaveAccount": "已经有一个帐号了吗",
+      "alreadyHaveAccount": "已经有帐号了吗",
       "email": "电子邮件",
       "loginNow": "登錄",
       "signUpButton": "註册",

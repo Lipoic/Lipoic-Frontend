@@ -12,14 +12,13 @@
       "loginFailed": "登入失敗",
       "password": "密碼",
       "registerNow": "立即註冊",
-      "stayLoggedIn": "保持登入",
       "title": "登入",
       "useOtherMethods": "或用以下方式",
       "username": "使用者名稱",
       "welcome": "歡迎來到 Lipoic"
     },
     "signUp": {
-      "alreadyHaveAccount": "已經有一個帳號了嗎",
+      "alreadyHaveAccount": "已經有帳號了嗎",
       "email": "電子郵件",
       "loginNow": "登入",
       "signUpButton": "註冊",
