@@ -5,6 +5,11 @@
   "auth": {
     "login": {
       "email": "電子郵件",
+      "error": {
+        "password": "密碼錯誤，請檢查是否正確後再試。",
+        "user": "此使用者不存在，請檢查您的電子郵件地址是否正確輸入。",
+        "verifyEmail": "此電子郵件尚未驗證，請到您的電子郵件信箱檢查信件。"
+      },
       "forgotPassword": "忘記密碼",
       "haveNoAccount": "還沒有帳號嗎？",
       "loading": "登入中...",
@@ -15,12 +20,7 @@
       "title": "登入",
       "useOtherMethods": "或用以下方式",
       "username": "使用者名稱",
-      "welcome": "歡迎來到 Lipoic",
-      "error": {
-        "password": "密碼錯誤，請檢查是否正確後再試。",
-        "verifyEmail": "此電子郵件尚未驗證，請到您的電子郵件信箱檢查信件。",
-        "user": "此使用者不存在，請檢查您的電子郵件地址是否正確輸入。"
-      }
+      "welcome": "歡迎來到 Lipoic"
     },
     "signUp": {
       "alreadyHaveAccount": "已經有帳號了嗎",
@@ -28,6 +28,9 @@
       "loginNow": "登入",
       "signUpButton": "註冊",
       "title": "註冊"
+    },
+    "verifyEmail": {
+      "error": "驗證碼無效或已過期，請嘗試重新註冊。"
     }
   },
   "error": {

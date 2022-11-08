@@ -50,9 +50,12 @@ const userStore = useUserStore();
 if (userStore.isLoggedIn()) router.push('/');
 
 const loginError = ref<string>();
+const loginLoading = ref<boolean>(false);
 const i18n = useI18n();
 
 async function submitData() {
+  loginError.value = undefined;
+  loginLoading.value = true;
   try {
     const body = await login(loginFormData.email, loginFormData.password);
 
@@ -81,6 +84,7 @@ async function submitData() {
   } catch (error) {
     loginError.value = i18n.t('error.message');
   }
+  loginLoading.value = false;
 }
 </script>
 
@@ -129,17 +133,28 @@ async function submitData() {
           autocomplete="current-password"
         />
         <div class="loginOptions">
-          <p class="loginError" :if="loginError == null">
+          <p v-if="loginError" class="loginError">
             {{ loginError }}
           </p>
           <a v-t="'auth.login.forgotPassword'" href="#" class="forgot" />
         </div>
         <button
+          v-if="!loginLoading"
           v-t="'auth.login.loginButton'"
           class="loginButton"
           type="submit"
           @click.prevent="submitData"
         />
+        <div v-if="loginLoading">
+          <Loading
+            class="loadingIndicator"
+            :active="true"
+            :color="'#7b6ff6'"
+            :loader="'dots'"
+            :width="50"
+            :height="50"
+          />
+        </div>
         <p v-t="'auth.login.haveNoAccount'" />
         <p>
           <router-link
@@ -291,24 +306,18 @@ async function submitData() {
         align-items: center;
         margin: 20px;
 
+        @include phone {
+          flex-direction: column;
+        }
+
         a {
           color: white;
         }
 
         .loginError {
-          color: red;
+          color: orangered;
+          font-size: large;
         }
-      }
-
-      & > button {
-        padding: 10px;
-        margin-bottom: 20px;
-        font-size: 1.5rem;
-        color: white;
-        cursor: pointer;
-        background-color: $MainPurple;
-        border: none;
-        border-radius: 15px;
       }
 
       p {
@@ -364,6 +373,26 @@ async function submitData() {
             background-color: #30a1d4;
           }
         }
+      }
+
+      .loginButton {
+        padding: 10px;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+        background-color: $MainPurple;
+        border: none;
+        border-radius: 15px;
+      }
+
+      .loadingIndicator {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-right: 10px;
       }
     }
   }

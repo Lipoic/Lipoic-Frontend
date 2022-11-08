@@ -4,22 +4,23 @@
   },
   "auth": {
     "login": {
+      "email": "电子邮件",
+      "error": {
+        "password": "密码错误，请检查是否正确后再试。",
+        "user": "此用户不存在，请检查您的电子邮件地址是否正确输入。",
+        "verifyEmail": "此电子邮件尚未验证，请到您的电子邮件信箱检查信件。"
+      },
       "forgotPassword": "忘記密码",
       "haveNoAccount": "还没有帐戶吗？",
       "loading": "登錄中...",
       "loginButton": "登錄",
-      "email": "电子邮件",
+      "loginFailed": "登录失败",
       "password": "密码",
       "registerNow": "立即註册",
       "title": "登錄",
       "useOtherMethods": "或用以下方式",
       "username": "用户名",
-      "welcome": "欢迎来到 Lipoic",
-      "error": {
-        "password": "密码错误，请检查是否正确后再试。",
-        "verifyEmail": "此电子邮件尚未验证，请到您的电子邮件信箱检查信件。",
-        "user": "此用户不存在，请检查您的电子邮件地址是否正确输入。"
-      }
+      "welcome": "欢迎来到 Lipoic"
     },
     "signUp": {
       "alreadyHaveAccount": "已经有帐号了吗",
@@ -27,6 +28,9 @@
       "loginNow": "登錄",
       "signUpButton": "註册",
       "title": "註册"
+    },
+    "verifyEmail": {
+      "error": "验证码无效或已过期，请尝试重新注册。"
     }
   },
   "error": {
