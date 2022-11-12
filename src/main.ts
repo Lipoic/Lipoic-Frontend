@@ -4,7 +4,7 @@ import 'virtual:svg-icons-register';
 import '@/scss/global.scss';
 import '@/scss/themes/dark.scss';
 import '@/scss/themes/light.scss';
-import { registerSW } from 'virtual:pwa-register';
+import { useRegisterSW } from 'virtual:pwa-register/vue';
 
 import LoadingPlugin from 'vue-loading-overlay';
 import I18nHelper from './helper/I18nHelper';
@@ -22,9 +22,20 @@ const SvgIconComponent = defineAsyncComponent(
 (async () => {
   const i18n = await I18nHelper.load();
 
-  // Register service worker and auto-update service worker every hour.
-  registerSW({
-    onRegistered: (_) => _ && setInterval(_.update, 60 * 60 * 1000),
+  // Register service worker and auto-update it every hour.
+  useRegisterSW({
+    immediate: true,
+    onRegisteredSW(swUrl, r) {
+      console.log(`Service Worker at: ${swUrl}`);
+
+      r &&
+        setInterval(async () => {
+          console.log('Checking for sw update');
+          await r.update();
+        }, 60 * 60 * 1000);
+
+      console.log(`SW Registered: ${r}`);
+    },
   });
 
   createApp(App)

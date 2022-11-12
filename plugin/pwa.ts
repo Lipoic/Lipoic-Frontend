@@ -3,6 +3,8 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export const PWAPlugin = () =>
   VitePWA({
+    registerType: 'autoUpdate',
+    includeAssets: ['favicon.ico', 'robots.txt'],
     manifest: {
       name: 'Lipoic',
       short_name: 'Lipoic',
@@ -17,6 +19,9 @@ export const PWAPlugin = () =>
       ],
       display: 'minimal-ui',
       lang: 'zh-TW',
+    },
+    workbox: {
+      globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
     },
   });
 
