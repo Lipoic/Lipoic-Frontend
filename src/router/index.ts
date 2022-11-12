@@ -26,12 +26,12 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'login',
         name: 'Login',
-        component: () => import('@/components/BlockLoginPage.vue'),
+        component: () => import('@/components/auth/BlockLoginPage.vue'),
       },
       {
         path: 'signup',
         name: 'SignUp',
-        component: () => import('@/components/BlockSignUpPage.vue'),
+        component: () => import('@/components/auth/BlockSignUpPage.vue'),
       },
     ],
   },
@@ -61,6 +61,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/PageOAuth.vue'),
       },
     ],
+  },
+  {
+    path: '/verify-email',
+    name: 'Verify Email',
+    component: () => import('@/views/PageVerifyEmail.vue'),
   },
 ];
 

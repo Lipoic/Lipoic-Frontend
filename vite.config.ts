@@ -39,6 +39,7 @@ export default defineConfig({
         '.stylelintrc.js',
         '.eslintrc.js',
         'vite.config.ts',
+        '**/*.d.ts',
       ],
     },
     environment: 'happy-dom',

@@ -4,6 +4,12 @@
   },
   "auth": {
     "login": {
+      "email": "Email",
+      "error": {
+        "password": "Password is incorrect, please check if it is correct and try again.",
+        "user": "This user does not exist, please check if your email address is entered correctly.",
+        "verifyEmail": "This email has not been verified, please check your email inbox for correspondence."
+      },
       "forgotPassword": "Forgot Password?",
       "haveNoAccount": "Don't have an account?",
       "loading": "Logging in...",
@@ -11,10 +17,9 @@
       "loginFailed": "Login failed",
       "password": "Password",
       "registerNow": "Sign Up",
-      "rememberMe": "Remember me",
       "title": "Login",
       "useOtherMethods": "Or below way",
-      "usernameInput": "Username",
+      "username": "Username",
       "welcome": "Welcome to Lipoic"
     },
     "signUp": {
@@ -23,6 +28,9 @@
       "loginNow": "Login Now",
       "signUpButton": "Sign Up",
       "title": "Sign Up"
+    },
+    "verifyEmail": {
+      "error": "The verification code is invalid or has expired, Please try signing up again."
     }
   },
   "error": {

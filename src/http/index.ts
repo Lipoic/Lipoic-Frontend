@@ -10,8 +10,11 @@ import globalConfig from '@/utils/config';
 import { deepAssign } from '@/utils/Object';
 import { Code } from '@/api/code';
 
+/**
+ * The http client for api requests.
+ */
 export class HttpClient {
-  public readonly axios: AxiosInstance;
+  private readonly axios: AxiosInstance;
   private readonly config: Partial<AxiosRequestConfig>;
 
   constructor(config: Partial<AxiosRequestConfig> = globalConfig.http) {
@@ -25,59 +28,43 @@ export class HttpClient {
     );
   }
 
-  public async post<T, G = Response<T>>(
+  /**
+   * Send a POST request with data
+   * @param path the request path
+   * @param data the request data
+   * @param config the request config
+   * @returns the response body
+   */
+  public async post<T, R = APIResponseBody<T>>(
     path: PathType,
     data?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<G> {
+  ): Promise<R> {
     return HttpClient.getRequestData(this.axios.post(path, data, config));
   }
 
-  public async postForm<T, G = Response<T>>(
-    path: PathType,
-    data?: PostFormType,
-    config?: AxiosRequestConfig
-  ): Promise<G> {
-    const formBody = new FormData();
-
-    for (const [key, value] of Object.entries(data || {})) {
-      if (value instanceof Blob || typeof value === 'string') {
-        formBody.append(key, value);
-      } else formBody.append(key, value.value, value.fileName);
-    }
-
-    return this.post(
-      path,
-      formBody,
-      <AxiosRequestConfig>deepAssign({
-        headers: { 'Content-Type': 'multipart/form-data' },
-        config,
-      })
-    );
-  }
-
-  public async get<T, G = Response<T>>(
+  public async get<T, R = APIResponseBody<T>>(
     path: PathType,
     params?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<G> {
+  ): Promise<R> {
     return HttpClient.getRequestData(
       this.axios.get(path, { params, ...config })
     );
   }
 
-  public async patch<T, G = Response<T>>(
+  public async patch<T, R = APIResponseBody<T>>(
     path: PathType,
     data?: unknown,
     config?: AxiosRequestConfig
-  ): Promise<G> {
+  ): Promise<R> {
     return HttpClient.getRequestData(this.axios.patch(path, data, config));
   }
 
-  public async delete<T, G = Response<T>>(
+  public async delete<T, R = APIResponseBody<T>>(
     path: PathType,
     config?: AxiosRequestConfig
-  ): Promise<G> {
+  ): Promise<R> {
     return HttpClient.getRequestData(this.axios.delete(path, config));
   }
 
@@ -113,8 +100,8 @@ export class HttpClient {
   }
 
   private async responseErrorHandler(
-    error: AxiosError<Response, unknown>
-  ): Promise<AxiosResponse<Response, unknown> | null> {
+    error: AxiosError<APIResponseBody, unknown>
+  ): Promise<AxiosResponse<APIResponseBody, unknown> | null> {
     const { config } = error;
 
     if (error.response) {
@@ -164,24 +151,20 @@ declare module 'axios' {
   }
 }
 
-/** API Response
- * @url https://github.com/Lipoic/Lipoic-Server/blob/7b678356a6079a7255cd42cd708780e9093d056c/src/router/src/data/response.rs#L8
+/**
+ * The response body of the API response.
+ * @see https://github.com/Lipoic/Lipoic-Backend/blob/develop/src/router/util/response.ts
  */
-export interface Response<D = unknown> {
+export interface APIResponseBody<T = unknown> {
   code: Code;
-  message: string;
-  data?: D;
+  data?: T;
 }
 
-export interface ResponseErrorData<T = unknown> extends Response<T> {
+export interface ResponseErrorData<T = unknown> extends APIResponseBody<T> {
   config: AxiosRequestConfig;
 }
 
-export type PathType = `/${string}`;
-export type PostFormType = Record<
-  string,
-  string | Blob | { value: string | Blob; fileName?: string }
->;
+type PathType = `/${string}`;
 
 const httpClient = new HttpClient();
 export default httpClient;

@@ -1,48 +1,33 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import { getGoogleOauthUrl, getFacebookOauthUrl } from '@/api/authentication';
-import { useUserStore } from '@/stores/models/user';
+import { signUp } from '@/api/user';
+import I18nHelper from '@/helper/I18nHelper';
 
 const ToolLangSelector = defineAsyncComponent(
   () => import('@/components/ToolLangSelector.vue')
 );
-
-interface loginData {
+interface signUpData {
   username: string;
   password: string;
-  rememberMe: boolean;
+  email: string;
 }
-const loginFormData = reactive<loginData>({
+const signUpFormData = reactive<signUpData>({
   username: '',
   password: '',
-  rememberMe: false,
+  email: '',
 });
 
-const oauthButtons = [
-  {
-    title: 'Google',
-    img: 'login-google',
-    click: async () => {
-      const url = await getGoogleOauthUrl(`${location.origin}/oauth/google/`);
-      if (url) window.location.href = url;
-    },
-  },
-  {
-    title: 'FaceBook',
-    img: 'login-facebook',
-    click: async () => {
-      const url = await getFacebookOauthUrl(
-        `${location.origin}/oauth/facebook/`
-      );
-      if (url) window.location.href = url;
-    },
-  },
-];
+async function submit() {
+  await signUp(
+    signUpFormData.username,
+    signUpFormData.email,
+    signUpFormData.password,
+    I18nHelper.locale
+  );
 
-const userStore = useUserStore();
-
-if (userStore.isLoggedIn()) useRouter().push('/');
+  await useRouter().push('/');
+}
 </script>
 
 <template>
@@ -69,73 +54,51 @@ if (userStore.isLoggedIn()) useRouter().push('/');
       </router-link>
       <form method="POST">
         <div class="header">
-          <span v-t="'auth.login.title'" />
+          <span v-t="'auth.signUp.title'" />
         </div>
-        <!-- TODO: add pattern & max length-->
         <input
-          v-model="loginFormData.username"
+          v-model="signUpFormData.username"
           required
           type="text"
-          name="user"
+          name="username"
           maxlength=""
-          pattern="^[a-zA-Z0-9]+$|(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$)"
-          :aria-label="$t('auth.login.usernameInput')"
-          :placeholder="$t('auth.login.usernameInput')"
+          :aria-label="$t('auth.login.username')"
+          :placeholder="$t('auth.login.username')"
           autocomplete="username"
         />
-        <!-- TODO: add pattern & max length-->
         <input
-          v-model="loginFormData.password"
+          v-model="signUpFormData.email"
+          required
+          type="email"
+          name="email"
+          :aria-label="$t('auth.signUp.email')"
+          :placeholder="$t('auth.signUp.email')"
+          autocomplete="email"
+        />
+        <input
+          v-model="signUpFormData.password"
           required
           type="password"
           name="password"
           :aria-label="$t('auth.login.password')"
           :placeholder="$t('auth.login.password')"
-          pattern="[a-zA-Z0-9]{8,}"
           autocomplete="current-password"
         />
-        <div class="loginOptions">
-          <div class="rememberMe">
-            <input
-              id="rememberMe"
-              v-model="loginFormData.rememberMe"
-              type="checkbox"
-              name="rememberMe"
-            />
-            <label v-t="'auth.login.rememberMe'" for="rememberMe" />
-          </div>
-          <a v-t="'auth.login.forgotPassword'" href="#" class="forgot" />
-        </div>
         <button
-          v-t="'auth.login.loginButton'"
-          class="loginButton"
+          v-t="'auth.signUp.signUpButton'"
+          class="signUpButton"
           type="submit"
+          @click.prevent="submit"
         />
-        <p v-t="'auth.login.haveNoAccount'" />
+        <p v-t="'auth.signUp.alreadyHaveAccount'" />
         <p>
           <router-link
-            v-t="'auth.login.registerNow'"
-            to="/account/signup"
-            class="signup"
+            v-t="'auth.signUp.loginNow'"
+            to="/account/login"
+            class="login"
           />
         </p>
-        <hr style="border-color: #ababab" />
-        <p v-t="'auth.login.useOtherMethods'" />
-        <div class="oauthButtons">
-          <button
-            v-for="{ title, img, click } in oauthButtons"
-            v-once
-            :key="title"
-            type="button"
-            class="oauthButton"
-            :aria-label="title"
-            :title="title"
-            @click="click"
-          >
-            <SvgIcon :name="img" width="25px" height="25px" />
-          </button>
-        </div>
-        <ToolLangSelector />
+        <ToolLangSelector class="langSelector" />
       </form>
     </div>
     <div class="bottomMusk"></div>
@@ -248,49 +211,16 @@ if (userStore.isLoggedIn()) useRouter().push('/');
         outline: none;
 
         &:invalid {
-          ~ .loginButton {
+          ~ .signUpButton {
             pointer-events: none;
             opacity: 0.5;
           }
         }
       }
 
-      .loginOptions {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin: 20px;
-
-        .rememberMe {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          padding: 0 5px;
-
-          input[type='checkbox'] {
-            width: 18px;
-            height: 18px;
-            border-radius: 5px;
-            outline: none;
-            accent-color: $MainColor;
-          }
-
-          label {
-            margin-left: 5px;
-            line-height: 18px;
-            color: white;
-          }
-        }
-
-        a {
-          color: white;
-        }
-      }
-
       & > button {
         padding: 10px;
-        margin-bottom: 20px;
+        margin: 20px;
         font-size: 1.5rem;
         color: white;
         cursor: pointer;
@@ -311,47 +241,8 @@ if (userStore.isLoggedIn()) useRouter().push('/');
         cursor: pointer;
       }
 
-      hr {
-        margin: 12px 20px;
-      }
-
-      .oauthButtons {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 10px 0 20px;
-
-        .oauthButton {
-          display: flex;
-          padding: 2px;
-          cursor: pointer;
-          border: none;
-          border-radius: 50%;
-          align-items: center;
-          justify-content: center;
-
-          svg {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-          }
-
-          &:not(:last-child) {
-            margin-right: 20px;
-          }
-
-          &:nth-child(1) {
-            background-color: #fff;
-          }
-
-          &:nth-child(2) {
-            background-color: #fff;
-          }
-
-          &:nth-child(3) {
-            background-color: #30a1d4;
-          }
-        }
+      .langSelector {
+        margin-top: 10px;
       }
     }
   }

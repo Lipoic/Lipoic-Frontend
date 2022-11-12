@@ -2,9 +2,9 @@
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
 
-import I18nHelper, { useI18nType } from '@/helper/I18nHelper';
+import I18nHelper from '@/helper/I18nHelper';
 
-const i18n = useI18n() as useI18nType;
+const i18n = useI18n();
 
 const selectedLanguage = ref(i18n.locale);
 const showSetLanguages = ref(false);
@@ -63,7 +63,7 @@ const changeEventLanguage = (e: MouseEvent) => {
 </template>
 
 <style lang="scss">
-@import '../scss/global.scss';
+@import '@/scss/global.scss';
 
 .languageSelector {
   position: relative;

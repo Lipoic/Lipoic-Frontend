@@ -1,31 +1,27 @@
 import { I18n, createI18n, Composer, useI18n } from 'vue-i18n';
 
 import defaultLanguage from '@/locales/zh-TW.json';
+import { UserLocale, USER_LOCALES, isUserLocale } from '@/api/user/type';
 
 export type i18nType = I18n<
   Record<string, typeof defaultLanguage>,
   unknown,
   unknown
 >;
-export type useI18nType = Composer<Record<string, typeof defaultLanguage>>;
-
 export default class I18nHelper {
-  static defaultLocale = 'en-US';
-  static get locale(): string {
+  static defaultLocale: UserLocale = 'en-US';
+  static get locale(): UserLocale {
     /// get locale from localStorage or the browser's language
     const storageLocal = localStorage.getItem('locale') || navigator.language;
 
     // If user has set the locale in localStorage, use it
-    if (
-      this.locales.some((_) => _.toLowerCase() === storageLocal.toLowerCase())
-    ) {
+    if (isUserLocale(storageLocal)) {
       return storageLocal;
     }
 
     return this.defaultLocale;
   }
 
-  static locales: string[] = [this.defaultLocale, 'zh-TW', 'zh-CN'];
   static flags: Record<string, string> = {};
   static i18n: i18nType | null;
 
@@ -40,7 +36,7 @@ export default class I18nHelper {
     const flagsFiles: Record<string, () => Promise<any>> = import.meta.glob(
       '@/assets/svg/flags/*.svg'
     );
-    for (const locale of this.locales) {
+    for (const locale of USER_LOCALES) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const filePath = Object.keys(files).find((_) => _.includes(locale))!;
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

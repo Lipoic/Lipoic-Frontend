@@ -3,13 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3000",
     "dev:host": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint 'src/**/*.{js,jsx,vue,ts,tsx}' --fix",
     "lint:stylelint": "stylelint src/**/*.{vue,css,scss} --fix",
     "test": "vitest",
+    "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
@@ -33,6 +34,7 @@
     "@typescript-eslint/parser": "5.40.1",
     "@vitejs/plugin-vue": "3.1.2",
     "@vitest/coverage-c8": "0.24.3",
+    "@vitest/ui": "^0.24.5",
     "c8": "7.12.0",
     "eslint": "8.25.0",
     "eslint-config-airbnb-base": "15.0.0",

@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import UserInfoHeader from '@/components/header/UserInfoHeader.vue';
 import { useUserStore } from '@/stores/models/user';
 import PageLinksVue from '@/components/header/PageLinks.vue';
-import LoginButtonVue from '@/components/header/LoginButton.vue';
+import LoginButtonVue from '@/components/auth/LoginButton.vue';
 
 const userStore = useUserStore();
 
@@ -36,7 +36,7 @@ onUnmounted(() => window.removeEventListener('resize', checkMenuOpen));
     <div class="links">
       <PageLinksVue direction="row" :login-button="false" class="desktop" />
       <div v-if="userStore.isLoggedIn() && userStore.info">
-        <UserInfoHeader :info="userStore.info" />
+        <UserInfoHeader :user="userStore.info" />
       </div>
       <div v-else>
         <input

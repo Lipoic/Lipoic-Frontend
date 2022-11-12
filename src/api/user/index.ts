@@ -1,37 +1,91 @@
-import httpClient from '@/http';
-import { UserInfo, UserMode } from './type';
+import httpClient, { APIResponseBody } from '@/http';
+import { AuthUser, PublicUser, UserLocale } from '@/api/user/type';
 import { Code } from '@/api/code';
-import { AuthToken } from '@/api/authentication/type';
+import { AccessToken } from '@/api/authentication/type';
 
-/** get user info
- * @url https://api-docs.lipoic.org/router/apis/user/api/fn.user_info.html
+/**
+ * Get the info of the current user (authorization required).
+ * @see https://api-docs.lipoic.org/#/User/get_user_info
  */
-export const getUserInfo = async () =>
-  (await httpClient.get<UserInfo>('/user/info', null, { authentication: true }))
-    .data;
+export async function getCurrentUserInfo(): Promise<AuthUser> {
+  const body = await httpClient.get<AuthUser>('/user/info', undefined, {
+    authentication: true,
+  });
 
-/** sign up for an account
- * @url https://api-docs.lipoic.org/router/apis/user/api/fn.sign_up.html
+  if (body.code === Code.SUCCESS && body.data) {
+    return body.data;
+  }
+
+  return Promise.reject(body);
+}
+
+/**
+ * Get the user info by user id.
+ * @see https://api-docs.lipoic.org/#/User/get_user_info__userId_
  */
-export const signUp = async (
+export async function getUserInfoById(userId: string): Promise<PublicUser> {
+  const body = await httpClient.get<PublicUser>(`/user/info/${userId}`);
+
+  if (body.code === Code.SUCCESS && body.data) {
+    return body.data;
+  }
+
+  return Promise.reject(body);
+}
+
+/**
+ * Sign up a new user via email and password.
+ * @see https://api-docs.lipoic.org/#/User/post_user_signup
+ */
+export async function signUp(
   username: string,
   email: string,
   password: string,
-  modes: UserMode[]
-) => {
+  locale: UserLocale
+): Promise<void> {
   const data = {
     username,
     email,
     password,
-    modes: JSON.stringify(modes),
+    locale,
   };
 
-  return (await httpClient.postForm<Code.OK>('/user/sign-up', data)).data;
-};
+  const body = await httpClient.post('/user/signup', data);
 
-/** login account with username and password
- * @url https://api-docs.lipoic.org/router/apis/user/api/fn.login.html
+  if (body.code === Code.SUCCESS) {
+    return Promise.resolve();
+  }
+
+  if (body.code === Code.Sign_Up_Email_Already_Used) {
+    return Promise.reject(new Error('Email already used'));
+  }
+
+  return Promise.reject(body);
+}
+
+/**
+ * Login via email and password
+ * @see https://api-docs.lipoic.org/#/User/post_user_login
  */
-export const login = async (email: string, password: string) =>
-  (await httpClient.postForm<AuthToken>('/user/login', { email, password }))
-    .data?.token;
+export async function login(
+  email: string,
+  password: string
+): Promise<APIResponseBody<AccessToken>> {
+  const body = await httpClient.post<AccessToken>('/user/login', {
+    email,
+    password,
+  });
+
+  return body;
+}
+
+/**
+ * Verify the email account by the code
+ * @param code A code from the email sent by the backend
+ * @see https://api-docs.lipoic.org/#/User/get_user_verify
+ */
+export async function verifyEmail(
+  code: string
+): Promise<APIResponseBody<AccessToken>> {
+  return httpClient.get<AccessToken>('/user/verify', { code });
+}

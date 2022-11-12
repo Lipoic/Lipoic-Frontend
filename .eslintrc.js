@@ -31,7 +31,7 @@ module.exports = {
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
 
     // prettier error
-    'prettier/prettier': ['error'],
+    'prettier/prettier': ['warn', { endOfLine: 'auto' }],
 
     // Remove unnecessary class newlines
     'lines-between-class-members': 'off',

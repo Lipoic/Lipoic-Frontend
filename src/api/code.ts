@@ -1,24 +1,18 @@
-/** code data
- * @url https://api-docs.lipoic.org/router/data/code/struct.Code.html#
- * @url https://github.com/Lipoic/Lipoic-Server/blob/main/src/router/src/data/code.rs#L27-L39
+/**
+ * The custom status code of the response.
+ * @see https://github.com/Lipoic/Lipoic-Backend/blob/develop/src/router/util/code.ts
  */
 export enum Code {
-  /** Ok. */
-  OK = 200,
-  /** Resource not found. */
-  NOT_FOUND = 404,
-  /** OAuth auth code error. */
-  OAUTH_CODE_ERROR = 1,
-  /** OAuth get user info error. */
-  OAUTH_GET_USER_INFO_ERROR = 2,
-  /** User not found error. */
-  LOGIN_USER_NOT_FOUND_ERROR = 3,
-  /** Input password error. */
-  LOGIN_PASSWORD_ERROR = 4,
-  /** This email is already registered */
-  SIGN_UP_EMAIL_ALREADY_REGISTERED = 5,
-  /** This code is invalid. */
-  VERIFY_EMAIL_ERROR = 6,
-  /** This token is invalid. */
-  AUTH_ERROR = 7,
+  SUCCESS,
+  NOT_FOUND,
+  GET_AUTH_URL_ERROR,
+  OAUTH_CODE_CALLBACK_ERROR,
+  AUTH_ERROR,
+  USER_NOT_FOUND,
+  EDIT_USER_INFO_ERROR,
+  Sign_Up_Email_Already_Used,
+  Sign_Up_Error,
+  Verify_Email_Error,
+  Login_User_Error,
+  Login_User_Email_Not_Verified,
 }

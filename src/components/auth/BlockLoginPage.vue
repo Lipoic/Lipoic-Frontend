@@ -1,19 +1,91 @@
 <script lang="ts" setup>
-import { defineAsyncComponent, reactive } from 'vue';
+import { defineAsyncComponent, reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import { getGoogleOauthUrl, getFacebookOauthUrl } from '@/api/authentication';
+import { useUserStore } from '@/stores/models/user';
+import { login } from '@/api/user';
+import { Code } from '@/api/code';
 
 const ToolLangSelector = defineAsyncComponent(
   () => import('@/components/ToolLangSelector.vue')
 );
-interface signUpData {
-  username: string;
-  password: string;
+
+interface loginData {
   email: string;
+  password: string;
+  stayLoggedIn: boolean;
 }
-const signUpFormData = reactive<signUpData>({
-  username: '',
-  password: '',
+const loginFormData = reactive<loginData>({
   email: '',
+  password: '',
+  stayLoggedIn: false,
 });
+
+const router = useRouter();
+
+const oauthButtons = [
+  {
+    title: 'Google',
+    img: 'login-google',
+    click: async () => {
+      const data = await getGoogleOauthUrl(`${location.origin}/oauth/google/`);
+      if (data) window.location.href = data.url;
+    },
+  },
+  {
+    title: 'Facebook',
+    img: 'login-facebook',
+    click: async () => {
+      const data = await getFacebookOauthUrl(
+        `${location.origin}/oauth/facebook/`
+      );
+      if (data) window.location.href = data.url;
+    },
+  },
+];
+
+const userStore = useUserStore();
+
+if (userStore.isLoggedIn()) router.push('/');
+
+const loginError = ref<string>();
+const loginLoading = ref<boolean>(false);
+const i18n = useI18n();
+
+async function submitData() {
+  loginError.value = undefined;
+  loginLoading.value = true;
+  try {
+    const body = await login(loginFormData.email, loginFormData.password);
+
+    if (body.code === Code.SUCCESS && body.data) {
+      userStore.setToken(body.data.token);
+      await userStore.setUserInfo();
+      await router.push('/');
+    }
+
+    let errorKey!: string;
+
+    switch (body.code) {
+      case Code.Login_User_Error:
+        errorKey = 'auth.login.error.password';
+        break;
+
+      case Code.Login_User_Email_Not_Verified:
+        errorKey = 'auth.login.error.verifyEmail';
+        break;
+
+      case Code.USER_NOT_FOUND:
+        errorKey = 'auth.login.error.user';
+    }
+
+    loginError.value = i18n.t(errorKey);
+  } catch (error) {
+    loginError.value = i18n.t('error.message');
+  }
+  loginLoading.value = false;
+}
 </script>
 
 <template>
@@ -40,55 +112,74 @@ const signUpFormData = reactive<signUpData>({
       </router-link>
       <form method="POST">
         <div class="header">
-          <span v-t="'auth.signUp.title'" />
+          <span v-t="'auth.login.title'" />
         </div>
-        <!-- TODO: add pattern & max length-->
         <input
-          v-model="signUpFormData.username"
+          v-model="loginFormData.email"
           required
-          type="text"
-          name="user"
-          maxlength=""
-          pattern="^[a-zA-Z0-9]+$|(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$)"
-          :aria-label="$t('auth.login.usernameInput')"
-          :placeholder="$t('auth.login.usernameInput')"
-          autocomplete="username"
-        />
-        <input
-          v-model="signUpFormData.email"
-          required
-          type="text"
+          type="email"
           name="email"
-          pattern="^[a-zA-Z0-9]+$|(^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$)"
-          :aria-label="$t('auth.signUp.email')"
-          :placeholder="$t('auth.signUp.email')"
+          :aria-label="$t('auth.login.email')"
+          :placeholder="$t('auth.login.email')"
           autocomplete="email"
         />
-        <!-- TODO: add pattern & max length-->
         <input
-          v-model="signUpFormData.password"
+          v-model="loginFormData.password"
           required
           type="password"
           name="password"
           :aria-label="$t('auth.login.password')"
           :placeholder="$t('auth.login.password')"
-          pattern="[a-zA-Z0-9]{8,}"
           autocomplete="current-password"
         />
+        <div class="loginOptions">
+          <p v-if="loginError" class="loginError">
+            {{ loginError }}
+          </p>
+          <a v-t="'auth.login.forgotPassword'" href="#" class="forgot" />
+        </div>
         <button
-          v-t="'auth.signUp.signUpButton'"
-          class="signUpButton"
+          v-if="!loginLoading"
+          v-t="'auth.login.loginButton'"
+          class="loginButton"
           type="submit"
+          @click.prevent="submitData"
         />
-        <p v-t="'auth.signUp.alreadyHaveAccount'" />
+        <div v-if="loginLoading">
+          <Loading
+            class="loadingIndicator"
+            :active="true"
+            :color="'#7b6ff6'"
+            :loader="'dots'"
+            :width="50"
+            :height="50"
+          />
+        </div>
+        <p v-t="'auth.login.haveNoAccount'" />
         <p>
           <router-link
-            v-t="'auth.signUp.loginNow'"
-            to="/account/login"
-            class="login"
+            v-t="'auth.login.registerNow'"
+            to="/account/signup"
+            class="signup"
           />
         </p>
-        <ToolLangSelector class="langSelector" />
+        <hr style="border-color: #ababab" />
+        <p v-t="'auth.login.useOtherMethods'" />
+        <div class="oauthButtons">
+          <button
+            v-for="{ title, img, click } in oauthButtons"
+            v-once
+            :key="title"
+            type="button"
+            class="oauthButton"
+            :aria-label="title"
+            :title="title"
+            @click="click"
+          >
+            <SvgIcon :name="img" width="25px" height="25px" />
+          </button>
+        </div>
+        <ToolLangSelector />
       </form>
     </div>
     <div class="bottomMusk"></div>
@@ -208,15 +299,25 @@ const signUpFormData = reactive<signUpData>({
         }
       }
 
-      & > button {
-        padding: 10px;
+      .loginOptions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         margin: 20px;
-        font-size: 1.5rem;
-        color: white;
-        cursor: pointer;
-        background-color: $MainPurple;
-        border: none;
-        border-radius: 15px;
+
+        @include phone {
+          flex-direction: column;
+        }
+
+        a {
+          color: white;
+        }
+
+        .loginError {
+          color: orangered;
+          font-size: large;
+        }
       }
 
       p {
@@ -231,8 +332,67 @@ const signUpFormData = reactive<signUpData>({
         cursor: pointer;
       }
 
-      .langSelector {
-        margin-top: 10px;
+      hr {
+        margin: 12px 20px;
+      }
+
+      .oauthButtons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0 20px;
+
+        .oauthButton {
+          display: flex;
+          padding: 2px;
+          cursor: pointer;
+          border: none;
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+          }
+
+          &:not(:last-child) {
+            margin-right: 20px;
+          }
+
+          &:nth-child(1) {
+            background-color: #fff;
+          }
+
+          &:nth-child(2) {
+            background-color: #fff;
+          }
+
+          &:nth-child(3) {
+            background-color: #30a1d4;
+          }
+        }
+      }
+
+      .loginButton {
+        padding: 10px;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+        background-color: $MainPurple;
+        border: none;
+        border-radius: 15px;
+      }
+
+      .loadingIndicator {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-right: 10px;
       }
     }
   }
