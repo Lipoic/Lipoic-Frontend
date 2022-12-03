@@ -7,6 +7,10 @@ import I18nHelper from '@/helper/I18nHelper';
 const ToolLangSelector = defineAsyncComponent(
   () => import('@/components/ToolLangSelector.vue')
 );
+const OAuthButtons = defineAsyncComponent(
+  () => import('@/components/auth/OAuthButtons.vue')
+);
+
 interface signUpData {
   username: string;
   password: string;
@@ -98,6 +102,8 @@ async function submit() {
             class="login"
           />
         </p>
+        <hr style="border-color: #ababab" />
+        <OAuthButtons />
         <ToolLangSelector class="langSelector" />
       </form>
     </div>
@@ -243,6 +249,11 @@ async function submit() {
 
       .langSelector {
         margin-top: 10px;
+      }
+
+      hr {
+        border-color: #ababab;
+        margin: 12px 20px;
       }
     }
   }

@@ -7,8 +7,8 @@ import '@/scss/themes/light.scss';
 import { useRegisterSW } from 'virtual:pwa-register/vue';
 
 import LoadingPlugin from 'vue-loading-overlay';
-import I18nHelper from './helper/I18nHelper';
-import FirebaseHelper from './helper/FirebaseHelper';
+import I18nHelper from '@/helper/I18nHelper';
+import FirebaseHelper from '@/helper/FirebaseHelper';
 
 import router from '@/router';
 import plugin from '@/plugin';
@@ -26,15 +26,15 @@ const SvgIconComponent = defineAsyncComponent(
   useRegisterSW({
     immediate: true,
     onRegisteredSW(swUrl, r) {
-      console.log(`Service Worker at: ${swUrl}`);
+      console.log(`service worker at: ${swUrl}`);
 
       r &&
         setInterval(async () => {
-          console.log('Checking for sw update');
+          console.log('Checking for service worker update');
           await r.update();
         }, 60 * 60 * 1000);
 
-      console.log(`SW Registered: ${r}`);
+      console.log(`service worker registered: ${r}`);
     },
   });
 

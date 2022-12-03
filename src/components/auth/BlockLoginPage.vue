@@ -2,13 +2,15 @@
 import { defineAsyncComponent, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import { getGoogleOauthUrl, getFacebookOauthUrl } from '@/api/authentication';
 import { useUserStore } from '@/stores/models/user';
 import { login } from '@/api/user';
 import { Code } from '@/api/code';
 
 const ToolLangSelector = defineAsyncComponent(
   () => import('@/components/ToolLangSelector.vue')
+);
+const OAuthButtons = defineAsyncComponent(
+  () => import('@/components/auth/OAuthButtons.vue')
 );
 
 interface loginData {
@@ -23,27 +25,6 @@ const loginFormData = reactive<loginData>({
 });
 
 const router = useRouter();
-
-const oauthButtons = [
-  {
-    title: 'Google',
-    img: 'login-google',
-    click: async () => {
-      const data = await getGoogleOauthUrl(`${location.origin}/oauth/google/`);
-      if (data) window.location.href = data.url;
-    },
-  },
-  {
-    title: 'Facebook',
-    img: 'login-facebook',
-    click: async () => {
-      const data = await getFacebookOauthUrl(
-        `${location.origin}/oauth/facebook/`
-      );
-      if (data) window.location.href = data.url;
-    },
-  },
-];
 
 const userStore = useUserStore();
 
@@ -163,22 +144,8 @@ async function submitData() {
             class="signup"
           />
         </p>
-        <hr style="border-color: #ababab" />
-        <p v-t="'auth.login.useOtherMethods'" />
-        <div class="oauthButtons">
-          <button
-            v-for="{ title, img, click } in oauthButtons"
-            v-once
-            :key="title"
-            type="button"
-            class="oauthButton"
-            :aria-label="title"
-            :title="title"
-            @click="click"
-          >
-            <SvgIcon :name="img" width="25px" height="25px" />
-          </button>
-        </div>
+        <hr />
+        <OAuthButtons />
         <ToolLangSelector />
       </form>
     </div>
@@ -301,14 +268,9 @@ async function submitData() {
 
       .loginOptions {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
-        margin: 20px;
-
-        @include phone {
-          flex-direction: column;
-        }
+        margin: 15px;
 
         a {
           color: white;
@@ -317,6 +279,7 @@ async function submitData() {
         .loginError {
           color: orangered;
           font-size: large;
+          padding-bottom: 10px;
         }
       }
 
@@ -333,46 +296,8 @@ async function submitData() {
       }
 
       hr {
+        border-color: #ababab;
         margin: 12px 20px;
-      }
-
-      .oauthButtons {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 10px 0 20px;
-
-        .oauthButton {
-          display: flex;
-          padding: 2px;
-          cursor: pointer;
-          border: none;
-          border-radius: 50%;
-          align-items: center;
-          justify-content: center;
-
-          svg {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-          }
-
-          &:not(:last-child) {
-            margin-right: 20px;
-          }
-
-          &:nth-child(1) {
-            background-color: #fff;
-          }
-
-          &:nth-child(2) {
-            background-color: #fff;
-          }
-
-          &:nth-child(3) {
-            background-color: #30a1d4;
-          }
-        }
       }
 
       .loginButton {
