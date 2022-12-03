@@ -14,9 +14,9 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/views/PageHome.vue'),
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('@/views/PageAbout.vue'),
+    path: '/overview',
+    name: 'Overview',
+    component: () => import('@/views/PageOverview.vue'),
   },
   {
     path: '/account',
@@ -34,16 +34,6 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/components/auth/BlockSignUpPage.vue'),
       },
     ],
-  },
-  {
-    path: '/feature',
-    name: 'Features',
-    component: () => import('@/views/PageFeature.vue'),
-  },
-  {
-    path: '/demo',
-    name: 'Demo',
-    component: () => import('@/views/PageDemo.vue'),
   },
   {
     path: '/oauth',

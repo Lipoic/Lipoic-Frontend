@@ -18,7 +18,6 @@ export const PWAPlugin = () =>
         { src: './icons/icon-144.png', sizes: '144x144', type: 'image/png' },
       ],
       display: 'minimal-ui',
-      lang: 'zh-TW',
     },
     workbox: {
       globPatterns: ['**/*.{js,css,html,ico,png,svg}'],

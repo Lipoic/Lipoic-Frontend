@@ -36,31 +36,5 @@
   "error": {
     "message": "An error has occurred. Please try again later."
   },
-  "footer": {
-    "copyright": "Copyright © 2022 Lipoic. All rights reserved."
-  },
-  "header": {
-    "action": {
-      "logout": "Logout"
-    },
-    "links": {
-      "about": "About",
-      "demo": "Demo",
-      "feature": "Features",
-      "home": "Home"
-    },
-    "login": "Login"
-  },
-  "home": {
-    "login": {
-      "parents": "Parents",
-      "student": "Student",
-      "teacher": "Teacher"
-    },
-    "subtitle": {
-      "1": "A multifunctional, educational platform for teachers and students",
-      "2": "Loves open source and open education"
-    }
-  },
   "name": "English (US)"
 }

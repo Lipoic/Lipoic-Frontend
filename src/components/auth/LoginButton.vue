@@ -2,11 +2,11 @@
   <div>
     <router-link
       v-once
-      v-t="'header.login'"
+      v-t="'auth.login.title'"
       to="/account/login"
       class="button"
-      :title="$t('header.login')"
-      :aria-label="$t('header.login')"
+      :title="$t('auth.login.title')"
+      :aria-label="$t('auth.login.title')"
     />
   </div>
 </template>
