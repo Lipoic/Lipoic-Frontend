@@ -10,9 +10,9 @@ const MainViewVue = defineAsyncComponent(
 const isLogin = useUserStore().isLoggedIn();
 const router = useRouter();
 
-// if (!isLogin) {
-//   router.push('/account/login');
-// }
+if (!isLogin) {
+  router.push('/account/login');
+}
 </script>
 
 <template>
