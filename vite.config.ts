@@ -10,18 +10,7 @@ import PWAPlugin from './plugin/pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          // treat all tags with a dash as custom elements
-          isCustomElement: (tag) => tag.includes('-'),
-        },
-      },
-    }),
-    svgIcon(),
-    PWAPlugin(),
-  ],
+  plugins: [vue(), svgIcon(), PWAPlugin()],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   build: {
     terserOptions: {
@@ -47,7 +36,6 @@ export default defineConfig({
         'public/**',
         'plugin/**',
         'test/**',
-        '.stylelintrc.js',
         '.eslintrc.js',
         'vite.config.ts',
         '**/*.d.ts',

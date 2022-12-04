@@ -6,7 +6,6 @@
     "lokalise.i18n-ally",
     "editorconfig.editorconfig",
     "dbaeumer.vscode-eslint",
-    "stylelint.vscode-stylelint",
     "ZixuanChen.vitest-explorer"
   ]
 }

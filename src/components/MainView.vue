@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="bg-[#1B1B1F] min-h-[100%] flex">
+  <div class="bg-[#1B1B1F] min-h-[100%] flex select-none">
     <div class="sidebar w-[104px] h-full rounded-tr-[50px] flex-none">
       <div class="w-[100%] mt-[50px]">
         <svg
@@ -142,7 +142,26 @@
       </a>
     </div>
     <div class="text-white flex-1 bg-[#1b1b1f]">
-      <nav class="nav h-[77px]"></nav>
+      <div class="nav h-[77px]">
+        <div class="search">
+          <span class="icon mt-7">
+            <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
+              <path
+                fill="currentColor"
+                d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+              />
+            </svg>
+          </span>
+          <input
+            class="bg-[#44474F] w-[453px] h-[46px] mt-4 ml-[165px] rounded-full pl-[25px] pr-[50px] outline-0"
+            placeholder="搜尋一些酷東西"
+          />
+        </div>
+      </div>
+      <div class="overview w-[1106px] b-[0px] ml-[165px] mt-[64px] h-full">
+        <br />
+        <a class="ml-10">123</a>
+      </div>
     </div>
   </div>
 </template>
@@ -153,18 +172,41 @@
 .sidebar {
   box-sizing: border-box;
   position: absolute;
-  // background: #272931;
+
   border: solid 2px;
   background: linear-gradient(
       0deg,
-      rgb(173 198 255 / 8%),
-      rgb(173 198 255 / 8%)
+      rgba(173, 198, 255, 0.08),
+      rgba(173, 198, 255, 0.08)
     ),
     #1b1b1f;
-  // border-color: hsl(240deg 24% 27%);
+  border-color: hsl(240deg 24% 27%);
 }
 
 .nav {
-  background: #2b2d37;
+  background: linear-gradient(
+      0deg,
+      rgba(173, 198, 255, 0.11),
+      rgba(173, 198, 255, 0.11)
+    ),
+    rgba(27, 27, 31, 0.2);
+}
+
+.overview {
+  background: linear-gradient(
+      0deg,
+      rgba(173, 198, 255, 0.05),
+      rgba(173, 198, 255, 0.05)
+    ),
+    #1b1b1f;
+  /* M3/Elevation Dark/1 */
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+    0px 1px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 24px 24px 0px 0px;
+}
+
+.search .icon {
+  position: absolute;
+  left: 575px;
 }
 </style>

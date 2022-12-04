@@ -6,7 +6,6 @@
     "Lipoic",
     "Pinia",
     "plusplus",
-    "stylelint",
     "tochmove",
     "topleft",
     "topright"
@@ -14,11 +13,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
     "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
   },
-  /* stylelint */
-  "stylelint.enable": true,
-  "stylelint.validate": ["vue", "css", "scss", "sass"],
   "eslint.alwaysShowStatus": true,
   "commentTranslate.multiLineMerge": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
