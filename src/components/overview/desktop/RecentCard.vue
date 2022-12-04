@@ -10,7 +10,7 @@ const props = defineProps<CardProps>();
     <div>
       <img :src="'src/assets/overview/' + props.image + '.png'" />
       <a class="ml-3 mt-2 inline-block text-2xl opacity-80">
-        {{ props.image }} 課
+        {{ props.image }}
       </a>
       <br />
       <a class="ml-3 mt-2 inline-block text-base opacity-80"> 12/12 10:00 </a>
