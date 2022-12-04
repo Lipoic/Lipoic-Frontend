@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-interface Props {
+interface CardProps {
   image?: string;
 }
-const props = defineProps<Props>();
+const props = defineProps<CardProps>();
 </script>
 
 <template>
@@ -10,7 +10,7 @@ const props = defineProps<Props>();
     <div>
       <img :src="'src/assets/overview/' + props.image + '.png'" />
       <a class="ml-3 mt-2 inline-block text-2xl opacity-80">
-        {{ props.image }}課
+        {{ props.image }} 課
       </a>
       <br />
       <a class="ml-3 mt-2 inline-block text-base opacity-80"> 12/12 10:00 </a>
