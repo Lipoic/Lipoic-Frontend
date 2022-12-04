@@ -2,7 +2,7 @@
 import { defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/models/user';
-import RecentCard from '@/components/overveiw/RecentCard.vue';
+import RecentCard from '@/components/overview/RecentCard.vue';
 
 const MainViewVue = defineAsyncComponent(
   () => import('@/components/MainView.vue')
@@ -179,8 +179,13 @@ if (!isLogin) {
           <a class="ml-[50px] mt-[40px] text-[30px] font-light inline-block">
             近期活動
           </a>
-          <div class="ml-[50px] mt-[42px]">
-            <RecentCard imgae="math" />
+          <div class="recent-bar">
+            <div class="flex">
+              <div class="ml-[50px] mt-[42px] flex-1">
+                <RecentCard image="math" />
+                <RecentCard image="history" class="mt-[40px]" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
