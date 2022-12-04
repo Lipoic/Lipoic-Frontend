@@ -2,6 +2,7 @@
 import { defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/models/user';
+import RecentCard from '@/components/overveiw/RecentCard.vue';
 
 const MainViewVue = defineAsyncComponent(
   () => import('@/components/MainView.vue')
@@ -173,11 +174,15 @@ if (!isLogin) {
           />
         </div>
       </div>
-      <div
-        class="recent-activities ml-[172px] mr-[172px] mt-[64px] min-h-[80%] h-fit select-text"
-      >
-        <br />
-        <a class="ml-10">Hello, World!</a>
+      <div class="recent-activities ml-[172px] mr-[172px] mt-[64px]">
+        <div class="block">
+          <a class="ml-[50px] mt-[40px] text-[30px] font-light inline-block">
+            近期活動
+          </a>
+          <div class="ml-[50px] mt-[42px]">
+            <RecentCard imgae="math" />
+          </div>
+        </div>
       </div>
     </div>
   </MainViewVue>
@@ -220,7 +225,10 @@ if (!isLogin) {
   /* M3/Elevation Dark/1 */
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
     0px 1px 2px rgba(0, 0, 0, 0.3);
-  border-radius: 24px 24px 0px 0px;
+  border-radius: 24px 24px 24px 24px;
+  height: fit-content;
+  min-height: 80%;
+  user-select: text;
 }
 
 .search {

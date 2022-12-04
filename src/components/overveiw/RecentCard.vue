@@ -1,0 +1,33 @@
+<script lang="ts" setup>
+interface Props {
+  image?: string;
+}
+
+const props = defineProps<Props>();
+console.log(props);
+</script>
+
+<template>
+  <div class="card w-[237px] h-[210px]">
+    <div>
+      <img class="pic" />
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+@import '@/scss/global.scss';
+
+.card {
+  background: linear-gradient(
+      0deg,
+      rgba(173, 198, 255, 0.05),
+      rgba(173, 198, 255, 0.05)
+    ),
+    #1b1b1f;
+  /* M3/Elevation Dark/1 */
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+    0px 1px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+}
+</style>
