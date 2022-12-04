@@ -155,6 +155,12 @@
   position: absolute;
   // background: #272931;
   border: solid 2px;
+  background: linear-gradient(
+      0deg,
+      rgb(173 198 255 / 8%),
+      rgb(173 198 255 / 8%)
+    ),
+    #1b1b1f;
   // border-color: hsl(240deg 24% 27%);
 }
 
