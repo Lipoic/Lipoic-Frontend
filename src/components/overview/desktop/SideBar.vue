@@ -144,4 +144,17 @@
 
 <style lang="scss" scoped>
 @import '@/scss/global.scss';
+.sidebar {
+  box-sizing: border-box;
+  position: absolute;
+
+  border: 1px solid #353556;
+  border-radius: 0px 50px 0px 0px;
+  background: linear-gradient(
+      0deg,
+      rgba(173, 198, 255, 0.08),
+      rgba(173, 198, 255, 0.08)
+    ),
+    #1b1b1f;
+}
 </style>
