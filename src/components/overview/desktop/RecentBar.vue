@@ -3,32 +3,34 @@ import RecentCard from '@/components/overview/desktop/RecentCard.vue';
 </script>
 
 <template>
-  <div class="recent-activities ml-[172px] mr-[70px] mt-[64px] overflow-auto">
+  <div
+    class="recent-activities ml-[172px] mr-[70px] mt-[64px] overflow-y-scroll overflow-x-hidden"
+  >
     <div class="block mb-[64px]">
       <a class="ml-[50px] mt-[40px] text-[30px] font-light inline-block">
         近期活動
       </a>
-      <div class="recent-bar max-h-[621px]">
+      <div class="recent-bar max-h-[621px] min-h-[621px]">
         <div class="flex">
-          <div class="ml-[60px] flex-1 mb-[64px]">
+          <div class="ml-[50px] flex-1 mb-[64px]">
             <RecentCard image="math" class="mt-[40px]" />
             <RecentCard image="history" class="mt-[40px]" />
             <RecentCard image="math" class="mt-[40px]" />
             <RecentCard image="history" class="mt-[40px]" />
           </div>
-          <div class="ml-[60px] flex-1 mb-[64px]">
+          <div class="ml-[50px] flex-1 mb-[64px]">
             <RecentCard image="math" class="mt-[40px]" />
             <RecentCard image="history" class="mt-[40px]" />
             <RecentCard image="math" class="mt-[40px]" />
             <RecentCard image="history" class="mt-[40px]" />
           </div>
-          <div class="ml-[60px] flex-1 mb-[64px]">
+          <div class="ml-[50px] flex-1 mb-[64px]">
             <RecentCard image="math" class="mt-[40px]" />
             <RecentCard image="history" class="mt-[40px]" />
             <RecentCard image="math" class="mt-[40px]" />
             <RecentCard image="history" class="mt-[40px]" />
           </div>
-          <div class="ml-[60px] flex-1 mb-[64px]">
+          <div class="ml-[50px] flex-1 mb-[64px]">
             <RecentCard image="math" class="mt-[40px]" />
             <RecentCard image="history" class="mt-[40px]" />
             <RecentCard image="math" class="mt-[40px]" />
@@ -55,8 +57,6 @@ import RecentCard from '@/components/overview/desktop/RecentCard.vue';
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
     0px 1px 2px rgba(0, 0, 0, 0.3);
   border-radius: 24px 24px 24px 24px;
-  height: fit-content;
-  min-height: 80%;
   user-select: text;
 }
 </style>
