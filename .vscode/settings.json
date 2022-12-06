@@ -18,19 +18,20 @@
   "commentTranslate.multiLineMerge": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   // i18n-ally config
-  "i18n-ally.localesPaths": ["src/locales"],
+  "i18n-ally.localesPaths": [
+    "src/locales"
+  ],
   "i18n-ally.keystyle": "nested",
   "i18n-ally.sortKeys": true,
-  "i18n-ally.enabledParsers": ["json"],
+  "i18n-ally.enabledParsers": [
+    "json"
+  ],
   "i18n-ally.sourceLanguage": "zh-TW",
   "i18n-ally.displayLanguage": "zh-TW",
   "i18n-ally.enabledFrameworks": [
     "vue"
   ],
-  "[javascript]": {
-    "editor.defaultFormatter": "ms-vsliveshare.vsliveshare"
-  },
   "[vue]": {
-    "editor.defaultFormatter": "ms-vsliveshare.vsliveshare"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
