@@ -6,6 +6,7 @@
       type="search"
       data-search-input="true"
       class="pl-5 pr-10 h-[46px] rounded-[53px] block outline-none bg-[#44474F] w-full"
+      placeholder="搜尋一些酷東西"
       required
     />
     <button class="search-icon" aria-label="Clear">
@@ -42,7 +43,7 @@
 
 .search-icon {
   position: absolute;
-  right: 10px;
+  right: 13px;
   bottom: 10px;
   display: block;
 }
