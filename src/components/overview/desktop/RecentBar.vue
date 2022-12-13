@@ -4,38 +4,30 @@ import RecentCard from '@/components/overview/desktop/RecentCard.vue';
 
 <template>
   <div
-    class="recent-activities ml-[172px] mr-[70px] mt-[64px] overflow-y-scroll overflow-x-hidden"
+    class="recent-activities ml-[172px] mr-[70px] mt-[64px] overflow-y-scroll overflow-x-hidden max-h-[621px]"
   >
     <div class="block mb-[64px]">
       <a class="ml-[50px] mt-[40px] text-[30px] font-light inline-block">
         近期活動
       </a>
-      <div class="recent-bar max-h-[621px] min-h-[621px]">
-        <div class="flex">
-          <div class="ml-[50px] flex-1 mb-[64px]">
-            <RecentCard image="math" class="mt-[40px]" />
-            <RecentCard image="history" class="mt-[40px]" />
-            <RecentCard image="math" class="mt-[40px]" />
-            <RecentCard image="history" class="mt-[40px]" />
-          </div>
-          <div class="ml-[50px] flex-1 mb-[64px]">
-            <RecentCard image="math" class="mt-[40px]" />
-            <RecentCard image="history" class="mt-[40px]" />
-            <RecentCard image="math" class="mt-[40px]" />
-            <RecentCard image="history" class="mt-[40px]" />
-          </div>
-          <div class="ml-[50px] flex-1 mb-[64px]">
-            <RecentCard image="math" class="mt-[40px]" />
-            <RecentCard image="history" class="mt-[40px]" />
-            <RecentCard image="math" class="mt-[40px]" />
-            <RecentCard image="history" class="mt-[40px]" />
-          </div>
-          <div class="ml-[50px] flex-1 mb-[64px]">
-            <RecentCard image="math" class="mt-[40px]" />
-            <RecentCard image="history" class="mt-[40px]" />
-            <RecentCard image="math" class="mt-[40px]" />
-            <RecentCard image="history" class="mt-[40px]" />
-          </div>
+      <div class="max-h-[621px] min-h-[621px]">
+        <div class="flex flex-wrap">
+          <RecentCard image="math" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="history" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="math" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="history" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="math" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="history" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="math" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="history" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="math" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="history" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="math" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="history" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="math" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="history" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="math" class="ml-[50px] mt-[40px] mb-[64px]" />
+          <RecentCard image="history" class="ml-[50px] mt-[40px] mb-[64px]" />
         </div>
       </div>
     </div>
