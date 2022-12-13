@@ -67,7 +67,7 @@
       </svg>
     </div>
     <p class="text-white text-center text-sm mt-[20px]">總覽</p>
-    <a class="hover:cursor-pointer">
+    <a class="hover:cursor-pointer" >
       <svg
         width="64"
         height="32"

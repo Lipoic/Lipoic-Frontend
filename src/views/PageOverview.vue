@@ -2,6 +2,7 @@
 import { defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/models/user';
+import MobileView from '@/components/overview/MobileView.vue';
 import DesktopView from '@/components/overview/DesktopView.vue';
 
 const MainViewVue = defineAsyncComponent(
@@ -20,6 +21,9 @@ if (!isLogin) {
   <MainViewVue id="overview" class="select-none">
     <div class="phone:hidden w-[100%]">
       <DesktopView />
+    </div>
+    <div class="hidden phone:inline-block w-[100%]">
+      <MobileView />
     </div>
   </MainViewVue>
 </template>
