@@ -1,6 +1,4 @@
-<script lang="ts" setup>
-console.log(localStorage.getItem('user_info'));
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div class="nav h-[64px] flex">
