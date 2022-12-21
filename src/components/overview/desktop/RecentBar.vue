@@ -20,7 +20,9 @@ const cardDemoData = [
 </script>
 
 <template>
-  <div class="recent-activities ml-[172px] mr-[70px] mt-[64px] overflow-auto">
+  <div
+    class="recent-activities ml-[172px] mr-[70px] mt-[64px] overflow-y-scroll overflow-x-hidden max-h-[621px]"
+  >
     <div class="block mb-[64px]">
       <a class="text-[30px] font-regular inline-block">
         近期活動
