@@ -1,4 +1,12 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useSettingsStore } from '@/stores/models/settings';
+
+const settingsStore = useSettingsStore();
+
+const handleChangeTheme = () => {
+  settingsStore.toggleTheme();
+}
+</script>
 
 <template>
   <div class="nav h-[77px] flex">
@@ -18,13 +26,36 @@
         <input
           id="simple-search"
           type="text"
-          class="max-w-[453px] mt-[16px] ml-[165px] h-[46px] rounded-[53px] block w-full pl-10 pr-[25px] outline-none bg-[#44474F]"
+          class="max-w-[453px] mt-[16px] ml-[165px] h-[46px] rounded-[53px] block w-full pl-10 pr-[25px] outline-none border-[#BDC4E8] bg-[##F2F4FA] dark:bg-[#44474F]"
           placeholder="搜尋一些酷東西"
           required
         />
       </div>
     </form>
     <div class="flex-1 mt-7 text-right">
+      <button @click="handleChangeTheme" class="ml-[48px] mr-[48px]">
+        <!-- auto icon -->
+        <svg
+          v-if="settingsStore.themeMode === 'auto'"
+          style="width: 24px; height: 24px" viewBox="0 0 24 24"
+        >
+          <path fill="currentColor" d="M14.3,16L13.6,14H10.4L9.7,16H7.8L11,7H13L16.2,16H14.3M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69M10.85,12.65H13.15L12,9L10.85,12.65Z" />
+        </svg>
+        <!-- dark icon -->
+        <svg
+          v-if="settingsStore.themeMode === 'dark'"
+          style="width:24px;height:24px" viewBox="0 0 24 24"
+          >
+            <path fill="currentColor" d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z" />
+        </svg>
+        <!-- light icon -->
+        <svg
+          v-if="settingsStore.themeMode === 'light'"
+          style="width:24px;height:24px" viewBox="0 0 24 24"
+        >
+            <path fill="currentColor" d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z" />
+        </svg>
+      </button>
       <button id="bell">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
           <path
@@ -47,7 +78,18 @@
 
 <style lang="scss" scoped>
 @import '@/scss/global.scss';
+
 .nav {
+  color: #444B89;
+  background: linear-gradient(0deg, rgba(0, 90, 193, 0.11), rgba(0, 90, 193, 0.11)), #F1F3F9;
+  border-bottom: 1px solid #CCC1EC;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: 300ms ease background;
+}
+
+.dark .nav {
+  color: #C4C6D0;
+  border: none;
   background: linear-gradient(
       0deg,
       rgba(173, 198, 255, 0.11),

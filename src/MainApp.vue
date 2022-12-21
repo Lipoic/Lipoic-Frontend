@@ -1,47 +1,47 @@
 <script setup lang="ts">
-import { onBeforeMount, onMounted, onUnmounted } from 'vue';
+import { onBeforeMount, onMounted, watch } from 'vue';
 import { useUserStore } from '@/stores/models/user';
+import { useSettingsStore } from '@/stores/models/settings';
 
-/*  For Safari support because there are a bug of vh and vw unit of Safari. */
-const setStyle = (key: `--${string}`, value: string | null) =>
-  document.documentElement.style.setProperty(key, value);
+const settingsStore = useSettingsStore();
+let themeModeMatchMedia: MediaQueryList | null = null;
 
-const setStyles = () => {
-  setStyle('--page-height', `${window.innerHeight}px`);
-  setStyle('--page-width', `${window.innerWidth}px`);
-};
 
-addEventListener('resize', setStyles);
-onMounted(() => setStyles());
-onUnmounted(() => removeEventListener('resize', setStyles));
+
+const colorThemeListener = () => {
+  settingsStore.setTheme(themeModeMatchMedia && themeModeMatchMedia.matches ? 'dark' : 'light');
+}
 
 /* color scheme */
 onMounted(() => {
-  const storage = localStorage.getItem('theme');
-  if (!storage) {
-    const mql = matchMedia('(prefers-color-scheme: dark)');
+  const storageTheme = localStorage.getItem('theme');
 
-    mql.addEventListener('change', (e) => setScheme(e.matches));
-    setScheme(mql.matches);
-  } else setScheme(storage);
+  if (!storageTheme) {
+    // default is auto theme
+    settingsStore.setThemeMode('auto');
+  } else {
+    settingsStore.setThemeMode(storageTheme);
+  };
+
+  if(settingsStore.themeMode === 'auto') {
+    themeModeMatchMedia = matchMedia('(prefers-color-scheme: dark)');
+    themeModeMatchMedia.addEventListener('change', colorThemeListener);
+    settingsStore.setTheme(themeModeMatchMedia.matches ? 'dark' : 'light');
+  }
 });
 
-/** @param {boolean} _isLight - true: light, false: dark */
-const setScheme = (_isLight: boolean | string) => {
-  let isLight: number = +_isLight;
-  const schemes = ['dark', 'light'];
-
-  if (typeof _isLight === 'string') {
-    const index = schemes.indexOf(_isLight);
-    if (index !== -1) isLight = +!!index;
+// check theme mode is changed
+watch(settingsStore, () => {
+  const themeMode = settingsStore.themeMode;
+  
+  if(themeMode === 'auto') {
+    themeModeMatchMedia = matchMedia('(prefers-color-scheme: dark)');
+    themeModeMatchMedia.addEventListener('change', colorThemeListener);
+    settingsStore.setTheme(themeModeMatchMedia.matches ? 'dark' : 'light');
+  } else {
+    themeModeMatchMedia && themeModeMatchMedia.removeEventListener("change", colorThemeListener);
   }
-  const scheme = schemes[+isLight];
-  const html = document.querySelector('html');
-
-  html?.setAttribute('data-theme', scheme);
-  html?.classList.add(scheme);
-  html?.classList.remove(schemes[+!isLight]);
-};
+});
 
 onBeforeMount(async () => {
   const userStore = useUserStore();

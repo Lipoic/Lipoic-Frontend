@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="main bg-[#1B1B1F]">
+  <div class="main bg-[#FCFBFF] dark:bg-[#1B1B1F]">
     <slot />
   </div>
 </template>

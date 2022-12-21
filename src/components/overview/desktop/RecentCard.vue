@@ -6,14 +6,14 @@ const props = defineProps<CardProps>();
 </script>
 
 <template>
-  <div class="card w-[237px] h-[210px]">
-    <div>
-      <img :src="'src/assets/overview/' + props.image + '.png'" />
-      <a class="ml-3 mt-2 inline-block text-2xl opacity-80">
+  <div class="card w-full max-w-[520px]">
+    <img :src="'src/assets/overview/' + props.image + '.png'" />
+    <div class="p-3">
+      <a class="inline-block text-2xl opacity-80 font-bold">
         {{ props.image }}
       </a>
       <br />
-      <a class="ml-3 mt-2 inline-block text-base opacity-80"> 12/12 10:00 </a>
+      <a class="mt-2 inline-block text-base opacity-80"> 12/12 10:00 </a>
     </div>
   </div>
 </template>
@@ -22,6 +22,14 @@ const props = defineProps<CardProps>();
 @import '@/scss/global.scss';
 
 .card {
+  background: linear-gradient(0deg, rgba(173, 198, 255, 0.05), rgba(173, 198, 255, 0.05)), #FFFFFF;
+  /* M3/Elevation Dark/1 */
+  box-shadow: none;
+  border-radius: 16px;
+  border: 1px solid rgba(124, 134, 190, 0.33);
+}
+
+.dark .card {
   background: linear-gradient(
       0deg,
       rgba(173, 198, 255, 0.05),
