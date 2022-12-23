@@ -115,9 +115,9 @@ const navbarItems = [
     </div>
 
     <div
-      :class="['mt-[45px]', 'sidebar-item', activeIndex === index && 'active']"
       v-for="(item, index) in navbarItems"
       :key="index"
+      :class="['mt-[45px]', 'sidebar-item', activeIndex === index && 'active']"
     >
       <a
         class="hover:cursor-pointer text-[#3F4759] dark:text-white"
