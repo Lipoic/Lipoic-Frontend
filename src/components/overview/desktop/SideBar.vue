@@ -17,6 +17,7 @@ const navbarItems = [
       </svg>
     `,
     name: '總覽',
+    link: '/overview',
   },
   {
     icon: `
@@ -26,6 +27,7 @@ const navbarItems = [
         />
     `,
     name: '我的班級',
+    link: '/classroom',
   },
   {
     icon: `
@@ -35,6 +37,7 @@ const navbarItems = [
         />
     `,
     name: '我的課堂',
+    link: '/lesson',
   },
   {
     icon: `
@@ -52,6 +55,7 @@ const navbarItems = [
       />
     `,
     name: '我的筆記',
+    link: 'note',
   },
   {
     icon: `
@@ -61,6 +65,7 @@ const navbarItems = [
       />
     `,
     name: '試題庫',
+    link: '/question',
   },
 ];
 </script>
@@ -119,23 +124,14 @@ const navbarItems = [
         @click="handleChangeActive(index)"
       >
         <div class="icon-layout">
-          <div
-            :class="[
-              'overlay',
-              activeIndex === index && 'active',
-            ]"
-          ></div>
+          <div :class="['overlay', activeIndex === index && 'active']"></div>
           <svg
             width="64"
             height="32"
             viewBox="0 0 64 32"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
-            :class="[
-              'm-auto',
-              'icon',
-              activeIndex === index && 'active',
-            ]"
+            :class="['m-auto', 'icon', activeIndex === index && 'active']"
             v-html="item.icon"
           ></svg>
         </div>

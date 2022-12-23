@@ -5,13 +5,13 @@ import ContentBar from './mobile/ContentBar.vue';
 </script>
 
 <template>
-    <div class="text-white">
-        <NavBar />
-        <div class="overflow-scroll h-[calc(100vh-64px-85px)]">
-            <ContentBar />
-        </div>
-        <FooBar />
+  <div class="text-white">
+    <NavBar />
+    <div class="overflow-scroll h-[calc(100vh-64px-85px)]">
+      <ContentBar />
     </div>
+    <FooBar />
+  </div>
 </template>
 
 <style lang="scss" scoped>
