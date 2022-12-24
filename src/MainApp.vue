@@ -12,12 +12,12 @@ const colorThemeListener = () => {
   );
 };
 
-/* color scheme */
+/* Color scheme */
 onMounted(() => {
   const storageTheme = localStorage.getItem('theme');
 
   if (!storageTheme) {
-    // default is auto theme
+    // Default is auto theme
     settingsStore.setThemeMode('auto');
   } else {
     settingsStore.setThemeMode(storageTheme);
@@ -26,18 +26,18 @@ onMounted(() => {
   if (settingsStore.themeMode === 'auto') {
     themeModeMatchMedia = matchMedia('(prefers-color-scheme: dark)');
     themeModeMatchMedia.addEventListener('change', colorThemeListener);
-    settingsStore.setTheme(themeModeMatchMedia.matches ? 'dark' : 'light');
+    colorThemeListener();
   }
 });
 
-// check theme mode is changed
+// Check theme mode is changed
 watch(settingsStore, () => {
   const { themeMode } = settingsStore;
 
   if (themeMode === 'auto') {
     themeModeMatchMedia = matchMedia('(prefers-color-scheme: dark)');
     themeModeMatchMedia.addEventListener('change', colorThemeListener);
-    settingsStore.setTheme(themeModeMatchMedia.matches ? 'dark' : 'light');
+    colorThemeListener();
   } else {
     themeModeMatchMedia &&
       themeModeMatchMedia.removeEventListener('change', colorThemeListener);

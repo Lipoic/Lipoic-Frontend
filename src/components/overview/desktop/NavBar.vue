@@ -2,10 +2,6 @@
 import { useSettingsStore } from '@/stores/models/settings';
 
 const settingsStore = useSettingsStore();
-
-const handleChangeTheme = () => {
-  settingsStore.toggleTheme();
-};
 </script>
 
 <template>
@@ -33,7 +29,7 @@ const handleChangeTheme = () => {
       </div>
     </form>
     <div class="mt-7 flex-1 text-right">
-      <button class="mx-[48px]" @click="handleChangeTheme">
+      <button class="mx-[48px]" @click="settingsStore.toggleTheme">
         <!-- auto icon -->
         <svg
           v-if="settingsStore.themeMode === 'auto'"
