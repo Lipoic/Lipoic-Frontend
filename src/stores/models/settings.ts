@@ -7,10 +7,12 @@ export interface ISettings {
 
 export const useSettingsStore = defineStore({
   id: 'settings',
+
   state: (): ISettings => ({
     theme: 'dark',
     themeMode: '',
   }),
+
   actions: {
     setThemeMode(theme: string) {
       this.themeMode = theme;
@@ -35,8 +37,6 @@ export const useSettingsStore = defineStore({
     },
 
     setTheme(theme: string) {
-      console.log('theme', theme);
-
       const html = document.querySelector('html');
       html?.setAttribute('data-theme', theme);
       // remove old theme class
