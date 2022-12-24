@@ -2,33 +2,33 @@
 import RecentCard from '@/components/overview/desktop/RecentCard.vue';
 
 const cardDemoData = [
-  { name: "math", },
-  { name: "history", },
-  { name: "math", },
-  { name: "history", },
-  { name: "math", },
-  { name: "history", },
-  { name: "math", },
-  { name: "history", },
-  { name: "math", },
-  { name: "history", },
-  { name: "math", },
-  { name: "history", },
-  { name: "math", },
-  { name: "history", },
+  { name: 'math' },
+  { name: 'history' },
+  { name: 'math' },
+  { name: 'history' },
+  { name: 'math' },
+  { name: 'history' },
+  { name: 'math' },
+  { name: 'history' },
+  { name: 'math' },
+  { name: 'history' },
+  { name: 'math' },
+  { name: 'history' },
+  { name: 'math' },
+  { name: 'history' },
 ];
 </script>
 
 <template>
   <div
-    class="recent-activities ml-[172px] mr-[70px] mt-[64px] overflow-y-scroll overflow-x-hidden max-h-[621px]"
+    class="recent-activities ml-[172px] mr-[70px] mt-[64px] overflow-y-scroll overflow-x-hidden max-h-[621px] mb-5"
   >
     <div class="block mb-[64px]">
-      <a class="text-[30px] font-regular inline-block">
-        近期活動
-      </a>
+      <a class="text-[30px] font-regular inline-block"> 近期活動 </a>
       <div class="recent-bar max-h-[621px]">
-        <div class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-[40px] mb-5">
+        <div
+          class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-[40px] mb-5"
+        >
           <RecentCard
             v-for="(item, index) in cardDemoData"
             :image="item.name"
@@ -43,9 +43,14 @@ const cardDemoData = [
 @import '@/scss/global.scss';
 
 .recent-activities {
-  color: #2A3469;
-  background: linear-gradient(0deg, rgba(0, 90, 193, 0.05), rgba(0, 90, 193, 0.05)), #F1F3F9;
-  border: 1px solid #D9DDF2;
+  color: #2a3469;
+  background: linear-gradient(
+      0deg,
+      rgba(0, 90, 193, 0.05),
+      rgba(0, 90, 193, 0.05)
+    ),
+    #f1f3f9;
+  border: 1px solid #d9ddf2;
   border-radius: 24px;
 
   height: fit-content;
@@ -56,7 +61,7 @@ const cardDemoData = [
 }
 
 .dark .recent-activities {
-  color: #FFFFFF;
+  color: #ffffff;
   background: linear-gradient(
       0deg,
       rgba(173, 198, 255, 0.05),
