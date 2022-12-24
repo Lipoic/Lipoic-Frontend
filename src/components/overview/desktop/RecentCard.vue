@@ -22,7 +22,12 @@ const props = defineProps<CardProps>();
 @import '@/scss/global.scss';
 
 .card {
-  background: linear-gradient(0deg, rgba(173, 198, 255, 0.05), rgba(173, 198, 255, 0.05)), #FFFFFF;
+  background: linear-gradient(
+      0deg,
+      rgba(173, 198, 255, 0.05),
+      rgba(173, 198, 255, 0.05)
+    ),
+    #ffffff;
   /* M3/Elevation Dark/1 */
   box-shadow: none;
   border-radius: 16px;

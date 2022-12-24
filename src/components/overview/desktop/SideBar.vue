@@ -125,6 +125,7 @@ const navbarItems = [
       >
         <div class="icon-layout">
           <div :class="['overlay', activeIndex === index && 'active']"></div>
+          <!-- eslint-disable vue/no-v-html -->
           <svg
             width="64"
             height="32"

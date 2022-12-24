@@ -19,9 +19,9 @@ export const useSettingsStore = defineStore({
     toggleTheme() {
       let newTheme = '';
 
-      if(this.themeMode === 'auto') {
+      if (this.themeMode === 'auto') {
         newTheme = 'dark';
-      } else if(this.themeMode === 'dark') {
+      } else if (this.themeMode === 'dark') {
         newTheme = 'light';
       } else {
         newTheme = 'auto';
@@ -31,9 +31,9 @@ export const useSettingsStore = defineStore({
       localStorage.setItem('theme', newTheme);
       this.themeMode = newTheme;
 
-      if(newTheme !== 'auto') this.setTheme(newTheme)
+      if (newTheme !== 'auto') this.setTheme(newTheme);
     },
-  
+
     setTheme(theme: string) {
       console.log('theme', theme);
 
