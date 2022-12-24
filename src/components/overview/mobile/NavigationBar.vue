@@ -68,56 +68,20 @@ const navbarItems = [
     link: '/question',
   },
 ];
+
+// console.log(localStorage.getItem('user_info'));
 </script>
 
 <template>
-  <div class="navbar h-full w-[104px] flex-none rounded-tr-[50px]">
-    <div class="mt-[50px] w-[100%]">
-      <svg
-        width="34"
-        height="57"
-        viewBox="0 0 34 57"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        class="m-auto block"
-      >
-        <path
-          d="M17.0094 1V1.02335C36.2564 29.4031 40.308 54.3821 17.0094 55.9958V56C17.0074 55.9995 17.0055 55.9989 17.0035 55.9983V55.9996L17 55.9985L16.9965 55.9996V55.9983C16.9945 55.9988 16.9926 55.9994 16.9906 56V55.9958C-6.30797 54.3821 -2.25643 29.4031 16.9906 1.02335V1C16.9927 1.00332 16.9945 1.00644 16.9965 1.00968V1.0021C16.9975 1.00407 16.9988 1.00604 17 1.00799C17.0012 1.00604 17.0024 1.00407 17.0035 1.0021V1.00968C17.0055 1.00644 17.0074 1.00332 17.0094 1ZM17.0424 10.3408C17.0424 10.3408 17.0233 10.3754 17.0094 10.4005V10.4258C17.0094 10.4258 17.0058 10.4195 17.0035 10.4154V10.4234C17.0035 10.4234 17.0013 10.4195 17 10.4171C16.9987 10.4195 16.9965 10.4234 16.9965 10.4234V10.4154C16.9942 10.4194 16.9906 10.4258 16.9906 10.4258V10.4005C16.9767 10.3754 16.9576 10.3408 16.9576 10.3408C16.9576 10.3408 14.2123 14.9912 11.4949 20.6659C12.9124 21.9584 15.1806 23.4545 17 23.4525C18.8194 23.4545 21.0876 21.9584 22.5051 20.6659C19.7877 14.9912 17.0424 10.3408 17.0424 10.3408ZM23.7874 24.6523C23.7874 24.6523 18.9864 28.0722 17.0023 28.0722L17 28.0719L16.9977 28.0722C15.0136 28.0722 10.2126 24.6523 10.2126 24.6523C10.2126 24.6523 6.74142 31.6015 6.28493 35.5007C5.36371 43.3694 10.1204 50.3514 16.9965 50.3574H17L17.0035 50.3572C23.8796 50.3511 28.6363 43.3694 27.7151 35.5007C27.2586 31.6015 23.7874 24.6523 23.7874 24.6523Z"
-          fill="url(#paint0_linear_485_1488)"
-          stroke="#4D4D4D"
-          stroke-width="0.5"
-          stroke-linejoin="round"
-        />
-        <defs>
-          <linearGradient
-            id="paint0_linear_485_1488"
-            x1="0.704457"
-            y1="0.700756"
-            x2="12.742"
-            y2="60.4408"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#5EFFF2" />
-            <stop offset="1" stop-color="#B54CFF" />
-          </linearGradient>
-        </defs>
-      </svg>
-      <svg
-        width="59"
-        height="5"
-        viewBox="0 0 59 5"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        class="m-auto mt-[50px] block"
-      >
-        <rect width="59" height="5" rx="2.5" fill="#7B89B8" />
-      </svg>
-    </div>
-
+  <div class="navbar flex h-[85px] items-center align-middle">
     <div
       v-for="(item, index) in navbarItems"
       :key="index"
-      :class="['mt-[45px]', 'navbar-item', activeIndex === index && 'active']"
+      :class="[
+        'flex-1',
+        'navbar-item',
+        activeIndex === index && 'active'
+      ]"
     >
       <a
         class="text-[#3F4759] hover:cursor-pointer dark:text-white"
@@ -148,9 +112,6 @@ const navbarItems = [
 @import '@/scss/global.scss';
 
 .navbar {
-  box-sizing: border-box;
-  position: absolute;
-
   background: linear-gradient(
       0deg,
       rgba(0, 90, 193, 0.08),
@@ -158,19 +119,23 @@ const navbarItems = [
     ),
     #fefbff;
   border-top: 1px solid #f1f3f9;
-  border-right: 1px solid #f1f3f9;
-  border-radius: 0px 50px 0px 0px;
+  box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+
+  position: fixed;
+  z-index: 9999;
+  bottom: 0;
 
   transition: 300ms ease background;
 
   .dark & {
     box-sizing: border-box;
-    position: absolute;
-
     border-top: 1px solid #353556;
-    border-right: 1px solid #353556;
-    border-radius: 0px 50px 0px 0px;
 
     background: linear-gradient(
         0deg,
@@ -183,6 +148,8 @@ const navbarItems = [
 
 // navbar style and animation
 .navbar-item {
+  padding-left: .4rem;
+  padding-right: .4rem;
   transition: ease 300ms all;
   /* background-color: rgba(0, 0, 0, 0.2); */
 
@@ -210,8 +177,6 @@ const navbarItems = [
 
   .icon-layout {
     position: relative;
-    margin-left: 1.2rem;
-    margin-right: 1.2rem;
 
     display: flex;
     align-items: center;
@@ -226,7 +191,6 @@ const navbarItems = [
       width: 2rem;
       height: 2rem;
       border-radius: 99rem;
-      /* background-color: #515c98; */
       transition: ease 200ms all;
 
       &.active {

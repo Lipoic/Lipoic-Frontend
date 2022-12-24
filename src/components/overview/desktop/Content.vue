@@ -32,7 +32,7 @@ const cardDemoData = [
           <RecentCard
             v-for="(item, index) in cardDemoData"
             :key="index"
-            :image="item.name"
+            :name="item.name"
           />
         </div>
       </div>
