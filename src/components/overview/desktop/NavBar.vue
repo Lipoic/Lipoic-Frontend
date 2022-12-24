@@ -9,11 +9,11 @@ const handleChangeTheme = () => {
 </script>
 
 <template>
-  <div class="nav h-[77px] flex">
+  <div class="nav flex h-[77px]">
     <form class="w-[45%]">
       <div class="relative w-full">
         <button
-          class="ml-[175px] absolute inset-y-0 left-0 flex items-center"
+          class="absolute inset-y-0 left-0 ml-[175px] flex items-center"
           type="submit"
         >
           <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
@@ -26,14 +26,14 @@ const handleChangeTheme = () => {
         <input
           id="simple-search"
           type="text"
-          class="max-w-[453px] mt-[16px] ml-[165px] h-[46px] rounded-[53px] block w-full pl-10 pr-[25px] outline-none border-[#BDC4E8] bg-[##F2F4FA] dark:bg-[#44474F]"
+          class="mt-[16px] ml-[165px] block h-[46px] w-full max-w-[453px] rounded-[53px] border-[#BDC4E8] bg-[##F2F4FA] pl-10 pr-[25px] outline-none dark:bg-[#44474F]"
           placeholder="搜尋一些酷東西"
           required
         />
       </div>
     </form>
-    <div class="flex-1 mt-7 text-right">
-      <button class="ml-[48px] mr-[48px]" @click="handleChangeTheme">
+    <div class="mt-7 flex-1 text-right">
+      <button class="mx-[48px]" @click="handleChangeTheme">
         <!-- auto icon -->
         <svg
           v-if="settingsStore.themeMode === 'auto'"
@@ -76,7 +76,7 @@ const handleChangeTheme = () => {
           />
         </svg>
       </button>
-      <button id="account" class="ml-[48px] mr-[48px]">
+      <button id="account" class="mx-[48px]">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
           <path
             fill="currentColor"

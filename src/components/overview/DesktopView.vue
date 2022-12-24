@@ -6,7 +6,7 @@ import RecentBar from '@/components/overview/desktop/RecentBar.vue';
 
 <template>
   <SideBar />
-  <div class="text-white flex flex-col">
+  <div class="flex flex-col text-white">
     <NavBar />
     <RecentBar />
   </div>

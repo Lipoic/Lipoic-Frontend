@@ -21,13 +21,13 @@ const cardDemoData = [
 
 <template>
   <div
-    class="recent-activities ml-[172px] mr-[70px] mt-[64px] overflow-y-scroll overflow-x-hidden max-h-[621px] mb-5"
+    class="recent-activities ml-[172px] mr-[70px] mt-[64px] mb-5 max-h-[621px] overflow-x-hidden overflow-y-scroll"
   >
-    <div class="block mb-[64px]">
-      <a class="text-[30px] font-regular inline-block"> 近期活動 </a>
+    <div class="mb-[64px] block">
+      <a class="font-regular inline-block text-[30px]"> 近期活動 </a>
       <div class="recent-bar max-h-[621px]">
         <div
-          class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-[40px] mb-5"
+          class="mt-[40px] mb-5 grid gap-10 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4"
         >
           <RecentCard
             v-for="(item, index) in cardDemoData"

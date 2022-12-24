@@ -1,10 +1,10 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="nav h-[64px] flex">
+  <div class="nav flex h-[64px]">
     <div class="ml-[20px] flex-1">
       <div class="flex">
-        <button id="menu" class="block absolute mt-[20px]">
+        <button id="menu" class="absolute mt-[20px] block">
           <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
             <path
               fill="currentColor"
@@ -12,11 +12,11 @@
             />
           </svg>
         </button>
-        <h1 class="text-xl block text-center ml-[50px] mt-[17px]">總覽</h1>
+        <h1 class="ml-[50px] mt-[17px] block text-center text-xl">總覽</h1>
       </div>
     </div>
     <div class="flex">
-      <button id="search" class="block mr-8">
+      <button id="search" class="mr-8 block">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
           <path
             fill="currentColor"
@@ -24,7 +24,7 @@
           />
         </svg>
       </button>
-      <button id="account" class="block mr-5">
+      <button id="account" class="mr-5 block">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
           <path
             fill="currentColor"

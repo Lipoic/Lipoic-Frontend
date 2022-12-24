@@ -7,7 +7,7 @@ import ContentBar from './mobile/ContentBar.vue';
 <template>
   <div class="text-white">
     <NavBar />
-    <div class="overflow-scroll h-[calc(100vh-64px-85px)]">
+    <div class="h-[calc(100vh-64px-85px)] overflow-scroll">
       <ContentBar />
     </div>
     <FooBar />

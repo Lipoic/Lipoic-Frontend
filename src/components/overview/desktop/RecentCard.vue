@@ -9,7 +9,7 @@ const props = defineProps<CardProps>();
   <div class="card w-full max-w-[520px]">
     <img :src="'src/assets/overview/' + props.image + '.png'" />
     <div class="p-3">
-      <a class="inline-block text-2xl opacity-80 font-bold">
+      <a class="inline-block text-2xl font-bold opacity-80">
         {{ props.image }}
       </a>
       <br />

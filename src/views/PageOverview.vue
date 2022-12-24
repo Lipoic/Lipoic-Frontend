@@ -19,10 +19,10 @@ if (!isLogin) {
 
 <template>
   <MainViewVue id="overview" class="select-none">
-    <div class="phone:hidden w-[100%]">
+    <div class="w-[100%] phone:hidden">
       <DesktopView />
     </div>
-    <div class="hidden phone:inline-block w-[100%]">
+    <div class="hidden w-[100%] phone:inline-block">
       <MobileView />
     </div>
   </MainViewVue>
