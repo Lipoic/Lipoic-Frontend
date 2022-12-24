@@ -5,11 +5,11 @@ import Content from './Content.vue';
 </script>
 
 <template>
-  <AppBar />
+  <app-bar />
 
-  <Content />
+  <content />
 
-  <NavigationBar />
+  <navigation-bar />
   <div class="navigation-overlay"></div>
 </template>
 

@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/models/user';
 import OverviewLayout from '@/components/overview/Layout.vue';
 
-const MainViewVue = defineAsyncComponent(
+const MainView = defineAsyncComponent(
   () => import('@/components/MainView.vue')
 );
 
@@ -17,9 +17,9 @@ if (!isLogin) {
 </script>
 
 <template>
-  <MainViewVue id="overview" class="select-none">
-    <OverviewLayout />
-  </MainViewVue>
+  <main-view id="overview" class="select-none">
+    <overview-layout />
+  </main-view>
 </template>
 
 <style lang="scss" scoped>

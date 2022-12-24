@@ -29,7 +29,7 @@ const cardDemoData = [
         <div
           class="mt-[40px] mb-5 grid gap-10 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4"
         >
-          <RecentCard
+          <recent-card
             v-for="(item, index) in cardDemoData"
             :key="index"
             :name="item.name"

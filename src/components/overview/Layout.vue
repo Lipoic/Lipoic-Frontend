@@ -5,11 +5,11 @@ import DesktopView from '@/components/overview/desktop/index.vue';
 
 <template>
   <div class="w-[100%] phone:hidden">
-    <DesktopView />
+    <desktop-view />
   </div>
 
   <div class="hidden w-[100%] phone:inline-block">
-    <MobileView />
+    <mobile-view />
   </div>
 </template>
 
