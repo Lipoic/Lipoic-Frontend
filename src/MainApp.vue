@@ -6,11 +6,11 @@ import { useSettingsStore } from '@/stores/models/settings';
 const settingsStore = useSettingsStore();
 let themeModeMatchMedia: MediaQueryList | null = null;
 
-
-
 const colorThemeListener = () => {
-  settingsStore.setTheme(themeModeMatchMedia && themeModeMatchMedia.matches ? 'dark' : 'light');
-}
+  settingsStore.setTheme(
+    themeModeMatchMedia && themeModeMatchMedia.matches ? 'dark' : 'light'
+  );
+};
 
 /* color scheme */
 onMounted(() => {
@@ -21,9 +21,9 @@ onMounted(() => {
     settingsStore.setThemeMode('auto');
   } else {
     settingsStore.setThemeMode(storageTheme);
-  };
+  }
 
-  if(settingsStore.themeMode === 'auto') {
+  if (settingsStore.themeMode === 'auto') {
     themeModeMatchMedia = matchMedia('(prefers-color-scheme: dark)');
     themeModeMatchMedia.addEventListener('change', colorThemeListener);
     settingsStore.setTheme(themeModeMatchMedia.matches ? 'dark' : 'light');
@@ -32,14 +32,15 @@ onMounted(() => {
 
 // check theme mode is changed
 watch(settingsStore, () => {
-  const themeMode = settingsStore.themeMode;
-  
-  if(themeMode === 'auto') {
+  const { themeMode } = settingsStore;
+
+  if (themeMode === 'auto') {
     themeModeMatchMedia = matchMedia('(prefers-color-scheme: dark)');
     themeModeMatchMedia.addEventListener('change', colorThemeListener);
     settingsStore.setTheme(themeModeMatchMedia.matches ? 'dark' : 'light');
   } else {
-    themeModeMatchMedia && themeModeMatchMedia.removeEventListener("change", colorThemeListener);
+    themeModeMatchMedia &&
+      themeModeMatchMedia.removeEventListener('change', colorThemeListener);
   }
 });
 
