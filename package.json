@@ -7,7 +7,7 @@
     "dev:host": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "eslint 'src/**/*.{js,jsx,vue,ts,tsx}' --fix",
+    "lint": "eslint src/**/*.{js,jsx,vue,ts,tsx} --fix",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage"
