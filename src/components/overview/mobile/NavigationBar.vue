@@ -77,11 +77,7 @@ const navbarItems = [
     <div
       v-for="(item, index) in navbarItems"
       :key="index"
-      :class="[
-        'flex-1',
-        'navbar-item',
-        activeIndex === index && 'active'
-      ]"
+      :class="['flex-1', 'navbar-item', activeIndex === index && 'active']"
     >
       <a
         class="text-[#3F4759] hover:cursor-pointer dark:text-white"
@@ -148,8 +144,8 @@ const navbarItems = [
 
 // navbar style and animation
 .navbar-item {
-  padding-left: .4rem;
-  padding-right: .4rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
   transition: ease 300ms all;
   /* background-color: rgba(0, 0, 0, 0.2); */
 

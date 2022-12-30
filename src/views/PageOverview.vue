@@ -2,7 +2,7 @@
 import { defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/models/user';
-import OverviewLayout from '@/components/overview/Layout.vue';
+import OverviewLayout from '@/components/overview/OverviewLayout.vue';
 
 const MainView = defineAsyncComponent(
   () => import('@/components/MainView.vue')

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import MobileView from '@/components/overview/mobile/index.vue';
-import DesktopView from '@/components/overview/desktop/index.vue';
+import MobileView from '@/components/overview/mobile/MobileView.vue';
+import DesktopView from '@/components/overview/desktop/DesktopView.vue';
 </script>
 
 <template>
