@@ -7,7 +7,7 @@ const user = useUserStore().info;
 
 <template>
   <div class="mx-[30px] text-center">
-    <div class="mt-[30px] text-[#3f4759] dark:text-white">
+    <div class="mt-[30px] text-[#3f4759] dark:text-[#c4c6d0]">
       <svg
         class="m-auto block"
         style="width: 80px; height: 80px"
