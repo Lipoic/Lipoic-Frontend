@@ -24,25 +24,24 @@ const props = defineProps<CardProps>();
 .card {
   background: linear-gradient(
       0deg,
-      rgba(173, 198, 255, 0.05),
-      rgba(173, 198, 255, 0.05)
+      rgba(0, 90, 193, 0.05),
+      rgba(0, 90, 193, 0.05)
     ),
-    #ffffff;
-  box-shadow: none;
-  border-radius: 16px;
-  border: 1px solid rgba(124, 134, 190, 0.33);
-}
+    #fefbff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),
+    0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
 
-.dark .card {
-  background: linear-gradient(
-      0deg,
-      rgba(173, 198, 255, 0.05),
-      rgba(173, 198, 255, 0.05)
-    ),
-    #1b1b1f;
-  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
-    0px 1px 2px rgba(0, 0, 0, 0.3);
-  border-radius: 16px;
-  border: 1px solid #63616d;
+  .dark & {
+    background: linear-gradient(
+        0deg,
+        rgba(173, 198, 255, 0.05),
+        rgba(173, 198, 255, 0.05)
+      ),
+      #1b1b1f;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+      0px 1px 2px rgba(0, 0, 0, 0.3);
+    border: 1px solid #63616d;
+  }
 }
 </style>

@@ -59,21 +59,19 @@ const cardDemoData = [
   user-select: text;
 
   padding: 3rem;
-}
 
-.dark .recent-activities {
-  color: #ffffff;
-  background: linear-gradient(
-      0deg,
-      rgba(173, 198, 255, 0.05),
-      rgba(173, 198, 255, 0.05)
-    ),
-    #1b1b1f;
+  .dark & {
+    color: #ffffff;
+    background: linear-gradient(
+        0deg,
+        rgba(173, 198, 255, 0.05),
+        rgba(173, 198, 255, 0.05)
+      ),
+      #1b1b1f;
 
-  /* M3/Elevation Dark/1 */
-  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
-    0px 1px 2px rgba(0, 0, 0, 0.3);
-  border: none;
-  border-radius: 24px;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+      0px 1px 2px rgba(0, 0, 0, 0.3);
+    border: none;
+  }
 }
 </style>

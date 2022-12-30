@@ -142,10 +142,9 @@ const navbarItems = [
 
 // navbar style and animation
 .navbar-item {
-  padding-left: 0.4rem;
-  padding-right: 0.4rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
   transition: ease 300ms all;
-  /* background-color: rgba(0, 0, 0, 0.2); */
 
   &:hover {
     .icon-layout {

@@ -8,7 +8,7 @@ const props = defineProps<CardProps>();
 <template>
   <div class="card h-[80px] w-[100%]">
     <div class="float-left mt-[13px] ml-[20px] text-left">
-      <p>{{ props.image }}</p>
+      <p class="font-bold">{{ props.image }}</p>
       <p>五分鐘後開始</p>
     </div>
     <img
@@ -31,19 +31,16 @@ const props = defineProps<CardProps>();
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),
     0px 2px 6px 2px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
-  border: 1px solid #cac4d0;
-}
 
-.dark .card {
-  background: linear-gradient(
-      0deg,
-      rgba(173, 198, 255, 0.05),
-      rgba(173, 198, 255, 0.05)
-    ),
-    #1b1b1f;
-  box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15),
-    0px 1px 2px rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
-  border: 1px solid #49454f;
+  .dark & {
+    background: linear-gradient(
+        0deg,
+        rgba(173, 198, 255, 0.05),
+        rgba(173, 198, 255, 0.05)
+      ),
+      #1b1b1f;
+    box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15),
+      0px 1px 2px rgba(0, 0, 0, 0.3);
+  }
 }
 </style>

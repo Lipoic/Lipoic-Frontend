@@ -6,8 +6,8 @@ const user = useUserStore().info;
 </script>
 
 <template>
-  <div class="mx-[30px] text-center dark:text-white">
-    <div class="mt-[30px]">
+  <div class="mx-[30px] text-center">
+    <div class="mt-[30px] text-[#3f4759] dark:text-white">
       <svg
         class="m-auto block"
         style="width: 80px; height: 80px"
@@ -20,7 +20,7 @@ const user = useUserStore().info;
       </svg>
       <p class="mt-[30px] text-3xl">時間, {{ user?.username }}</p>
     </div>
-    <div class="mt-[40px]">
+    <div class="recent-activities mt-[40px]">
       <p class="text-left text-lg">即將開始</p>
       <recent-card image="math" class="mt-[10px]" />
       <recent-card image="none" class="mt-[10px]" />
@@ -34,19 +34,40 @@ const user = useUserStore().info;
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect width="103" height="4" rx="2" fill="#A6A6A6" />
+        <rect width="103" height="4" rx="2" class="divider" />
       </svg>
     </div>
-    <div class="mt-[30px]">
+    <div class="recent-activities mt-[30px]">
       <p class="text-left text-lg">近期活動</p>
       <recent-card image="math" class="mt-[10px]" />
       <recent-card image="none" class="mt-[10px]" />
       <recent-card image="none" class="mt-[10px]" />
     </div>
     <div
-      class="m-auto my-[30px] block w-[105px] rounded-full border border-[#63616d] px-4 py-2 text-center"
+      class="m-auto my-[30px] block w-[105px] rounded-full border border-[#8e9099] px-4 py-2 text-center"
     >
-      <button class="text-[#ADC6FF]">查看更多</button>
+      <button class="text-[#3F4759] dark:text-[#adc6ff]">查看更多</button>
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+@import '@/scss/global.scss';
+
+.divider {
+  fill: #c3d1ff;
+
+  .dark & {
+    fill: #a6a6a6;
+  }
+}
+
+.recent-activities {
+  color: #2a3469;
+  user-select: text;
+
+  .dark & {
+    color: #ffffff;
+  }
+}
+</style>
