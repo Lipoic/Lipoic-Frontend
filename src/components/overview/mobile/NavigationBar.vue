@@ -68,8 +68,6 @@ const navbarItems = [
     link: '/question',
   },
 ];
-
-// console.log(localStorage.getItem('user_info'));
 </script>
 
 <template>

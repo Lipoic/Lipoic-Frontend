@@ -6,10 +6,8 @@ import Content from '@/components/overview/desktop/OverviewContent.vue';
 
 <template>
   <side-bar />
-
   <div class="flex flex-col">
     <app-bar />
-
     <content />
   </div>
 </template>

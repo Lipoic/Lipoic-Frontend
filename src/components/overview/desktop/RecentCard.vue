@@ -28,7 +28,6 @@ const props = defineProps<CardProps>();
       rgba(173, 198, 255, 0.05)
     ),
     #ffffff;
-  /* M3/Elevation Dark/1 */
   box-shadow: none;
   border-radius: 16px;
   border: 1px solid rgba(124, 134, 190, 0.33);
@@ -41,7 +40,6 @@ const props = defineProps<CardProps>();
       rgba(173, 198, 255, 0.05)
     ),
     #1b1b1f;
-  /* M3/Elevation Dark/1 */
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
     0px 1px 2px rgba(0, 0, 0, 0.3);
   border-radius: 16px;
