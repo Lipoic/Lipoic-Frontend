@@ -33,6 +33,7 @@ const cardDemoData = [
             v-for="(item, index) in cardDemoData"
             :key="index"
             :name="item.name"
+            class="mb-5"
           />
         </div>
       </div>
