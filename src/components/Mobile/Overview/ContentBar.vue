@@ -38,7 +38,7 @@ const user = useUserStore().info;
       </svg>
     </div>
     <div class="recent-activities mt-[30px]">
-      <p class="text-lg text-left">近期活動</p>
+      <p class="text-left text-lg">近期活動</p>
       <recent-card image="math" class="mt-[10px]" />
       <recent-card image="none" class="mt-[10px]" />
       <recent-card image="none" class="mt-[10px]" />
