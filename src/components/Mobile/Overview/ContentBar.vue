@@ -9,7 +9,7 @@ const user = useUserStore().info;
   <div class="mx-[30px] text-center">
     <div class="mt-[30px] text-[#3f4759] dark:text-[#c4c6d0]">
       <svg
-        class="block m-auto"
+        class="m-auto block"
         style="width: 80px; height: 80px"
         viewBox="0 0 24 24"
       >
