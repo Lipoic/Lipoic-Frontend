@@ -13,7 +13,7 @@ const props = defineProps<CardProps>();
         {{ props.name }}
       </a>
       <br />
-      <a class="inline-block mt-2 text-base opacity-80"> 12/12 10:00 </a>
+      <a class="mt-2 inline-block text-base opacity-80"> 12/12 10:00 </a>
     </div>
   </div>
 </template>
