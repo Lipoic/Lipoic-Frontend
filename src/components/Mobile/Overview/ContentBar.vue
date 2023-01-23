@@ -21,7 +21,7 @@ const user = useUserStore().info;
       <p class="mt-[30px] text-3xl">時間, {{ user?.username }}</p>
     </div>
     <div class="recent-activities mt-[40px]">
-      <p class="text-lg text-left">即將開始</p>
+      <p class="text-left text-lg">即將開始</p>
       <recent-card image="math" class="mt-[10px]" />
       <recent-card image="none" class="mt-[10px]" />
     </div>
