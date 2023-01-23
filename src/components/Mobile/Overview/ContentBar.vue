@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import RecentCard from '@/components/overview/mobile/RecentCard.vue';
+import RecentCard from '@/components/Mobile/Overview/RecentCard.vue';
 import { useUserStore } from '@/stores/models/user';
 
 const user = useUserStore().info;
@@ -9,7 +9,7 @@ const user = useUserStore().info;
   <div class="mx-[30px] text-center">
     <div class="mt-[30px] text-[#3f4759] dark:text-[#c4c6d0]">
       <svg
-        class="m-auto block"
+        class="block m-auto"
         style="width: 80px; height: 80px"
         viewBox="0 0 24 24"
       >
@@ -21,13 +21,13 @@ const user = useUserStore().info;
       <p class="mt-[30px] text-3xl">時間, {{ user?.username }}</p>
     </div>
     <div class="recent-activities mt-[40px]">
-      <p class="text-left text-lg">即將開始</p>
+      <p class="text-lg text-left">即將開始</p>
       <recent-card image="math" class="mt-[10px]" />
       <recent-card image="none" class="mt-[10px]" />
     </div>
     <div class="mt-[30px]">
       <svg
-        class="m-auto block text-center"
+        class="block m-auto text-center"
         width="103"
         height="4"
         viewBox="0 0 103 4"
@@ -38,7 +38,7 @@ const user = useUserStore().info;
       </svg>
     </div>
     <div class="recent-activities mt-[30px]">
-      <p class="text-left text-lg">近期活動</p>
+      <p class="text-lg text-left">近期活動</p>
       <recent-card image="math" class="mt-[10px]" />
       <recent-card image="none" class="mt-[10px]" />
       <recent-card image="none" class="mt-[10px]" />

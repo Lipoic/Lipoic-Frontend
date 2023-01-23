@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import RecentCard from '@/components/overview/desktop/RecentCard.vue';
+import RecentCard from '@/components/Desktop/Overview/RecentCard.vue';
 
 const cardDemoData = [
   { name: 'math' },

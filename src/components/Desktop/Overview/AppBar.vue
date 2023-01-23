@@ -28,7 +28,7 @@ const settingsStore = useSettingsStore();
         />
       </div>
     </form>
-    <div class="mt-7 flex-1 text-right">
+    <div class="flex-1 text-right mt-7">
       <button class="mx-[48px]" @click="settingsStore.toggleTheme">
         <!-- auto icon -->
         <svg
