@@ -27,7 +27,7 @@ const user = useUserStore().info;
     </div>
     <div class="mt-[30px]">
       <svg
-        class="block m-auto text-center"
+        class="m-auto block text-center"
         width="103"
         height="4"
         viewBox="0 0 103 4"
