@@ -5,9 +5,9 @@ import Content from '@/components/Desktop/Overview/OverviewContent.vue';
 </script>
 
 <template>
-  <side-bar />
+  <SideBar />
   <div class="flex flex-col">
-    <app-bar />
+    <AppBar />
     <content />
   </div>
 </template>
