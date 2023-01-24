@@ -31,8 +31,8 @@ const settingsStore = useSettingsStore();
     <div class="flex-1 text-right mt-7">
       <button
         class="mx-[48px]"
-        @click="settingsStore.toggleTheme"
         title="更換背景顏色"
+        @click="settingsStore.toggleTheme"
       >
         <!-- auto icon -->
         <svg
