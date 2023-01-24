@@ -28,8 +28,12 @@ const settingsStore = useSettingsStore();
         />
       </div>
     </form>
-    <div class="mt-7 flex-1 text-right">
-      <button class="mx-[48px]" @click="settingsStore.toggleTheme">
+    <div class="flex-1 text-right mt-7">
+      <button
+        class="mx-[48px]"
+        @click="settingsStore.toggleTheme"
+        title="更換背景顏色"
+      >
         <!-- auto icon -->
         <svg
           v-if="settingsStore.themeMode === 'auto'"
