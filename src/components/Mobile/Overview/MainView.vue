@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import AppBar from '@/components/Mobile/Overview/AppBar.vue';
+import AppBar from '@/components/Mobile/AppBar.vue';
 import ContentBar from '@/components/Mobile/Overview/ContentBar.vue';
-import NavigationBar from '@/components/Mobile/Overview/NavigationBar.vue';
+import NavigationBar from '@/components/Mobile/NavigationBar.vue';
 </script>
 
 <template>
