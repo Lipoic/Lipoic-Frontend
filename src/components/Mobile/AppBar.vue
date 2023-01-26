@@ -26,7 +26,7 @@
           />
         </svg>
       </button>
-      <button id="account" class="block mr-5">
+      <button id="account" class="mr-5 block">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
           <path
             fill="currentColor"
