@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="flex">
-      <button id="search" class="block mr-8">
+      <button id="search" class="mr-8 block">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
           <path
             fill="currentColor"
