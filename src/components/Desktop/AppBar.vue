@@ -28,7 +28,7 @@ const settingsStore = useSettingsStore();
         />
       </div>
     </form>
-    <div class="flex-1 text-right mt-7">
+    <div class="mt-7 flex-1 text-right">
       <button
         class="mx-[48px]"
         title="更換背景顏色"
