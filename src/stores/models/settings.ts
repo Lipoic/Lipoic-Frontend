@@ -38,6 +38,10 @@ export const useSettingsStore = defineStore({
     setThemeMode(mode: ThemeMode) {
       this.themeMode = mode;
       localStorage.setItem('theme_mode', ThemeMode[mode]);
+
+      if (mode !== ThemeMode.auto) {
+        this.setTheme(ThemeMode[mode] as ThemeKey);
+      }
     },
     toggleTheme() {
       let nextMode: ThemeMode;
@@ -51,9 +55,6 @@ export const useSettingsStore = defineStore({
       }
 
       this.setThemeMode(nextMode);
-      if (nextMode !== ThemeMode.auto) {
-        this.setTheme(ThemeMode[nextMode] as ThemeKey);
-      }
     },
 
     /**

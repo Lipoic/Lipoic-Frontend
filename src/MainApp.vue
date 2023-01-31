@@ -33,7 +33,6 @@ const listenThemeChange = () => {
 /* Color scheme */
 onMounted(() => {
   setStyles();
-  settingsStore.init();
   listenThemeChange();
 });
 
@@ -46,6 +45,7 @@ onBeforeMount(async () => {
   const userStore = useUserStore();
   // https://github.com/vuejs/pinia/discussions/512
   userStore.init();
+  settingsStore.init();
 });
 
 addEventListener('resize', setStyles);
