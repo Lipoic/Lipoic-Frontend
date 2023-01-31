@@ -1,11 +1,18 @@
 <script setup lang="ts">
-import { onBeforeMount, onMounted, watch } from 'vue';
+import { onBeforeMount, onMounted, onUnmounted, watch } from 'vue';
 import { useUserStore } from '@/stores/models/user';
 import { useSettingsStore } from '@/stores/models/settings';
 
 const settingsStore = useSettingsStore();
 let themeModeMatchMedia: MediaQueryList | null = null;
 
+/*  For Safari support because there are a bug of vh and vw unit of Safari. */
+const setStyle = (key: `--${string}`, value: string | null) =>
+  document.documentElement.style.setProperty(key, value);
+const setStyles = () => {
+  setStyle('--page-height', `${window.innerHeight}px`);
+  setStyle('--page-width', `${window.innerWidth}px`);
+};
 const colorThemeListener = () => {
   settingsStore.setTheme(
     themeModeMatchMedia && themeModeMatchMedia.matches ? 'dark' : 'light'
@@ -14,6 +21,7 @@ const colorThemeListener = () => {
 
 /* Color scheme */
 onMounted(() => {
+  setStyles();
   const storageTheme = localStorage.getItem('theme');
 
   if (!storageTheme) {
@@ -29,6 +37,8 @@ onMounted(() => {
     colorThemeListener();
   }
 });
+
+onUnmounted(() => removeEventListener('resize', setStyles));
 
 // Check theme mode is changed
 watch(settingsStore, () => {
@@ -49,6 +59,8 @@ onBeforeMount(async () => {
   // https://github.com/vuejs/pinia/discussions/512
   userStore.init();
 });
+
+addEventListener('resize', setStyles);
 </script>
 
 <template>
