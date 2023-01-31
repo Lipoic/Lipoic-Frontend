@@ -1,50 +1,72 @@
 import { defineStore } from 'pinia';
 
-export interface ISettings {
-  theme: string;
-  themeMode: string;
+interface ISettings {
+  themeMode: ThemeMode;
 }
+
+enum Theme {
+  dark,
+  light,
+}
+
+export enum ThemeMode {
+  /**
+   * The theme follows the browser's theme.
+   */
+  auto,
+  dark,
+  light,
+}
+
+type ThemeKey = keyof typeof Theme;
 
 export const useSettingsStore = defineStore({
   id: 'settings',
 
   state: (): ISettings => ({
-    theme: 'dark',
-    themeMode: '',
+    themeMode: ThemeMode.auto,
   }),
 
   actions: {
-    setThemeMode(theme: string) {
-      this.themeMode = theme;
+    init() {
+      const storageTheme = localStorage.getItem('theme_mode');
+
+      if (storageTheme) {
+        this.setThemeMode(ThemeMode[storageTheme as keyof typeof ThemeMode]);
+      }
     },
-
+    setThemeMode(mode: ThemeMode) {
+      this.themeMode = mode;
+      localStorage.setItem('theme_mode', ThemeMode[mode]);
+    },
     toggleTheme() {
-      let newTheme = '';
+      let nextMode: ThemeMode;
 
-      if (this.themeMode === 'auto') {
-        newTheme = 'dark';
-      } else if (this.themeMode === 'dark') {
-        newTheme = 'light';
+      if (this.themeMode === ThemeMode.auto) {
+        nextMode = ThemeMode.dark;
+      } else if (this.themeMode === ThemeMode.dark) {
+        nextMode = ThemeMode.light;
       } else {
-        newTheme = 'auto';
+        nextMode = ThemeMode.auto;
       }
 
-      // storage
-      localStorage.setItem('theme', newTheme);
-      this.themeMode = newTheme;
-
-      if (newTheme !== 'auto') this.setTheme(newTheme);
+      this.setThemeMode(nextMode);
+      if (nextMode !== ThemeMode.auto) {
+        this.setTheme(ThemeMode[nextMode] as ThemeKey);
+      }
     },
 
-    setTheme(theme: string) {
+    /**
+     * Sets the theme of the app.
+     * @param theme The theme to set. Either 'dark' or 'light'.
+     */
+    setTheme(theme: ThemeKey) {
       const html = document.querySelector('html');
       html?.setAttribute('data-theme', theme);
-      // remove old theme class
+
+      // Remove old theme class
       html?.classList.remove(theme === 'dark' ? 'light' : 'dark');
       html?.classList.add(theme);
-
-      // state
-      this.theme = 'light';
     },
   },
 });

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useSettingsStore } from '@/stores/models/settings';
+import { ThemeMode, useSettingsStore } from '@/stores/models/settings';
 
 const settingsStore = useSettingsStore();
 </script>
@@ -31,12 +31,12 @@ const settingsStore = useSettingsStore();
     <div class="mt-7 flex-1 text-right">
       <button
         class="mx-[48px]"
-        title="更換背景顏色"
+        title="切換主題 (自動/深色/淺色)"
         @click="settingsStore.toggleTheme"
       >
-        <!-- auto icon -->
+        <!-- Auto theme icon -->
         <svg
-          v-if="settingsStore.themeMode === 'auto'"
+          v-if="settingsStore.themeMode === ThemeMode.auto"
           style="width: 24px; height: 24px"
           viewBox="0 0 24 24"
         >
@@ -45,9 +45,9 @@ const settingsStore = useSettingsStore();
             d="M14.3,16L13.6,14H10.4L9.7,16H7.8L11,7H13L16.2,16H14.3M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69M10.85,12.65H13.15L12,9L10.85,12.65Z"
           />
         </svg>
-        <!-- dark icon -->
+        <!-- Dark theme icon -->
         <svg
-          v-if="settingsStore.themeMode === 'dark'"
+          v-if="settingsStore.themeMode === ThemeMode.dark"
           style="width: 24px; height: 24px"
           viewBox="0 0 24 24"
         >
@@ -56,9 +56,9 @@ const settingsStore = useSettingsStore();
             d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z"
           />
         </svg>
-        <!-- light icon -->
+        <!-- Light theme icon -->
         <svg
-          v-if="settingsStore.themeMode === 'light'"
+          v-if="settingsStore.themeMode === ThemeMode.light"
           style="width: 24px; height: 24px"
           viewBox="0 0 24 24"
         >
@@ -68,7 +68,7 @@ const settingsStore = useSettingsStore();
           />
         </svg>
       </button>
-      <button id="bell">
+      <button id="bell" title="查看通知">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
           <path
             fill="currentColor"
@@ -76,7 +76,7 @@ const settingsStore = useSettingsStore();
           />
         </svg>
       </button>
-      <button id="account" class="mx-[48px]">
+      <button id="account" class="mx-[48px]" title="我的帳號">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
           <path
             fill="currentColor"
