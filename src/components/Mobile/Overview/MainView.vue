@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import AppBar from '@/components/Mobile/AppBar.vue';
-import ContentBar from '@/components/Mobile/Overview/ContentBar.vue';
-import NavigationBar from '@/components/Mobile/NavigationBar.vue';
+import Content from '@/components/Mobile/Overview/OverviewContent.vue';
+import NavigationBar from '@/components/NavigationBar.vue';
 </script>
 
 <template>
   <AppBar />
-  <ContentBar />
+  <Content />
   <NavigationBar />
   <div class="navigation-overlay"></div>
 </template>
