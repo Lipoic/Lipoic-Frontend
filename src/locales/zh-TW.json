@@ -2,9 +2,6 @@
   "app": {
     "title": "Lipoic - 與我們一起翻轉教育"
   },
-  "overview": {
-
-  },
   "auth": {
     "login": {
       "email": "電子郵件",
