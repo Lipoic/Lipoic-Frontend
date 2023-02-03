@@ -18,8 +18,6 @@ export enum ThemeMode {
   light,
 }
 
-type ThemeKey = keyof typeof Theme;
-
 export const useSettingsStore = defineStore({
   id: 'settings',
 
@@ -37,10 +35,16 @@ export const useSettingsStore = defineStore({
     },
     setThemeMode(mode: ThemeMode) {
       this.themeMode = mode;
-      localStorage.setItem('theme_mode', ThemeMode[mode]);
+      const theme = ThemeMode[mode];
+      localStorage.setItem('theme_mode', theme);
 
-      if (mode !== ThemeMode.auto) {
-        this.setTheme(ThemeMode[mode] as ThemeKey);
+      if (mode !== ThemeMode.auto && theme in Theme) {
+        const html = document.querySelector('html');
+        html?.setAttribute('data-theme', theme);
+
+        // Remove old theme class
+        html?.classList.remove(theme === 'dark' ? 'light' : 'dark');
+        html?.classList.add(theme);
       }
     },
     toggleTheme() {
@@ -55,19 +59,6 @@ export const useSettingsStore = defineStore({
       }
 
       this.setThemeMode(nextMode);
-    },
-
-    /**
-     * Sets the theme of the app.
-     * @param theme The theme to set. Either 'dark' or 'light'.
-     */
-    setTheme(theme: ThemeKey) {
-      const html = document.querySelector('html');
-      html?.setAttribute('data-theme', theme);
-
-      // Remove old theme class
-      html?.classList.remove(theme === 'dark' ? 'light' : 'dark');
-      html?.classList.add(theme);
     },
   },
 });

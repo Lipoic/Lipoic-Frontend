@@ -40,6 +40,7 @@ export default defineConfig({
         'vite.config.ts',
         '**/*.d.ts',
         'postcss.config.js',
+        'tailwind.config.js',
       ],
     },
     environment: 'happy-dom',

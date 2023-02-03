@@ -16,8 +16,10 @@ const setStyles = () => {
 
 const listenThemeChange = () => {
   const listener = () =>
-    settingsStore.setTheme(
-      themeModeMatchMedia && themeModeMatchMedia.matches ? 'dark' : 'light'
+    settingsStore.setThemeMode(
+      themeModeMatchMedia && themeModeMatchMedia.matches
+        ? ThemeMode.dark
+        : ThemeMode.light
     );
 
   if (settingsStore.themeMode === ThemeMode.auto) {
