@@ -39,6 +39,7 @@ export default defineConfig({
         '.eslintrc.js',
         'vite.config.ts',
         '**/*.d.ts',
+        'postcss.config.js',
       ],
     },
     environment: 'happy-dom',

@@ -1,19 +1,19 @@
 <script lang="ts" setup>
 interface CardProps {
-  name?: string;
+  name: string;
 }
 const props = defineProps<CardProps>();
 </script>
 
 <template>
   <div class="card w-full max-w-[520px]">
-    <img :src="'src/assets/overview/' + props.name + '.png'" />
+    <img :src="`src/assets/overview/${props.name}.png`" />
     <div class="p-3">
       <a class="inline-block text-2xl font-bold opacity-80">
         {{ props.name }}
       </a>
       <br />
-      <a class="inline-block mt-2 text-base opacity-80"> 12/12 10:00 </a>
+      <a class="mt-2 inline-block text-base opacity-80"> 12/12 10:00 </a>
     </div>
   </div>
 </template>
