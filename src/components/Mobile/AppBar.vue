@@ -58,19 +58,17 @@
       rgba(0, 90, 193, 0.11)
     ),
     #f1f3f9;
-  border-bottom: 1px solid #ccc1ec;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   transition: 300ms ease background;
-}
 
-.dark .nav {
-  color: #c4c6d0;
-  border: none;
-  background: linear-gradient(
-      0deg,
-      rgba(173, 198, 255, 0.11),
-      rgba(173, 198, 255, 0.11)
-    ),
-    rgba(27, 27, 31, 0.2);
+  .dark & {
+    color: #c4c6d0;
+    background: linear-gradient(
+        0deg,
+        rgba(173, 198, 255, 0.08),
+        rgba(173, 198, 255, 0.08)
+      ),
+      #1b1b1f;
+  }
 }
 </style>
