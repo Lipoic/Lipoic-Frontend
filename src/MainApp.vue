@@ -1,53 +1,56 @@
 <script setup lang="ts">
-import { onBeforeMount, onMounted, onUnmounted } from 'vue';
+import { onBeforeMount, onMounted, onUnmounted, watch } from 'vue';
 import { useUserStore } from '@/stores/models/user';
+import { ThemeMode, useSettingsStore } from '@/stores/models/settings';
+
+const settingsStore = useSettingsStore();
+let themeModeMatchMedia: MediaQueryList | null = null;
 
 /*  For Safari support because there are a bug of vh and vw unit of Safari. */
 const setStyle = (key: `--${string}`, value: string | null) =>
   document.documentElement.style.setProperty(key, value);
-
 const setStyles = () => {
   setStyle('--page-height', `${window.innerHeight}px`);
   setStyle('--page-width', `${window.innerWidth}px`);
 };
 
-addEventListener('resize', setStyles);
-onMounted(() => setStyles());
-onUnmounted(() => removeEventListener('resize', setStyles));
+const listenThemeChange = () => {
+  const listener = () =>
+    settingsStore.setThemeMode(
+      themeModeMatchMedia && themeModeMatchMedia.matches
+        ? ThemeMode.dark
+        : ThemeMode.light
+    );
 
-/* color scheme */
+  if (settingsStore.themeMode === ThemeMode.auto) {
+    themeModeMatchMedia = matchMedia('(prefers-color-scheme: dark)');
+    themeModeMatchMedia.addEventListener('change', listener);
+    listener();
+  } else {
+    themeModeMatchMedia &&
+      themeModeMatchMedia.removeEventListener('change', listener);
+  }
+};
+
+/* Color scheme */
 onMounted(() => {
-  const storage = localStorage.getItem('theme');
-  if (!storage) {
-    const mql = matchMedia('(prefers-color-scheme: dark)');
-
-    mql.addEventListener('change', (e) => setScheme(e.matches));
-    setScheme(mql.matches);
-  } else setScheme(storage);
+  setStyles();
+  listenThemeChange();
 });
 
-/** @param {boolean} _isLight - true: light, false: dark */
-const setScheme = (_isLight: boolean | string) => {
-  let isLight: number = +_isLight;
-  const schemes = ['dark', 'light'];
+onUnmounted(() => removeEventListener('resize', setStyles));
 
-  if (typeof _isLight === 'string') {
-    const index = schemes.indexOf(_isLight);
-    if (index !== -1) isLight = +!!index;
-  }
-  const scheme = schemes[+isLight];
-  const html = document.querySelector('html');
-
-  html?.setAttribute('data-theme', scheme);
-  html?.classList.add(scheme);
-  html?.classList.remove(schemes[+!isLight]);
-};
+// Check theme mode is changed
+watch(settingsStore, () => listenThemeChange());
 
 onBeforeMount(async () => {
   const userStore = useUserStore();
   // https://github.com/vuejs/pinia/discussions/512
   userStore.init();
+  settingsStore.init();
 });
+
+addEventListener('resize', setStyles);
 </script>
 
 <template>

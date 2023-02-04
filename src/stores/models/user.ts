@@ -4,7 +4,7 @@ import { AuthUser } from '@/api/user/type';
 import { getCurrentUserInfo } from '@/api/user';
 import { deserializeJson } from '@/utils/util';
 
-export interface UserStore {
+interface UserStore {
   token?: string | null;
   info: AuthUser | null;
 }

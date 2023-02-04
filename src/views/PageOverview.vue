@@ -2,8 +2,10 @@
 import { defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/models/user';
+import DesktopView from '@/components/Desktop/Overview/MainView.vue';
+import MobileView from '@/components/Mobile/Overview/MainView.vue';
 
-const MainViewVue = defineAsyncComponent(
+const MainView = defineAsyncComponent(
   () => import('@/components/MainView.vue')
 );
 
@@ -16,7 +18,16 @@ if (!isLogin) {
 </script>
 
 <template>
-  <MainViewVue />
+  <MainView id="overview" class="select-none">
+    <div class="w-[100%] phone:hidden">
+      <DesktopView />
+    </div>
+    <div class="w-[100%] max-phone:hidden">
+      <MobileView />
+    </div>
+  </MainView>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import '@/scss/global.scss';
+</style>

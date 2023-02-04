@@ -9,8 +9,7 @@ beforeAll(() => {
 
 beforeEach(() => {
   const store = useUserStore();
-  store.token = null;
-  store.info = null;
+  store.$reset();
 
   localStorage.removeItem('token');
   localStorage.removeItem('user_info');

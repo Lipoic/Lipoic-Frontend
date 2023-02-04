@@ -12,6 +12,7 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'eslint:recommended',
     'plugin:prettier/recommended',
+    'plugin:tailwindcss/recommended',
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -91,5 +92,8 @@ module.exports = {
 
     // allow use ++ and --
     'no-plusplus': 'off',
+
+    // Because we have custom CSS classes, turn off the no-custom-classname rule of TailwindCSS.
+    'tailwindcss/no-custom-classname': 'off',
   },
 };

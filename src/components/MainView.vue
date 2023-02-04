@@ -1,16 +1,15 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="main"></div>
+  <div class="main bg-[#FCFBFF] dark:bg-[#1B1B1F]">
+    <slot />
+  </div>
 </template>
 
 <style lang="scss" scoped>
 @import '@/scss/global.scss';
-
 .main {
-  display: flex;
-  flex-direction: column;
   min-height: 100%;
-  background-color: $LightBlack;
+  display: flex;
 }
 </style>
