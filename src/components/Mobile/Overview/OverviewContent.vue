@@ -22,8 +22,8 @@ const user = useUserStore().info;
     </div>
     <div class="recent-activities mt-[40px]">
       <p class="text-left text-lg">即將開始</p>
-      <recent-card image="math" class="mt-[10px]" />
-      <recent-card image="none" class="mt-[10px]" />
+      <recent-card name="math" class="mt-[10px]" />
+      <recent-card name="none" class="mt-[10px]" />
     </div>
     <div class="mt-[30px]">
       <svg
@@ -39,9 +39,9 @@ const user = useUserStore().info;
     </div>
     <div class="recent-activities mt-[30px]">
       <p class="text-left text-lg">近期活動</p>
-      <recent-card image="math" class="mt-[10px]" />
-      <recent-card image="none" class="mt-[10px]" />
-      <recent-card image="none" class="mt-[10px]" />
+      <recent-card name="math" class="mt-[10px]" />
+      <recent-card name="none" class="mt-[10px]" />
+      <recent-card name="none" class="mt-[10px]" />
     </div>
     <div
       class="m-auto my-[30px] block w-[105px] rounded-full border border-[#8e9099] px-4 py-2 text-center"

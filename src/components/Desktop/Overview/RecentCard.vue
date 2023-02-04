@@ -1,13 +1,20 @@
 <script lang="ts" setup>
+import mathImage from '@/assets/overview/math.png';
+import historyImage from '@/assets/overview/history.png';
+
 interface CardProps {
   name: string;
 }
 const props = defineProps<CardProps>();
+
+function getImage(): string {
+  return props.name === 'math' ? mathImage : historyImage;
+}
 </script>
 
 <template>
   <div class="card w-full max-w-[520px]">
-    <img :src="`src/assets/overview/${props.name}.png`" />
+    <img :src="getImage()" />
     <div class="p-3">
       <a class="inline-block text-2xl font-bold opacity-80">
         {{ props.name }}

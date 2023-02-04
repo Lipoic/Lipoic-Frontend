@@ -1,18 +1,25 @@
 <script lang="ts" setup>
+import mathImage from '@/assets/overview/math-square.png';
+import noneImage from '@/assets/overview/none-square.png';
+
 interface CardProps {
-  image?: string;
+  name?: string;
 }
 const props = defineProps<CardProps>();
+
+function getImage(): string {
+  return props.name === 'math' ? mathImage : noneImage;
+}
 </script>
 
 <template>
   <div class="card h-[80px] w-[100%]">
     <div class="float-left mt-[13px] ml-[20px] text-left">
-      <p class="font-bold">{{ props.image }}</p>
+      <p class="font-bold">{{ props.name }}</p>
       <p>五分鐘後開始</p>
     </div>
     <img
-      :src="'src/assets/overview/' + props.image + '-square.png'"
+      :src="getImage()"
       class="float-right h-[80px] w-[80px] rounded-l-none rounded-r-lg"
     />
   </div>
