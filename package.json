@@ -27,7 +27,7 @@
     "@types/node": "18.11.18",
     "@typescript-eslint/eslint-plugin": "5.50.0",
     "@typescript-eslint/parser": "5.50.0",
-    "@vitejs/plugin-vue": "3.2.0",
+    "@vitejs/plugin-vue": "4.0.0",
     "@vitest/coverage-c8": "0.24.3",
     "@vitest/ui": "^0.24.5",
     "@vue/eslint-config-typescript": "^11.0.2",
