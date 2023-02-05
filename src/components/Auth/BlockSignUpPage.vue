@@ -8,7 +8,7 @@ const ToolLangSelector = defineAsyncComponent(
   () => import('@/components/ToolLangSelector.vue')
 );
 const OAuthButtons = defineAsyncComponent(
-  () => import('@/components/auth/OAuthButtons.vue')
+  () => import('@/components/Auth/OAuthButtons.vue')
 );
 
 interface signUpData {

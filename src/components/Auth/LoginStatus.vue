@@ -3,16 +3,16 @@ defineProps<{ error: boolean; errorMessage?: string }>();
 </script>
 
 <template>
-  <div class="container">
+  <div class="root">
     <div v-if="!error" class="loading">
       <Loading
         :active="true"
         :color="'#7b6ff6'"
         :loader="'dots'"
-        :width="100"
-        :height="100"
+        :width="150"
+        :height="80"
       />
-      <h1 v-t="'auth.login.loading'"></h1>
+      <h1 v-t="'auth.login.loading'" class="text-center"></h1>
     </div>
     <div v-if="error" class="error">
       <h1 v-t="'auth.login.loginFailed'"></h1>
@@ -24,9 +24,14 @@ defineProps<{ error: boolean; errorMessage?: string }>();
 
 <style lang="scss" scoped>
 @import '@/scss/global.scss';
+@import '@/scss/rwd.breakPoint.scss';
 
-.container {
-  margin-top: 15px;
+.root {
+  font-size: xx-large;
+
+  @include phone {
+    font-size: x-large;
+  }
 
   .loading {
     h1 {
