@@ -14,7 +14,7 @@ const MainViewVue = defineAsyncComponent(
 );
 
 const LoginStatusVue = defineAsyncComponent(
-  () => import('@/components/auth/LoginStatus.vue')
+  () => import('@/components/Auth/LoginStatus.vue')
 );
 
 const router = useRouter();
@@ -67,6 +67,9 @@ login();
 
 <template>
   <MainViewVue id="oauth">
-    <LoginStatusVue :error="error"></LoginStatusVue>
+    <LoginStatusVue
+      :error="error"
+      class="flex h-screen items-center justify-center text-center"
+    ></LoginStatusVue>
   </MainViewVue>
 </template>

@@ -1,71 +1,36 @@
 <script lang="ts" setup>
-import { defineAsyncComponent, reactive, ref } from 'vue';
+import { defineAsyncComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import { useI18n } from 'vue-i18n';
-import { useUserStore } from '@/stores/models/user';
-import { login } from '@/api/user';
-import { Code } from '@/api/code';
+import { signUp } from '@/api/user';
+import I18nHelper from '@/helper/I18nHelper';
 
 const ToolLangSelector = defineAsyncComponent(
   () => import('@/components/ToolLangSelector.vue')
 );
 const OAuthButtons = defineAsyncComponent(
-  () => import('@/components/auth/OAuthButtons.vue')
+  () => import('@/components/Auth/OAuthButtons.vue')
 );
 
-interface loginData {
-  email: string;
+interface signUpData {
+  username: string;
   password: string;
-  stayLoggedIn: boolean;
+  email: string;
 }
-const loginFormData = reactive<loginData>({
-  email: '',
+const signUpFormData = reactive<signUpData>({
+  username: '',
   password: '',
-  stayLoggedIn: false,
+  email: '',
 });
 
-const router = useRouter();
+async function submit() {
+  await signUp(
+    signUpFormData.username,
+    signUpFormData.email,
+    signUpFormData.password,
+    I18nHelper.locale
+  );
 
-const userStore = useUserStore();
-
-if (userStore.isLoggedIn()) router.push('/');
-
-const loginError = ref<string>();
-const loginLoading = ref<boolean>(false);
-const i18n = useI18n();
-
-async function submitData() {
-  loginError.value = undefined;
-  loginLoading.value = true;
-  try {
-    const body = await login(loginFormData.email, loginFormData.password);
-
-    if (body.code === Code.SUCCESS && body.data) {
-      userStore.setToken(body.data.token);
-      await userStore.setUserInfo();
-      await router.push('/');
-    }
-
-    let errorKey!: string;
-
-    switch (body.code) {
-      case Code.Login_User_Error:
-        errorKey = 'auth.login.error.password';
-        break;
-
-      case Code.Login_User_Email_Not_Verified:
-        errorKey = 'auth.login.error.verifyEmail';
-        break;
-
-      case Code.USER_NOT_FOUND:
-        errorKey = 'auth.login.error.user';
-    }
-
-    loginError.value = i18n.t(errorKey);
-  } catch (error) {
-    loginError.value = i18n.t('error.message');
-  }
-  loginLoading.value = false;
+  await useRouter().push('/');
 }
 </script>
 
@@ -93,19 +58,29 @@ async function submitData() {
       </router-link>
       <form method="POST">
         <div class="header">
-          <span v-t="'auth.login.title'" />
+          <span v-t="'auth.signUp.title'" />
         </div>
         <input
-          v-model="loginFormData.email"
+          v-model="signUpFormData.username"
+          required
+          type="text"
+          name="username"
+          maxlength=""
+          :aria-label="$t('auth.login.username')"
+          :placeholder="$t('auth.login.username')"
+          autocomplete="username"
+        />
+        <input
+          v-model="signUpFormData.email"
           required
           type="email"
           name="email"
-          :aria-label="$t('auth.login.email')"
-          :placeholder="$t('auth.login.email')"
+          :aria-label="$t('auth.signUp.email')"
+          :placeholder="$t('auth.signUp.email')"
           autocomplete="email"
         />
         <input
-          v-model="loginFormData.password"
+          v-model="signUpFormData.password"
           required
           type="password"
           name="password"
@@ -113,40 +88,23 @@ async function submitData() {
           :placeholder="$t('auth.login.password')"
           autocomplete="current-password"
         />
-        <div class="loginOptions">
-          <p v-if="loginError" class="loginError">
-            {{ loginError }}
-          </p>
-          <a v-t="'auth.login.forgotPassword'" href="#" class="forgot" />
-        </div>
         <button
-          v-if="!loginLoading"
-          v-t="'auth.login.loginButton'"
-          class="loginButton"
+          v-t="'auth.signUp.signUpButton'"
+          class="signUpButton"
           type="submit"
-          @click.prevent="submitData"
+          @click.prevent="submit"
         />
-        <div v-if="loginLoading">
-          <Loading
-            class="loadingIndicator"
-            :active="true"
-            :color="'#7b6ff6'"
-            :loader="'dots'"
-            :width="50"
-            :height="50"
-          />
-        </div>
-        <p v-t="'auth.login.haveNoAccount'" />
+        <p v-t="'auth.signUp.alreadyHaveAccount'" />
         <p>
           <router-link
-            v-t="'auth.login.registerNow'"
-            to="/account/signup"
-            class="signup"
+            v-t="'auth.signUp.loginNow'"
+            to="/account/login"
+            class="login"
           />
         </p>
-        <hr />
+        <hr style="border-color: #ababab" />
         <OAuthButtons />
-        <ToolLangSelector />
+        <ToolLangSelector class="langSelector" />
       </form>
     </div>
     <div class="bottomMusk"></div>
@@ -259,28 +217,22 @@ async function submitData() {
         outline: none;
 
         &:invalid {
-          ~ .loginButton {
+          ~ .signUpButton {
             pointer-events: none;
             opacity: 0.5;
           }
         }
       }
 
-      .loginOptions {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 15px;
-
-        a {
-          color: white;
-        }
-
-        .loginError {
-          color: orangered;
-          font-size: large;
-          padding-bottom: 10px;
-        }
+      & > button {
+        padding: 10px;
+        margin: 20px;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+        background-color: $MainPurple;
+        border: none;
+        border-radius: 15px;
       }
 
       p {
@@ -295,29 +247,13 @@ async function submitData() {
         cursor: pointer;
       }
 
+      .langSelector {
+        margin-top: 10px;
+      }
+
       hr {
         border-color: #ababab;
         margin: 12px 20px;
-      }
-
-      .loginButton {
-        padding: 10px;
-        margin-bottom: 20px;
-        font-size: 1.5rem;
-        color: white;
-        cursor: pointer;
-        background-color: $MainPurple;
-        border: none;
-        border-radius: 15px;
-      }
-
-      .loadingIndicator {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
-        margin-right: 10px;
       }
     }
   }

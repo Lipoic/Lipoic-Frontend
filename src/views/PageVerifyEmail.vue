@@ -10,7 +10,7 @@ const MainViewVue = defineAsyncComponent(
   () => import('@/components/MainView.vue')
 );
 const LoginStatusVue = defineAsyncComponent(
-  () => import('@/components/auth/LoginStatus.vue')
+  () => import('@/components/Auth/LoginStatus.vue')
 );
 
 const router = useRouter();
