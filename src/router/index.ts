@@ -26,12 +26,12 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'login',
         name: 'Login',
-        component: () => import('@/components/auth/BlockLoginPage.vue'),
+        component: () => import('@/components/Auth/BlockLoginPage.vue'),
       },
       {
         path: 'signup',
         name: 'SignUp',
-        component: () => import('@/components/auth/BlockSignUpPage.vue'),
+        component: () => import('@/components/Auth/BlockSignUpPage.vue'),
       },
     ],
   },
