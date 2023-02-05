@@ -8,7 +8,6 @@ import { useRegisterSW } from 'virtual:pwa-register/vue';
 
 import LoadingPlugin from 'vue-loading-overlay';
 import I18nHelper from '@/helper/I18nHelper';
-import FirebaseHelper from '@/helper/FirebaseHelper';
 
 import router from '@/router';
 import plugin from '@/plugin';
@@ -46,6 +45,4 @@ const SvgIconComponent = defineAsyncComponent(
     .component('Loading', LoadingPlugin)
     .component('SvgIcon', SvgIconComponent)
     .mount('#app');
-
-  FirebaseHelper.init();
 })();

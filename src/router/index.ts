@@ -1,11 +1,9 @@
-import { logEvent } from 'firebase/analytics';
 import {
   createRouter,
   createWebHistory,
   Router,
   RouteRecordRaw,
 } from 'vue-router';
-import FirebaseHelper from '@/helper/FirebaseHelper';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -59,24 +57,11 @@ const routes: RouteRecordRaw[] = [
   },
 ];
 
-function _createRouter(): Router {
-  const router: Router = createRouter({
+function _create(): Router {
+  return createRouter({
     history: createWebHistory(),
     routes,
   });
-
-  // Listen to route changes
-  router.afterEach((to) => {
-    const analytics = FirebaseHelper.getAnalytics();
-    if (analytics === null) return;
-    logEvent(analytics, 'page_view', {
-      page_path: to.path,
-      page_title: to.name?.toString(),
-      page_location: to.fullPath,
-    });
-  });
-
-  return router;
 }
 
-export default _createRouter();
+export default _create();
