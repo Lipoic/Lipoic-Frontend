@@ -6722,10 +6722,10 @@ vue-i18n@9.2.2:
     "@intlify/vue-devtools" "9.2.2"
     "@vue/devtools-api" "^6.2.1"
 
-vue-loading-overlay@5.0.3:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/vue-loading-overlay/-/vue-loading-overlay-5.0.3.tgz#2838297fe9c7e8b2a1e1ce3415c115487885933a"
-  integrity sha512-6JWZalwlHF4do3HXsFZGt6PcWYseAI5FuNKpveEkljkzqskDWRr7rYmYHVx2kKu4qIvK0vLpL25T/hpFMNoevQ==
+vue-loading-overlay@6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/vue-loading-overlay/-/vue-loading-overlay-6.0.2.tgz#69c844067d4344f72474f87f68020eb066763203"
+  integrity sha512-5GCvv6hPjNfHg+tKnLkk6yO/b/AdCCkdZb2dfrVFOuDyJz38dbm34k6oohVy/xIoFzPGsEEVtwCxq5G3RIYZ1Q==
 
 vue-router@4.1.6:
   version "4.1.6"
