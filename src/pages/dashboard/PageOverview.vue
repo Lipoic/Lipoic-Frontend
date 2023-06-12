@@ -1,7 +1,13 @@
 <script lang="ts" setup>
-import Content from '@/components/desktop/dashboard/OverviewContent.vue';
+import DesktopContent from '@/components/desktop/dashboard/OverviewContent.vue';
+import MobileContent from '@/components/Mobile/Dashboard/OverviewContent.vue';
 </script>
 
 <template>
-  <Content />
+  <div class="w-[100%] phone:hidden">
+    <DesktopContent />
+  </div>
+  <div class="w-[100%] max-phone:hidden">
+    <MobileContent />
+  </div>
 </template>
