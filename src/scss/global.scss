@@ -5,7 +5,7 @@
 // Variables
 $Black: #353535;
 $LightBlack: #424242;
-$DarkBlack: #1f1f1f;
+$DarkBlack: #1b1b1f;
 $MainColor: #5efff2;
 $MainPurple: #7b6ff6;
 
@@ -20,6 +20,10 @@ html,
 #app {
   width: 100%;
   height: 100%;
+
+  .dark & {
+    background-color: $DarkBlack; // For Webkit browsers.
+  }
 }
 
 img {

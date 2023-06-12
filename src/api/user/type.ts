@@ -64,7 +64,7 @@ export const USER_LOCALES = ['en-US', 'zh-CN', 'zh-TW'] as const;
  * @see https://en.wikipedia.org/wiki/IETF_language_tag
  * @see USER_LOCALES
  */
-export type UserLocale = typeof USER_LOCALES[number];
+export type UserLocale = (typeof USER_LOCALES)[number];
 
 /**
  * Check if the user locale is valid.

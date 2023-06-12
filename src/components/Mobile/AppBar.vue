@@ -1,4 +1,18 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router';
+import { Ref } from 'vue';
+import {
+  getNavBarIndex,
+  NAVBAR_ITEMS,
+  NavBarItem,
+} from '@/components/data/NavigationBarData';
+
+const router = useRouter();
+
+function getNavBarItem(route: Ref<RouteLocationNormalizedLoaded>): NavBarItem {
+  return NAVBAR_ITEMS[getNavBarIndex(route.value.path)];
+}
+</script>
 
 <template>
   <div class="nav-overlay"></div>
@@ -12,7 +26,9 @@
           />
         </svg>
       </button>
-      <h1 class="text-xl leading-6">總覽</h1>
+      <h1 class="text-xl leading-6">
+        {{ getNavBarItem(router.currentRoute).name }}
+      </h1>
     </div>
     <div class="flex gap-6">
       <button id="search">
