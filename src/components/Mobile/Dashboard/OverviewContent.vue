@@ -6,7 +6,7 @@ const user = useUserStore().info;
 </script>
 
 <template>
-  <div class="mx-[30px] text-center">
+  <div class="max-h-[calc(100svh-149px)] overflow-y-auto px-[6%] text-center">
     <div class="mt-[30px] text-[#3f4759] dark:text-[#c4c6d0]">
       <svg
         class="m-auto block"

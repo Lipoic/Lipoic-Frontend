@@ -5,16 +5,13 @@ import NavigationBar from '@/components/NavigationBar.vue';
 </script>
 
 <template>
-  <AppBar />
-  <Content />
-  <NavigationBar />
-  <div class="navigation-overlay"></div>
+  <div class="overflow-y-hidden">
+    <AppBar />
+    <Content />
+    <NavigationBar />
+  </div>
 </template>
 
 <style lang="scss" scoped>
 @import '@/scss/global.scss';
-
-.navigation-overlay {
-  min-height: 6rem;
-}
 </style>
