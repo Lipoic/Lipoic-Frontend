@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
-import RecentCardVue from '@/components/Mobile/Overview/RecentCard.vue';
+import RecentCardVue from '@/components/Mobile/Dashboard/RecentCard.vue';
 
 describe('Recent card', () => {
   test('check the card name & math', () => {

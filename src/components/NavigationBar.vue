@@ -1,11 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-
-const activeIndex = ref(0);
-
-const handleChangeActive = (index: number) => {
-  activeIndex.value = index;
-};
+import { useRouter } from 'vue-router';
 
 const navbarItems = [
   {
@@ -17,7 +12,7 @@ const navbarItems = [
       </svg>
     `,
     name: '總覽',
-    link: '/overview',
+    link: 'overview',
   },
   {
     icon: `
@@ -27,7 +22,7 @@ const navbarItems = [
         />
     `,
     name: '我的班級',
-    link: '/classroom',
+    link: 'class',
   },
   {
     icon: `
@@ -37,7 +32,7 @@ const navbarItems = [
         />
     `,
     name: '我的課堂',
-    link: '/lesson',
+    link: 'lesson',
   },
   {
     icon: `
@@ -65,9 +60,23 @@ const navbarItems = [
       />
     `,
     name: '試題庫',
-    link: '/question',
+    link: 'exam',
   },
 ];
+
+const router = useRouter();
+
+const defaultIndex = navbarItems.findIndex(
+  (item) => item.link === router.currentRoute.value.path.split('/')[2]
+);
+const activeIndex = ref(defaultIndex);
+
+const handleChangeActive = (index: number) => {
+  activeIndex.value = index;
+  const item = navbarItems[index];
+  console.log(item.link);
+  router.push(`/dashboard/${item.link}`);
+};
 </script>
 
 <template>

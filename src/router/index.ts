@@ -12,9 +12,35 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/PageHome.vue'),
   },
   {
-    path: '/overview',
-    name: 'Overview',
-    component: () => import('@/pages/PageOverview.vue'),
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import('@/pages/PageDashboard.vue'),
+    children: [
+      {
+        path: '',
+        redirect: 'dashboard/overview',
+      },
+      {
+        path: 'overview',
+        component: () => import('@/pages/dashboard/PageOverview.vue'),
+      },
+      {
+        path: 'class',
+        component: () => import('@/pages/dashboard/PageClass.vue'),
+      },
+      {
+        path: 'lesson',
+        component: () => import('@/pages/dashboard/PageLesson.vue'),
+      },
+      {
+        path: 'note',
+        component: () => import('@/pages/dashboard/PageNote.vue'),
+      },
+      {
+        path: 'exam',
+        component: () => import('@/pages/dashboard/PageExam.vue'),
+      },
+    ],
   },
   {
     path: '/account',
