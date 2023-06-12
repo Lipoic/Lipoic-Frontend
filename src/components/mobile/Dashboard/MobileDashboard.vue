@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AppBar from '@/components/Mobile/AppBar.vue';
+import AppBar from '@/components/mobile/AppBar.vue';
 import NavigationBar from '@/components/NavigationBar.vue';
 </script>
 
