@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import DesktopContent from '@/components/desktop/dashboard/OverviewContent.vue';
-import MobileContent from '@/components/mobile/Dashboard/OverviewContent.vue';
+import MobileContent from '@/components/mobile/dashboard/OverviewContent.vue';
 </script>
 
 <template>

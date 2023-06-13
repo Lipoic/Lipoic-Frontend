@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import RecentCard from '@/components/mobile/Dashboard/RecentCard.vue';
+import RecentCard from '@/components/mobile/dashboard/RecentCard.vue';
 import { useUserStore } from '@/stores/models/user';
 
 const user = useUserStore().info;

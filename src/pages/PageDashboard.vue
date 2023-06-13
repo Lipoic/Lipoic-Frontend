@@ -3,7 +3,7 @@ import { defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/models/user';
 import DesktopDashboard from '@/components/desktop/dashboard/DesktopDashboard.vue';
-import MobileDashboard from '@/components/mobile/Dashboard/MobileDashboard.vue';
+import MobileDashboard from '@/components/mobile/dashboard/MobileDashboard.vue';
 
 const MainView = defineAsyncComponent(
   () => import('@/components/MainView.vue')
