@@ -12,8 +12,12 @@ const activeIndex = ref(getNavBarIndex(router.currentRoute.value.path));
 
 const handleChangeActive = (index: number) => {
   activeIndex.value = index;
+
   const item = NAVBAR_ITEMS[index];
-  router.push(`/dashboard/${item.link}`);
+  const pathSplit = router.currentRoute.value.path.split('/');
+  const parentPath = pathSplit.slice(0, pathSplit.length - 1).join('/');
+
+  router.push(`${parentPath}/${item.link}`);
 };
 </script>
 
