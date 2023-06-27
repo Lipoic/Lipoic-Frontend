@@ -22,7 +22,7 @@ html,
   height: 100%;
 
   .dark & {
-    background-color: $DarkBlack; // This is used to fix the animation that occurs when scrolling beyond the bounds in Safari(Webkit), where the color does not match the background color of the webpage itself.
+    background-color: $DarkBlack; // This is used to fix the animation that occurs when scrolling beyond the bounds in Safari (Webkit), where the color does not match the background color of the webpage itself.
   }
 }
 
