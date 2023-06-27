@@ -1,6 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
+  <!-- Due to the technical debt left behind, we are temporarily addressing it by reducing the actual screen size. -->
   <div
     class="absolute right-0 top-[77px] h-[calc(100svh-77px)] w-[calc(100svw-104px)] phone:hidden"
   >

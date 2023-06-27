@@ -6,6 +6,7 @@ const user = useUserStore().info;
 </script>
 
 <template>
+  <!-- Due to the technical debt left behind, we are temporarily addressing it by reducing the actual screen size. -->
   <div class="max-h-[calc(100svh-149px)] overflow-y-auto px-[6%] text-center">
     <div class="mt-[30px] text-[#3f4759] dark:text-[#c4c6d0]">
       <svg
