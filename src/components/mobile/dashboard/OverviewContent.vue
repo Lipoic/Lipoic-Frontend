@@ -1,12 +1,13 @@
 <script lang="ts" setup>
-import RecentCard from '@/components/Mobile/Overview/RecentCard.vue';
+import RecentCard from '@/components/mobile/dashboard/RecentCard.vue';
 import { useUserStore } from '@/stores/models/user';
 
 const user = useUserStore().info;
 </script>
 
 <template>
-  <div class="mx-[30px] text-center">
+  <!-- Due to the technical debt left behind, we are temporarily addressing it by reducing the actual screen size. -->
+  <div class="max-h-[calc(100svh-149px)] overflow-y-auto px-[6%] text-center">
     <div class="mt-[30px] text-[#3f4759] dark:text-[#c4c6d0]">
       <svg
         class="m-auto block"

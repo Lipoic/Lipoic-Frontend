@@ -1,24 +1,37 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router';
+import { Ref } from 'vue';
+import {
+  getNavBarIndex,
+  NAVBAR_ITEMS,
+  NavBarItem,
+} from '@/components/data/NavigationBarData';
+
+const router = useRouter();
+
+function getNavBarItem(route: Ref<RouteLocationNormalizedLoaded>): NavBarItem {
+  return NAVBAR_ITEMS[getNavBarIndex(route.value.path)];
+}
+</script>
 
 <template>
   <div class="nav-overlay"></div>
-
-  <div class="nav flex h-[64px]">
-    <div class="ml-[20px] flex-1">
-      <div class="flex">
-        <button id="menu" class="absolute mt-[20px] block">
-          <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
-            <path
-              fill="currentColor"
-              d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
-            />
-          </svg>
-        </button>
-        <h1 class="ml-[50px] mt-[17px] block text-center text-xl">總覽</h1>
-      </div>
+  <div class="nav flex h-[64px] w-[100svw] flex-row justify-between px-4">
+    <div class="flex items-center gap-7">
+      <button id="menu" class="">
+        <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
+          />
+        </svg>
+      </button>
+      <h1 class="text-xl leading-6">
+        {{ getNavBarItem(router.currentRoute).name }}
+      </h1>
     </div>
-    <div class="flex">
-      <button id="search" class="mr-8 block">
+    <div class="flex gap-6">
+      <button id="search">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
           <path
             fill="currentColor"
@@ -26,7 +39,7 @@
           />
         </svg>
       </button>
-      <button id="account" class="mr-5 block">
+      <button id="account">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
           <path
             fill="currentColor"
@@ -40,7 +53,6 @@
 
 <style lang="scss" scoped>
 @import '@/scss/global.scss';
-
 .nav-overlay {
   min-height: 4rem;
 }
@@ -50,7 +62,6 @@
   z-index: auto;
   top: 0;
 
-  width: 100%;
   color: #444b89;
   background: linear-gradient(
       0deg,

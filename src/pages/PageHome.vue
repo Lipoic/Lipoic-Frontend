@@ -6,7 +6,7 @@ import { useUserStore } from '@/stores/models/user';
 const isLogin = useUserStore().isLoggedIn();
 const router = useRouter();
 if (isLogin) {
-  router.push('/overview');
+  router.push('/dashboard');
 } else {
   router.push('/account/login');
 }
